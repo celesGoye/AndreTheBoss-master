@@ -1,0 +1,164 @@
+<items>
+	<SoulType>
+		<Soul>
+			<intro>
+				just intro.Test for long text.\nTest for long text.\nTest for long text.\nTest for long text.\nTest for long text.\n
+			</intro>
+			<use>
+				What it's for.\n Test for long text.\nTest for long text.\nTest for long text.\nTest for long text.\nTest for long text.\nTest for long text.\n
+			</use>
+			<access>
+				it's access.Test for long text.\nTest for long text.\nTest for long text.\nTest for long text.\nTest for long text.\n
+			</access>
+		</Soul>
+		<HeroSoul>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</HeroSoul>
+		<MoonlightStone>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</MoonlightStone>
+	</SoulType>
+	<Farm>
+		<SpiderLily>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</SpiderLily>
+		<DemonFruit>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</DemonFruit>
+		<GoldenApple>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</GoldenApple>
+	</Farm>
+	<Mine>
+		<Sulfur>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</Sulfur>
+		<Mercury>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</Mercury>
+		<Gold>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</Gold>
+	</Mine>
+	<Buff>
+		<RedCandy>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</RedCandy>
+		<BlueCandy>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</BlueCandy>
+		<PurpleCandy>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</PurpleCandy>
+		<BlackCandy>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</BlackCandy>
+		<SpringWater>
+			<intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+		</SpringWater>
+	</Buff>
+</items>

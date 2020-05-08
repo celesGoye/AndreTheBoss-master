@@ -1,0 +1,157 @@
+	<monsters>
+		<boss>
+			<level value="1">
+					<SpiderLily>
+						1
+					</SpiderLily>
+			</level>
+			<level value="2">
+					<DemonFruit>
+						2
+					</DemonFruit>
+					<GoldenApple>
+						3
+					</GoldenApple>
+			</level>
+			<level value="3">
+					<Sulfur>
+						1
+					</Sulfur>
+					<Mercury>
+						1
+					</Mercury>
+					<Gold>
+						1
+					</Gold>
+					<Soul>
+						1
+					</Soul>
+					<HeroSoul>
+						1
+					</HeroSoul>
+					<MoonlightStone>
+						1
+					</MoonlightStone>
+			</level>
+			<level value="4">
+					<DemonFruit>
+						2
+					</DemonFruit>
+					<GoldenApple>
+						3
+					</GoldenApple>
+			</level>
+			<level value="5">
+					<DemonFruit>
+						2
+					</DemonFruit>
+					<GoldenApple>
+						3
+					</GoldenApple>
+			</level>
+		</boss>
+	
+		<zombie>
+			<level value="1">
+					<SpiderLily>
+						1
+					</SpiderLily>
+			</level>
+			<level value="2">
+					<DemonFruit>
+						2
+					</DemonFruit>
+					<GoldenApple>
+						3
+					</GoldenApple>
+			</level>
+			<level value="3">
+					<Sulfur>
+						1
+					</Sulfur>
+					<Mercury>
+						1
+					</Mercury>
+					<Gold>
+						1
+					</Gold>
+					<Soul>
+						1
+					</Soul>
+					<HeroSoul>
+						1
+					</HeroSoul>
+					<MoonlightStone>
+						1
+					</MoonlightStone>
+			</level>
+			<level value="4">
+					<DemonFruit>
+						2
+					</DemonFruit>
+					<GoldenApple>
+						3
+					</GoldenApple>
+			</level>
+			<level value="5">
+					<DemonFruit>
+						2
+					</DemonFruit>
+					<GoldenApple>
+						3
+					</GoldenApple>
+			</level>
+		</zombie>
+		
+		<sprite>
+			<level value="1">
+					<SpiderLily>
+						1
+					</SpiderLily>
+			</level>
+			<level value="2">
+					<DemonFruit>
+						2
+					</DemonFruit>
+					<GoldenApple>
+						3
+					</GoldenApple>
+			</level>
+			<level value="3">
+					<Sulfur>
+						1
+					</Sulfur>
+					<Mercury>
+						1
+					</Mercury>
+					<Gold>
+						1
+					</Gold>
+					<Soul>
+						1
+					</Soul>
+					<HeroSoul>
+						1
+					</HeroSoul>
+					<MoonlightStone>
+						1
+					</MoonlightStone>
+			</level>
+			<level value="4">
+					<DemonFruit>
+						2
+					</DemonFruit>
+					<GoldenApple>
+						3
+					</GoldenApple>
+			</level>
+			<level value="5">
+					<DemonFruit>
+						2
+					</DemonFruit>
+					<GoldenApple>
+						3
+					</GoldenApple>
+			</level>
+		</sprite>
+	</monsters>
