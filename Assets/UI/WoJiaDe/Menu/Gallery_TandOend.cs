@@ -13,11 +13,10 @@ public class Gallery_TandOend : MonoBehaviour
 	
 	public bool isTerrain;
 	public HexType hexType;
-	public ObstacleType obstacleType;
     
 	public void UpdateTandO()
 	{
-		name.text=isTerrain?hexType.ToString():obstacleType.ToString();
-		kind.text=isTerrain?"Terrain":"Obstacle";
+		name.text=hexType.ToString();
+		kind.text="Terrain";
 	}
 }

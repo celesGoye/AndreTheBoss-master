@@ -8,6 +8,8 @@ public class PawnAction : MonoBehaviour
 {
     private Pawn selectedPawn;
     public GameInteraction gameInteraction;
+	public MonsterActionManager monsterActionManager;
+	public MonsterManager monsterManager;
     public HexMap hexMap;
     public Text txt_pawn;
 	//0,0
@@ -64,14 +66,18 @@ public class PawnAction : MonoBehaviour
             gameInteraction.IsPawnAction = true;
             currentStatus = Status.PrepareMove;
             validRoute = true;
-            hexMap.FindReachableCells(selectedPawn.currentCell, selectedPawn.Dexterity);
+            hexMap.FindReachableCells(selectedPawn.currentCell, selectedPawn.remainedStep);
             hexMap.ShowReachableCells();
         }
     }
 
     public void Move()
     {
-		//0,0
+		
+		if(selectedPawn.Type==PawnType.Monster)
+		{
+			monsterActionManager.SetActionType(hexMap.GetPathLength(),selectedPawn);
+		}
 		uilog.UpdateLog(selectedPawn.Name + " Moves");
         Debug.Log(selectedPawn.Name + " Moves");
         hexMap.HideIndicator();
@@ -100,10 +106,9 @@ public class PawnAction : MonoBehaviour
         }
     }
 	
-	//0,0
 	public void OpenMenu()
 	{
-		menu.currentMonster=selectedPawn;
+		menu.SetCurrentMonster(selectedPawn);
 		menu.OpenMenu();
 	}
 
@@ -144,6 +149,7 @@ public class PawnAction : MonoBehaviour
                     routes = hexMap.GetCurrentRoutes();
                     currentTarget = 0;
                     Move();
+					
                 }
             }
 

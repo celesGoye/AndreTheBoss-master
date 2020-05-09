@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class MenuControl : MonoBehaviour
 {
-	public Pawn currentMonster;
+	public GameManager gameManager;
+	public Monster currentMonster;
 	public UpgradePanel upgradePanel;
 	public GalleryPanel galleryPanel;
 	public SkillPanel skillPanel;
@@ -80,5 +81,13 @@ public class MenuControl : MonoBehaviour
 		this.transform.gameObject.SetActive(true);
 		OnBtnUpgrade();
 		UpdateMenu();
+	}
+	public void SetCurrentMonster(Pawn pawn)
+	{
+		for(int i=0;i<gameManager.monsterManager.MonsterPawns.Count;i++)
+		{
+			if(pawn==gameManager.monsterManager.MonsterPawns[i])
+				currentMonster=gameManager.monsterManager.MonsterPawns[i];
+		}
 	}
 }

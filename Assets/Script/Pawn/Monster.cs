@@ -6,11 +6,11 @@ public class Monster: Pawn
 {
     public MonsterType monsterType;
     public void InitializeMonster(MonsterType monsterType, string name,
-        int attack, int defense, int HP, int dexterity, int attackRange,int magic , int resistance)
+        int attack, int defense, int HP, int dexterity, int attackRange,int magicAttack , int magicDefense,int level)
     {
         this.monsterType = monsterType;
         Name = monsterType.ToString();
-        InitializePawn(PawnType.Monster, name, attack, defense, HP, dexterity, attackRange,magic,resistance);
+        InitializePawn(PawnType.Monster, name, attack, defense, HP, dexterity, attackRange,magicAttack,magicDefense,level);
     }
 
     public override string ToString()

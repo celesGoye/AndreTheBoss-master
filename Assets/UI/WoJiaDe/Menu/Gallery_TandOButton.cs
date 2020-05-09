@@ -7,7 +7,6 @@ public class Gallery_TandOButton : MonoBehaviour
 {
 	public bool isTerrain;
 	public HexType hexType;
-	public ObstacleType obstacleType;
 	public Gallery_TandOPage tandoPage;
 	public int id;
 	void Awake()

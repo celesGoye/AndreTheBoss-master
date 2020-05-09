@@ -44,7 +44,9 @@ public class HexMap : MonoBehaviour
     private List<HexCell> hiddenCells;
 
     public int revealRadius = 2;
-
+	
+	private int pathLength;
+	
     public void OnEnable()
     {
         
@@ -59,6 +61,7 @@ public class HexMap : MonoBehaviour
         reachableCells = new List<HexCell>();
         attackableCells = new List<HexCell>();
         hiddenCells = new List<HexCell>();
+		pathLength=0;
 		CreateMat();
         for (int z = 0; z < mapHeight; z++)
         {
@@ -309,7 +312,7 @@ public class HexMap : MonoBehaviour
                 if (nextCell != null)
                 {
                     int distance = cell.Distance;
-                    if (nextCell.hexType == HexType.Mountain)
+                    if (nextCell.hexType == HexType.Mountain||nextCell.hexType == HexType.Stones||nextCell.hexType == HexType.Thorns)
                         continue;
                     else if (nextCell.hexType == HexType.Plain)
                         distance = cell.Distance + 1;
@@ -334,7 +337,7 @@ public class HexMap : MonoBehaviour
             }
             cellToFind.Sort((x, y) => x.Distance.CompareTo(y.Distance));
         }
-
+		pathLength=0;
         currentRoutes.Clear();
         if (toCell.prevCell != null)
         {
@@ -342,10 +345,16 @@ public class HexMap : MonoBehaviour
             while(prev != fromCell)
             {
                 currentRoutes.Insert(0, prev);
+				pathLength+=(prev.hexType == HexType.Plain)?1:2;
                 prev = prev.prevCell;
             }
         }
     }
+	
+	public int GetPathLength()
+	{
+		return pathLength;
+	}
 
     public void ShowPath(HexCell fromCell, HexCell toCell)
     {
@@ -465,7 +474,7 @@ public class HexMap : MonoBehaviour
             cells[i].Distance = int.MaxValue;
         }
 
-        Debug.Log("Attack range: " + startCell.pawn.AttackRange);
+        Debug.Log("Attack range: " + startCell.pawn.currentAttackRange);
 
         startCell.Distance = 0;
         cellToFind.Add(startCell);
@@ -489,7 +498,7 @@ public class HexMap : MonoBehaviour
                     }
                 }
             }
-            if (cell.Distance <= startCell.pawn.AttackRange)
+            if (cell.Distance <= startCell.pawn.currentAttackRange)
                 reachableCells.Add(cell);
 
             cellToFind.Sort((x, y) => x.Distance.CompareTo(y.Distance));

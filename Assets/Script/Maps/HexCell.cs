@@ -105,7 +105,6 @@ public class HexCell : MonoBehaviour
 
     public bool CanbeDestination()
     {
-		Debug.Log("Congratulations!");
 		return (hexType != HexType.Mountain && hexType != HexType.Stones && hexType != HexType.Thorns && pawn == null);
         return buildable;
     }

@@ -20,6 +20,25 @@ public class MonsterManager : MonoBehaviour
 
     public void OnEnable()
     {
+        /*gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        MonsterPawns = new List<Monster>();
+        MonsterRoot = new GameObject();
+        MonsterRoot.transform.SetParent(transform);
+        MonsterRoot.transform.position = Vector3.zero;
+
+        prefabs = new Dictionary<MonsterType, Monster>
+        {
+            {MonsterType.boss, Boss_Prefab },
+            {MonsterType.dwarf, MonsterPrefab_dwarf},
+            {MonsterType.giant, MonsterPrefab_giant },
+            {MonsterType.sprite, MonsterPrefab_sprite },
+            {MonsterType.zombie, MonsterPrefab_zombie }
+        };*/
+		InitMonsterManager();
+    }
+	 public void InitMonsterManager()
+    {
+		Debug.Log("hi");
         gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
         MonsterPawns = new List<Monster>();
         MonsterRoot = new GameObject();
@@ -38,13 +57,14 @@ public class MonsterManager : MonoBehaviour
 
     public Monster CreateMonster(MonsterType type, HexCell cellToSpawn, int level)
     {
+		GameObject.Instantiate<Monster>(prefabs[type]);
         Monster monster = GameObject.Instantiate<Monster>(prefabs[type]);
         monster.transform.SetParent(transform);
         gameManager.hexMap.SetCharacterCell(monster, cellToSpawn);
         Pawn pawn = (Pawn)monster;
         gameManager.characterReader.InitPawnData(ref pawn, PawnType.Monster, (int)type, level);
         gameManager.hexMap.RevealCellsFrom(monster.currentCell);
-		monster.Healthbar=gameManager.healthbarManager.InitializeHealthBar(monster);
+		monster.healthbar=gameManager.healthbarManager.InitializeHealthBar(monster);
 		MonsterPawns.Add(monster);
         return monster;
     }

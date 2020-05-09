@@ -59,7 +59,7 @@ public class EnemyManager : MonoBehaviour
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_thief);
                     break;
             }		
-			newEnemy.Healthbar=gameManager.healthbarManager.InitializeHealthBar(newEnemy);
+			newEnemy.healthbar=gameManager.healthbarManager.InitializeHealthBar(newEnemy);
 			EnemyPawns.Add(newEnemy);
         }
     }

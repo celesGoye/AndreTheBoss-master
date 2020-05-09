@@ -23,8 +23,8 @@ public class HealthBar : MonoBehaviour
 		transform.localPosition = pos;
 	}
 	public void UpdateLife(){
-		maxlife=pawn.MaxHp;
-		currentlife=pawn.HP;
+		maxlife=pawn.GetMaxHP();
+		currentlife=pawn.currentHP;
 		slider.value=currentlife/maxlife;
 	}
 }

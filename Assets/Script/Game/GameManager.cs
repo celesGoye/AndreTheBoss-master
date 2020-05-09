@@ -13,8 +13,11 @@ public class GameManager : MonoBehaviour
     public GameTurnManager gameTurnManager;
     public EnemyManager enemyManager;
     public MonsterManager monsterManager;
+	public BuildingManager buildingManager;
 	public HealthBarManager healthbarManager;
     public GameInteraction gameInteraction;
+	
+	public MonsterActionManager monsterActionManager;
 
     // Main Character
     private Boss boss;
@@ -30,8 +33,10 @@ public class GameManager : MonoBehaviour
         hexMap.HideCells();
         gameTurnManager = new GameTurnManager();
 		HexCell hexcell=hexMap.GetRandomCellToSpawn();
+		monsterManager.InitMonsterManager();
         InitBoss();
         gameCamera.FocusOnPoint(boss.transform.position);
+		monsterActionManager.InitMonsterAcitonManager();
     }
 
     private void InitBoss()

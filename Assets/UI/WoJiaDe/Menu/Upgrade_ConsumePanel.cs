@@ -49,7 +49,7 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 	public void UpdateConsumePanel()
 	{
 		monster=upgradePanel.currentMonster;
-		if(monster.Level>=Pawn.MaxLevel)
+		if(monster.GetLevel()>=Pawn.MaxLevel)
 		{
 			for(int i=0;i<content.childCount;i++)
 			{
@@ -58,7 +58,7 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 			}
 			return;
 		}
-		items=characterReader.GetCharacterUpgrade(monster.Name,monster.Level);
+		items=characterReader.GetCharacterUpgrade(monster.Name,monster.GetLevel());
 		itemcount=items.Count;
 		Dictionary<ItemType,int>.Enumerator en=items.GetEnumerator();
 		if(content.childCount>itemcount)
@@ -92,8 +92,8 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 			}
 		}
 		
-		Vector2 v=new Vector2((itemcount<=5?0:(itemcount-5)*width*UnityEngine.Screen.height),0);
-		content.GetComponent<RectTransform>().offsetMax=v;
+		Vector2 extend=new Vector2((itemcount<=5?0:(itemcount-5)*width*UnityEngine.Screen.height),0);
+		content.GetComponent<RectTransform>().offsetMax=extend;
 	}
 	
 	public Upgrade_Item GenItem(int index)

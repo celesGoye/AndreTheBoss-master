@@ -59,12 +59,14 @@ public class GameInteraction : MonoBehaviour
                 if(hitCell.buildable)
                 {
                     EnableHexCellActionPanel();
+					gameManager.buildingManager.ShowBuildableHex();
+					hitCell.indicator.SetColor(Indicator.StartColor);
 					hexCellActionPanel.UpdateHexCellPanel(hitCell);
                 }
             }
             else if ((selectedPawn = hit.collider.GetComponent<Pawn>()) != null)
             {
-				playerPanel.EndBuildMode();
+				gameManager.buildingManager.UpdateBuildMode(false);
                 if(selectedPawn.Type == PawnType.Enemy)
                 {
                     pawnStatusPanel.UpdatePawnStatusPanel(selectedPawn);
@@ -81,7 +83,7 @@ public class GameInteraction : MonoBehaviour
         }
         else
         {
-			playerPanel.EndBuildMode();
+			gameManager.buildingManager.UpdateBuildMode(false);
             ClearScreen();
         }
     }
@@ -101,11 +103,7 @@ public class GameInteraction : MonoBehaviour
 	{
 		hexCellActionPanel.gameObject.SetActive(true);
 	}
-    /*private void EnableHexCellActionPanelAt(HexCell cell)
-    {
-        hexCellActionPanel.gameObject.SetActive(true);
-        //hexCellActionPanel.transform.position = Camera.main.WorldToScreenPoint(cell.transform.position);
-    }*///就不用了
+
 
     private void DisableAllPanels()
     {

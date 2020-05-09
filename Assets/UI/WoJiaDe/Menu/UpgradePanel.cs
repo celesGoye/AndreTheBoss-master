@@ -34,28 +34,28 @@ public class UpgradePanel : MonoBehaviour
 		else
 			confirm.interactable=false;
 		
-		beforelv.text="Lv"+currentMonster.Level;
-		afterlv.text=currentMonster.Level>=Pawn.MaxLevel?"Max":"Lv"+(currentMonster.Level+1);
+		beforelv.text="Lv"+currentMonster.GetLevel();
+		afterlv.text=currentMonster.GetLevel()>=Pawn.MaxLevel?"Max":"Lv"+(currentMonster.GetLevel()+1);
 		
 		CharacterReader.CharacterData olddata = GetOldData();
 		CharacterReader.CharacterData data = GetNewData();
 		
-		beforeinfo.text=currentMonster.MaxHp+"\n"+currentMonster.Attack+"\n"
-						+currentMonster.Defense+"\n"+currentMonster.Dexterity+"\n"
-						+currentMonster.Magic+"\n"+currentMonster.Resistance+"\n"
-						+currentMonster.AttackRange;
+		beforeinfo.text=currentMonster.GetMaxHP()+"\n"+currentMonster.currentAttack+"\n"
+						+currentMonster.currentDefense+"\n"+currentMonster.currentDexterity+"\n"
+						+currentMonster.currentMagicAttack+"\n"+currentMonster.currentMagicDefense+"\n"
+						+currentMonster.currentAttackRange;
 		
-		afterinfo.text=currentMonster.Level>=Pawn.MaxLevel?"-\n-\n-\n-\n-\n-\n-":(currentMonster.MaxHp-olddata.HP+data.HP)+"\n"
-						+(currentMonster.Attack-olddata.attack+data.attack)+"\n"
-						+(currentMonster.Defense-olddata.defense+data.defense)+"\n"
-						+(currentMonster.Dexterity-olddata.dexterity+data.dexterity)+"\n"
-						+(currentMonster.Magic-olddata.magic+data.magic)+"\n"
-						+(currentMonster.Resistance-olddata.resistance+data.resistance)+"\n"
-						+(currentMonster.AttackRange-olddata.attackRange+data.attackRange);
+		afterinfo.text=currentMonster.GetLevel()>=Pawn.MaxLevel?"-\n-\n-\n-\n-\n-\n-":(currentMonster.GetMaxHP()-olddata.HP+data.HP)+"\n"
+						+(currentMonster.currentAttack-olddata.attack+data.attack)+"\n"
+						+(currentMonster.currentDefense-olddata.defense+data.defense)+"\n"
+						+(currentMonster.currentDexterity-olddata.dexterity+data.dexterity)+"\n"
+						+(currentMonster.currentMagicAttack-olddata.magicAttack+data.magicAttack)+"\n"
+						+(currentMonster.currentMagicDefense-olddata.magicDefense+data.magicDefense)+"\n"
+						+(currentMonster.currentAttackRange-olddata.attackRange+data.attackRange);
 	}
 	
 	public bool IsUpgradeOK(){
-		if(currentMonster.Level>=Pawn.MaxLevel)
+		if(currentMonster.GetLevel()>=Pawn.MaxLevel)
 			return false;
 		if(!consumePanel.IsUpgradeOK())
 			return false;
@@ -63,7 +63,7 @@ public class UpgradePanel : MonoBehaviour
 	}
 	
 	public void ConfirmUpgrade(){
-		LevelUp();
+		currentMonster.Upgrade();
 		menu.pawnStatus.UpdatePawnStatusPanel(currentMonster);
 		menu.UpdateMenu();
 		UpdateInfo();
@@ -73,41 +73,11 @@ public class UpgradePanel : MonoBehaviour
 	
 	private CharacterReader.CharacterData GetOldData()
 	{
-		return characterReader.GetCharacterData(currentMonster.Type,currentMonster.Name, currentMonster.Level);
+		return characterReader.GetCharacterData(currentMonster.Type,currentMonster.Name, currentMonster.GetLevel());
 	}
 	
 	private CharacterReader.CharacterData GetNewData()
 	{
-		return characterReader.GetCharacterData(currentMonster.Type,currentMonster.Name, currentMonster.Level+1);
-	}
-	
-	public void LevelUp()
-	{
-		if(currentMonster.Level==0)
-		{
-			Debug.Log("level mustn't be 0");
-			return;
-		}
-		else if(currentMonster.Level+1>Pawn.MaxLevel)
-		{
-			Debug.Log("out of maxlevel");
-			return;
-		}
-
-		CharacterReader.CharacterData olddata = GetOldData();
-		CharacterReader.CharacterData data = GetNewData();
-		if(data!=null)
-		{
-			currentMonster.Attack = currentMonster.Attack-olddata.attack+data.attack;
-			currentMonster.Defense = currentMonster.Defense-olddata.defense+data.defense;
-			currentMonster.HP = data.HP;
-			currentMonster.MaxHp= data.HP;
-			currentMonster.Dexterity = currentMonster.Dexterity-olddata.dexterity+data.dexterity;
-			currentMonster.AttackRange = currentMonster.AttackRange-olddata.attackRange+data.attackRange;
-		}
-		
-		Debug.Log("upgradePanel currentMonster.level"+currentMonster.Level);
-		currentMonster.Level++;
-		currentMonster.Healthbar.UpdateLife();
+		return characterReader.GetCharacterData(currentMonster.Type,currentMonster.Name, currentMonster.GetLevel()+1);
 	}
 }

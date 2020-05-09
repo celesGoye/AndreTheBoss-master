@@ -18,12 +18,12 @@ public class CharacterReader
         public int HP; 
         public int dexterity; 
         public int attackRange;
-		public int magic;
-		public int resistance;
+		public int magicAttack;
+		public int magicDefense;
 
         public override string ToString()
         {
-            return "Attack: " + attack + " defense: " + defense + " HP: " + HP + " dexterity: " + dexterity + " attackRange: " + attackRange+" magic: "+magic+" resistance: "+resistance;
+            return "Attack: " + attack + " defense: " + defense + " HP: " + HP + " dexterity: " + dexterity + " attackRange: " + attackRange+" magicAttack: "+magicAttack+" magicDefense: "+magicDefense;
         }
     };
 	
@@ -76,8 +76,8 @@ public class CharacterReader
         data.HP = int.Parse(node["hp"].InnerXml);
         data.dexterity = int.Parse(node["dexterity"].InnerXml);
         data.attackRange = int.Parse(node["attackRange"].InnerXml);
-		data.magic=int.Parse(node["magic"].InnerXml);
-		data.resistance=int.Parse(node["resistance"].InnerXml);
+		data.magicAttack=int.Parse(node["magic"].InnerXml);
+		data.magicDefense=int.Parse(node["resistance"].InnerXml);
         return data;
     }
 
@@ -91,16 +91,14 @@ public class CharacterReader
             Enemy enemy = (Enemy)pawn;
             CharacterData data = GetCharacterData(pawnType, ((EnemyType)characterTypeEnum).ToString(), level);
             enemy.InitializeEnemy((EnemyType)characterTypeEnum, ((EnemyType)characterTypeEnum).ToString(), 
-                data.attack, data.defense, data.HP, data.dexterity, data.attackRange ,data.magic,data.resistance);
-			enemy.Level=level;
+                data.attack, data.defense, data.HP, data.dexterity, data.attackRange ,data.magicAttack,data.magicDefense,level);
         }
         else if(pawnType == PawnType.Monster)
         {
             Monster monster = (Monster)pawn;
             CharacterData data = GetCharacterData(pawnType, ((MonsterType)characterTypeEnum).ToString(), level);
             monster.InitializeMonster((MonsterType)characterTypeEnum, ((MonsterType)characterTypeEnum).ToString(),
-                data.attack, data.defense, data.HP, data.dexterity, data.attackRange,data.magic,data.resistance);
-			monster.Level=level;
+                data.attack, data.defense, data.HP, data.dexterity, data.attackRange,data.magicAttack,data.magicDefense,level);
         }
         return true;
     }
