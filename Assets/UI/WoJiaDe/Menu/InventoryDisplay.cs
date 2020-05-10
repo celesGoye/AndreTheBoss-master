@@ -55,8 +55,6 @@ public class InventoryDisplay : MonoBehaviour
 					ItemDisplay item=GenItem(i);
 					item.type=en.Current.Key;
 					item.num=en.Current.Value;
-					Debug.Log(item.type+" ========== "+item.num);
-					UpdateItem(item,i);
 				}
 				else
 				{
@@ -66,9 +64,8 @@ public class InventoryDisplay : MonoBehaviour
 				}
 			}
 		}
-		
-		Vector2 v=new Vector2(0,-(itemcount<=12?0:(itemcount-12)/4+1)*height*UnityEngine.Screen.height);
-		this.GetComponent<RectTransform>().offsetMin=v;
+				
+        this.transform.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (itemcount<=12?3:(itemcount)/4+1)*height*UnityEngine.Screen.height); 
 	}
 	
 	public ItemDisplay GenItem(int index)
@@ -95,7 +92,6 @@ public class InventoryDisplay : MonoBehaviour
 			ItemDisplay item=this.transform.GetChild(i).GetComponent<ItemDisplay>();
 			item.gameObject.GetComponent<Image>().color=item.type!=currentType?Color.white:color;
 		}
-		UpdateInventory();
 	}
 	
 	public void OnUseBtn()

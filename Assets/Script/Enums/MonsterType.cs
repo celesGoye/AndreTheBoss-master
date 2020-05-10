@@ -5,4 +5,5 @@
     sprite,
 	dwarf,
 	giant,
+	NUM
 }

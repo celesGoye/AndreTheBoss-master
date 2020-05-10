@@ -114,7 +114,6 @@ public class PawnAction : MonoBehaviour
 
     public void Update()
     {
-		//0,0
 		Vector3 pos = mainCam.WorldToScreenPoint(selectedPawn.GetComponent<Transform>().position);
 		pos.x -= Screen.width * 0.5f+offsetx;
 		pos.y -= Screen.height * 0.5f+offsety;

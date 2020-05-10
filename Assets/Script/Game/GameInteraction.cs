@@ -59,7 +59,7 @@ public class GameInteraction : MonoBehaviour
                 if(hitCell.buildable)
                 {
                     EnableHexCellActionPanel();
-					gameManager.buildingManager.ShowBuildableHex();
+					ShowBuildableHex();
 					hitCell.indicator.SetColor(Indicator.StartColor);
 					hexCellActionPanel.UpdateHexCellPanel(hitCell);
                 }
@@ -148,7 +148,13 @@ public class GameInteraction : MonoBehaviour
     {
         DisableIndicators();
         DisableAllPanels();
+		ShowBuildableHex();
     }
+	
+	private void ShowBuildableHex()
+	{
+		gameManager.buildingManager.ShowBuildableHex();
+	}
 
     public void OpenMonsterPallete()
     {

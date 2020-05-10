@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public MonsterManager monsterManager;
 	public BuildingManager buildingManager;
 	public HealthBarManager healthbarManager;
+	public ItemManager itemManager;
     public GameInteraction gameInteraction;
 	
 	public MonsterActionManager monsterActionManager;

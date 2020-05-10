@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerPanel : MonoBehaviour
 {
-	public BuildingManager buildingManager;
+	public GameManager gameManager;
 	public Text txtbuildmode;
+	public Text txtActionPoint;
 	
+	public MonstersTookAction monstersTookAction;
 	public void OnEnable()
 	{
 		txtbuildmode.text="buildmode ON";
@@ -20,18 +22,22 @@ public class PlayerPanel : MonoBehaviour
 	
 	public void UpdateBuildMode()
 	{
-		buildingManager.UpdateBuildMode(!buildingManager.buildmode);
-		Debug.Log("buildmode:---"+buildingManager.buildmode);
+		gameManager.buildingManager.UpdateBuildMode(!gameManager.buildingManager.buildmode);
 	}
 	
-	public void UpdatePlayerPanel()
+	public void Update()
 	{
-		txtbuildmode.text=buildingManager.buildmode?"buildmode OFF":"buildmode ON";
+		monstersTookAction.UpdateMonstersTookAction();
+		txtbuildmode.text=gameManager.buildingManager.buildmode?"buildmode On":"buildmode Off";
+		txtActionPoint.text="ActionPoint:"+gameManager.monsterActionManager.actionPoint;
 	}
 	
 	public void OnSkipTurn()
 	{
-		
+		gameManager.gameTurnManager.EndPlayerTurn();
+		gameManager.gameTurnManager.IncreaseGameTurn();
+		gameManager.monsterActionManager.MonsterActionOnPlayerTurnBegin();
+		gameManager.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel();
 	}
 
 }

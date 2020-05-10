@@ -6,7 +6,6 @@ public class MonsterSpawnButton : MonoBehaviour
     private GameManager gameManager;
     private Button spawnMonsterButton;
 
-    public MonsterType spawnType;
 
     public void SpawnMonster(MonsterType type)
     {
@@ -19,12 +18,17 @@ public class MonsterSpawnButton : MonoBehaviour
         }
         gameManager.gameInteraction.Clear();
     }
+	public void OnSpawnMonsterButton()
+	{
+		gameManager.gameInteraction.monsterPalletePanel.monsterSpawnPanel.ConsumeItem();
+		SpawnMonster(gameManager.gameInteraction.monsterPalletePanel.currentType);
+	}
 
     public void OnEnable()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
         spawnMonsterButton = GetComponent<Button>();
-        spawnMonsterButton.onClick.AddListener(() => SpawnMonster(spawnType));
+        spawnMonsterButton.onClick.AddListener(() => OnSpawnMonsterButton());
     }
 
     public void OnDisable()

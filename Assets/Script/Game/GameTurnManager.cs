@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameTurnManager
 {
+	
     private int turnNumber;     // one turn is after player's playing and enemies' movement
     private bool isPlayerTurn;
 

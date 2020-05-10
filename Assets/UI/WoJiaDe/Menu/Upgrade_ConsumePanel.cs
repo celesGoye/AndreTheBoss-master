@@ -92,8 +92,7 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 			}
 		}
 		
-		Vector2 extend=new Vector2((itemcount<=5?0:(itemcount-5)*width*UnityEngine.Screen.height),0);
-		content.GetComponent<RectTransform>().offsetMax=extend;
+		content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, itemcount*width*UnityEngine.Screen.height); 
 	}
 	
 	public Upgrade_Item GenItem(int index)

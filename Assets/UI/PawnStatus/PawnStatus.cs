@@ -23,15 +23,24 @@ public class PawnStatus : MonoBehaviour
 	public MonsterManager monsterManager;
 	
 	private Sprite sprite;
+	private Pawn currentPawn;
 	
     public void UpdatePawnStatusPanel(Pawn pawn)
     {	
+		currentPawn=pawn;
         UpdatePanel(pawn.Type,pawn.currentAttack, pawn.currentDefense, pawn.currentHP, pawn.currentDexterity,
 					pawn.currentAttackRange,pawn.Name,pawn.GetMaxHP(),pawn.GetLevel(),pawn.currentMagicAttack,
 					pawn.currentMagicDefense,pawn.remainedStep,pawn.actionType);
     }
 	
-	//0,0
+	public void UpdatePawnStatusPanel()
+    {	
+		if(currentPawn!=null)
+        UpdatePanel(currentPawn.Type,currentPawn.currentAttack, currentPawn.currentDefense, currentPawn.currentHP, currentPawn.currentDexterity,
+					currentPawn.currentAttackRange,currentPawn.Name,currentPawn.GetMaxHP(),currentPawn.GetLevel(),currentPawn.currentMagicAttack,
+					currentPawn.currentMagicDefense,currentPawn.remainedStep,currentPawn.actionType);
+    }
+	
     private void UpdatePanel(PawnType type,int attack, int def, int hp, int dex, int atkRange,string name,int maxHp,int level,int magic,int resistance,int remainedStep,ActionType actionType)
     {
         txtAttak.text ="ATK:"+ attack;

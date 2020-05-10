@@ -16,4 +16,8 @@ public class EventReaderTest : MonoBehaviour
     {
         
     }
+	public void ButtonTest()
+	{
+		Debug.Log("button down");
+	}
 }

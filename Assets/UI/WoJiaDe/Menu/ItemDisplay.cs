@@ -22,8 +22,13 @@ public class ItemDisplay : MonoBehaviour
 	
 	void Awake()
 	{
-		this.GetComponent<Button>().onClick.AddListener(OnItemBtn);
-		
+		this.GetComponent<Button>().onClick.AddListener(OnItemBtn);	
+	}
+	
+	public void OnEnable()
+	{
+		reader=new ItemReader();
+		reader.ReadFile();
 	}
 	
 	public void OnItemBtn()
@@ -43,8 +48,6 @@ public class ItemDisplay : MonoBehaviour
 		this.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,size*UnityEngine.Screen.height);
 		this.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,size*UnityEngine.Screen.height);
 		
-		reader=new ItemReader();
-		reader.ReadFile();
 		item=reader.GetItemData(type);
 		image.sprite=item.sprite;
 		text.text=""+num;

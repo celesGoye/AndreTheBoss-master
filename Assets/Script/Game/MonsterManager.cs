@@ -7,6 +7,7 @@ public class MonsterManager : MonoBehaviour
     private GameManager gameManager;
 
     public List<Monster> MonsterPawns;
+	
 
     public Monster MonsterPrefab_zombie;
     public Monster MonsterPrefab_sprite;
@@ -38,7 +39,6 @@ public class MonsterManager : MonoBehaviour
     }
 	 public void InitMonsterManager()
     {
-		Debug.Log("hi");
         gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
         MonsterPawns = new List<Monster>();
         MonsterRoot = new GameObject();

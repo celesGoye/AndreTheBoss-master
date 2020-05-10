@@ -9,7 +9,7 @@ public class MonsterActionManager : MonoBehaviour
 	public int actionPoint;
 	
 	public GameInteraction gameInteraction;
-	public static int MaxActionPoint=3;
+	public int MaxActionPoint=3;
 	
 	public void OnEnable()
 	{
@@ -29,7 +29,6 @@ public class MonsterActionManager : MonoBehaviour
 		{
 			monster.actionType=ActionType.PreAction;
 			monster.remainedStep=monster.currentDexterity;
-			Debug.Log("action manager         "+monster.remainedStep);
 		}
 	}
 	
