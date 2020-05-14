@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Pawn : MonoBehaviour
@@ -20,14 +22,17 @@ public abstract class Pawn : MonoBehaviour
 	public int currentHP;
 	public int currentDexterity;
 	public int currentAttackRange;
-	
+
+	public int skipCounter;
+	public bool isSkip;
+
 	public int remainedStep;
 	public ActionType actionType;
 	
 	public bool isDirty;	// has current data been updated?
-	public Vector2 mobility;
-	public bool isMagicAttackIgnoreDefense;
-	public bool isPhysicAttackIgnoreDefense;
+	
+	public bool isIgnoreDefense;
+	public bool isIgnoreMagicDefense;
 	
 	public List<Vector3> buffs;		//Firstvalue:attributeType, Secondvalue:modifiedValue, thirdvalue:counter
 
@@ -39,24 +44,58 @@ public abstract class Pawn : MonoBehaviour
     public HexCell currentCell;
     public PawnType Type { get; set; }
 	
-    public void InitializePawn(PawnType type, string name,
-    int iniattack, int inidefense, int inihp, int inidexterity, int iniattackRange , int inimagicAttack ,int inimagicDefense ,int inilevel)
+    public void InitializePawn(PawnType type, string name, int initlevel,
+	int initattack, int initmagicAttack, int initdefense, int initmagicDefense, int inithp, int initdexterity, int initattackRange)
     {
         Type = type;
         Name = name;
-        attack =currentAttack= iniattack;
-        defense = currentDefense=inidefense;
-        hp = currentHP=inihp;
-        dexterity = currentDexterity=inidexterity;
-        attackRange = currentAttackRange=iniattackRange;
-		magicAttack=currentMagicAttack=inimagicAttack;
-		magicDefense=currentMagicDefense=inimagicDefense;
-		level=inilevel;
+		level=initlevel;
+
+        attack =currentAttack= initattack;
+        defense = currentDefense=initdefense;
+        hp = currentHP=inithp;
+        dexterity = currentDexterity=initdexterity;
+        attackRange = currentAttackRange=initattackRange;
+		magicAttack=currentMagicAttack=initmagicAttack;
+		magicDefense=currentMagicDefense=initmagicDefense;
+
+		skipCounter = 0;
+		isSkip = false;
+
+		isIgnoreDefense = isIgnoreMagicDefense = false;
     }
-    public void DoAttack(Pawn other)
+    public void DoAttack(Pawn other)	// default attack action
     {
-        other.currentHP -= (currentAttack - other.currentDefense) > 0 ? currentAttack - other.currentDefense : 1;
+		if (isDirty)
+			calculateCurrentValue();
+		if (other.isDirty)
+			other.calculateCurrentValue();
+
+		int damage = currentAttack, magicDamage = currentMagicAttack;
+
+        if(!isIgnoreDefense)
+		{
+			damage -= other.currentDefense;
+			if (damage <= 0)
+				damage = 1;
+		}
+		if(!isIgnoreMagicDefense)
+		{
+			magicDamage -= other.currentMagicDefense;
+			if (magicDamage <= 0)
+				magicDamage = 1;
+		}
+
+		other.TakeDamage(damage, magicDamage);
     }
+
+	public void TakeDamage(int damage, int magicDamage)
+	{
+		currentHP -= damage + magicDamage;
+
+		if(currentHP <= 0)
+			OnDie();
+	}
 	
 	public void LifeChange(int change,Pawn pawn)
 	{
@@ -75,52 +114,72 @@ public abstract class Pawn : MonoBehaviour
 	public int recoverHPPercentage(Pawn pawn,float percentage)
 	{
 		int hp=(int)(pawn.GetMaxHP()*percentage);
-		if(pawn.currentHP+hp>pawn.GetMaxHP())
-			return pawn.GetMaxHP()-pawn.currentHP;
+		int ret = 0;
+		if(pawn.currentHP+hp>=pawn.GetMaxHP())
+		{
+			ret = pawn.GetMaxHP() - pawn.currentHP;
+			pawn.currentHP = pawn.GetMaxHP();
+		}
 		else
-			return hp;
+		{
+			ret = hp;
+			pawn.currentHP += hp;
+		}
+		return ret;
 	}
 	
 	public int recoverHP(Pawn pawn,int hp)
 	{
-		if(pawn.currentHP+hp>pawn.GetMaxHP())
-			return pawn.GetMaxHP()-pawn.currentHP;
+		int ret = 0;
+		if(pawn.currentHP+hp>=pawn.GetMaxHP())
+		{
+			ret = pawn.GetMaxHP() - pawn.currentHP;
+			pawn.currentHP = pawn.GetMaxHP();
+		}
 		else
-			return hp;
+		{
+			ret = hp;
+			pawn.currentHP += hp;
+		}
+		return ret;
 	}
-	
-	public int AttackIgnoreDefense(Pawn pawn, int value){return 0;}
-	public int MagicAttackIgnoreDefense(Pawn pawn, int value){return 0;}
-	
-	public void areaAttack(){;}
-	public void areaMagicAttack(){;}
-	public void areaMagicAttackIgnoreDefense(){;}
-	public void areaAttackIgnoreDefense(){;}
 	
 	public void addBuff(AttributeType type,int modifiedvalue, int counter)
 	{
 		buffs.Add(new Vector3((int)type,modifiedvalue,counter));
+		isDirty = true;
 	}
-	
-	public void OnDie(){;}
+
+	public void OnDie() {; }
 	public void OnActionBegin(){;}
 	public void OnActionEnd(){;}
 	
 	public void Move(HexCell from,HexCell to)
 	{
+		if (!to.CanbeDestination())
+			return;
+
 		from.pawn=null;
 		to.pawn=this;
 		currentCell=to;
 	}
 	
-	public void calculateCurrentValue()
+	private void calculateCurrentValue()
 	{
-		foreach(Vector3 value in buffs)
-			modifyAttribute((AttributeType)value.x,(int)value.y);
-		isDirty=true;
+		currentAttack = attack;
+		currentMagicAttack = magicAttack;
+		currentDefense = defense;
+		currentMagicDefense = magicDefense;
+		currentDexterity = dexterity;
+		currentAttackRange  = attackRange;
+
+		foreach (Vector3 value in buffs)
+			modifyCurrentAttribute((AttributeType)value.x,(int)value.y);
+
+		isDirty=false;
 	}
 	
-	private void modifyAttribute(AttributeType type,int modifiedvalue)
+	private void modifyCurrentAttribute(AttributeType type,int modifiedvalue)
 	{
 		switch(type)
 			{
@@ -144,25 +203,84 @@ public abstract class Pawn : MonoBehaviour
 					break;
 			}
 	}
+
+	public void modifyAttribute(AttributeType type, int modifiedvalue)
+	{
+		switch (type)
+		{
+			case AttributeType.Attack:
+				attack += modifiedvalue;
+				break;
+			case AttributeType.MagicAttack:
+				magicAttack += modifiedvalue;
+				break;
+			case AttributeType.Defense:
+				defense += modifiedvalue;
+				break;
+			case AttributeType.MagicDefense:
+				magicDefense += modifiedvalue;
+				break;
+			case AttributeType.Dexertiry:
+				dexterity += modifiedvalue;
+				break;
+			case AttributeType.AttackRange:
+				attackRange += modifiedvalue;
+				break;
+		}
+		isDirty = true;
+	}
 	
 	public void Upgrade()
 	{
+		if (level == 5 || Type == PawnType.Enemy)
+			return;
+
 		CharacterReader characterReader=new CharacterReader();
 		characterReader.ReadFile();
 		CharacterReader.CharacterData olddata = characterReader.GetCharacterData(Type,Name,level);
 		CharacterReader.CharacterData data = characterReader.GetCharacterData(Type,Name,level+1);
 		if(data!=null)
 		{
-			currentAttack = currentAttack-olddata.attack+data.attack;
-			currentDefense = currentDefense-olddata.defense+data.defense;
-			currentHP = data.HP;
-			hp= data.HP;
-			currentDexterity = currentDexterity-olddata.dexterity+data.dexterity;
-			currentAttackRange = currentAttackRange-olddata.attackRange+data.attackRange;
-			currentMagicAttack=currentMagicAttack-olddata.magicAttack+data.magicAttack;
-			currentMagicDefense=currentMagicDefense-olddata.magicDefense+data.magicDefense;
+			currentHP = hp= data.HP;
+			currentAttack = attack - olddata.attack + data.attack;
+			currentMagicAttack = magicAttack = magicAttack - olddata.magicAttack + data.magicAttack;
+			currentDefense = defense - olddata.defense + data.defense;
+			magicDefense = magicDefense - olddata.magicDefense + data.magicDefense;
+			currentDexterity = dexterity = dexterity - olddata.dexterity + data.dexterity;
+			currentAttackRange = attackRange = attackRange - olddata.attackRange + data.attackRange;
+			level++;
+
+			isDirty = true; // need to update current value with buffs
 		}
-		level++;
 		healthbar.UpdateLife();
+	}
+
+	private void UpdateCounter()
+	{
+		// Update buff counter
+		Vector3[] buffs = this.buffs.ToArray<Vector3>();
+		this.buffs = new List<Vector3>();
+		for (int i = 0; i < buffs.Length; i++)
+		{
+			Vector3 buff = buffs[i];
+			if (buff.z-- > 0)
+				this.buffs.Add(buff);
+		}
+		// Update immobility counter
+		if(skipCounter > 0)
+		{
+			skipCounter--;
+			isSkip = true;
+		}
+		else
+		{
+			isSkip = false;
+		}
+	}
+
+	public void UpdatePawn()
+	{
+		UpdateCounter();
+		calculateCurrentValue();
 	}
 }

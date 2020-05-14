@@ -53,6 +53,7 @@ public class PawnAction : MonoBehaviour
             validAttackTarget = true;
             hexMap.ProbeAttackTarget(selectedPawn.currentCell);
             hexMap.ShowAttackCandidates();
+            //gameInteraction.pawnActionPanel.
         }
     }
 

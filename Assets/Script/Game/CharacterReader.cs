@@ -5,21 +5,26 @@ using System.Xml;
 public class CharacterReader
 {
     private string path = "/Resources/CharacterData.xml";
+    private string pathMonster = "/Resources/MonsterData.xml";
+    private string pathEnemy = "/Resources/EnemyData.xml";
 	private string pathUpgrade = "/Resources/CharacterUpgrade.xml";
 	private string pathDescription="/Resources/CharacterDescription.xml";
-	
+
     public XmlDocument xmlDoc;
+    public XmlDocument xmlDocMonster;
+    public XmlDocument xmlDocEnemy;
     public XmlDocument xmlDocUpgrade;
     public XmlDocument xmlDocDescription;
     public class CharacterData
     {
         public int attack;
+        public int magicAttack;
         public int defense;
+        public int magicDefense;
         public int HP; 
         public int dexterity; 
         public int attackRange;
-		public int magicAttack;
-		public int magicDefense;
+        public int dropsoul;        // reserved for enemy
 
         public override string ToString()
         {
@@ -40,6 +45,15 @@ public class CharacterReader
     {
         xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.dataPath + path);
+
+        xmlDocMonster = new XmlDocument();
+        xmlDocEnemy = new XmlDocument();
+
+        xmlDocMonster.Load(Application.dataPath + pathMonster);
+        xmlDocEnemy.Load(Application.dataPath + pathEnemy);
+
+        if (xmlDocEnemy != null)
+            Debug.Log(xmlDocEnemy.OuterXml);
     }
 	
 	public void ReadUpgradeFile()
@@ -78,6 +92,60 @@ public class CharacterReader
         data.attackRange = int.Parse(node["attackRange"].InnerXml);
 		data.magicAttack=int.Parse(node["magic"].InnerXml);
 		data.magicDefense=int.Parse(node["resistance"].InnerXml);
+        return data;
+    }
+
+    public CharacterData GetMonsterData(int unlocklevel, string monsterName, int level)
+    {
+        // TODO: parser here
+        CharacterData data = new CharacterData();
+
+        string xpath = "/monster/unlocklevel["+(unlocklevel+1)+"]/"+monsterName+"/level["+level+"]";
+
+        XmlElement node = (XmlElement)xmlDocMonster.SelectSingleNode(xpath);
+
+        if (node == null)
+        {
+            Debug.Log("On CharacterReader: " + monsterName + " not found");
+            return null;
+        }
+
+        data.attack = int.Parse(node["attack"].InnerXml);
+        data.defense = int.Parse(node["defense"].InnerXml);
+        data.HP = int.Parse(node["hp"].InnerXml);
+        data.dexterity = int.Parse(node["dexterity"].InnerXml);
+        data.attackRange = int.Parse(node["attackrange"].InnerXml);
+        data.magicAttack = int.Parse(node["magicattack"].InnerXml);
+        data.magicDefense = int.Parse(node["magicdefense"].InnerXml);
+
+        return data;
+    }
+
+    public CharacterData GetEnemyData(int level, string enemyName)
+    {
+        CharacterData data = new CharacterData();
+
+        string xpath = "/enemy/level[" + level + "]/" + enemyName;
+
+        XmlElement node = (XmlElement)xmlDocEnemy.SelectSingleNode(xpath);
+
+        if (node == null)
+        {
+            Debug.Log("On CharacterReader: " + enemyName + " not found");
+            return null;
+        }
+
+        data.attack = int.Parse(node["attack"].InnerXml);
+        data.defense = int.Parse(node["defense"].InnerXml);
+        data.HP = int.Parse(node["hp"].InnerXml);
+        data.dexterity = int.Parse(node["dexterity"].InnerXml);
+        data.attackRange = int.Parse(node["attackrange"].InnerXml);
+        data.magicAttack = int.Parse(node["magicattack"].InnerXml);
+        data.magicDefense = int.Parse(node["magicdefense"].InnerXml);
+        data.dropsoul = int.Parse(node["dropsoul"].InnerXml);
+
+        Debug.Log(data.ToString());
+
         return data;
     }
 

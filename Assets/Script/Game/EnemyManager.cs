@@ -49,10 +49,10 @@ public class EnemyManager : MonoBehaviour
 
             switch (type)
             {
-                case EnemyType.wanderingSwordman:
+                case EnemyType.wanderingswordman:
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_sword);
                     break;
-                case EnemyType.magicApprentice:
+                case EnemyType.magicapprentice:
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_magic);
                     break;
                 case EnemyType.thief:
