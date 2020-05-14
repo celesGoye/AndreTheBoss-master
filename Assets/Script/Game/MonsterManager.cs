@@ -61,12 +61,17 @@ public class MonsterManager : MonoBehaviour
         Monster monster = GameObject.Instantiate<Monster>(prefabs[type]);
         monster.transform.SetParent(transform);
         gameManager.hexMap.SetCharacterCell(monster, cellToSpawn);
-        Pawn pawn = (Pawn)monster;
-        gameManager.characterReader.InitPawnData(ref pawn, PawnType.Monster, (int)type, level);
+
+        gameManager.characterReader.InitMonsterData(ref monster, GetMonsterUnlockLevel(type), type, level);
         gameManager.hexMap.RevealCellsFrom(monster.currentCell);
 		monster.healthbar=gameManager.healthbarManager.InitializeHealthBar(monster);
 		MonsterPawns.Add(monster);
         return monster;
+    }
+
+    public int GetMonsterUnlockLevel(MonsterType type)
+    {
+        return Mathf.CeilToInt((float)type / 3);
     }
 
 

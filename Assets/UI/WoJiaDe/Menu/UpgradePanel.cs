@@ -16,14 +16,15 @@ public class UpgradePanel : MonoBehaviour
 	
 	public Pawn currentMonster;
 	private CharacterReader characterReader;
+	private GameManager gameManager;
     // Start is called before the first frame update
 
 
-	void OnEnable(){
-		characterReader = new CharacterReader();
-        characterReader.ReadFile();
+	public void OnEnable(){
 		menu.UpdateMenu();
 		UpdateInfo();
+		if(gameManager == null)
+			gameManager = FindObjectOfType<GameManager>();
 	}
 	
 	public void UpdateInfo(){
@@ -73,11 +74,15 @@ public class UpgradePanel : MonoBehaviour
 	
 	private CharacterReader.CharacterData GetOldData()
 	{
-		return characterReader.GetCharacterData(currentMonster.Type,currentMonster.Name, currentMonster.GetLevel());
+		Monster monster = (Monster)currentMonster;
+		return characterReader.GetMonsterData(gameManager.monsterManager.GetMonsterUnlockLevel(monster.monsterType)
+				, monster.monsterType.ToString(), monster.GetLevel());
 	}
 	
 	private CharacterReader.CharacterData GetNewData()
 	{
-		return characterReader.GetCharacterData(currentMonster.Type,currentMonster.Name, currentMonster.GetLevel()+1);
+		Monster monster = (Monster)currentMonster;
+		return characterReader.GetMonsterData(gameManager.monsterManager.GetMonsterUnlockLevel(monster.monsterType)
+				, monster.monsterType.ToString(), monster.GetLevel()+1);
 	}
 }

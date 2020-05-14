@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
         gameTurnManager = new GameTurnManager();
 		HexCell hexcell=hexMap.GetRandomCellToSpawn();
 		monsterManager.InitMonsterManager();
-        characterReader.GetEnemyData(4, EnemyType.cultist.ToString());
         InitBoss();
         gameCamera.FocusOnPoint(boss.transform.position);
 		monsterActionManager.InitMonsterAcitonManager();

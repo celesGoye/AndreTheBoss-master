@@ -1,20 +1,20 @@
 ﻿public enum MonsterType
 {
-    boss,
+    boss,//0
     zombie,
     sprite,
-    druid,
+    druid,//1
 	dwarf,
 	giant,
-    ghoul,
+    ghoul,//2
     stoneman,
     goblin,
-    tidehunter,
+    tidehunter,//3
     haguebeast,
     bearwarrior,
-    taranspider,
+    taranspider,//4
     halfmanrhino,
     murlocleader,
-    dragon,
+    dragon,//5
 	NUM
 }
