@@ -106,11 +106,8 @@
 		<sprite>
 			<level value="1">
 					<SpiderLily>
-						2
+						1
 					</SpiderLily>
-					<Sulfur>
-						4
-					</Sulfur>
 			</level>
 			<level value="2">
 					<DemonFruit>

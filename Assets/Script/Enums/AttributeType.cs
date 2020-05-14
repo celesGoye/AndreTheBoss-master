@@ -5,5 +5,6 @@
 	Defense,
 	MagicDefense,
 	Dexertiry,
-	AttackRange
+	AttackRange,
+	Mobility,
 }

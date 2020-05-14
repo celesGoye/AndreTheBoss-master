@@ -3,7 +3,18 @@
     boss,
     zombie,
     sprite,
+    druid,
 	dwarf,
 	giant,
+    ghoul,
+    stoneman,
+    goblin,
+    tidehunter,
+    haguebeast,
+    bearwarrior,
+    taranspider,
+    halfmanrhino,
+    murlocleader,
+    dragon,
 	NUM
 }

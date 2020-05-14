@@ -17,11 +17,11 @@ public class Enemy : Pawn
     {
         switch(this.enemyType)
         {
-            case EnemyType.magicApprentice:
+            case EnemyType.magicapprentice:
                 return "Magic\nApprentice";
             case EnemyType.thief:
                 return "Thief";
-            case EnemyType.wanderingSwordman:
+            case EnemyType.wanderingswordman:
                 return "Wandering\nSwordman";
             default:
                 return "?Warrior?";
