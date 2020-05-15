@@ -29,21 +29,20 @@ public class MonsterPallete : MonoBehaviour
 	public void OnEnable()
 	{
 		SpawnableMonsters=new List<MonsterType>();
+		characterReader =gameManager.characterReader;
 		UpdateMonsterPallete();
 		currentType=MonsterType.NUM;
 		monsterSpawnPanel.UpdateSpawnPanel();
 		name.text="";
-		//monsterSpawnButton.GetComponent<Button>().interactable=false;
 	}
 	
 	
 	public void UpdateMonsterPallete()
 	{
-		for(int i=0;i<(int)MonsterType.NUM;i++)
+		SpawnableMonsters.Clear();
+		for(int i=1;i<(int)MonsterType.NUM;i++)
 		{
-			if((MonsterType)i==MonsterType.boss)
-				continue;
-			if(!SpawnableMonsters.Contains((MonsterType)i))
+			if(gameManager.monsterManager.GetMonsterUnlockLevel((MonsterType)i)<=gameManager.GetBossLevel())
 				SpawnableMonsters.Add((MonsterType)i);
 		}
 		MonsterDisplay monster;
@@ -87,7 +86,6 @@ public class MonsterPallete : MonoBehaviour
 			monster.gameObject.GetComponent<Image>().color=monster.type!=currentType?Color.white:color;
 		}
 		name.text=currentType.ToString();
-		//monsterSpawnButton.spawnType=currentType;
 		monsterSpawnPanel.UpdateSpawnPanel();
 	}
 }

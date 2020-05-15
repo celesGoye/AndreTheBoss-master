@@ -5,12 +5,12 @@ using UnityEngine;
 public class Enemy : Pawn
 {
     public EnemyType enemyType;
-    public void InitializeEnemy(EnemyType enemyType, string name,
-    int attack, int defense, int HP, int dexterity, int attackRange,int magicAttack , int magicDefense,int level)
+    public void InitializeEnemy(EnemyType enemyType, string name,int level,
+    int attack,int magicAttack, int defense, int magicDefense, int HP, int dexterity, int attackRange )
     {
         this.enemyType = enemyType;
         Name = enemyType.ToString();
-        InitializePawn(PawnType.Enemy, name, attack, defense, HP, dexterity, attackRange,magicAttack,magicDefense,level);
+        InitializePawn(PawnType.Enemy, name,level, attack,magicAttack, defense,magicDefense, HP, dexterity, attackRange);
     }
 
     public override string ToString()

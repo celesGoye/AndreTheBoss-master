@@ -111,7 +111,7 @@ public class CharacterReader
         data.defense = int.Parse(node["defense"].InnerXml);
         data.HP = int.Parse(node["hp"].InnerXml);
         data.dexterity = int.Parse(node["dexterity"].InnerXml);
-        data.attackRange = int.Parse(node["attackrange"].InnerXml);
+        data.attackRange = int.Parse(node["attackRange"].InnerXml);
         data.magicAttack = int.Parse(node["magicattack"].InnerXml);
         data.magicDefense = int.Parse(node["magicdefense"].InnerXml);
 
@@ -152,8 +152,8 @@ public class CharacterReader
             return false;
 
         CharacterData data = GetEnemyData(level, type.ToString());
-        enemy.InitializeEnemy(type, type.ToString(),
-            data.attack, data.defense, data.HP, data.dexterity, data.attackRange, data.magicAttack, data.magicDefense, level);
+        enemy.InitializeEnemy(type, type.ToString(), level,
+            data.attack, data.magicAttack, data.defense, data.magicDefense, data.HP, data.dexterity, data.attackRange);
         return true;
     }
 
@@ -163,18 +163,18 @@ public class CharacterReader
             return false;
 
         CharacterData data = GetMonsterData(unlocklevel, type.ToString(), level);
-            monster.InitializeMonster(type, type.ToString(),
-                data.attack, data.defense, data.HP, data.dexterity, data.attackRange, data.magicAttack, data.magicDefense, level);
+            monster.InitializeMonster(type, type.ToString(), level,
+                data.attack, data.magicAttack, data.defense, data.magicDefense, data.HP, data.dexterity, data.attackRange);
         return true;
     }
 
-	public Dictionary<ItemType,int> GetCharacterUpgrade(int unlocklevel, string monsterName, int toLevel)  // upgrade to #toLevel
+	public List<Vector2> GetCharacterUpgrade(int unlocklevel, string monsterName, int toLevel)  // upgrade to #toLevel
 	{
         if (toLevel > 5 || unlocklevel < 0 || unlocklevel > 5)
             return null;
 
-		Dictionary<ItemType,int> data=new Dictionary<ItemType,int>();
-		string xpath="/monsters/unlocklevel["+(unlocklevel+1)+"]/"+ monsterName;
+		List<Vector2> data=new List<Vector2>();
+		string xpath="/monsters/unlocklevel["+(unlocklevel+1)+"]/"+monsterName;
 		XmlElement node = (XmlElement)xmlDocUpgrade.SelectSingleNode(xpath).ChildNodes[toLevel-1];
 		
 		if(node == null)
@@ -184,7 +184,7 @@ public class CharacterReader
         }
 		foreach (XmlElement element in node.ChildNodes)
         {
-			data[(ItemType)System.Enum.Parse(typeof(ItemType),element.Name.Trim())]=int.Parse(element.InnerXml);
+			data.Add(new Vector2((int)System.Enum.Parse(typeof(ItemType),element.Name.Trim()),int.Parse(element.InnerXml)));
         }
 		return data;
 	}

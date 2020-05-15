@@ -13,14 +13,14 @@ public class Upgrade_Item : MonoBehaviour
 	public int numneed;
 	public Image image;
 	public Text text;
+	public ItemReader itemReader;
 	
-	private ItemReader reader;
 	private Item item;
 	
 	public void OnEnable()
 	{
-		reader=new ItemReader();
-		reader.ReadFile();
+		
+		itemReader=FindObjectOfType<GameManager>().itemReader;
 	}
 	public void Update()
 	{
@@ -29,8 +29,8 @@ public class Upgrade_Item : MonoBehaviour
 		this.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,size*UnityEngine.Screen.height);
 		this.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,size*UnityEngine.Screen.height);
 		
-		
-		item=reader.GetItemData(type);
+		item=itemReader.GetItemData(type);
+		if(item.sprite!=null)
 		image.sprite=item.sprite;
 		if(num<numneed)
 			text.text="<color=red>"+num+"</color>/"+numneed;

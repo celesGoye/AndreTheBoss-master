@@ -5,13 +5,18 @@ using UnityEngine.UI;
 
 public class PlayerPanel : MonoBehaviour
 {
-	public GameManager gameManager;
+	public Text txtLevel;
 	public Text txtbuildmode;
 	public Text txtActionPoint;
 	
 	public MonstersTookAction monstersTookAction;
+	
+	private GameManager gameManager;
+	
 	public void OnEnable()
 	{
+		if(gameManager == null)
+			gameManager = FindObjectOfType<GameManager>();
 		txtbuildmode.text="buildmode ON";
 	}
 	
@@ -27,6 +32,7 @@ public class PlayerPanel : MonoBehaviour
 	
 	public void Update()
 	{
+		txtLevel.text="Lv."+gameManager.monsterManager.MonsterPawns[0].GetLevel();
 		monstersTookAction.UpdateMonstersTookAction();
 		txtbuildmode.text=gameManager.buildingManager.buildmode?"buildmode On":"buildmode Off";
 		txtActionPoint.text="ActionPoint:"+gameManager.monsterActionManager.actionPoint;

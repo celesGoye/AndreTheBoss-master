@@ -1,0 +1,231 @@
+<enemy>
+    <normal>
+        <level value="1">
+            <wanderingswordsman>
+            </wanderingswordsman>
+            
+            <magicapprentice>
+                <skill value="1">
+                    <name>魔法防身术</name>
+                    <description>一回合物防+1</description>
+                </skill>
+            </magicapprentice>
+            
+            <thief>
+            </thief>
+            
+            <bandit>
+                <skill value="1">
+                    <name>加速</name>
+                    <description>下一回合的敏捷+4</description>
+                </skill>
+                <skill value="2">
+                    <name>蓄力</name>
+                    <description>锁定一个地图上的敌方单位，在下一回合对其造成攻击*2的伤害(物贯) </description>
+                </skill>
+            </bandit>
+            
+        </level>
+        
+        <level value="2">
+            <banditcaptain>
+            </banditcaptain>
+            
+            <berserker>
+                <skill value="1">
+                    <name>棒击大地</name>
+                    <description>用武器挥起猛击地面，眩晕周围一格的敌人(使之跳过一回合)</description>
+                </skill>
+            </berserker>
+            
+            <bard>
+                <skill value="1">
+                    <name>慈爱吟唱</name>
+                    <description>周围一格人类回血maxHP30%(包括自己)</description>
+                </skill>
+            </bard>
+            
+            <magicmaster>
+                <skill value="1">
+                    <name>灵力弹</name>
+                    <description>魔法攻击7,无视魔防</description>
+                </skill>
+                <skill value="2">
+                    <name>灵力护盾</name>
+                    <description>一回合物防+3</description>
+                </skill>
+            </magicmaster>
+        </level>
+        
+        <level value="3">
+            <magicgrandmaster>
+                <skill value="1">
+                    <name>大灵力弹</name>
+                    <description>魔法攻击10,无视魔防</description>
+                </skill>
+                <skill value="1">
+                    <name>灵力护盾</name>
+                    <description>下一回合物防+3</description>
+                </skill>
+            </magicgrandmaster>
+            
+            <witch>
+                <skill value="1">
+                    <name>魔女咆哮</name>
+                    <description>对攻击范围内所有monster造成2点魔法伤害(贯)</description>
+                </skill>
+            </witch>
+            
+            <assassin>
+                <skill value="1">
+                    <name>暗杀</name>
+                    <description>造成目标maxHP30%物理贯伤</description>
+                </skill>
+            </assassin>
+            
+            <catapult>
+                <skill value="1">
+                    <name>建筑破坏 </name>
+                    <description>破坏一座攻击范围内建筑</description>
+                </skill>
+            </catapult>
+        </level>
+        
+        <level value="4">
+            <cultist>
+                <skill value="1">
+                    <name>邪教崇拜</name>
+                    <description>下一回合目标(必须为monster)魔防+3</description>
+                </skill>
+                <skill value="2">
+                    <name>被动</name>
+                    <desription>吸引攻击范围内人类的仇恨</desription>
+                </skill>
+            </cultist>
+            
+            <priest>
+                <skill value="1">
+                    <name>净化</name>
+                    <description>减少一回合目标魔防by 3</description>
+                </skill>
+                <skill value="2">
+                    <name>被动</name>
+                    <description>攻击为贯伤</description>
+                </skill>
+            </priest>
+            
+            <bloodwitch>
+                <skill value="1">
+                    <name>魔女咆哮</name>
+                    <desription>对攻击范围内所有monster造成4点魔法伤害</desription>
+                </skill>
+                <skill value="2">
+                    <name>被动 Blood Thirst</name>
+                    <description>回复造成伤害50%的血量</description>
+                </skill>
+            </bloodwitch>
+            
+            <darkknight>
+            </darkknight>
+        </level>
+        
+        <level value="5">
+            <magebelial>
+                <skill value="1">
+                    <name>风暴灵力弹</name>
+                    <description>对攻击范围内所有monster造成4点魔法贯伤</description>
+                </skill>
+                 <skill value="2">
+                    <name>强力灵力护盾</name>
+                    <description>增加下一回合物防by 10</description>
+                </skill>
+            </magebelial>
+            
+            <royalinquisitor>
+                <skill value="1">
+                    <name>神圣审判</name>
+                    <description>进行一次攻击,并在结算之后进行第二次攻击0</description>
+                </skill>
+                 <skill value="2">
+                    <name>被动</name>
+                    <description>贯伤减半</description>
+                </skill>
+            </royalinquisitor>
+            
+            <shadowfran>
+                <skill value="1">
+                    <name>被动 Shadowing</name>
+                    <description>只有当攻击者攻击范围内只有本单位为敌方单位时才可以被攻击</description>
+                </skill>
+            </shadowfran>
+            
+            <cardinaleriri>
+                <skill value="1">
+                    <name>苦路</name>
+                    <description>减少5 HP来增加本次攻击by 10魔攻</description>
+                </skill>
+            </cardinaleriri>
+        </level>
+    </normal>
+    
+    <hero>
+        <robinhood>
+            <skill value="1">
+                <name>风暴箭</name>
+                <description>狙击目标, 造成5物理贯伤</description>
+            </skill>
+            <skill value="2">
+                <name>侠盗行踪</name>
+                <description>人类全员本回合敏捷+2</description>
+            </skill>
+        </robinhood>
+        
+        <tatenoyousya>
+            <skill value="1">
+                <name>龟甲阵</name>
+                <description>物防魔防下一回合各增加5</description>
+            </skill>
+            <skill value="2">
+                <name>被动 mudamuda</name>
+                <description>受到的贯伤害减半</description>
+            </skill>
+        </tatenoyousya>
+        
+        <jinjyamiko>
+            <skill value="1">
+                <name>强力灵力弹</name>
+                <description>魔法攻击14,无视魔防</description>
+            </skill>
+            <skill value="2">
+                <name>被动 地灵庇佑</name>
+                <description>行动结束回复maxHP*20%</description>
+            </skill>
+        </jinjyamiko>
+        
+        <orchestraleader>
+            <skill value="1">
+                <name>鼓舞之歌</name>
+                <description>所有人类的生命回复maxHP*30%</description>
+            </skill>
+            <skill value="2">
+                <name>被动 交响乐</name>
+                <description>普通攻击为魔贯</description>
+            </skill> 
+        </orchestraleader>
+        
+        <cinderlord>
+            <skill value="1">
+                <name>剑舞</name>
+                <description>对攻击范围内所有monster造成自己currentHP30%的伤害</description>
+            </skill>
+            <skill value="2">
+                <name>盾反</name>
+                <description>将下一次受到伤害的50%返还给造成伤害的monster</description>
+            </skill>
+            <skill value="2">
+                <name>被动 王の誇り</name>
+                <description>所有贯伤害无效</description>
+            </skill>
+        </cinderlord>
+    </hero>
+</enemy>

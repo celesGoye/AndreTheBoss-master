@@ -1,0 +1,381 @@
+<monster>
+    <unlocklevel value = "0">
+        <boss>
+            <level value="1">
+                <name>回复</name>
+                <description>回复友方单位maxHP60%血量</description>
+            </level>
+            <level value="2">
+                <name>邪恶祝福</name>
+                <description>回合结束回复自身血量2HP</description>
+            </level>
+            <level value="3">
+                <name>魔弹</name>
+                <description>攻击范围内对所有单位造成魔法贯伤</description>
+            </level>
+            <level value="4">
+                <name>邪恶祝福Ⅱ</name>
+                <description>回合结束回复自身血量5HP(覆盖天赋2)</description>
+            </level>
+            <level value="5">
+                <name>大回复</name>
+                <description>回复攻击范围内所有友方单位40%血量</description>
+            </level>
+        </boss>
+    </unlocklevel>
+    
+    <unlocklevel value="1">
+        <zombie>
+            <level value="1">
+                <name>骨头击打</name>
+                <description>5点物理贯伤</description>
+            </level>
+            <level value="2">
+                <name>皮糙肉厚</name>
+                <description>物理防御+2</description>
+            </level>
+            <level value="3">
+                <name>暗影击打 </name>
+                <description>7点物理贯伤</description>
+            </level>
+            <level value="4">
+                <name>抗性</name>
+                <description>魔法防御+2</description>
+            </level>
+            <level value="5">
+                <name>虚空之火</name>
+                <description>伤害7 魔法攻击</description>
+            </level>
+        </zombie>
+        
+        <sprite>
+            <level value="1">
+                <name>隐蔽射击</name>
+                <description>4点物理贯伤</description>
+            </level>
+            <level value="2">
+                <name>飞行</name>
+                <description>敏捷+1</description>
+            </level>
+            <level value="3">
+                <name>光明之刺 </name>
+                <description>伤害7(魔法攻击)</description>
+            </level>
+            <level value="4">
+                <name>元素掌控</name>
+                <description>普通攻击的魔攻伤害为贯</description>
+            </level>
+            <level value="5">
+                <name>毒酒</name>
+                <description>伤害10(魔法攻击)</description>
+            </level>
+        </sprite>
+        
+        <druid>
+            <level value="1">
+                <name>野性撕咬</name>
+                <description>4点物理贯伤</description>
+            </level>
+            <level value="2">
+                <name>乘风</name>
+                <description>敏捷+1</description>
+            </level>
+            <level value="3">
+                <name>加速生长</name>
+                <description>(目标为建筑)建筑生产加快一回合</description>
+            </level>
+            <level value="4">
+                <name>自然掌控</name>
+                <description>加速生长的技能效果再加快两回合</description>
+            </level>
+            <level value="5">
+                <name>净化泉水</name>
+                <description>回复攻击范围内其他所有友方角色maxHP50%</description>
+            </level>
+        </druid>
+    </unlocklevel>
+    
+    <unlocklevel value="2">
+        <drawf>
+            <level value="1">
+                <name>小锤敲敲</name>
+                <description>5点物理贯伤</description>
+            </level>
+            <level value="2">
+                <name>战锤保养</name>
+                <description>技能一伤害+2</description>
+            </level>
+            <level value="3">
+                <name>熔火核心</name>
+                <description>伤害4(对相邻格子的敌方单位产生4物理伤害(不是贯))</description>
+            </level>
+            <level value="4">
+                <name>冲锋号角</name>
+                <description>攻击+2</description>
+            </level>
+            <level value="5">
+                <name>木制盾牌 </name>
+                <description>(增加10物防10魔防)持续一回合</description>
+            </level>
+        </drawf>
+        
+        <giant>
+            <level value="1">
+                <name>无情践踏</name>
+                <description>4点物理贯伤</description>
+            </level>
+            <level value="2">
+                <name>陨落</name>
+                <description>死亡后对攻击范围内的所有敌人产生10物理伤害</description>
+            </level>
+            <level value="3">
+                <name>逆风</name>
+                <description>物理防御+5持续一回合</description>
+            </level>
+            <level value="4">
+                <name>轻而易举</name>
+                <description>技能3的效果持续两回合</description>
+            </level>
+            <level value="5">
+                <name>树干投掷 </name>
+                <description>伤害10(魔法伤害)</description>
+            </level>
+        </giant>
+        
+        <ghoul>
+            <level value="1">
+                <name>食尸鬼之刃</name>
+                <description>对目标造成攻击面板之和的物理贯伤</description>
+            </level>
+            <level value="2">
+                <name>资源循环</name>
+                <description>阵亡后返还灵魂6</description>
+            </level>
+            <level value="3">
+                <name>折射</name>
+                <description>反弹所有伤害(持续一回合)</description>
+            </level>
+            <level value="4">
+                <name>资源循环Ⅱ</name>
+                <description>阵亡后返还灵魂10</description>
+            </level>
+            <level value="5">
+                <name>空降</name>
+                <description>食尸鬼与选中的己方单位交换位置</description>
+            </level>
+        </ghoul>
+    </unlocklevel>
+    
+    <unlocklevel value="3">
+        <stoneman>
+            <level value="1">
+                <name>山崩</name>
+                <description>用岩石轰炸周围一格区域，对敌方单位造成5点物理伤害</description>
+            </level>
+            <level value="2">
+                <name>土之元素</name>
+                <description>防御+1 魔防+1</description>
+            </level>
+            <level value="3">
+                <name>变硬</name>
+                <description>无视敌人的攻击(无法造成伤害,持续一回合) </description>
+            </level>
+            <level value="4">
+                <name>土之元素Ⅱ</name>
+                <description>防御+3 魔防+3</description>
+            </level>
+            <level value="5">
+                <name>滚石</name>
+                <description>敏捷+5(持续一回合)</description>
+            </level>
+        </stoneman>
+        
+        <goblin>
+            <level value="1">
+                <name>投掷</name>
+                <description>向目标单位投掷短矛，造成2点物理贯伤</description>
+            </level>
+            <level value="2">
+                <name>森林祝福</name>
+                <description>处于森林地形时,攻击范围+2</description>
+            </level>
+            <level value="3">
+                <name>转换</name>
+                <description>攻击和魔攻面板数值互换</description>
+            </level>
+            <level value="4">
+                <name>森林祝福Ⅱ</name>
+                <description>处于森林地形时,物理攻击+5</description>
+            </level>
+            <level value="5">
+                <name>可怜屁精</name>
+                <description>牺牲本单位来将攻击范围内的一个友军单位回满血</description>
+            </level>
+        </goblin>
+        
+        <tidehunter>
+            <level value="1">
+                <name>海妖外壳</name>
+                <description>防止最多5点物理伤害(包括物理贯伤)(一回合)</description>
+            </level>
+            <level value="2">
+                <name>巨浪</name>
+                <description>普通攻击的物理伤害*=周围一格的敌人数n</description>
+            </level>
+            <level value="3">
+                <name>锚击</name>
+                <description>普通攻击的同时造成额外两点伤害(物理贯伤)</description>
+            </level>
+            <level value="4">
+                <name>海啸</name>
+                <description>普通攻击的魔法伤害*=周围一格的敌人数n</description>
+            </level>
+            <level value="5">
+                <name>毁灭</name>
+                <description>眩晕周围一格敌人(跳过一回合)</description>
+            </level>
+        </tidehunter>
+    </unlocklevel>
+    
+    <unlocklevel>
+        <haguebeast>
+            <level value="1">
+                <name>雪球</name>
+                <description>对周围一格目标造成2点物理贯伤</description>
+            </level>
+            <level value="2">
+                <name>极地血统</name>
+                <description>防御+2</description>
+            </level>
+            <level value="3">
+                <name>寒冰风暴</name>
+                <description>目标单位将会被眩晕(跳过一回合)并受到3点伤害(物理贯)</description>
+            </level>
+            <level value="4">
+                <name>极地血统Ⅱ</name>
+                <description>魔防+5</description>
+            </level>
+            <level value="5">
+                <name>海象飞踢</name>
+                <description>对目标造成7点贯伤(物理)</description>
+            </level>
+        </haguebeast>
+        
+        <bearwarrior>
+            <level value="1">
+                <name>震撼大地</name>
+                <description>对周围一格的目标造成2点物理贯伤</description>
+            </level>
+            <level value="2">
+                <name>超强力量</name>
+                <description>结算贯伤的时候对目标额外造成1点伤害</description>
+            </level>
+            <level value="3">
+                <name>怒意狂击</name>
+                <description>普通攻击,对非满血目标造成5点额外伤害</description>
+            </level>
+            <level value="4">
+                <name>超强力量2</name>
+                <description>结算贯伤的时候对目标额外造成2点伤害</description>
+            </level>
+            <level value="5">
+                <name>激怒</name>
+                <description>最多减少受到的5伤害(持续一轮)</description>
+            </level>
+        </bearwarrior>
+        
+        <taranspider>
+            <level value="1">
+                <name>织网</name>
+                <description>移动至攻击范围内的任意空位置</description>
+            </level>
+            <level value="2">
+                <name>节肢杀手</name>
+                <description>普通攻击无视物理防御</description>
+            </level>
+            <level value="3">
+                <name>麻痹之咬</name>
+                <description>使目标跳过一回合</description>
+            </level>
+            <level value="4">
+                <name>飞速</name>
+                <description>敏捷+1</description>
+            </level>
+            <level value="5">
+                <name>极度饥渴</name>
+                <description>对目标进行一次普通攻击,并吸收50%的伤害回复HP</description>
+            </level>
+        </taranspider>
+    </unlocklevel>
+    
+    <unlocklevel>
+        <halfmanrhino>
+            <level value="1">
+                <name>震荡波</name>
+                <description>将周围一格的敌人往外移动一格(如果可以的话)</description>
+            </level>
+            <level value="2">
+                <name>野蛮力量</name>
+                <description>攻击+1</description>
+            </level>
+            <level value="3">
+                <name>巨角冲撞</name>
+                <description>攻击一个目标,将目标向外移动一格(如果可以的话)</description>
+            </level>
+            <level value="4">
+                <name>野蛮力量Ⅱ</name>
+                <description>攻击+2</description>
+            </level>
+            <level value="5">
+                <name>强烈震荡波</name>
+                <description>普通攻击周围一格目标,无视物理防御</description>
+            </level>
+        </halfmanrhino>
+        
+        <murlockleader>
+            <level value="1">
+                <name>幻象法球</name>
+                <description>下一回合无视所有伤害(持续一回合) </description>
+            </level>
+            <level value="2">
+                <name>鱼水之力</name>
+                <description>敏捷+1</description>
+            </level>
+            <level value="3">
+                <name>灵动之翼</name>
+                <description>下一回合敏捷+5(持续一回合)</description>
+            </level>
+            <level value="4">
+                <name>鱼水之力Ⅱ</name>
+                <description>敏捷+2</description>
+            </level>
+            <level value="5">
+                <name>新月之痕</name>
+                <description>对周围一格敌人造成3点伤害(物理贯)</description>
+            </level>
+        </murlockleader>
+        
+        <dragon>
+            <level value="1">
+                <name>龙鸣</name>
+                <description>伤害10(魔法贯)</description>
+            </level>
+            <level value="2">
+                <name>龙息</name>
+                <description>攻击范围内的所有敌方单位承受4(魔法贯伤)</description>
+            </level>
+            <level value="3">
+                <name>龙怒</name>
+                <description>攻击范围内的所有敌方单位跳过一回合(持续一回合)</description>
+            </level>
+            <level value="4">
+                <name>龙鸣崇拜</name>
+                <description>攻击+5</description>
+            </level>
+            <level value="5">
+                <name>龙鸣崇拜Ⅱ</name>
+                <description>魔攻+5</description>
+            </level>
+        </dragon>
+    </unlocklevel>
+</monster>

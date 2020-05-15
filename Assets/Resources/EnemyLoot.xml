@@ -1,0 +1,45 @@
+<enemy>
+    <normal>
+        <level value="1">
+            <soulnum>2</soulnum>
+        </level>
+        
+        <level value="2">
+            <soulnum>4</soulnum>
+        </level>
+        
+        <level value="3">
+            <soulnum>8</soulnum>
+        </level>
+        
+        <level value="4">
+            <soulnum>12</soulnum>
+        </level>
+        
+        <level value="5">
+            <soulnum>16</soulnum>
+        </level>
+    </normal>
+    
+    <hero>
+        <robinhood>
+            <soulnum>12</soulnum>
+        </robinhood>
+        
+        <tatenoyousya>
+            <soulnum>20</soulnum>
+        </tatenoyousya>
+        
+        <jinjyamiko>
+            <soulnum>30</soulnum>
+        </jinjyamiko>
+        
+        <orchestraleader>
+            <soulnum>40</soulnum>
+        </orchestraleader>
+        
+        <cinderlord>
+            <soulnum>0</soulnum>
+        </cinderlord>
+    </hero>
+</enemy>

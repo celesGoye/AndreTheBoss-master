@@ -41,8 +41,7 @@ public class GeneralPanel : MonoBehaviour
 			{
 				menu.currentMonster=(i<monsterManager.MonsterPawns.Count-1)?monsterManager.MonsterPawns[i+1]:monsterManager.MonsterPawns[0];
 				menu.UpdateMenu();
-				menu.upgradePanel.consumePanel.UpdateConsumePanel();
-				menu.upgradePanel.UpdateInfo();
+				menu.upgradePanel.OnNext();
 				return;
 			}
 		}
@@ -56,8 +55,7 @@ public class GeneralPanel : MonoBehaviour
 			{
 				menu.currentMonster=(i==0)?monsterManager.MonsterPawns[monsterManager.MonsterPawns.Count-1]:monsterManager.MonsterPawns[i-1];
 				menu.UpdateMenu();
-				menu.upgradePanel.consumePanel.UpdateConsumePanel();
-				menu.upgradePanel.UpdateInfo();
+				menu.upgradePanel.OnNext();
 				return;
 			}
 		}

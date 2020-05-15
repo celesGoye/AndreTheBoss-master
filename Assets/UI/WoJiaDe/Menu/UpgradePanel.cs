@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class UpgradePanel : MonoBehaviour
 {
 	public MenuControl menu;
-	public ItemManager itemManager;
 	public Upgrade_ConsumePanel consumePanel;
 	public Button confirm;
 	public Text beforelv;
@@ -22,9 +21,10 @@ public class UpgradePanel : MonoBehaviour
 
 	public void OnEnable(){
 		menu.UpdateMenu();
-		UpdateInfo();
 		if(gameManager == null)
 			gameManager = FindObjectOfType<GameManager>();
+		characterReader=gameManager.characterReader;
+		UpdateInfo();
 	}
 	
 	public void UpdateInfo(){
@@ -67,9 +67,17 @@ public class UpgradePanel : MonoBehaviour
 		currentMonster.Upgrade();
 		menu.pawnStatus.UpdatePawnStatusPanel(currentMonster);
 		menu.UpdateMenu();
-		UpdateInfo();
 		consumePanel.ConsumeItem();
 		consumePanel.UpdateConsumePanel();
+		UpdateInfo();
+	}
+	
+	public void OnNext()
+	{
+		currentMonster=menu.currentMonster;
+		consumePanel.UpdateConsumePanel();
+		Debug.Log("On next,current monster is:"+menu.currentMonster);
+		UpdateInfo();
 	}
 	
 	private CharacterReader.CharacterData GetOldData()

@@ -32,6 +32,8 @@ public class Gallery_ItemPage : MonoBehaviour
 	{
 		itemList=itemManager.ItemsGot;
 		int itemCount=itemList.Count;
+		
+		Debug.Log("itempage：：：：：：：：："+itemCount);
 		int itemShowNum=itemCount-currentPage*10;
 		for(int i=0;i<10;i++)
 		{
