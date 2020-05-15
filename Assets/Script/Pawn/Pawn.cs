@@ -235,11 +235,16 @@ public abstract class Pawn : MonoBehaviour
 		if (level == 5 || Type == PawnType.Enemy)
 			return;
 
-		CharacterReader characterReader=new CharacterReader();
-		characterReader.ReadFile();
-		CharacterReader.CharacterData olddata = characterReader.GetCharacterData(Type,Name,level);
-		CharacterReader.CharacterData data = characterReader.GetCharacterData(Type,Name,level+1);
-		if(data!=null)
+		GameManager gm = FindObjectOfType<GameManager>();
+
+		Monster monster = (Monster)this;
+		
+		CharacterReader.CharacterData olddata = gm.characterReader.GetMonsterData(
+			gm.monsterManager.GetMonsterUnlockLevel(monster.monsterType),monster.monsterType.ToString(),level);
+		CharacterReader.CharacterData data = gm.characterReader.GetMonsterData(
+			gm.monsterManager.GetMonsterUnlockLevel(monster.monsterType), monster.monsterType.ToString(), level+1);
+
+		if (data!=null)
 		{
 			currentHP = hp= data.HP;
 			currentAttack = attack - olddata.attack + data.attack;

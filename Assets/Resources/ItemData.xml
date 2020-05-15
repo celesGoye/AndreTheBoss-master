@@ -33,6 +33,66 @@
 				it's access.
 			</access>
 		</MoonlightStone>
+        
+        <RobinhoodSoul>
+            <intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+        </RobinhoodSoul>
+        
+        <TatenoyousyaSoul>
+            <intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+        </TatenoyousyaSoul>
+        
+        <Jinjyamikosoul>
+            <intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+        </Jinjyamikosoul>
+        
+        <OrchestraleaderSoul>
+            <intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+        </OrchestraleaderSoul>
+        
+        <CinderlordSoul>
+            <intro>
+				just intro
+			</intro>
+			<use>
+				What it's for.
+			</use>
+			<access>
+				it's access.
+			</access>
+        </CinderlordSoul>
 	</SoulType>
 	<Farm>
 		<SpiderLily>

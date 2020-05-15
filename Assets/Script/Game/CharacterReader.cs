@@ -4,17 +4,17 @@ using UnityEngine;
 using System.Xml;
 public class CharacterReader
 {
-    private string path = "/Resources/CharacterData.xml";
+    //private string path = "/Resources/CharacterData.xml";
     private string pathMonster = "/Resources/MonsterData.xml";
     private string pathEnemy = "/Resources/EnemyData.xml";
 	private string pathUpgrade = "/Resources/CharacterUpgrade.xml";
 	private string pathDescription="/Resources/CharacterDescription.xml";
 
-    public XmlDocument xmlDoc;
+    //public XmlDocument xmlDoc;
     public XmlDocument xmlDocMonster;
     public XmlDocument xmlDocEnemy;
     public XmlDocument xmlDocUpgrade;
-    public XmlDocument xmlDocDescription;
+    //public XmlDocument xmlDocDescription;
     public class CharacterData
     {
         public int attack;
@@ -43,8 +43,8 @@ public class CharacterReader
 
     public void ReadFile()
     {
-        xmlDoc = new XmlDocument();
-        xmlDoc.Load(Application.dataPath + path);
+        //xmlDoc = new XmlDocument();
+        //xmlDoc.Load(Application.dataPath + path);
 
         xmlDocMonster = new XmlDocument();
         xmlDocEnemy = new XmlDocument();
@@ -52,22 +52,18 @@ public class CharacterReader
         xmlDocMonster.Load(Application.dataPath + pathMonster);
         xmlDocEnemy.Load(Application.dataPath + pathEnemy);
 
-        if (xmlDocEnemy != null)
-            Debug.Log(xmlDocEnemy.OuterXml);
-    }
-	
-	public void ReadUpgradeFile()
-	{
-		xmlDocUpgrade=new XmlDocument();
-		xmlDocUpgrade.Load(Application.dataPath+pathUpgrade);
-	}
-	
-	public void ReadDescription()
-	{
-		xmlDocDescription=new XmlDocument();
-		xmlDocDescription.Load(Application.dataPath+pathDescription);
-	}
+        xmlDocUpgrade = new XmlDocument();
+        xmlDocUpgrade.Load(Application.dataPath + pathUpgrade);
 
+        if (xmlDocUpgrade != null)
+            Debug.Log(xmlDocUpgrade.OuterXml);
+
+
+        //xmlDocDescription = new XmlDocument();
+        //xmlDocDescription.Load(Application.dataPath + pathDescription);
+    }
+
+    /*
     public CharacterData GetCharacterData(PawnType pawnType, string characterName, int level)
     {
         CharacterData data = new CharacterData();
@@ -94,6 +90,7 @@ public class CharacterReader
 		data.magicDefense=int.Parse(node["resistance"].InnerXml);
         return data;
     }
+    */
 
     public CharacterData GetMonsterData(int unlocklevel, string monsterName, int level)
     {
@@ -149,37 +146,40 @@ public class CharacterReader
         return data;
     }
 
-    public bool InitPawnData(ref Pawn pawn, PawnType pawnType, int characterTypeEnum, int level)
+    public bool InitEnemyData(ref Enemy enemy, int level, EnemyType type)
     {
-        if (pawn == null)
+        if (enemy == null)
             return false;
-		
-        if(pawnType == PawnType.Enemy)
-        {
-            Enemy enemy = (Enemy)pawn;
-            CharacterData data = GetCharacterData(pawnType, ((EnemyType)characterTypeEnum).ToString(), level);
-            enemy.InitializeEnemy((EnemyType)characterTypeEnum, ((EnemyType)characterTypeEnum).ToString(), 
-                data.attack, data.defense, data.HP, data.dexterity, data.attackRange ,data.magicAttack,data.magicDefense,level);
-        }
-        else if(pawnType == PawnType.Monster)
-        {
-            Monster monster = (Monster)pawn;
-            CharacterData data = GetCharacterData(pawnType, ((MonsterType)characterTypeEnum).ToString(), level);
-            monster.InitializeMonster((MonsterType)characterTypeEnum, ((MonsterType)characterTypeEnum).ToString(),
-                data.attack, data.defense, data.HP, data.dexterity, data.attackRange,data.magicAttack,data.magicDefense,level);
-        }
+
+        CharacterData data = GetEnemyData(level, type.ToString());
+        enemy.InitializeEnemy(type, type.ToString(),
+            data.attack, data.defense, data.HP, data.dexterity, data.attackRange, data.magicAttack, data.magicDefense, level);
         return true;
     }
-	public Dictionary<ItemType,int> GetCharacterUpgrade(string type,int level)
+
+    public bool InitMonsterData(ref Monster monster, int unlocklevel, MonsterType type, int level)
+    {
+        if (monster == null)
+            return false;
+
+        CharacterData data = GetMonsterData(unlocklevel, type.ToString(), level);
+            monster.InitializeMonster(type, type.ToString(),
+                data.attack, data.defense, data.HP, data.dexterity, data.attackRange, data.magicAttack, data.magicDefense, level);
+        return true;
+    }
+
+	public Dictionary<ItemType,int> GetCharacterUpgrade(int unlocklevel, string monsterName, int toLevel)  // upgrade to #toLevel
 	{
+        if (toLevel > 5 || unlocklevel < 0 || unlocklevel > 5)
+            return null;
+
 		Dictionary<ItemType,int> data=new Dictionary<ItemType,int>();
-		string xpath=type;
-		xpath="/monsters/"+xpath;
-		XmlElement node = (XmlElement)xmlDocUpgrade.SelectSingleNode(xpath).ChildNodes[level];
+		string xpath="/monsters/unlocklevel["+(unlocklevel+1)+"]/"+ monsterName;
+		XmlElement node = (XmlElement)xmlDocUpgrade.SelectSingleNode(xpath).ChildNodes[toLevel-1];
 		
 		if(node == null)
         {
-            Debug.Log("On CharacterReader GetUpgrade: " + type + " not found");
+            Debug.Log("On CharacterReader GetUpgrade: " + monsterName + " not found");
             return null;
         }
 		foreach (XmlElement element in node.ChildNodes)

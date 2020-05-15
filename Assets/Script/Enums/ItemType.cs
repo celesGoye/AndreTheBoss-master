@@ -17,6 +17,11 @@
 	Soul,
     HeroSoul,
     MoonlightStone,
-	
-	NUM
+    RobinhoodSoul,
+    TatenoyousyaSoul,
+    JinjyamikoSoul,
+    OrchestraleaderSoul,
+    CinderlordSoul,
+
+    NUM
 	}

@@ -22,8 +22,7 @@ public class MonsterSpawnPanel : MonoBehaviour
 	
 	public void OnEnable()
 	{
-		characterReader=new CharacterReader();
-		characterReader.ReadUpgradeFile();
+		characterReader = FindObjectOfType<GameManager>().characterReader;
 		itemAndNumbers=new List<Vector3>();
 	}
 	
@@ -62,10 +61,11 @@ public class MonsterSpawnPanel : MonoBehaviour
 	{
 
 		ClearSpawnPanel();
-		if(monsterPallete.currentType==null||monsterPallete.currentType==MonsterType.NUM)
+		if(monsterPallete.currentType==MonsterType.NUM)
 			return;
-		
-		items=characterReader.GetCharacterUpgrade(monsterPallete.currentType.ToString(),0);
+
+		int unlocklevel = Mathf.CeilToInt((float)monsterPallete.currentType / 3);
+		items =characterReader.GetCharacterUpgrade(unlocklevel, monsterPallete.currentType.ToString(), 1);	// items to spawn monster at level 1
 		itemcount=items.Count;
 		Dictionary<ItemType,int>.Enumerator en=items.GetEnumerator();
 		itemAndNumbers.Clear();

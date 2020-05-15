@@ -45,7 +45,6 @@ public class EnemyManager : MonoBehaviour
         if(cell.CanbeDestination())
         {
             Enemy newEnemy = null;
-            CharacterReader.CharacterData data = characterReader.GetCharacterData(PawnType.Enemy, type.ToString(), 1);
 
             switch (type)
             {
@@ -59,14 +58,25 @@ public class EnemyManager : MonoBehaviour
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_thief);
                     break;
             }		
-			newEnemy.healthbar=gameManager.healthbarManager.InitializeHealthBar(newEnemy);
-			EnemyPawns.Add(newEnemy);
+
+            if(newEnemy != null)
+            {
+                gameManager.characterReader.InitEnemyData(ref newEnemy, getEnemyLevel(type), type);
+                newEnemy.healthbar = gameManager.healthbarManager.InitializeHealthBar(newEnemy);
+                EnemyPawns.Add(newEnemy);
+            }
+			
         }
     }
 
     public EnemyType getRandomEnemyType()
     {
         return (EnemyType)Random.Range(0, (int)EnemyType.NUM);
+    }
+
+    public int getEnemyLevel(EnemyType type)
+    {
+        return (int)type / 5 + 1;
     }
 
 

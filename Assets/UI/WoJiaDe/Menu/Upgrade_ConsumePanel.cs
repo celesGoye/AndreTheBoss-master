@@ -21,8 +21,7 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 	
 	public void OnEnable()
 	{
-		characterReader=new CharacterReader();
-		characterReader.ReadUpgradeFile();
+		characterReader = FindObjectOfType<GameManager>().characterReader;
 		UpdateConsumePanel();
 	}
 	
@@ -58,7 +57,9 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 			}
 			return;
 		}
-		items=characterReader.GetCharacterUpgrade(monster.Name,monster.GetLevel());
+
+		int unlocklevel = Mathf.CeilToInt((float)monster.Type / 3);
+		items=characterReader.GetCharacterUpgrade(unlocklevel, monster.Type.ToString(), monster.GetLevel()+1);
 		itemcount=items.Count;
 		Dictionary<ItemType,int>.Enumerator en=items.GetEnumerator();
 		if(content.childCount>itemcount)
