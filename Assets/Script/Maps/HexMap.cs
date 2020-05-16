@@ -42,6 +42,7 @@ public class HexMap : MonoBehaviour
     private List<HexCell> reachableCells;
     private List<HexCell> attackableCells;
     private List<HexCell> hiddenCells;
+    private List<HexCell> friendCells;
 
     public int revealRadius = 2;
 	
@@ -60,6 +61,7 @@ public class HexMap : MonoBehaviour
         currentRoutes = new List<HexCell>();
         reachableCells = new List<HexCell>();
         attackableCells = new List<HexCell>();
+        friendCells = new List<HexCell>();
         hiddenCells = new List<HexCell>();
 		pathLength=0;
 		CreateMat();
@@ -507,11 +509,24 @@ public class HexMap : MonoBehaviour
         reachableCells.Remove(startCell);
 
         attackableCells.Clear();
+        friendCells.Clear();
         foreach (HexCell cell in reachableCells)
         {
             if (cell.CanbeAttackTargetOf(startCell))
                 attackableCells.Add(cell);
+            else
+                friendCells.Add(cell);
         }
+    }
+
+    public List<HexCell> GetAttackableTargets()
+    {
+        return attackableCells;
+    }
+
+    public List<HexCell> GetFriendTargets()
+    {
+        return friendCells;
     }
 
     public void ShowAttackCandidates()
@@ -524,6 +539,18 @@ public class HexMap : MonoBehaviour
             attackableCells[i].indicator.SetColor(Indicator.AttackColor);
         }
         Debug.Log("Candidates: " + attackableCells.Count);
+    }
+
+    public void ShowFriendCandidates()
+    {
+        HideIndicator();
+
+        for (int i = 0; i < friendCells.Count; i++)
+        {
+            friendCells[i].indicator.gameObject.SetActive(true);
+            friendCells[i].indicator.SetColor(Indicator.FriendColor);
+        }
+        Debug.Log("Candidates: " + friendCells.Count);
     }
 
     public bool IsReachable(HexCell cell)

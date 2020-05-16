@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-public class Monster: Pawn
+public abstract class Monster: Pawn
 {
     public MonsterType monsterType;
 
@@ -43,37 +43,22 @@ public class Monster: Pawn
     }
 
     // Skills to be overrided in child classes
-    public void DoSkillOne(Pawn pawn = null)
-    {
+    public virtual void DoSkillOne(Pawn other = null) { }
 
-    }
+    public virtual void DoSkillThree(Pawn other = null) { }
 
-    public void DoSkillThree(Pawn pawn = null)
-    {
+    public virtual void DoSkillFive(Pawn other = null) { }
 
-    }
+    public virtual void DoPassiveTwo(Pawn other = null) { }
 
-    public void DoSkillFive(Pawn pawn = null)
-    {
-
-    }
-
-    public void DoPassiveTwo(Pawn pawn = null)
-    {
-
-    }
-
-    public void DoPassiveFour(Pawn pawn = null)
-    {
-
-    }
+    public virtual void DoPassiveFour(Pawn other = null) { }
 
     public override string ToString()
     {
         switch(this.monsterType)
         {
             case MonsterType.boss:
-                return "Boss";
+                return "Andre The Boss";
             case MonsterType.dwarf:
                 return "Dwarf";
             case MonsterType.giant:
@@ -86,8 +71,6 @@ public class Monster: Pawn
                 return "?Monster?";
         }
     }
-
-
 
     public void UpdateMonster()
     {
