@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Buildings\Building.cs" />
      <Compile Include="Assets\Script\Enums\ActionType.cs" />
      <Compile Include="Assets\Script\Enums\AttributeType.cs" />
      <Compile Include="Assets\Script\Enums\BuildingType.cs" />
@@ -94,6 +95,9 @@
      <Compile Include="Assets\Script\Pawn\Boss.cs" />
      <Compile Include="Assets\Script\Pawn\Enemy.cs" />
      <Compile Include="Assets\Script\Pawn\Monster.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\1\Druid.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\1\MySprite.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\1\Zombie.cs" />
      <Compile Include="Assets\Script\Pawn\Pawn.cs" />
      <Compile Include="Assets\UI\MainMenu\MainMenu.cs" />
      <Compile Include="Assets\UI\Options_Pause\OptionsPause.cs" />

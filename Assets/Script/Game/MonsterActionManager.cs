@@ -50,10 +50,17 @@ public class MonsterActionManager : MonoBehaviour
 	
 	public void SetActionType(int step,Monster monster)
 	{
+<<<<<<< HEAD
 		//if(pawn.Type!=PawnType.Monster)
 		//	return;
 
 		/*Monster monster=null;
+=======
+		if(pawn.Type!=PawnType.Monster)
+			return;
+
+		Monster monster=null;
+>>>>>>> d43838635545fedfa502700f29a77ef7c5602e26
 		foreach(Monster m in monsterManager.MonsterPawns)
 		{
 			if(m==pawn)
@@ -64,8 +71,12 @@ public class MonsterActionManager : MonoBehaviour
 		}
 
 		if (monster == null)
+<<<<<<< HEAD
 			return;*/
 		//Monster monster=(Monster)pawn;
+=======
+			return;
+>>>>>>> d43838635545fedfa502700f29a77ef7c5602e26
 
 		monster.remainedStep-=step;
 		monster.actionType=ActionType.InAction;
