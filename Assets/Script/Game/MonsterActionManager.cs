@@ -36,8 +36,8 @@ public class MonsterActionManager : MonoBehaviour
 	{
 		if(pawn.Type!=PawnType.Monster)
 			return;
-		
-		Monster monster=new Monster();
+
+		Monster monster=null;
 		foreach(Monster m in monsterManager.MonsterPawns)
 		{
 			if(m==pawn)
@@ -46,7 +46,10 @@ public class MonsterActionManager : MonoBehaviour
 				break;
 			}
 		}
-		
+
+		if (monster == null)
+			return;
+
 		monster.remainedStep-=step;
 		monster.actionType=ActionType.InAction;
 		

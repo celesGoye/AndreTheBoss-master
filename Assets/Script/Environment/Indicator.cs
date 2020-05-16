@@ -11,6 +11,7 @@ public class Indicator : MonoBehaviour
     public static Color RouteColor = Color.white;
     public static Color AttackColor = Color.red;
 	public static Color BuildColor = Color.yellow;
+    public static Color FriendColor = Color.cyan;
 
     public void OnEnable()
     {
