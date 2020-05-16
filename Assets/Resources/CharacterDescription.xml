@@ -1,2 +1,334 @@
-<Monsters>
-</Monsters>
+<character>
+<monster>
+	<unlocklevel value="0">
+		<boss>
+			<race>andre</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar1>UI/avatar/avatar_boss</avatar1>
+			<image1>Image/character/boss</image1>			
+			<avatar2>UI/avatar/avatar_boss</avatar2>
+			<image2>Image/character/boss</image2>			
+			<avatar3>UI/avatar/avatar_boss</avatar3>
+			<image3>Image/character/boss</image3>
+		</boss>
+<zombie>
+			<race>undead</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_zombie</avatar>
+			<image>Image/character/zombie</image>
+</zombie>
+<sprite>
+			<race>fey</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_sprite</avatar>
+			<image>Image/character/sprite</image>
+</sprite>
+
+	</unlocklevel>
+	<unlocklevel value="1">
+<druid>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</druid>
+<dwarf>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</dwarf>
+<giant>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</giant>
+</unlocklevel>
+<unlocklevel value="2">
+<ghoul>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</ghoul>
+<stoneman>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</stoneman>
+<goblin>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</goblin>
+</unlocklevel>
+<unlocklevel value="3">
+<tidehunter>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</tidehunter>
+<haguebeast>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</haguebeast>
+<bearwarrior>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</bearwarrior>
+</unlocklevel>
+<unlocklevel value="4">
+<taranspider>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</taranspider>
+<halfmanrhino>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</halfmanrhino>
+<murlocleader>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</murlocleader>
+</unlocklevel>
+<unlocklevel value="5">
+<dragon>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+</dragon>
+</unlocklevel>
+</monster>
+<enemy>
+    <normal>
+        <level value="1">
+            <wanderingswordsman>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </wanderingswordsman>
+            <magicapprentice>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </magicapprentice>
+            <thief>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </thief>
+            <bandit>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </bandit>
+        </level>
+        <level value="2">
+            <banditcaptain>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </banditcaptain>
+            <berserker>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </berserker>
+            <bard>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </bard>
+            <magicmaster>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </magicmaster>
+        </level>
+        <level value="3">
+            <magicgrandmaster>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </magicgrandmaster>
+            <witch>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </witch>
+            <assassin>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </assassin>
+            <catapult>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </catapult>
+        </level>
+        <level value="4">
+            <cultist>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </cultist>
+            <priest>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </priest>
+            <bloodwitch>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </bloodwitch>
+            <darkknight>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </darkknight>
+        </level>
+        <level value="5">
+            <magebelial>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </magebelial>
+            <royalinquisitor>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </royalinquisitor>
+            <shadowfran>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </shadowfran>
+            <cardinaleriri>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </cardinaleriri>
+        </level>
+    </normal>
+    <hero>
+        <level value="1">
+            <robinhood>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </robinhood>
+        </level>
+        <level value="2">
+            <tatenoyousya>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </tatenoyousya>
+        </level>
+        <level value="3">
+            <jinjyamiko>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </jinjyamiko>
+        </level>
+        <level value="4">
+            <orchestraleader>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </orchestraleader>
+        </level>
+        <level value="5">
+            <cinderlord>
+			<race>race</race>
+			<story>storyyy</story>
+			<description>description</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </cinderlord>
+        </level>
+    </hero>
+
+</enemy>
+</character>

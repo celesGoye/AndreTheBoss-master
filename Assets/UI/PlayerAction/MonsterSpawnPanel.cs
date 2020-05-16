@@ -55,7 +55,6 @@ public class MonsterSpawnPanel : MonoBehaviour
 			{
 				GameObject.Destroy(content.GetChild(i).gameObject);
 			}
-			Debug.Log("cleared"+monsterPallete.currentType);
 	}
 	
 	public void UpdateSpawnPanel()

@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-public class Monster: Pawn
+public abstract class Monster: Pawn
 {
     public MonsterType monsterType;
 
     public int currentSkill; // either 1, 3, 5 not exceed current level
-
+	public int equippedSkill; //3, 5
+	
+	public int remainedStep;
+	public ActionType actionType;
+	
     Dictionary<int, string> skillsAndPassives;
 
     public void InitializeMonster(MonsterType monsterType, string name, int level,
@@ -19,6 +23,7 @@ public class Monster: Pawn
         InitializePawn(PawnType.Monster, name, level, attack, magicAttack, defense, magicDefense, HP, dexterity, attackRange);
 
         currentSkill = 1;
+		equippedSkill=3;
 
         skillsAndPassives = new Dictionary<int, string>();
         ReadSkillNames(this);
@@ -41,39 +46,36 @@ public class Monster: Pawn
         }
         return 0;    // not success
     }
+	
+	public int GetEquippedSkill()
+	{
+		return equippedSkill;
+	}
+	
+	public void SwitchSkill()
+	{
+		if(this.GetLevel()!=5)
+			return;
+		equippedSkill=(equippedSkill==3)?5:3;
+	}
 
     // Skills to be overrided in child classes
-    public void DoSkillOne(Pawn pawn = null)
-    {
+    public virtual void DoSkillOne(Pawn other = null) { }
 
-    }
+    public virtual void DoSkillThree(Pawn other = null) { }
 
-    public void DoSkillThree(Pawn pawn = null)
-    {
+    public virtual void DoSkillFive(Pawn other = null) { }
 
-    }
+    public virtual void DoPassiveTwo(Pawn other = null) { }
 
-    public void DoSkillFive(Pawn pawn = null)
-    {
-
-    }
-
-    public void DoPassiveTwo(Pawn pawn = null)
-    {
-
-    }
-
-    public void DoPassiveFour(Pawn pawn = null)
-    {
-
-    }
+    public virtual void DoPassiveFour(Pawn other = null) { }
 
     public override string ToString()
     {
         switch(this.monsterType)
         {
             case MonsterType.boss:
-                return "Boss";
+                return "Andre The Boss";
             case MonsterType.dwarf:
                 return "Dwarf";
             case MonsterType.giant:
@@ -86,8 +88,6 @@ public class Monster: Pawn
                 return "?Monster?";
         }
     }
-
-
 
     public void UpdateMonster()
     {

@@ -90,8 +90,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7536465841188333197}
-  - component: {fileID: 7454896145261966612}
   - component: {fileID: 387648165175421323}
+  - component: {fileID: 4737330285076527311}
   m_Layer: 8
   m_Name: MonsterZombie
   m_TagString: Untagged
@@ -114,20 +114,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
---- !u!114 &7454896145261966612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8321193885691177661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaffa5a1ad1ba0a4aa0a08f9f681978b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCell: {fileID: 0}
-  monsterType: 1
 --- !u!136 &387648165175421323
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -142,3 +128,35 @@ CapsuleCollider:
   m_Height: 2.51
   m_Direction: 1
   m_Center: {x: 0, y: 1.39, z: 0}
+--- !u!114 &4737330285076527311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8321193885691177661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dfb9291dc702654a80a485f40a4cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAttack: 0
+  currentMagicAttack: 0
+  currentDefense: 0
+  currentMagicDefense: 0
+  currentHP: 0
+  currentDexterity: 0
+  currentAttackRange: 0
+  skipCounter: 0
+  isSkip: 0
+  isDirty: 0
+  isIgnoreDefense: 0
+  isIgnoreMagicDefense: 0
+  buffs: []
+  healthbar: {fileID: 0}
+  currentCell: {fileID: 0}
+  monsterType: 0
+  currentSkill: 0
+  equippedSkill: 0
+  remainedStep: 0
+  actionType: 0

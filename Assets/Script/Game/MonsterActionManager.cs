@@ -20,6 +20,22 @@ public class MonsterActionManager : MonoBehaviour
 		monstersTookAction=new List<Monster>();
 		MonsterActionOnPlayerTurnBegin();
 	}
+	
+	public void MonsterAttack(Monster monster)
+	{
+		monster.actionType=ActionType.PostAction;
+		monster.remainedStep=0;
+		if(!monstersTookAction.Contains(monster))
+		{
+			monstersTookAction.Add(monster);
+		}
+		actionPoint=MaxActionPoint-monstersTookAction.Count;
+		if(actionPoint<=0)
+			ActionPointExhausted();
+		
+		Debug.Log("action point :"+actionPoint);
+		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(monster);
+	}
     
 	public void MonsterActionOnPlayerTurnBegin()
 	{
@@ -32,12 +48,12 @@ public class MonsterActionManager : MonoBehaviour
 		}
 	}
 	
-	public void SetActionType(int step,Pawn pawn)
+	public void SetActionType(int step,Monster monster)
 	{
-		if(pawn.Type!=PawnType.Monster)
-			return;
-		
-		Monster monster=new Monster();
+		//if(pawn.Type!=PawnType.Monster)
+		//	return;
+
+		/*Monster monster=null;
 		foreach(Monster m in monsterManager.MonsterPawns)
 		{
 			if(m==pawn)
@@ -46,7 +62,11 @@ public class MonsterActionManager : MonoBehaviour
 				break;
 			}
 		}
-		
+
+		if (monster == null)
+			return;*/
+		//Monster monster=(Monster)pawn;
+
 		monster.remainedStep-=step;
 		monster.actionType=ActionType.InAction;
 		
@@ -60,7 +80,7 @@ public class MonsterActionManager : MonoBehaviour
 			ActionPointExhausted();
 		
 		Debug.Log("action point :"+actionPoint);
-		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(pawn);
+		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(monster);
 	}
 	
 	public void ActionPointExhausted()

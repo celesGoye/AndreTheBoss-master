@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerPanel : MonoBehaviour
 {
+	public MenuControl menu;
 	public Text txtLevel;
 	public Text txtbuildmode;
 	public Text txtActionPoint;
@@ -20,9 +21,10 @@ public class PlayerPanel : MonoBehaviour
 		txtbuildmode.text="buildmode ON";
 	}
 	
-    public void OnOpenMenu()
+    public void OpenMenu()
 	{
-		
+		menu.SetCurrentMonster(gameManager.monsterManager.MonsterPawns[0]);
+		menu.OpenMenu();
 	}
 	
 	public void UpdateBuildMode()

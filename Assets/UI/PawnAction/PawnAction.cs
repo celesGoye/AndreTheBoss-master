@@ -12,12 +12,12 @@ public class PawnAction : MonoBehaviour
 	public MonsterManager monsterManager;
     public HexMap hexMap;
     public Text txt_pawn;
-	//0,0
+	
+	public Transform actionPanel;
+	public AttackPanel attackPanel;
+	
 	public UILog uilog;
-	public Camera mainCam;
 	public MenuControl menu;
-	public int offsetx;
-	public int offsety;
 
     public float moveSpeed =1f;
 
@@ -31,21 +31,50 @@ public class PawnAction : MonoBehaviour
 
     private Pawn attackTarget;
     private bool validAttackTarget;
+	
 
     public void OnEnable()
     {
         currentStatus = Status.Rest;
+		attackPanel.monster=(Monster)selectedPawn;
+		attackPanel.gameObject.SetActive(false);
+		actionPanel.transform.gameObject.SetActive(true);
     }
 
     public void SetPawn(Pawn pawn)
     {
         selectedPawn = pawn;
+		Debug.Log(selectedPawn.currentCell.GetComponent<RectTransform>()==null);
+		this.GetComponent<followGameObject>().follow=selectedPawn.GetComponent<Transform>();
     }
+	
+	public void ShowAttackPanel()
+	{
+		attackPanel.gameObject.SetActive(true);
+		actionPanel.transform.gameObject.SetActive(false);
+	}
+	
+	public void OnSkill1()
+	{
+		((Monster)selectedPawn).currentSkill=1;
+		PrepareAttack();
+	}
+	
+	public void OnSkill2()
+	{
+		((Monster)selectedPawn).currentSkill=((Monster)selectedPawn).equippedSkill;
+		PrepareAttack();
+	}
+	
+	public void OnSwitchSkill()
+	{
+		((Monster)selectedPawn).SwitchSkill();
+	}
+	
     public void PrepareAttack()
     {
         if(selectedPawn != null)
         {
-			//0,0
 			uilog.UpdateLog(selectedPawn.Name + " is trying to attack");
             Debug.Log(selectedPawn.Name + " is trying to attack");
             gameInteraction.IsPawnAction = true;
@@ -53,7 +82,6 @@ public class PawnAction : MonoBehaviour
             validAttackTarget = true;
             hexMap.ProbeAttackTarget(selectedPawn.currentCell);
             hexMap.ShowAttackCandidates();
-            //gameInteraction.pawnActionPanel.
         }
     }
 
@@ -61,13 +89,12 @@ public class PawnAction : MonoBehaviour
     {
         if(selectedPawn != null)
         {
-			//0,0
 			uilog.UpdateLog(selectedPawn.Name + " is trying to move");
             Debug.Log(selectedPawn.Name + " is trying to move");
             gameInteraction.IsPawnAction = true;
             currentStatus = Status.PrepareMove;
             validRoute = true;
-            hexMap.FindReachableCells(selectedPawn.currentCell, selectedPawn.remainedStep);
+            hexMap.FindReachableCells(selectedPawn.currentCell, ((Monster)selectedPawn).remainedStep);
             hexMap.ShowReachableCells();
         }
     }
@@ -77,7 +104,7 @@ public class PawnAction : MonoBehaviour
 		
 		if(selectedPawn.Type==PawnType.Monster)
 		{
-			monsterActionManager.SetActionType(hexMap.GetPathLength(),selectedPawn);
+			monsterActionManager.SetActionType(hexMap.GetPathLength(),(Monster)selectedPawn);
 		}
 		uilog.UpdateLog(selectedPawn.Name + " Moves");
         Debug.Log(selectedPawn.Name + " Moves");
@@ -89,7 +116,6 @@ public class PawnAction : MonoBehaviour
 
     public void Attack()
     {
-		//0,0
 		uilog.UpdateLog(selectedPawn.Name + " Attacks" + attackTarget);
         Debug.Log(selectedPawn.Name + " Attacks" + attackTarget);
         hexMap.HideIndicator();
@@ -115,10 +141,6 @@ public class PawnAction : MonoBehaviour
 
     public void Update()
     {
-		Vector3 pos = mainCam.WorldToScreenPoint(selectedPawn.GetComponent<Transform>().position);
-		pos.x -= Screen.width * 0.5f+offsetx;
-		pos.y -= Screen.height * 0.5f+offsety;
-		transform.localPosition = pos;
 		
         if (currentStatus == Status.Rest)
             return;

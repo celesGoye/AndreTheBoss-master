@@ -7,7 +7,9 @@ public class MonsterManager : MonoBehaviour
     private GameManager gameManager;
 
     public List<Monster> MonsterPawns;
-	
+
+    // the type of revived enemy should be PawnType.Monster
+    public List<Enemy> RevivedEnemyPawns;
 
     public Monster MonsterPrefab_zombie;
     public Monster MonsterPrefab_sprite;
@@ -41,6 +43,8 @@ public class MonsterManager : MonoBehaviour
     {
         gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
         MonsterPawns = new List<Monster>();
+        RevivedEnemyPawns = new List<Enemy>();
+
         MonsterRoot = new GameObject();
         MonsterRoot.transform.SetParent(transform);
         MonsterRoot.transform.position = Vector3.zero;
@@ -72,6 +76,17 @@ public class MonsterManager : MonoBehaviour
     public int GetMonsterUnlockLevel(MonsterType type)
     {
         return Mathf.CeilToInt((float)type / 3);
+    }
+
+    public bool IsFriendlyUnit(Pawn pawn)
+    {
+        if (pawn == null)
+            return false;
+
+        if (RevivedEnemyPawns.Contains((Enemy)pawn) || MonsterPawns.Contains((Monster)pawn))
+            return true;
+
+        return false;
     }
 
 

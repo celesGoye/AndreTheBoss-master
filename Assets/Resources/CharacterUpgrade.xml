@@ -1,6 +1,8 @@
 <monsters>
     <unlocklevel value="0">
         <boss>
+            <level value="1">
+            </level>
             <level value="2">
                 <RobinhoodSoul>1</RobinhoodSoul>
                 <Spiderlily>5</Spiderlily>
@@ -94,7 +96,7 @@
     </unlocklevel>
     
     <unlocklevel value="2">
-        <dwarf>
+        <drawf>
             <level value="1">
                 <Soul>6</Soul>
                 <Sulphur>1</Sulphur>
@@ -116,7 +118,7 @@
                 <Sulphur>8</Sulphur>
                 <Gold>8</Gold>
             </level>
-        </dwarf>
+        </drawf>
         
         <giant>
             <level value="1">

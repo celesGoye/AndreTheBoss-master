@@ -26,8 +26,6 @@ public abstract class Pawn : MonoBehaviour
 	public int skipCounter;
 	public bool isSkip;
 
-	public int remainedStep;
-	public ActionType actionType;
 	
 	public bool isDirty;	// has current data been updated?
 	
@@ -43,6 +41,7 @@ public abstract class Pawn : MonoBehaviour
 	public HealthBar healthbar;
     public HexCell currentCell;
     public PawnType Type { get; set; }
+
 	
     public void InitializePawn(PawnType type, string name, int initlevel,
 	int initattack, int initmagicAttack, int initdefense, int initmagicDefense, int inithp, int initdexterity, int initattackRange)
@@ -64,7 +63,7 @@ public abstract class Pawn : MonoBehaviour
 
 		isIgnoreDefense = isIgnoreMagicDefense = false;
     }
-    public void DoAttack(Pawn other)	// default attack action
+    public virtual void DoAttack(Pawn other)	// default attack action
     {
 		if (isDirty)
 			calculateCurrentValue();
@@ -86,10 +85,10 @@ public abstract class Pawn : MonoBehaviour
 				magicDamage = 1;
 		}
 
-		other.TakeDamage(damage, magicDamage);
+		other.TakeDamage(damage, magicDamage, this, isIgnoreDefense, isIgnoreMagicDefense);
     }
 
-	public void TakeDamage(int damage, int magicDamage)
+	public virtual void TakeDamage(int damage, int magicDamage, Pawn from=null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
 	{
 		currentHP -= damage + magicDamage;
 
@@ -111,35 +110,35 @@ public abstract class Pawn : MonoBehaviour
 		return level;
 	}
 	
-	public int recoverHPPercentage(Pawn pawn,float percentage)
+	public int recoverHPPercentage(Pawn other,float percentage)
 	{
-		int hp=(int)(pawn.GetMaxHP()*percentage);
+		int hp=(int)(other.GetMaxHP()*percentage);
 		int ret = 0;
-		if(pawn.currentHP+hp>=pawn.GetMaxHP())
+		if(other.currentHP+hp>= other.GetMaxHP())
 		{
-			ret = pawn.GetMaxHP() - pawn.currentHP;
-			pawn.currentHP = pawn.GetMaxHP();
+			ret = other.GetMaxHP() - other.currentHP;
+			other.currentHP = other.GetMaxHP();
 		}
 		else
 		{
 			ret = hp;
-			pawn.currentHP += hp;
+			other.currentHP += hp;
 		}
 		return ret;
 	}
 	
-	public int recoverHP(Pawn pawn,int hp)
+	public int recoverHP(Pawn other, int hp)
 	{
 		int ret = 0;
-		if(pawn.currentHP+hp>=pawn.GetMaxHP())
+		if(other.currentHP+hp>= other.GetMaxHP())
 		{
-			ret = pawn.GetMaxHP() - pawn.currentHP;
-			pawn.currentHP = pawn.GetMaxHP();
+			ret = other.GetMaxHP() - other.currentHP;
+			other.currentHP = other.GetMaxHP();
 		}
 		else
 		{
 			ret = hp;
-			pawn.currentHP += hp;
+			other.currentHP += hp;
 		}
 		return ret;
 	}
@@ -287,5 +286,11 @@ public abstract class Pawn : MonoBehaviour
 	{
 		UpdateCounter();
 		calculateCurrentValue();
+	}
+
+	public void UpdateCurrentValue()
+	{
+		if (isDirty)
+			calculateCurrentValue();
 	}
 }

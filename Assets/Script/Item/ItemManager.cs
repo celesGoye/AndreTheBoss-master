@@ -19,7 +19,7 @@ public class ItemManager : MonoBehaviour
 
 		//test
 		for(int i=0;i<(int)ItemType.NUM;i++)
-			GetItem((ItemType)i,10);
+			GetItem((ItemType)i,99);
     }
 	public void InitItems()
 	{

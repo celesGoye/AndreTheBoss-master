@@ -16,10 +16,9 @@ public class UpgradePanel : MonoBehaviour
 	public Pawn currentMonster;
 	private CharacterReader characterReader;
 	private GameManager gameManager;
-    // Start is called before the first frame update
-
-
-	public void OnEnable(){
+	
+	public void OnEnable()
+	{
 		menu.UpdateMenu();
 		if(gameManager == null)
 			gameManager = FindObjectOfType<GameManager>();
@@ -27,8 +26,9 @@ public class UpgradePanel : MonoBehaviour
 		UpdateInfo();
 	}
 	
-	public void UpdateInfo(){
-		Debug.Log("UpgradePanel menu.currentMonster"+menu.currentMonster);
+	public void UpdateInfo()
+	{
+		//Debug.Log("UpgradePanel menu.currentMonster"+menu.currentMonster);
 		currentMonster=menu.currentMonster;
 		if(IsUpgradeOK())
 			confirm.interactable=true;
@@ -55,7 +55,8 @@ public class UpgradePanel : MonoBehaviour
 						+(currentMonster.currentAttackRange-olddata.attackRange+data.attackRange);
 	}
 	
-	public bool IsUpgradeOK(){
+	public bool IsUpgradeOK()
+	{
 		if(currentMonster.GetLevel()>=Pawn.MaxLevel)
 			return false;
 		if(!consumePanel.IsUpgradeOK())
@@ -63,7 +64,8 @@ public class UpgradePanel : MonoBehaviour
 		return true;
 	}
 	
-	public void ConfirmUpgrade(){
+	public void ConfirmUpgrade()
+	{
 		currentMonster.Upgrade();
 		menu.pawnStatus.UpdatePawnStatusPanel(currentMonster);
 		menu.UpdateMenu();

@@ -60,8 +60,9 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 			return;
 		}
 
-		int unlocklevel = Mathf.CeilToInt((float)monster.Type / 3);
-		items=characterReader.GetCharacterUpgrade(unlocklevel,monster.Name,monster.GetLevel());
+		int unlocklevel = Mathf.CeilToInt((float) ((Monster)monster).monsterType / 3);
+
+		items=characterReader.GetCharacterUpgrade(unlocklevel,monster.Name,monster.GetLevel()+1);
 		itemcount=items.Count;
 		if(content.childCount>itemcount)
 		{
