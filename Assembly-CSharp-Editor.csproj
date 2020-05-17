@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{9E2C4139-9FC6-0B94-B8F8-43D7D9DDAA59}</ProjectGuid>
+    <ProjectGuid>{B50139EF-0383-FAE7-D6DC-ACB9827B2145}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -57,37 +57,37 @@
   <ItemGroup>
      <Compile Include="Assets\Editor\HexCoordinateDrawer.cs" />
  <Reference Include="UnityEditor.TestRunner">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/Program Files/UnityEditor/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -276,7 +276,7 @@
  <HintPath>D:/Program Files/UnityEditor/2019.3.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>D:/Program Files/UnityEditor/2019.3.4f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -635,7 +635,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{43E063AA-9960-505D-E20E-6BB9D081E1CE}</Project>
+      <Project>{34774A12-7300-26CB-A5E2-DCA6BA942B48}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
   </ItemGroup>

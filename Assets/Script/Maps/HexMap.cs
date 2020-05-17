@@ -609,4 +609,26 @@ public class HexMap : MonoBehaviour
         return true;
     }
 
+    public bool SwapPawns(Pawn pawn1, Pawn pawn2)
+    {
+        if (pawn1 == null || pawn2 == null || pawn1 == pawn2)
+            return false;
+
+        HexCell cell1 = pawn1.currentCell;
+        HexCell cell2 = pawn2.currentCell;
+
+        pawn1.currentCell = pawn2.currentCell = null;
+        cell1.pawn = cell2.pawn = null;
+
+        if (SetCharacterCell(pawn1, cell2) && SetCharacterCell(pawn2, cell1))
+            return true;
+
+        // Nothing changed
+        pawn1.currentCell = cell1;
+        pawn2.currentCell = cell2;
+        cell1.pawn = pawn1;
+        cell2.pawn = pawn2;
+        return false;
+    }
+
 }

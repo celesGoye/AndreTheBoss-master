@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{43E063AA-9960-505D-E20E-6BB9D081E1CE}</ProjectGuid>
+    <ProjectGuid>{34774A12-7300-26CB-A5E2-DCA6BA942B48}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -99,6 +99,14 @@
      <Compile Include="Assets\Script\Pawn\Monsters\1\Druid.cs" />
      <Compile Include="Assets\Script\Pawn\Monsters\1\MySprite.cs" />
      <Compile Include="Assets\Script\Pawn\Monsters\1\Zombie.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\2\Drawf.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\2\Ghoul.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\2\Giant.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\3\Goblin.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\3\Stoneman.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\3\TideHunter.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\4\BearWarrior.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\4\HagueBeast.cs" />
      <Compile Include="Assets\Script\Pawn\Pawn.cs" />
      <Compile Include="Assets\UI\MainMenu\MainMenu.cs" />
      <Compile Include="Assets\UI\Options_Pause\OptionsPause.cs" />
@@ -155,31 +163,31 @@
      <None Include="Assets\Resources\EnemyData.xml" />
      <None Include="Assets\Resources\EventsData.xml" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/Program Files/UnityEditor/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

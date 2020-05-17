@@ -59,14 +59,36 @@ public abstract class Monster: Pawn
         {
             case MonsterType.boss:
                 return "Andre The Boss";
+            case MonsterType.zombie:
+                return "Zombie";
+            case MonsterType.sprite:
+                return "Sprite";
+            case MonsterType.druid:
+                return "Druid";
             case MonsterType.dwarf:
                 return "Dwarf";
             case MonsterType.giant:
                 return "Giant";
-            case MonsterType.sprite:
-                return "Sprite";
-            case MonsterType.zombie:
-                return "Zombie";
+            case MonsterType.ghoul:
+                return "Ghoul";
+            case MonsterType.stoneman:
+                return "Stoneman";
+            case MonsterType.goblin:
+                return "Goblin";
+            case MonsterType.tidehunter:
+                return "Tide Hunter";
+            case MonsterType.haguebeast:
+                return "Hague Beast";
+            case MonsterType.bearwarrior:
+                return "Bear Warrior";
+            case MonsterType.taranspider:
+                return "Taran Spider";
+            case MonsterType.halfmanrhino:
+                return "Halfman Rhino";
+            case MonsterType.murlocleader:
+                return "Murloc Leader";
+            case MonsterType.dragon:
+                return "Dragon";
             default:
                 return "?Monster?";
         }

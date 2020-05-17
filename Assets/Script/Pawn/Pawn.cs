@@ -103,15 +103,15 @@ public abstract class Pawn : MonoBehaviour
 		pawn.currentHP+=change;
 		pawn.healthbar.UpdateLife();
 	}
-	public int GetMaxHP()
-	{
-		return hp;
-	}
-	public int GetLevel()
-	{
-		return level;
-	}
-	
+	public int GetMaxHP() { return hp; }
+	public int GetLevel() { return level; }
+	public int GetAttack(){return attack;}
+	public int GetMagicAttack() { return magicAttack; }
+	public int GetDefense() { return defense; }
+	public int GetMagicDefense() { return magicDefense; }
+	public int GetDexterity() { return dexterity; }
+	public int GetAttackRange() { return attackRange; }
+
 	public int recoverHPPercentage(Pawn other,float percentage)
 	{
 		int hp=(int)(other.GetMaxHP()*percentage);
@@ -151,9 +151,14 @@ public abstract class Pawn : MonoBehaviour
 		isDirty = true;
 	}
 
-	public void OnDie() {; }
-	public void OnActionBegin(){;}
-	public void OnActionEnd(){;}
+	public void addSkipCounter(int turnToSkip)
+	{
+		skipCounter += turnToSkip;
+	}
+
+	public virtual void OnDie() {; }
+	public virtual void OnActionBegin(){;}
+	public virtual void OnActionEnd(){;}
 	
 	public void Move(HexCell from,HexCell to)
 	{
@@ -284,6 +289,7 @@ public abstract class Pawn : MonoBehaviour
 		}
 	}
 
+	// call before turn begin
 	public void UpdatePawn()
 	{
 		UpdateCounter();
@@ -294,5 +300,11 @@ public abstract class Pawn : MonoBehaviour
 	{
 		if (isDirty)
 			calculateCurrentValue();
+	}
+
+	// utility
+	public bool CanbeTarget(HexCell cell)
+	{
+		return cell != null && cell.pawn != null && cell.pawn != this && cell.CanbeAttackTargetOf(currentCell);
 	}
 }
