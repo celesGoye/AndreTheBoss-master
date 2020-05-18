@@ -11,11 +11,17 @@ public class MonstersTookAction : MonoBehaviour
 	public MonsterActionPanel Prefab_action;
 	
 	private int maxActionPoint;
+	private GameManager gameManager;
 	
+	public void OnEnable()
+	{
+		if(gameManager == null)
+			gameManager = FindObjectOfType<GameManager>();
+	}
 
 	public void UpdateMonstersTookAction()
 	{
-		maxActionPoint=playerPanel.gameManager.monsterActionManager.MaxActionPoint;
+		maxActionPoint=gameManager.monsterActionManager.MaxActionPoint;
 
 		if(this.transform.childCount>maxActionPoint)
 		{
@@ -32,9 +38,9 @@ public class MonstersTookAction : MonoBehaviour
 					GenerateActionPanel(i);
 				}
 				MonsterActionPanel panel=this.transform.GetChild(i).GetComponent<MonsterActionPanel>();
-				if(playerPanel.gameManager.monsterActionManager.monstersTookAction.Count>i)
+				if(gameManager.monsterActionManager.monstersTookAction.Count>i)
 				{
-					panel.GetCurrentMonster(playerPanel.gameManager.monsterActionManager.monstersTookAction[i]);
+					panel.GetCurrentMonster(gameManager.monsterActionManager.monstersTookAction[i]);
 					panel.SetActionPanel(true);
 				}
 				else
@@ -50,7 +56,7 @@ public class MonstersTookAction : MonoBehaviour
 	{
 		MonsterActionPanel newpanel=Instantiate<MonsterActionPanel>(Prefab_action);
 		newpanel.transform.SetParent(this.transform);
-		newpanel.gameCamera=playerPanel.gameManager.gameCamera;
+		newpanel.gameCamera=gameManager.gameCamera;
 		newpanel.index=index;
 		newpanel.size=size;
 		newpanel.offset=offset;

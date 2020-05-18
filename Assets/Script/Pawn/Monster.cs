@@ -8,7 +8,11 @@ public abstract class Monster: Pawn
     public MonsterType monsterType;
 
     public int currentSkill; // either 1, 3, 5 not exceed current level
-
+	public int equippedSkill; //3, 5
+	
+	public int remainedStep;
+	public ActionType actionType;
+	
     Dictionary<int, string> skillsAndPassives;
 
     public void InitializeMonster(MonsterType monsterType, string name, int level,
@@ -19,6 +23,7 @@ public abstract class Monster: Pawn
         InitializePawn(PawnType.Monster, name, level, attack, magicAttack, defense, magicDefense, HP, dexterity, attackRange);
 
         currentSkill = 1;
+		equippedSkill=3;
 
         skillsAndPassives = new Dictionary<int, string>();
         ReadSkillNames(this);
@@ -41,6 +46,18 @@ public abstract class Monster: Pawn
         }
         return 0;    // not success
     }
+	
+	public int GetEquippedSkill()
+	{
+		return equippedSkill;
+	}
+	
+	public void SwitchSkill()
+	{
+		if(this.GetLevel()!=5)
+			return;
+		equippedSkill=(equippedSkill==3)?5:3;
+	}
 
     // Skills to be overrided in child classes
     public virtual void DoSkillOne(Pawn other = null) { }

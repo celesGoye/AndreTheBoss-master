@@ -6,11 +6,11 @@
     BlackCandy,
     SpringWater,
 	
-	SpiderLily,
+	Spiderlily,
     DemonFruit,
     GoldenApple,
 	
-	Sulfur,
+	Sulphur,
     Mercury,
     Gold,
 	

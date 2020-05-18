@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     // Utility
     public CharacterReader characterReader;
+    public ItemReader itemReader;
     
     // Sub Managers
     public HexMap hexMap;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
 		
         InitCharacterReader();
+		InitReaders();
         hexMap.GenerateCells();
         hexMap.HideCells();
         gameTurnManager = new GameTurnManager();
@@ -50,12 +52,24 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("my gameturn manager"+gameTurnManager.IsPlayerTurn());
     }
+	
+	public int GetBossLevel()
+	{
+		return boss.GetLevel();
+	}
 
     public void InitCharacterReader()
     {
         characterReader = new CharacterReader();
         characterReader.ReadFile();
     }
+	
+	public void InitReaders()
+	{
+		
+		itemReader=new ItemReader();
+		itemReader.ReadFile();
+	}
 
 
     public void QuitGame()

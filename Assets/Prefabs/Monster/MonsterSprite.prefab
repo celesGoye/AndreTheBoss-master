@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 168692776492102286}
   - component: {fileID: 1016235489585036330}
-  - component: {fileID: -6234297989533933696}
+  - component: {fileID: 2237892716086633622}
   m_Layer: 8
-  m_Name: MonsterElf
+  m_Name: MonsterSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ CapsuleCollider:
   m_Height: 3.3
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
---- !u!114 &-6234297989533933696
+--- !u!114 &2237892716086633622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,11 +56,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1153835755592772042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaffa5a1ad1ba0a4aa0a08f9f681978b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3283721a7ee39d242aa4c2360c06ee1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAttack: 0
+  currentMagicAttack: 0
+  currentDefense: 0
+  currentMagicDefense: 0
+  currentHP: 0
+  currentDexterity: 0
+  currentAttackRange: 0
+  skipCounter: 0
+  isSkip: 0
+  isDirty: 0
+  isIgnoreDefense: 0
+  isIgnoreMagicDefense: 0
+  buffs: []
+  healthbar: {fileID: 0}
   currentCell: {fileID: 0}
-  monsterType: 2
+  monsterType: 0
+  currentSkill: 0
+  equippedSkill: 0
+  remainedStep: 0
+  actionType: 0
 --- !u!1 &6808866934489648038
 GameObject:
   m_ObjectHideFlags: 0

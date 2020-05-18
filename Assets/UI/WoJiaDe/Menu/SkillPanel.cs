@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class SkillPanel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public MenuControl menu;
+	public SkillUnlockPanel unlockPanel1;
+	public SkillUnlockPanel unlockPanel2;
+	public SkillUnlockPanel unlockPanel3;
+	public SkillUnlockPanel unlockPanel4;
+	public SkillUnlockPanel unlockPanel5;
+	
+	public Pawn currentMonster;
+	private CharacterReader characterReader;
+	private GameManager gameManager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public void OnEnable(){
+		menu.UpdateMenu();
+		if(gameManager == null)
+			gameManager = FindObjectOfType<GameManager>();
+		characterReader=gameManager.characterReader;
+		UpdateSkill();
+	}
+	
+	public void UpdateSkill()
+	{
+		currentMonster=menu.currentMonster;
+		unlockPanel1.UpdateUnlockPanel((Monster)currentMonster);
+		unlockPanel2.UpdateUnlockPanel((Monster)currentMonster);
+		unlockPanel3.UpdateUnlockPanel((Monster)currentMonster);
+		unlockPanel4.UpdateUnlockPanel((Monster)currentMonster);
+		unlockPanel5.UpdateUnlockPanel((Monster)currentMonster);
+	}
+	
+	public void OnNext()
+	{
+		UpdateSkill();
+	}
 }

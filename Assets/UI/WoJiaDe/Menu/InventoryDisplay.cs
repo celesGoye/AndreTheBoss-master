@@ -36,6 +36,7 @@ public class InventoryDisplay : MonoBehaviour
 	{
 		items=inventory.itemsOwn;
 		itemcount=items.Count;
+		
 		Dictionary<ItemType,int>.Enumerator en=items.GetEnumerator();
 		if(this.transform.childCount>itemcount)
 		{

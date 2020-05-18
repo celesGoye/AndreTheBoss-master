@@ -26,8 +26,6 @@ public abstract class Pawn : MonoBehaviour
 	public int skipCounter;
 	public bool isSkip;
 
-	public int remainedStep;
-	public ActionType actionType;
 	
 	public bool isDirty;	// has current data been updated?
 	

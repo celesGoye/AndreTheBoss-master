@@ -4,27 +4,27 @@
             <level value="1">
             </level>
             <level value="2">
-                <Robinhoodsoul>1</Robinhoodsoul>
-                <SpiderLily>5</SpiderLily>
+                <RobinhoodSoul>1</RobinhoodSoul>
+                <Spiderlily>5</Spiderlily>
                 <Sulphur>5</Sulphur>
                 <MoonlightStone>1</MoonlightStone>
             </level>
             <level value="3">
-                <Tatenoyousyasoul>1</Tatenoyousyasoul>
+                <TatenoyousyaSoul>1</TatenoyousyaSoul>
                 <DemonFruit>10</DemonFruit>
                 <GoldenApple>10</GoldenApple>
-                <Murcury>10</Murcury>
+                <Mercury>10</Mercury>
                 <MoonlightStone>3</MoonlightStone>
             </level>
             <level value="4">
-                <Jinjyamikosoul>1</Jinjyamikosoul>
+                <JinjyamikoSoul>1</JinjyamikoSoul>
                 <Spiderlily>20</Spiderlily>
                 <Gold>20</Gold>
                 <Sulphur>20</Sulphur>
                 <MoonlightStone>6</MoonlightStone>
             </level>
             <level value="5">
-                <Orchestraleadersoul>1</Orchestraleadersoul>
+                <OrchestraleaderSoul>1</OrchestraleaderSoul>
                 <Spiderlily>20</Spiderlily>
                 <DemonFruit>20</DemonFruit>
                 <GoldenApple>20</GoldenApple>

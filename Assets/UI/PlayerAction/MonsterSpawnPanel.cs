@@ -14,7 +14,7 @@ public class MonsterSpawnPanel : MonoBehaviour
 	public float size;
 	
 	private MonsterType monster;
-	private Dictionary<ItemType,int> items;
+	private List<Vector2> items;
 	private List<Vector3> itemAndNumbers;//typeNumNumneed
 	private int itemcount;
 	
@@ -23,7 +23,6 @@ public class MonsterSpawnPanel : MonoBehaviour
 	public void OnEnable()
 	{
 		characterReader = FindObjectOfType<GameManager>().characterReader;
-		itemAndNumbers=new List<Vector3>();
 	}
 	
 	public bool IsSpawnOK()
@@ -32,7 +31,9 @@ public class MonsterSpawnPanel : MonoBehaviour
 			return false;
 		for(int i=0;i<itemcount;i++)
 		{
-			if(itemAndNumbers[i].y<itemAndNumbers[i].z)
+			if(!monsterPallete.gameManager.itemManager.ItemsOwn.ContainsKey((ItemType)items[i].x))
+				return false;
+			if(monsterPallete.gameManager.itemManager.ItemsOwn[(ItemType)items[i].x]<items[i].y)
 				return false;
 		}
 		return true;
@@ -54,7 +55,6 @@ public class MonsterSpawnPanel : MonoBehaviour
 			{
 				GameObject.Destroy(content.GetChild(i).gameObject);
 			}
-			Debug.Log("cleared"+monsterPallete.currentType);
 	}
 	
 	public void UpdateSpawnPanel()
@@ -67,19 +67,16 @@ public class MonsterSpawnPanel : MonoBehaviour
 		int unlocklevel = Mathf.CeilToInt((float)monsterPallete.currentType / 3);
 		items =characterReader.GetCharacterUpgrade(unlocklevel, monsterPallete.currentType.ToString(), 1);	// items to spawn monster at level 1
 		itemcount=items.Count;
-		Dictionary<ItemType,int>.Enumerator en=items.GetEnumerator();
-		itemAndNumbers.Clear();
 		for(int i=0;i<itemcount;i++)
 		{
-			if(en.MoveNext())
-			{
-					itemAndNumbers.Add(new Vector3((int)en.Current.Key,monsterPallete.gameManager.itemManager.ItemsOwn[en.Current.Key],en.Current.Value));
-					Upgrade_Item item=GenItem(i);
-					item.type=(ItemType)itemAndNumbers[i].x;
-					item.num=(int)itemAndNumbers[i].y;
-					item.numneed=(int)itemAndNumbers[i].z;
-					UpdateItem(item,i);
-			}
+			Upgrade_Item item=GenItem(i);
+			item.type=(ItemType)items[i].x;
+			if(monsterPallete.gameManager.itemManager.ItemsOwn.ContainsKey((ItemType)items[i].x))
+				item.num= monsterPallete.gameManager.itemManager.ItemsOwn[(ItemType)items[i].x];
+			else
+				item.num=0;
+			item.numneed=(int)items[i].y;
+			UpdateItem(item,i);
 		}
 		
 		if(IsSpawnOK())

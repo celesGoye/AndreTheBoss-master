@@ -9,18 +9,16 @@ public class HealthBar : MonoBehaviour
 	public Pawn pawn;
 	public Slider slider;
 	
-	public int offsetx;
-	public int offsety;
-	
 	private float maxlife;
 	private float currentlife;
 	
-	void Update()
+	public void OnEnable()
 	{
-		Vector3 pos = mainCam.WorldToScreenPoint(pawn.GetComponent<Transform>().position);
-		pos.x -= Screen.width * 0.5f+offsetx;
-		pos.y -= Screen.height * 0.5f+offsety;
-		transform.localPosition = pos;
+		
+	}
+	public void Init()
+	{
+		this.GetComponent<followGameObject>().follow=pawn.GetComponent<Transform>();
 	}
 	public void UpdateLife(){
 		maxlife=pawn.GetMaxHP();

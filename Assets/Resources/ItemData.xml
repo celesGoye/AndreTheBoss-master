@@ -58,7 +58,7 @@
 			</access>
         </TatenoyousyaSoul>
         
-        <Jinjyamikosoul>
+        <JinjyamikoSoul>
             <intro>
 				just intro
 			</intro>
@@ -68,7 +68,7 @@
 			<access>
 				it's access.
 			</access>
-        </Jinjyamikosoul>
+        </JinjyamikoSoul>
         
         <OrchestraleaderSoul>
             <intro>
@@ -95,7 +95,7 @@
         </CinderlordSoul>
 	</SoulType>
 	<Farm>
-		<SpiderLily>
+		<Spiderlily>
 			<intro>
 				just intro
 			</intro>
@@ -105,7 +105,7 @@
 			<access>
 				it's access.
 			</access>
-		</SpiderLily>
+		</Spiderlily>
 		<DemonFruit>
 			<intro>
 				just intro
@@ -130,7 +130,7 @@
 		</GoldenApple>
 	</Farm>
 	<Mine>
-		<Sulfur>
+		<Sulphur>
 			<intro>
 				just intro
 			</intro>
@@ -140,7 +140,7 @@
 			<access>
 				it's access.
 			</access>
-		</Sulfur>
+		</Sulphur>
 		<Mercury>
 			<intro>
 				just intro

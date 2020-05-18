@@ -8,23 +8,24 @@ public class ItemManager : MonoBehaviour
 	//private ItemReader itemReader;
 	
 	public List<ItemType> ItemsGot;
-	private Dictionary<ItemType,bool> isItemsGot;
 	public Dictionary<ItemType,int> ItemsOwn;
 	
     public void OnEnable()
 	{
 		gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
 		ItemsGot=new List<ItemType>();
-		isItemsGot=new Dictionary<ItemType,bool>();
 		ItemsOwn=new Dictionary<ItemType,int>();
-		for(int i=0;i<(int)ItemType.NUM;i++)
-			isItemsGot[(ItemType)i]=false;
-		
+		InitItems();
+
 		//test
 		for(int i=0;i<(int)ItemType.NUM;i++)
-			GetItem((ItemType)i,10);
-
+			GetItem((ItemType)i,99);
     }
+	public void InitItems()
+	{
+		for(int i=0;i<(int)ItemType.NUM;i++)
+			GetItem((ItemType)i,0);
+	}
 	
 	public void GetItem(ItemType itemType, int num)
 	{
@@ -35,9 +36,8 @@ public class ItemManager : MonoBehaviour
 		else
 		{
 			ItemsOwn[itemType]=num;
-			if(isItemsGot.ContainsKey(itemType)&&isItemsGot[itemType]==false)
+			if(!ItemsGot.Contains(itemType))
 			{
-				isItemsGot[itemType]=true;
 				ItemsGot.Add(itemType);
 			}
 		}

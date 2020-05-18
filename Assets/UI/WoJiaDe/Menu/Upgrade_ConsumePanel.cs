@@ -14,14 +14,16 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 	public float size;
 	
 	private Pawn monster;
-	private Dictionary<ItemType,int> items;
+	private List<Vector2> items;
 	private int itemcount;
 	
 	private CharacterReader characterReader;
+	private ItemManager itemManager;
 	
 	public void OnEnable()
 	{
 		characterReader = FindObjectOfType<GameManager>().characterReader;
+		itemManager = FindObjectOfType<GameManager>().itemManager;
 		UpdateConsumePanel();
 	}
 	
@@ -41,7 +43,7 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 		for(int i=0;i<content.childCount;i++)
 		{
 			Upgrade_Item item=content.GetChild(i).GetComponent<Upgrade_Item>();
-			upgradePanel.itemManager.ConsumeItem(item.type, item.numneed);
+			itemManager.ConsumeItem(item.type, item.numneed);
 		}
 	}
 	
@@ -58,10 +60,10 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 			return;
 		}
 
-		int unlocklevel = Mathf.CeilToInt((float)monster.Type / 3);
-		items=characterReader.GetCharacterUpgrade(unlocklevel, monster.Type.ToString(), monster.GetLevel()+1);
+		int unlocklevel = Mathf.CeilToInt((float) ((Monster)monster).monsterType / 3);
+
+		items=characterReader.GetCharacterUpgrade(unlocklevel,monster.Name,monster.GetLevel()+1);
 		itemcount=items.Count;
-		Dictionary<ItemType,int>.Enumerator en=items.GetEnumerator();
 		if(content.childCount>itemcount)
 		{
 			for(int i=itemcount;i<content.childCount;i++)
@@ -72,25 +74,18 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 		}
 		for(int i=0;i<itemcount;i++)
 		{
-			if(en.MoveNext())
-			{
-				if(content.childCount<=i)
-				{
-					Upgrade_Item item=GenItem(i);
-					item.type=en.Current.Key;
-					
-					item.num=upgradePanel.itemManager.ItemsOwn[item.type];
-					item.numneed=en.Current.Value;
-					UpdateItem(item,i);
-				}
-				else
-				{
-					Upgrade_Item item=content.GetChild(i).GetComponent<Upgrade_Item>();
-					item.type=en.Current.Key;
-					item.num=upgradePanel.itemManager.ItemsOwn[item.type];
-					item.numneed=en.Current.Value;
-				}
-			}
+			Upgrade_Item item;
+			if(content.childCount<=i)
+				item=GenItem(i);
+			else
+				item=content.GetChild(i).GetComponent<Upgrade_Item>();
+			item.type=(ItemType)items[i].x;
+			if(itemManager.ItemsOwn.ContainsKey(item.type))
+				item.num=itemManager.ItemsOwn[item.type];
+			else
+				item.num=0;
+			item.numneed=(int)items[i].y;
+			UpdateItem(item,i);
 		}
 		
 		content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, itemcount*width*UnityEngine.Screen.height); 
