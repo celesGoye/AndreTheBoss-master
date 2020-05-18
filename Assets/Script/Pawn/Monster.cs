@@ -45,6 +45,8 @@ public abstract class Monster: Pawn
     // Skills to be overrided in child classes
     public virtual void DoSkillOne(Pawn other = null) { }
 
+    public virtual void DoSkillOne(HexCell cell = null) { }
+
     public virtual void DoSkillThree(Pawn other = null) { }
 
     public virtual void DoSkillFive(Pawn other = null) { }

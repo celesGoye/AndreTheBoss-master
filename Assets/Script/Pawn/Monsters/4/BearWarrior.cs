@@ -84,7 +84,7 @@ public class BearWarrior : Monster
         base.OnActionBegin();
     }
 
-    public override void TakeDamage(int damage, int magicDamage, Pawn from = null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
+    public override int TakeDamage(int damage, int magicDamage, Pawn from = null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
     {
         if(isSkillFive)
         {
@@ -104,6 +104,6 @@ public class BearWarrior : Monster
             }
         }
 
-        base.TakeDamage(damage, magicDamage, from, isIgnoreDefense, isIgnoreMagicDefense);
+        return base.TakeDamage(damage, magicDamage, from, isIgnoreDefense, isIgnoreMagicDefense);
     }
 }

@@ -52,7 +52,7 @@ public class TideHunter : Monster
 
     }
 
-    public override void TakeDamage(int damage, int magicDamage, Pawn from = null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
+    public override int TakeDamage(int damage, int magicDamage, Pawn from = null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
     {
         if(isSirenShell)
         {
@@ -60,7 +60,7 @@ public class TideHunter : Monster
             if (damage <= 0)
                 damage = 1;
         }
-        base.TakeDamage(damage, magicDamage, from, isIgnoreDefense, isIgnoreMagicDefense);
+        return base.TakeDamage(damage, magicDamage, from, isIgnoreDefense, isIgnoreMagicDefense);
     }
 
     public override void OnActionBegin()
@@ -70,7 +70,7 @@ public class TideHunter : Monster
         base.OnActionBegin();
     }
 
-    public override void DoAttack(Pawn other)
+    public override int DoAttack(Pawn other)
     {
         UpdateCurrentValue();
         int num = 0;
@@ -92,7 +92,8 @@ public class TideHunter : Monster
             currentAttack *= num;
         }
 
-        base.DoAttack(other);
+        int damage = base.DoAttack(other);
         isDirty = true;
+        return damage;
     }
 }

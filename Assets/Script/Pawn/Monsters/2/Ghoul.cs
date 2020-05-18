@@ -37,17 +37,16 @@ public class Ghoul : Monster
         // boss gain 10 souls
     }
 
-    public override void TakeDamage(int damage, int magicDamage, Pawn from = null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
+    public override int TakeDamage(int damage, int magicDamage, Pawn from = null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
     { 
         if(isReflect)
         {
             if(from != null)
             {
-                from.TakeDamage(damage, magicDamage, this, isIgnoreDefense, isIgnoreMagicDefense);
+                return from.TakeDamage(damage, magicDamage, this, isIgnoreDefense, isIgnoreMagicDefense);
             }
         }
-        else
-            base.TakeDamage(damage, magicDamage, from, isIgnoreDefense, isIgnoreMagicDefense);
+        return base.TakeDamage(damage, magicDamage, from, isIgnoreDefense, isIgnoreMagicDefense);
     }
 
     public override void OnActionBegin()

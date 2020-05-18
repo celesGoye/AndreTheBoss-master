@@ -107,6 +107,10 @@
      <Compile Include="Assets\Script\Pawn\Monsters\3\TideHunter.cs" />
      <Compile Include="Assets\Script\Pawn\Monsters\4\BearWarrior.cs" />
      <Compile Include="Assets\Script\Pawn\Monsters\4\HagueBeast.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\4\TaranSpider.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\5\Dragon.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\5\HalfmanRhino.cs" />
+     <Compile Include="Assets\Script\Pawn\Monsters\5\MurlocLeader.cs" />
      <Compile Include="Assets\Script\Pawn\Pawn.cs" />
      <Compile Include="Assets\UI\MainMenu\MainMenu.cs" />
      <Compile Include="Assets\UI\Options_Pause\OptionsPause.cs" />

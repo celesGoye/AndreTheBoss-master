@@ -65,7 +65,7 @@ public abstract class Pawn : MonoBehaviour
 
 		isIgnoreDefense = isIgnoreMagicDefense = false;
     }
-    public virtual void DoAttack(Pawn other)	// default attack action
+    public virtual int DoAttack(Pawn other)	// default attack action
     {
 		if (isDirty)
 			calculateCurrentValue();
@@ -87,15 +87,17 @@ public abstract class Pawn : MonoBehaviour
 				magicDamage = 1;
 		}
 
-		other.TakeDamage(damage, magicDamage, this, isIgnoreDefense, isIgnoreMagicDefense);
+		return other.TakeDamage(damage, magicDamage, this, isIgnoreDefense, isIgnoreMagicDefense);
     }
 
-	public virtual void TakeDamage(int damage, int magicDamage, Pawn from=null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
+	public virtual int TakeDamage(int damage, int magicDamage, Pawn from=null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
 	{
 		currentHP -= damage + magicDamage;
 
 		if(currentHP <= 0)
 			OnDie();
+
+		return damage + magicDamage;
 	}
 	
 	public void LifeChange(int change,Pawn pawn)
@@ -306,5 +308,10 @@ public abstract class Pawn : MonoBehaviour
 	public bool CanbeTarget(HexCell cell)
 	{
 		return cell != null && cell.pawn != null && cell.pawn != this && cell.CanbeAttackTargetOf(currentCell);
+	}
+
+	public bool CanbeTarget(Pawn pawn)
+	{
+		return pawn != null && pawn != this && pawn.currentCell.CanbeAttackTargetOf(currentCell);
 	}
 }
