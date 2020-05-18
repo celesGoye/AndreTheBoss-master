@@ -43,6 +43,7 @@ public class HexMap : MonoBehaviour
     private List<HexCell> attackableCells;
     private List<HexCell> hiddenCells;
     private List<HexCell> friendCells;
+    private List<HexCell> emptyCells;
 
     public int revealRadius = 2;
 	
@@ -63,6 +64,7 @@ public class HexMap : MonoBehaviour
         attackableCells = new List<HexCell>();
         friendCells = new List<HexCell>();
         hiddenCells = new List<HexCell>();
+        emptyCells = new List<HexCell>();
 		pathLength=0;
 		CreateMat();
         for (int z = 0; z < mapHeight; z++)
@@ -510,12 +512,17 @@ public class HexMap : MonoBehaviour
 
         attackableCells.Clear();
         friendCells.Clear();
+        emptyCells.Clear();
         foreach (HexCell cell in reachableCells)
         {
             if (cell.CanbeAttackTargetOf(startCell))
                 attackableCells.Add(cell);
-            else
+            else if (cell.pawn != null)
                 friendCells.Add(cell);
+            else if (false) // is buildings
+                ;
+            else
+                emptyCells.Add(cell);
         }
     }
 
@@ -527,6 +534,11 @@ public class HexMap : MonoBehaviour
     public List<HexCell> GetFriendTargets()
     {
         return friendCells;
+    }
+
+    public List<HexCell> GetEmptyCells()
+    {
+        return emptyCells;
     }
 
     public void ShowAttackCandidates()
@@ -608,5 +620,28 @@ public class HexMap : MonoBehaviour
 
         return true;
     }
+
+    public bool SwapPawns(Pawn pawn1, Pawn pawn2)
+    {
+        if (pawn1 == null || pawn2 == null || pawn1 == pawn2)
+            return false;
+
+        HexCell cell1 = pawn1.currentCell;
+        HexCell cell2 = pawn2.currentCell;
+
+        pawn1.currentCell = pawn2.currentCell = null;
+        cell1.pawn = cell2.pawn = null;
+
+        if (SetCharacterCell(pawn1, cell2) && SetCharacterCell(pawn2, cell1))
+            return true;
+
+        // Nothing changed
+        pawn1.currentCell = cell1;
+        pawn2.currentCell = cell2;
+        cell1.pawn = pawn1;
+        cell2.pawn = pawn2;
+        return false;
+    }
+
 
 }

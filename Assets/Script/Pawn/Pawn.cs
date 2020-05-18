@@ -63,7 +63,7 @@ public abstract class Pawn : MonoBehaviour
 
 		isIgnoreDefense = isIgnoreMagicDefense = false;
     }
-    public virtual void DoAttack(Pawn other)	// default attack action
+    public virtual int DoAttack(Pawn other)	// default attack action
     {
 		if (isDirty)
 			calculateCurrentValue();
@@ -85,15 +85,17 @@ public abstract class Pawn : MonoBehaviour
 				magicDamage = 1;
 		}
 
-		other.TakeDamage(damage, magicDamage, this, isIgnoreDefense, isIgnoreMagicDefense);
+		return other.TakeDamage(damage, magicDamage, this, isIgnoreDefense, isIgnoreMagicDefense);
     }
 
-	public virtual void TakeDamage(int damage, int magicDamage, Pawn from=null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
+	public virtual int TakeDamage(int damage, int magicDamage, Pawn from=null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
 	{
 		currentHP -= damage + magicDamage;
 
 		if(currentHP <= 0)
 			OnDie();
+
+		return damage + magicDamage;
 	}
 	
 	public void LifeChange(int change,Pawn pawn)
@@ -101,15 +103,15 @@ public abstract class Pawn : MonoBehaviour
 		pawn.currentHP+=change;
 		pawn.healthbar.UpdateLife();
 	}
-	public int GetMaxHP()
-	{
-		return hp;
-	}
-	public int GetLevel()
-	{
-		return level;
-	}
-	
+	public int GetMaxHP() { return hp; }
+	public int GetLevel() { return level; }
+	public int GetAttack(){return attack;}
+	public int GetMagicAttack() { return magicAttack; }
+	public int GetDefense() { return defense; }
+	public int GetMagicDefense() { return magicDefense; }
+	public int GetDexterity() { return dexterity; }
+	public int GetAttackRange() { return attackRange; }
+
 	public int recoverHPPercentage(Pawn other,float percentage)
 	{
 		int hp=(int)(other.GetMaxHP()*percentage);
@@ -149,9 +151,14 @@ public abstract class Pawn : MonoBehaviour
 		isDirty = true;
 	}
 
-	public void OnDie() {; }
-	public void OnActionBegin(){;}
-	public void OnActionEnd(){;}
+	public void addSkipCounter(int turnToSkip)
+	{
+		skipCounter += turnToSkip;
+	}
+
+	public virtual void OnDie() {; }
+	public virtual void OnActionBegin(){;}
+	public virtual void OnActionEnd(){;}
 	
 	public void Move(HexCell from,HexCell to)
 	{
@@ -282,6 +289,7 @@ public abstract class Pawn : MonoBehaviour
 		}
 	}
 
+	// call before turn begin
 	public void UpdatePawn()
 	{
 		UpdateCounter();
@@ -292,5 +300,16 @@ public abstract class Pawn : MonoBehaviour
 	{
 		if (isDirty)
 			calculateCurrentValue();
+	}
+
+	// utility
+	public bool CanbeTarget(HexCell cell)
+	{
+		return cell != null && cell.pawn != null && cell.pawn != this && cell.CanbeAttackTargetOf(currentCell);
+	}
+
+	public bool CanbeTarget(Pawn pawn)
+	{
+		return pawn != null && pawn != this && pawn.currentCell.CanbeAttackTargetOf(currentCell);
 	}
 }
