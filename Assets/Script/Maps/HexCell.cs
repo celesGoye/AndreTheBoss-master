@@ -23,7 +23,7 @@ public class HexCell : MonoBehaviour
 
     public HexType hexType;
 
-
+	public Building building;
     public Pawn pawn;
     public Indicator indicator;
 
@@ -112,7 +112,7 @@ public class HexCell : MonoBehaviour
     {
         // stub
         // Todo: add requirments for utilizing a cell
-        return CanbeDestination() && hexType == HexType.Plain;
+        return CanbeDestination() && hexType == HexType.Plain &&building==null;
     }
 
     public bool CanbeAttackTargetOf(HexCell fromCell)

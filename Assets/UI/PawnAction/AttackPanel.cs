@@ -16,16 +16,20 @@ public class AttackPanel : MonoBehaviour
 	public Monster monster;
 	
 	private CharacterReader characterReader;
-	private CharacterReader.MonsterSkillUI skill;
+	private CharacterReader.CharacterSkillUI skill;
 	public void OnEnable()
 	{
 		if(characterReader == null)
 			characterReader = FindObjectOfType<GameManager>().GetComponent<GameManager>().characterReader;
+		
+		if(monster==null)
+			return;
+		
 		skill=characterReader.GetMonsterSkillUI(monster.monsterType.ToString(),1);
 		if(skill!=null)
 		{
 			skill1.text=skill.name;
-			//icon.sprite=skill.icon;
+			//icon1.sprite=skill.icon;
 			icon1.sprite=Resources.Load("UI/skill/TestSkill", typeof(Sprite)) as Sprite;
 		}
 		skill=characterReader.GetMonsterSkillUI(monster.monsterType.ToString(),monster.GetEquippedSkill());

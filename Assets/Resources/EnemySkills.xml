@@ -99,7 +99,7 @@
                 </skill>
                 <skill value="2">
                     <name>被动</name>
-                    <desription>吸引攻击范围内人类的仇恨</desription>
+                    <description>吸引攻击范围内人类的仇恨</description>
                 </skill>
             </cultist>
             
@@ -117,7 +117,7 @@
             <bloodwitch>
                 <skill value="1">
                     <name>魔女咆哮</name>
-                    <desription>对攻击范围内所有monster造成4点魔法伤害</desription>
+                    <description>对攻击范围内所有monster造成4点魔法伤害</description>
                 </skill>
                 <skill value="2">
                     <name>被动 Blood Thirst</name>
@@ -222,7 +222,7 @@
                 <name>盾反</name>
                 <description>将下一次受到伤害的50%返还给造成伤害的monster</description>
             </skill>
-            <skill value="2">
+            <skill value="3">
                 <name>被动 王の誇り</name>
                 <description>所有贯伤害无效</description>
             </skill>

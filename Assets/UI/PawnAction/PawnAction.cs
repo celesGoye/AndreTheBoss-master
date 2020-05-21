@@ -69,6 +69,7 @@ public class PawnAction : MonoBehaviour
 	public void OnSwitchSkill()
 	{
 		((Monster)selectedPawn).SwitchSkill();
+		this.transform.gameObject.SetActive(false);
 	}
 	
     public void PrepareAttack()

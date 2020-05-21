@@ -455,7 +455,7 @@ public class HexMap : MonoBehaviour
 		}
         for (int i = 0; i < cells.Length; i++)
         {
-            if(startCell.DistanceTo(cells[i])<=maxDistance&&cells[i].hexType==HexType.Plain)
+            if(startCell.DistanceTo(cells[i])<=maxDistance&&cells[i].hexType==HexType.Plain&&cells[i].pawn==null&&cells[i].building==null)
 			{
 				cells[i].buildable=true;
 				cells[i].indicator.gameObject.SetActive(true);
@@ -465,6 +465,20 @@ public class HexMap : MonoBehaviour
 				cells[i].buildable=false;
         }
     }
+	
+	public List<HexCell> GetTeleporterBuildableCells(HexCell startCell,int maxDistance)
+	{
+		List<HexCell> cellToFind = new List<HexCell>();
+        //HideIndicator();
+        for (int i = 0; i < cells.Length; i++)
+        {
+            if(startCell.DistanceTo(cells[i])<=maxDistance&&cells[i].hexType==HexType.Plain&&cells[i].pawn==null&&cells[i].building==null)
+			{
+				cellToFind.Add(cells[i]);
+			}
+        }
+		return cellToFind;
+	}
 
     public void ProbeAttackTarget(HexCell startCell)
     {
@@ -642,6 +656,16 @@ public class HexMap : MonoBehaviour
         cell2.pawn = pawn2;
         return false;
     }
-
+	
+	public bool SetBuildingCell(Building building,HexCell cell)
+	{
+		 if (building == null ||cell==null||!cell.CanbeDestination())
+            return false;
+		cell.building=building;
+		building.currentCell=cell;
+		
+		building.transform.position=cell.transform.position;
+		return true;
+	}
 
 }

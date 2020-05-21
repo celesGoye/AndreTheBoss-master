@@ -8,6 +8,7 @@ public class MonsterPallete : MonoBehaviour
 	public GameManager gameManager;
     public MonsterDisplay Prefab_monster;
 	public MonsterSpawnPanel monsterSpawnPanel;
+	public MonsterPreview monsterPreview;
 	
 	public Transform content;
 	
@@ -25,7 +26,6 @@ public class MonsterPallete : MonoBehaviour
 	private List<MonsterType> SpawnableMonsters;
 	private int monstercount;
 	
-	private int i=0;
 	public void OnEnable()
 	{
 		SpawnableMonsters=new List<MonsterType>();
@@ -87,5 +87,16 @@ public class MonsterPallete : MonoBehaviour
 		}
 		name.text=currentType.ToString();
 		monsterSpawnPanel.UpdateSpawnPanel();
+	}
+	
+	public void OnPointerEnter(MonsterType type)
+	{
+		monsterPreview.transform.gameObject.SetActive(true);
+		monsterPreview.UpdatePreview(type);
+	}
+	
+	public void OnPointerExit()
+	{
+		monsterPreview.transform.gameObject.SetActive(false);
 	}
 }

@@ -44,8 +44,11 @@ public class PlayerPanel : MonoBehaviour
 	{
 		gameManager.gameTurnManager.EndPlayerTurn();
 		gameManager.gameTurnManager.IncreaseGameTurn();
+		
+		//0，0
 		gameManager.monsterActionManager.MonsterActionOnPlayerTurnBegin();
-		gameManager.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel();
+		gameManager.gameInteraction.GameInteractionOnPlayerTurnBegin();
+		gameManager.buildingManager.BuildingsOnPlayerTurnBegin();
 	}
 
 }

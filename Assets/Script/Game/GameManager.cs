@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 		monsterManager.InitMonsterManager();
         InitBoss();
         gameCamera.FocusOnPoint(boss.transform.position);
+		buildingManager.InitBuildingManager();
 		monsterActionManager.InitMonsterAcitonManager();
     }
 

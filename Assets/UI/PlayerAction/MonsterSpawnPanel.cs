@@ -22,6 +22,7 @@ public class MonsterSpawnPanel : MonoBehaviour
 	
 	public void OnEnable()
 	{
+		if(characterReader==null)
 		characterReader = FindObjectOfType<GameManager>().characterReader;
 	}
 	

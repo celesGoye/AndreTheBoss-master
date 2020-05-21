@@ -1,11 +1,11 @@
 ﻿public enum BuildingType
 {
-    MonsterFarm,
-    MonsterMine,
+    Farm,
+    Mine,
     Teleporter,
     Altar,
-    DragonNest,
-    KingdomRuins,
-    Dungeon,
+    //DragonNest,
+    //KingdomRuins,
+    //Dungeon,
     None
 }

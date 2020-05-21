@@ -332,7 +332,7 @@
             </level>
         </halfmanrhino>
         
-        <murlockleader>
+        <murlocleader>
             <level value="1">
                 <name>幻象法球</name>
                 <description>下一回合无视所有伤害(持续一回合) </description>
@@ -353,7 +353,7 @@
                 <name>新月之痕</name>
                 <description>对周围一格敌人造成3点伤害(物理贯)</description>
             </level>
-        </murlockleader>
+        </murlocleader>
         
         <dragon>
             <level value="1">
@@ -361,20 +361,20 @@
                 <description>伤害10(魔法贯)</description>
             </level>
             <level value="2">
-                <name>龙息</name>
-                <description>攻击范围内的所有敌方单位承受4(魔法贯伤)</description>
-            </level>
-            <level value="3">
-                <name>龙怒</name>
-                <description>攻击范围内的所有敌方单位跳过一回合(持续一回合)</description>
-            </level>
-            <level value="4">
                 <name>龙鸣崇拜</name>
                 <description>攻击+5</description>
             </level>
-            <level value="5">
+            <level value="3">
+                <name>龙息</name>
+                <description>攻击范围内的所有敌方单位承受4(魔法贯伤)</description>
+            </level>
+            <level value="4">
                 <name>龙鸣崇拜Ⅱ</name>
                 <description>魔攻+5</description>
+            </level>
+            <level value="5">
+                <name>龙怒</name>
+                <description>攻击范围内的所有敌方单位跳过一回合(持续一回合)</description>
             </level>
         </dragon>
     </unlocklevel>

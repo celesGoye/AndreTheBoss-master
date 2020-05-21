@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8563255361140409523}
   - component: {fileID: 8834934941731768855}
-  - component: {fileID: -1443975343575069586}
+  - component: {fileID: 7652982009451201377}
   m_Layer: 8
   m_Name: MonsterGiant
   m_TagString: Untagged
@@ -128,7 +128,7 @@ CapsuleCollider:
   m_Height: 3.3
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
---- !u!114 &-1443975343575069586
+--- !u!114 &7652982009451201377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,8 +137,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7242533461893308407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaffa5a1ad1ba0a4aa0a08f9f681978b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cf38e6647992144b920e9a0b5fc40ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAttack: 0
+  currentMagicAttack: 0
+  currentDefense: 0
+  currentMagicDefense: 0
+  currentHP: 0
+  currentDexterity: 0
+  currentAttackRange: 0
+  skipCounter: 0
+  isSkip: 0
+  isDirty: 0
+  isIgnoreDefense: 0
+  isIgnoreMagicDefense: 0
+  buffs: []
+  healthbar: {fileID: 0}
   currentCell: {fileID: 0}
-  monsterType: 4
+  monsterType: 0
+  currentSkill: 0
+  equippedSkill: 0
+  remainedStep: 0
+  actionType: 0

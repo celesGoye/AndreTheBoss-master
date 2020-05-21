@@ -48,7 +48,7 @@ public class CharacterReader
 		public Sprite image;
 	};
 	
-	public class MonsterSkillUI
+	public class CharacterSkillUI
 	{
 		public string name;
 		public string description;
@@ -228,9 +228,9 @@ public class CharacterReader
 		return names;
 	}
 	
-	public MonsterSkillUI GetMonsterSkillUI(string monsterName, int skill)
+	public CharacterSkillUI GetMonsterSkillUI(string monsterName, int skill)
 	{
-		MonsterSkillUI data=new MonsterSkillUI();
+		CharacterSkillUI data=new CharacterSkillUI();
 		string xpath="";
 		
 			xpath="/monster//"+monsterName+"/level["+(skill)+"]";
@@ -245,9 +245,9 @@ public class CharacterReader
 		return data;
 	}
 	
-	public List<MonsterSkillUI> GetMonsterSkillUI(string monsterName)
+	public List<CharacterSkillUI> GetMonsterSkillUI(string monsterName)
 	{
-		List<MonsterSkillUI> data=new List<MonsterSkillUI>();
+		List<CharacterSkillUI> data=new List<CharacterSkillUI>();
 		string xpath="";
 		for(int i=0;i<5;i++)
 		{
@@ -258,12 +258,33 @@ public class CharacterReader
 				Debug.Log("On CharacterReader GetMonsterSkillName: " + monsterName + " skill"+(i+1)+" not found");
 				return null;
 			}
-			MonsterSkillUI skill=new MonsterSkillUI();
+			CharacterSkillUI skill=new CharacterSkillUI();
 			skill.name=(node["name"].InnerXml);
 			skill.description=(node["description"].InnerXml);
 			data.Add(skill);
 		}
 		return data;
+	}
+	
+	public List<CharacterSkillUI> GetEnemySkillUI(string enemyName)
+	{
+		List<CharacterSkillUI> data = new List<CharacterSkillUI>();
+		string xpath="/enemy//"+enemyName;
+		XmlNode node =xmlDocEnemySkill.SelectSingleNode(xpath);
+		if(node==null)
+		{
+			Debug.Log("On CharacterReader GetEnemySkillUI: " + enemyName +" not found");
+			return null;
+		}
+		foreach(XmlNode n in node)
+		{
+			XmlElement element=(XmlElement)n;
+			CharacterSkillUI skill=new CharacterSkillUI();
+			skill.name=(element["name"].InnerXml);
+			skill.description=(element["description"].InnerXml);
+			data.Add(skill);
+		}
+		return data;	
 	}
 	
 	public CharacterDescription GetCharacterDescription(PawnType type,string name)

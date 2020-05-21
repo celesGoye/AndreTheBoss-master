@@ -36,5 +36,12 @@ public class MonsterDisplay : MonoBehaviour
 		this.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,size*UnityEngine.Screen.height);
 		this.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,size*UnityEngine.Screen.height);
 	}
-	
+	public void OnPointerEnter()
+	{
+		monsterPallete.OnPointerEnter(type);
+	}
+	public void OnPointerExit()
+	{
+		monsterPallete.OnPointerExit();
+	}
 }

@@ -61,7 +61,6 @@ public class MonsterManager : MonoBehaviour
 
     public Monster CreateMonster(MonsterType type, HexCell cellToSpawn, int level)
     {
-		GameObject.Instantiate<Monster>(prefabs[type]);
         Monster monster = GameObject.Instantiate<Monster>(prefabs[type]);
         monster.transform.SetParent(transform);
         gameManager.hexMap.SetCharacterCell(monster, cellToSpawn);

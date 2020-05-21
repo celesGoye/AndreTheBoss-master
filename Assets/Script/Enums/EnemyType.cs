@@ -25,7 +25,7 @@
     orchestraleader,  // level 4
 
     magebelial,
-    rotalinquisitor,
+    royalinquisitor,
     shadowfran,
     cardinaleriri,
     cinderlord,  // level 5

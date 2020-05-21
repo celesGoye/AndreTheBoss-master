@@ -19,6 +19,7 @@ public class GameInteraction : MonoBehaviour
     public HexCellAction hexCellActionPanel;
     public MonsterPallete monsterPalletePanel;
     public FacilityPallete facilityPalletePanel;
+	public NoticeBoard noticeBoard;
 	public PlayerPanel playerPanel;
 
     public bool IsPawnAction = false;
@@ -50,6 +51,18 @@ public class GameInteraction : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
+			if(facilityPalletePanel.isSelecting)
+			{
+				 if (hit.collider.GetComponent<HexCell>() != null&&
+						hexMap.GetTeleporterBuildableCells(gameManager.hexMap.selectedCell, 
+						Teleporter.GetMaxDistance(facilityPalletePanel.currentLevel)).Contains(hit.collider.GetComponent<HexCell>()))
+				{
+					facilityPalletePanel.currentDestination=hit.collider.GetComponent<HexCell>();
+				}
+				facilityPalletePanel.facilityBuildPanel.SetIsSelecting(false);
+				facilityPalletePanel.facilityBuildPanel.UpdateBuildPanel();
+				return;
+			}
             DisableAllPanels();
             DisableIndicators();
             if (hit.collider.GetComponent<HexCell>() != null)
@@ -112,6 +125,7 @@ public class GameInteraction : MonoBehaviour
         hexCellActionPanel.gameObject.SetActive(false);
         monsterPalletePanel.gameObject.SetActive(false);
         facilityPalletePanel.gameObject.SetActive(false);
+		noticeBoard.gameObject.SetActive(false);
         
     }
 
@@ -159,14 +173,22 @@ public class GameInteraction : MonoBehaviour
     public void OpenMonsterPallete()
     {
         DisableAllPalletePanels();
+		gameManager.buildingManager.UpdateBuildMode(false);
         monsterPalletePanel.gameObject.SetActive(true);
     }
 
     public void OpenFacilityPallete()
     {
         DisableAllPalletePanels();
+		gameManager.buildingManager.UpdateBuildMode(false);
         facilityPalletePanel.gameObject.SetActive(true);
     }
+	
+	public void GameInteractionOnPlayerTurnBegin()
+	{
+		pawnStatusPanel.UpdatePawnStatusPanel();
+		noticeBoard.gameObject.SetActive(true);
+	}
 
 }
 
