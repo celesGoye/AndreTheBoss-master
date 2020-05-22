@@ -10,6 +10,7 @@
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
                 <dropsoul>2</dropsoul>
+                <skillcounts>0</skillcounts>
             </wanderingswordsman>
             <magicapprentice>
                 <attack>0</attack>
@@ -20,6 +21,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>2</dropsoul>
+                <skillcounts>1</skillcounts>
             </magicapprentice>
             <thief>
                 <attack>4</attack>
@@ -30,6 +32,7 @@
                 <dexterity>4</dexterity>
                 <attackRange>1</attackRange>
                 <dropsoul>2</dropsoul>
+                <skillcounts>0</skillcounts>
             </thief>
             <bandit>
                 <attack>5</attack>
@@ -40,6 +43,7 @@
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
                 <dropsoul>2</dropsoul>
+                <skillcounts>2</skillcounts>
             </bandit>
         </level>
         <level value="2">
@@ -52,6 +56,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>1</attackRange>
                 <dropsoul>4</dropsoul>
+                <skillcounts>0</skillcounts>
             </banditcaptain>
             <berserker>
                 <attack>10</attack>
@@ -62,6 +67,7 @@
                 <dexterity>1</dexterity>
                 <attackRange>1</attackRange>
                 <dropsoul>4</dropsoul>
+                <skillcounts>1</skillcounts>
             </berserker>
             <bard>
                 <attack>4</attack>
@@ -72,6 +78,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>3</attackRange>
                 <dropsoul>4</dropsoul>
+                <skillcounts>1</skillcounts>
             </bard>
             <magicmaster>
                 <attack>2</attack>
@@ -82,6 +89,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>4</dropsoul>
+                <skillcounts>2</skillcounts>
             </magicmaster>
         </level>
         <level value="3">
@@ -94,6 +102,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>8</dropsoul>
+                <skillcounts>2</skillcounts>
             </magicgrandmaster>
             <witch>
                 <attack>0</attack>
@@ -104,6 +113,7 @@
                 <dexterity>5</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>8</dropsoul>
+                <skillcounts>1</skillcounts>
             </witch>
             <assassin>
                 <attack>4</attack>
@@ -114,6 +124,7 @@
                 <dexterity>6</dexterity>
                 <attackRange>1</attackRange>
                 <dropsoul>8</dropsoul>
+                <skillcounts>1</skillcounts>
             </assassin>
             <catapult>
                 <attack>0</attack>
@@ -124,6 +135,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>3</attackRange>
                 <dropsoul>8</dropsoul>
+                <skillcounts>1</skillcounts>
             </catapult>
         </level>
         <level value="4">
@@ -136,6 +148,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>12</dropsoul>
+                <skillcounts>1</skillcounts>
             </cultist>
             <priest>
                 <attack>7</attack>
@@ -146,6 +159,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>12</dropsoul>
+                <skillcounts>1</skillcounts>
             </priest>
             <bloodwitch>
                 <attack>2</attack>
@@ -156,6 +170,7 @@
                 <dexterity>6</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>12</dropsoul>
+                <skillcounts>1</skillcounts>
             </bloodwitch>
             <darkknight>
                 <attack>20</attack>
@@ -166,6 +181,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>1</attackRange>
                 <dropsoul>12</dropsoul>
+                <skillcounts>0</skillcounts>
             </darkknight>
         </level>
         <level value="5">
@@ -178,6 +194,7 @@
                 <dexterity>5</dexterity>
                 <attackRange>3</attackRange>
                 <dropsoul>16</dropsoul>
+                <skillcounts>2</skillcounts>
             </magebelial>
             <royalinquisitor>
                 <attack>20</attack>
@@ -188,6 +205,7 @@
                 <dexterity>4</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>16</dropsoul>
+                <skillcounts>1</skillcounts>
             </royalinquisitor>
             <shadowfran>
                 <attack>20</attack>
@@ -198,6 +216,7 @@
                 <dexterity>10</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>16</dropsoul>
+                <skillcounts>0</skillcounts>
             </shadowfran>
             <cardinaleriri>
                 <attack>10</attack>
@@ -208,6 +227,7 @@
                 <dexterity>4</dexterity>
                 <attackRange>3</attackRange>
                 <dropsoul>16</dropsoul>
+                <skillcounts>1</skillcounts>
             </cardinaleriri>
         </level>
     </normal>
@@ -222,6 +242,7 @@
                 <dexterity>5</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>12</dropsoul>
+                <skillcounts>2</skillcounts>
             </robinhood>
         </level>
         <level value="2">
@@ -234,6 +255,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>2</attackRange>
                 <dropsoul>20</dropsoul>
+                <skillcounts>1</skillcounts>
             </tatenoyousya>
         </level>
         <level value="3">
@@ -246,6 +268,7 @@
                 <dexterity>5</dexterity>
                 <attackRange>4</attackRange>
                 <dropsoul>30</dropsoul>
+                <skillcounts>1</skillcounts>
             </jinjyamiko>
         </level>
         <level value="4">
@@ -258,6 +281,7 @@
                 <dexterity>5</dexterity>
                 <attackRange>3</attackRange>
                 <dropsoul>40</dropsoul>
+                <skillcounts>1</skillcounts>
             </orchestraleader>
         </level>
         <level value="5">
@@ -270,6 +294,7 @@
                 <dexterity>3</dexterity>
                 <attackRange>3</attackRange>
                 <dropsoul>0</dropsoul>
+                <skillcounts>2</skillcounts>
             </cinderlord>
         </level>
     </hero>
