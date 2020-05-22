@@ -96,7 +96,7 @@
     </unlocklevel>
     
     <unlocklevel value="2">
-        <drawf>
+        <dwarf>
             <level value="1">
                 <name>小锤敲敲</name>
                 <description>5点物理贯伤</description>
@@ -117,7 +117,7 @@
                 <name>木制盾牌 </name>
                 <description>(增加10物防10魔防)持续一回合</description>
             </level>
-        </drawf>
+        </dwarf>
         
         <giant>
             <level value="1">

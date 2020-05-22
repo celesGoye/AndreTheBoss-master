@@ -62,7 +62,7 @@ public class MonsterPallete : MonoBehaviour
 			monster.gameObject.GetComponent<Image>().color=Color.white;
 		}
 		
-        content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (SpawnableMonsters.Count<=12?3:(SpawnableMonsters.Count)/4+1)*height*UnityEngine.Screen.height); 
+        content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (((SpawnableMonsters.Count<=12?3:(SpawnableMonsters.Count)/4+1)-1)*height+size)*UnityEngine.Screen.height); 
 	}
 	
 	public MonsterDisplay GenerateMonsterDisplay(int index)

@@ -83,7 +83,7 @@ public class FacilityPallete : MonoBehaviour
 			}
 		}
 		
-       content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (BuildableFacility.Count<=4?4:(BuildableFacility.Count))*height*UnityEngine.Screen.height); 
+       content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (((BuildableFacility.Count<=4?4:(BuildableFacility.Count))-1)*height+size)*UnityEngine.Screen.height); 
 	}
 	
 	public FacilityDisplay GenerateFacilityDisplay(int index)
