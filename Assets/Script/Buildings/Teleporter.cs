@@ -26,8 +26,12 @@ public class Teleporter : Building
 		return level*5;
 	}
 	
-	public void ShowTeleporterBuildableHex()
+	public void TeleporterDestroy()
 	{
-		
+		if(another!=null)
+		{
+			another.another=null;
+			gameManager.buildingManager.DestroyBuilding(another);
+		}
 	}
 }

@@ -31,6 +31,7 @@ public class CharacterReader
         public int dexterity; 
         public int attackRange;
         public int dropsoul;        // reserved for enemy
+		public int skillcounts;		// reserved for enemy
 
         public override string ToString()
         {
@@ -161,6 +162,7 @@ public class CharacterReader
         data.magicAttack = int.Parse(node["magicattack"].InnerXml);
         data.magicDefense = int.Parse(node["magicdefense"].InnerXml);
         data.dropsoul = int.Parse(node["dropsoul"].InnerXml);
+		data.skillcounts = int.Parse(node["skillcounts"].InnerXml);
 
         Debug.Log(data.ToString());
 
@@ -173,7 +175,7 @@ public class CharacterReader
             return false;
 
         CharacterData data = GetEnemyData(level, type.ToString());
-        enemy.InitializeEnemy(type, type.ToString(), level,
+        enemy.InitializeEnemy(type, type.ToString(), level, data.skillcounts,
             data.attack, data.magicAttack, data.defense, data.magicDefense, data.HP, data.dexterity, data.attackRange);
         return true;
     }

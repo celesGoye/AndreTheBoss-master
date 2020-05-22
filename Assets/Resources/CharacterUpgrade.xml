@@ -96,7 +96,7 @@
     </unlocklevel>
     
     <unlocklevel value="2">
-        <drawf>
+        <dwarf>
             <level value="1">
                 <Soul>6</Soul>
                 <Sulphur>1</Sulphur>
@@ -118,7 +118,7 @@
                 <Sulphur>8</Sulphur>
                 <Gold>8</Gold>
             </level>
-        </drawf>
+        </dwarf>
         
         <giant>
             <level value="1">

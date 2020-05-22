@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class NoticeBoard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public Transform content;
+	
+	private GameManager gameManager;
+	
+	public void OnEnable()
+	{
+		gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
+	}
+    public void OnConfirm()
+	{
+		this.gameObject.SetActive(false);
+	}
 }

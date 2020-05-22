@@ -360,6 +360,23 @@ public class HexMap : MonoBehaviour
 		return pathLength;
 	}
 
+    public List<HexCell> GetRoutes(Pawn pawn, HexCell Target)
+    {
+        List<HexCell> routes = new List<HexCell>();
+
+        FindPath(pawn.currentCell, Target);
+
+        for(int i = 0; i < currentRoutes.Count-1; i++)
+        {
+            if (currentRoutes[i].Distance <= pawn.GetDexterity())
+                routes.Add(currentRoutes[i]);
+            else
+                break;
+        }
+
+        return routes;
+    }
+
     public void ShowPath(HexCell fromCell, HexCell toCell)
     {
         HideIndicator();
@@ -538,6 +555,68 @@ public class HexMap : MonoBehaviour
             else
                 emptyCells.Add(cell);
         }
+    }
+
+    public HexCell GetNearestAttackableTarget(HexCell fromCell, int probeDistance=30)
+    {
+        if (fromCell.pawn == null)
+            return null;
+
+        List<HexCell> cellToFind = new List<HexCell>();
+
+        int maxDistance = probeDistance;
+
+        for (int i = 0; i < cells.Length; i++)
+        {
+            cells[i].Distance = int.MaxValue;
+        }
+
+        fromCell.Distance = 0;
+        cellToFind.Add(fromCell);
+        reachableCells.Clear();
+
+        while (cellToFind.Count > 0)
+        {
+            HexCell cell = cellToFind[0];
+            cellToFind.RemoveAt(0);
+
+            for (HexDirection dir = (HexDirection)0; dir <= (HexDirection)5; dir++)
+            {
+                HexCell nextCell = cell.GetNeighbour(dir);
+                if (nextCell != null)
+                {
+                    int distance = cell.Distance;
+                    if (!nextCell.CanbeDestination())
+                        continue;
+                    else if (nextCell.hexType == HexType.Plain)
+                        distance = cell.Distance + 1;
+                    else if (nextCell.hexType == HexType.Forest || nextCell.hexType == HexType.Swamp)
+                        distance = cell.Distance + 2;
+
+                    if (nextCell.Distance == int.MaxValue)
+                    {
+                        nextCell.Distance = distance;
+                        if (nextCell.Distance < maxDistance + 1)
+                            cellToFind.Add(nextCell);
+                    }
+                    else if (nextCell.Distance > distance)
+                    {
+                        if (nextCell.Distance > distance)
+                        {
+                            nextCell.Distance = distance;
+                        }
+                    }
+                    if (cell.Distance <= maxDistance && cell != fromCell)
+                        reachableCells.Add(cell);
+
+                    if (nextCell.pawn != null && nextCell.pawn.Type != fromCell.pawn.Type)
+                        return nextCell;
+                }
+            }
+            cellToFind.Sort((x, y) => x.Distance.CompareTo(y.Distance));
+        }
+
+        return null;
     }
 
     public List<HexCell> GetAttackableTargets()

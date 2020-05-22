@@ -20,6 +20,7 @@ public class GameInteraction : MonoBehaviour
     public MonsterPallete monsterPalletePanel;
     public FacilityPallete facilityPalletePanel;
 	public NoticeBoard noticeBoard;
+	public UILog uilog;
 	public PlayerPanel playerPanel;
 
     public bool IsPawnAction = false;
@@ -187,7 +188,6 @@ public class GameInteraction : MonoBehaviour
 	public void GameInteractionOnPlayerTurnBegin()
 	{
 		pawnStatusPanel.UpdatePawnStatusPanel();
-		noticeBoard.gameObject.SetActive(true);
 	}
 
 }

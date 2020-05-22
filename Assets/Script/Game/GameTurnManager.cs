@@ -35,6 +35,11 @@ public class GameTurnManager
         return isPlayerTurn;
     }
 
+    public bool IsEnemyTurn()
+    {
+        return !isPlayerTurn;
+    }
+
     public void EndPlayerTurn()
     {
         isPlayerTurn = false;

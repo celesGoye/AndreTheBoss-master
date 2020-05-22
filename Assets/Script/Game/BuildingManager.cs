@@ -126,12 +126,45 @@ public class BuildingManager : MonoBehaviour
 		{
 			if(building.GetItemType()!=ItemType.NUM)
 			{
-				itemProduced[building.GetItemType()]+=building.GetCurrentProduceNumber();
+				if(itemProduced.ContainsKey(building.GetItemType()))
+					itemProduced[building.GetItemType()]+=building.GetCurrentProduceNumber();
+				else
+					itemProduced[building.GetItemType()]=building.GetCurrentProduceNumber();
 			}
 		}
-		foreach(ItemType key in itemProduced.Keys)
+		
+		string logstring="";
+		if(itemProduced.Count==0)
 		{
-			gameManager.itemManager.GetItem(key,itemProduced[key]);
+			logstring="The day is over,You have produced nothing;";
+		}
+		else
+		{
+			logstring="The day is over,You have produced the following items:";
+			foreach(ItemType key in itemProduced.Keys)
+			{
+				gameManager.itemManager.GetItem(key,itemProduced[key]);
+				logstring+="<color=#6A5ACD>  "+key.ToString()+"</color>*"+itemProduced[key]+";";
+			}
+		}
+		gameManager.gameInteraction.uilog.UpdateLog(logstring);
+	}
+	
+	public void DestroyBuilding(Building building)
+	{
+		if(Buildings.Contains(building))
+		{
+			if((building as Teleporter)!=null)
+			{
+				((Teleporter)building).TeleporterDestroy();
+			}
+			building.currentCell.building=null;
+			GameObject.Destroy(building.gameObject);
+			
+		}
+		else
+		{
+			Debug.Log("destroy building not found");
 		}
 	}
 }
