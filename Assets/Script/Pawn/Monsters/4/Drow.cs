@@ -2,39 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HagueBeast : Monster
+public class Drow : Monster
 {
     bool isDoPassive2, isDoPassive4;
     int skilloneDamage = 5;
 
-    public HagueBeast()
+    public Drow()
     {
         isDoPassive2 = isDoPassive4 = false;
     }
-    public override void DoSkillOne(Pawn other = null)
+    public override void DoSkillOne(HexCell cell)
     {
-        for (HexDirection i = HexDirection.NE; i <= HexDirection.NW; i++)
-        {
-            HexCell cell = currentCell.GetNeighbour(i);
-            if (CanbeTarget(cell))
-                cell.pawn.TakeDamage(2, 0, this, true);
-        }
+        GameManager gm = FindObjectOfType<GameManager>();
+        gm.hexMap.ProbeAttackTarget(this.currentCell);
+        if (gm.hexMap.GetEmptyCells().Contains(cell))
+            gm.hexMap.SetCharacterCell(this, cell);
     }
 
     public override void DoSkillThree(Pawn other = null)
     {
-        if(other != null && CanbeTarget(other.currentCell))
-        {
-            other.TakeDamage(3, 0, this, true);
+        if (CanbeTarget(other))
             other.addSkipCounter(1);
-        }
     }
 
     public override void DoSkillFive(Pawn other = null)
     {
-        if(other != null && CanbeTarget(other.currentCell))
+        if(CanbeTarget(other))
         {
-            other.TakeDamage(7, 0, this, true);
+            int damage = DoAttack(other);
+            recoverHP(this, damage / 2);
         }
     }
 
@@ -44,8 +40,7 @@ public class HagueBeast : Monster
             return;
 
         isDoPassive2 = true;
-
-        modifyAttribute(AttributeType.Defense, 2);
+        isIgnoreDefense = true;
     }
 
     public override void DoPassiveFour(Pawn other = null)
@@ -54,6 +49,7 @@ public class HagueBeast : Monster
             return;
 
         isDoPassive4 = true;
-        modifyAttribute(AttributeType.MagicDefense, 5);
+        modifyAttribute(AttributeType.Dexertiry, 2);
+        UpdateCurrentValue();
     }
 }

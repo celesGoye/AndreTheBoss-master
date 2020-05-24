@@ -15,6 +15,9 @@ public class Building: MonoBehaviour
 	private BuildingType buildingType;
     private int currentLevel; // 1,2,3
     private ItemType itemTypeProduced;
+
+	// a little hack
+	Pawn buildingPawn;
 	
     public void InitBuilding(BuildingType type, ItemType itemTypeProduced, int initLevel)
     {
@@ -22,6 +25,10 @@ public class Building: MonoBehaviour
         currentLevel = Mathf.Clamp(initLevel, 1,GetMaxLevel(type));
 		if(GetValidProduct(type).Contains(itemTypeProduced))
 			this.itemTypeProduced = itemTypeProduced;
+
+		// for catapult
+		buildingPawn = gameObject.AddComponent<Pawn>();
+		buildingPawn.Type = PawnType.Building;
     }
 
     public int LevelUp(BuildingType type, int souls) // return souls used

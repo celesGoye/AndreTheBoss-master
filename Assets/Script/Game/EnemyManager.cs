@@ -79,6 +79,10 @@ public class EnemyManager : MonoBehaviour
         return (int)type / 5 + 1;
     }
 
+    public List<Enemy> getCurrentEnemies()
+    {
+        return EnemyPawns;
+    }
 
     /*
     public void SpawnEnemies()

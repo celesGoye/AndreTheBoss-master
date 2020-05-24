@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HalfmanRhino : Monster
+public class Centaur : Monster
 {
     bool isDoPassive2, isDoPassive4;
 
-    public HalfmanRhino()
+    public Centaur()
     {
         isDoPassive2 = isDoPassive4 = false;
     }

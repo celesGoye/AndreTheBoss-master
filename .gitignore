@@ -6,3 +6,5 @@ Temp/
 
 *.sln
 *.csproj
+
+.vs/

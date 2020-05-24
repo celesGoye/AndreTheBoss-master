@@ -1,4 +1,4 @@
 ﻿public enum PawnType
 {
-    Monster, Enemy, None,
+    Monster, Enemy, Building, None,
 }
