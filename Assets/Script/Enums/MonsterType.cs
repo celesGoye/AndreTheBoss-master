@@ -9,12 +9,12 @@
     ghoul,//2
     stoneman,
     goblin,
-    tidehunter,//3
-    haguebeast,
-    bearwarrior,
-    taranspider,//4
-    halfmanrhino,
-    murlocleader,
+    bloodseeker,//3
+    chimera,
+    bugbear,
+    drow,//4
+    centaur,
+    mindflayer,
     dragon,//5
 	NUM
 }

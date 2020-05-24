@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TideHunter : Monster
+public class BloodSeeker : Monster
 {
     bool isDoPassive2, isDoPassive4;
     bool isSirenShell = false;
 
-    public TideHunter()
+    public BloodSeeker()
     {
         isDoPassive2 = isDoPassive4 = false;
     }

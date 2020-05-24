@@ -62,7 +62,11 @@ public abstract class Pawn : MonoBehaviour
 		isSkip = false;
 
 		isIgnoreDefense = isIgnoreMagicDefense = false;
+		InitPawn();
     }
+
+	public virtual void InitPawn() {; }		// for cub class initialization
+
     public virtual int DoAttack(Pawn other)	// default attack action
     {
 		if (isDirty)

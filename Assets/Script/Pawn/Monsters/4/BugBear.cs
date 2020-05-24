@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BearWarrior : Monster
+public class BugBear : Monster
 {
     bool isDoPassive2, isDoPassive4;
 
@@ -10,7 +10,7 @@ public class BearWarrior : Monster
 
     int extraDamage = 0;
 
-    public BearWarrior()
+    public BugBear()
     {
         isDoPassive2 = isDoPassive4 = false;
     }

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MurlocLeader : Monster
+public class MindFlayer : Monster
 {
     bool isDoPassive2, isDoPassive4;
     bool isHarden = false;
 
-    public MurlocLeader()
+    public MindFlayer()
     {
         isDoPassive2 = isDoPassive4 = false;
     }
