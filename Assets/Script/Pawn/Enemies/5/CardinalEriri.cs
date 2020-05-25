@@ -18,5 +18,9 @@ public class CardinalEriri : Enemy
         }
     }
 
-    
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
+
 }

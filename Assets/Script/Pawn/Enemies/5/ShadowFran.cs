@@ -17,4 +17,9 @@ public class ShadowFran : Enemy
         }
         return base.TakeDamage(damage, magicDamage, from, isIgnoreDefense, isIgnoreMagicDefense);
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }

@@ -7,6 +7,7 @@ public class Priest : Enemy
     public override void InitPawn()
     {
         isIgnoreDefense = isIgnoreMagicDefense = true;
+        skillCounts = 1;
     }
 
     public override void DoSkill(Pawn target = null)
@@ -18,4 +19,5 @@ public class Priest : Enemy
             target.addBuff(AttributeType.MagicDefense, -3, 1);
         }
     }
+
 }

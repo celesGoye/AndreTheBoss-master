@@ -16,4 +16,9 @@ public class Bard : Enemy
             recoverHPPercentage(this, 30);
         }
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }

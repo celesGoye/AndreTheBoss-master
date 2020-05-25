@@ -35,4 +35,9 @@ public class RoyalInquisitor : Enemy
             }
         }
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }

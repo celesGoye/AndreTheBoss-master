@@ -14,18 +14,13 @@ public class GameTurnManager
         isPlayerTurn = true;
     }
 
-    public static int[] heroAppearingTurn =
-    {
-        10, 20, 30,
-    };
-
     public void IncreaseGameTurn()
     {
         turnNumber++;
         isPlayerTurn = true;
     }
 
-    public int CurrentGameTurn()
+    public int GetCurrentGameTurn()
     {
         return turnNumber;
     }

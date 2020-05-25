@@ -14,6 +14,12 @@ public class EnemyManager : MonoBehaviour
     private List<Enemy> EnemyPawns;
 
     private GameObject EnemyRoot;
+
+    public static int[] heroAppearingTurn ={
+        10, 20, 30,
+    };
+
+
     public void OnEnable()
     {
         EnemyPawns = new List<Enemy>();
@@ -24,17 +30,26 @@ public class EnemyManager : MonoBehaviour
         EnemyRoot.transform.position = Vector3.zero;
     }
 
-    public void SpawnEnemy(int turnNum)
+    public void SpawnEnemy()
     {
-        if(turnNum < 10)
+        int turnNum = gameManager.gameTurnManager.GetCurrentGameTurn();
+        if(turnNum < heroAppearingTurn[0])          // level 1
         {
             
         }
-        else if(turnNum < 20)
+        else if(turnNum < heroAppearingTurn[1])     // level 2
         {
             
         }
-        else if(turnNum < 30)
+        else if(turnNum < heroAppearingTurn[2])     // level 3
+        {
+
+        }
+        else if(turnNum < heroAppearingTurn[3])     // level 4
+        {
+
+        }
+        else if(turnNum < heroAppearingTurn[4])     // level 5
         {
 
         }
@@ -69,11 +84,6 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public EnemyType getRandomEnemyType()
-    {
-        return (EnemyType)Random.Range(0, (int)EnemyType.NUM);
-    }
-
     public int getEnemyLevel(EnemyType type)
     {
         return (int)type / 5 + 1;
@@ -83,32 +93,5 @@ public class EnemyManager : MonoBehaviour
     {
         return EnemyPawns;
     }
-
-    /*
-    public void SpawnEnemies()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            int ran = Random.Range(0, (int)EnemyType.NUM);
-            EnemyType type = (EnemyType)ran;
-
-            
-
-
-            newEnemy.InitializeEnemy(type, newEnemy.ToString(), data.attack, data.defense, data.HP, data.dexterity, data.attackRange);
-            EnemyPawns.Add(newEnemy);
-
-
-            HexCell cell = hexMap.GetRandomCellToSpawn();
-            cell.pawn = newEnemy;
-            newEnemy.currentCell = cell;
-            newEnemy.transform.SetParent(EnemyRoot.transform);
-            newEnemy.transform.position = cell.transform.position;
-
-            hexMap.RevealCellsFrom(cell);
-        }
-
-    }
-    */
 
 }

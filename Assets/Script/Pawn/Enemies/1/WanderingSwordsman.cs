@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class WanderingSwordsman : Enemy
 {
-    
+    public override void InitPawn()
+    {
+        skillCounts = 0;
+    }
 }

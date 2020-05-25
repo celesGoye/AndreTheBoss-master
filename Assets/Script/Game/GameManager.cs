@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,9 +50,9 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        //Debug.Log("my gameturn manager"+gameTurnManager.IsPlayerTurn());
+        
     }
 	
 	public int GetBossLevel()
@@ -67,7 +68,6 @@ public class GameManager : MonoBehaviour
 	
 	public void InitReaders()
 	{
-		
 		itemReader=new ItemReader();
 		itemReader.ReadFile();
 	}
