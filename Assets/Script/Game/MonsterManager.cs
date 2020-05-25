@@ -8,7 +8,7 @@ public class MonsterManager : MonoBehaviour
 
     public List<Monster> MonsterPawns;
 
-    // the type of revived enemy should be PawnType.Monster
+    // the type of revived enemy should be set as PawnType.Monster
     public List<Enemy> RevivedEnemyPawns;
 
     public Monster MonsterPrefab_zombie;
@@ -23,25 +23,12 @@ public class MonsterManager : MonoBehaviour
 
     public void OnEnable()
     {
-        /*gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
-        MonsterPawns = new List<Monster>();
-        MonsterRoot = new GameObject();
-        MonsterRoot.transform.SetParent(transform);
-        MonsterRoot.transform.position = Vector3.zero;
-
-        prefabs = new Dictionary<MonsterType, Monster>
-        {
-            {MonsterType.boss, Boss_Prefab },
-            {MonsterType.dwarf, MonsterPrefab_dwarf},
-            {MonsterType.giant, MonsterPrefab_giant },
-            {MonsterType.sprite, MonsterPrefab_sprite },
-            {MonsterType.zombie, MonsterPrefab_zombie }
-        };*/
 		InitMonsterManager();
     }
 	 public void InitMonsterManager()
     {
-        gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+
         MonsterPawns = new List<Monster>();
         RevivedEnemyPawns = new List<Enemy>();
 
@@ -87,6 +74,5 @@ public class MonsterManager : MonoBehaviour
 
         return false;
     }
-
 
 }
