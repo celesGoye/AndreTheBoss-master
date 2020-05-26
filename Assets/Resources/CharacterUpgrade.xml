@@ -228,7 +228,7 @@
             </level>
         </goblin>
         
-        <tidehunter>
+        <bloodseeker>
             <level value="1">
                 <Soul>10</Soul>
                 <Spiderlily>2</Spiderlily>
@@ -255,11 +255,11 @@
                 <Sulphur>10</Sulphur>
                 <Gold>10</Gold>
             </level>
-        </tidehunter>
+        </bloodseeker>
     </unlocklevel>
     
     <unlocklevel value="4">
-        <haguebeast>
+        <chimera>
             <level value="1">
                 <Soul>15</Soul>
                 <GoldenApple>5</GoldenApple>
@@ -281,9 +281,9 @@
                 <GoldenApple>15</GoldenApple>
                 <Gold>15</Gold>
             </level>
-        </haguebeast>
+        </chimera>
         
-        <bearwarrior>
+        <bugbear>
             <level value="1">
                 <Soul>15</Soul>
                 <DemonFruit>5</DemonFruit>
@@ -305,9 +305,9 @@
                 <DemonFruit>15</DemonFruit>
                 <Sulphur>15</Sulphur>
             </level>
-        </bearwarrior>
+        </bugbear>
         
-        <taranspider>
+        <drow>
             <level value="1">
                 <Soul>15</Soul>
                 <Spiderlily>5</Spiderlily>
@@ -329,11 +329,11 @@
                 <Spiderlily>15</Spiderlily>
                 <Mercury>15</Mercury>
             </level>
-        </taranspider>
+        </drow>
     </unlocklevel>
     
     <unlocklevel value="5">
-        <halfmanrhino>
+        <centaur>
             <level value="1">
                 <Soul>20</Soul>
                 <Spiderlily>3</Spiderlily>
@@ -365,9 +365,9 @@
                 <Sulphur>15</Sulphur>
                 <Mercury>15</Mercury>
             </level>
-        </halfmanrhino>
+        </centaur>
         
-        <murlocleader>
+        <mindflayer>
             <level value="1">
                 <Soul>20</Soul>
                 <DemonFruit>3</DemonFruit>
@@ -399,7 +399,7 @@
                 <Mercury>15</Mercury>
                 <Gold>15</Gold>
             </level>
-        </murlocleader>
+        </mindflayer>
         
         <dragon>
             <level value="1">

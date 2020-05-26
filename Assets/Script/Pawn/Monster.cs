@@ -94,18 +94,18 @@ public abstract class Monster: Pawn
                 return "Stoneman";
             case MonsterType.goblin:
                 return "Goblin";
-            case MonsterType.tidehunter:
-                return "Tide Hunter";
-            case MonsterType.haguebeast:
-                return "Hague Beast";
-            case MonsterType.bearwarrior:
-                return "Bear Warrior";
-            case MonsterType.taranspider:
-                return "Taran Spider";
-            case MonsterType.halfmanrhino:
-                return "Halfman Rhino";
-            case MonsterType.murlocleader:
-                return "Murloc Leader";
+            case MonsterType.bloodseeker:
+                return "Bloodseeker";
+            case MonsterType.chimera:
+                return "Chimera";
+            case MonsterType.bugbear:
+                return "Bugbear";
+            case MonsterType.drow:
+                return "Drow";
+            case MonsterType.centaur:
+                return "Centaur";
+            case MonsterType.mindflayer:
+                return "Mind Flayer";
             case MonsterType.dragon:
                 return "Dragon";
             default:

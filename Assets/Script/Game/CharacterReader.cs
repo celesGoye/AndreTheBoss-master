@@ -144,7 +144,7 @@ public class CharacterReader
     {
         CharacterData data = new CharacterData();
 
-        string xpath = "/enemy/level[" + level + "]/" + enemyName;
+        string xpath = "/enemy//level[" + level + "]/" + enemyName;
 
         XmlElement node = (XmlElement)xmlDocEnemy.SelectSingleNode(xpath);
 
@@ -158,7 +158,7 @@ public class CharacterReader
         data.defense = int.Parse(node["defense"].InnerXml);
         data.HP = int.Parse(node["hp"].InnerXml);
         data.dexterity = int.Parse(node["dexterity"].InnerXml);
-        data.attackRange = int.Parse(node["attackrange"].InnerXml);
+        data.attackRange = int.Parse(node["attackRange"].InnerXml);
         data.magicAttack = int.Parse(node["magicattack"].InnerXml);
         data.magicDefense = int.Parse(node["magicdefense"].InnerXml);
         data.dropsoul = int.Parse(node["dropsoul"].InnerXml);

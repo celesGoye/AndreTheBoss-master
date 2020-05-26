@@ -33,11 +33,11 @@ public class Enemy : Pawn
         }
     }
 
-    private Pawn currentTarget = null;  // attack target
-    private enum ActionType{ Attack, Skill, Move, Patrol, None};
-    private ActionType nextAction = ActionType.None;
+    public Pawn currentTarget = null;  // attack target
+    public enum ActionType{ Attack, Skill, Move, Patrol, None};
+    public ActionType nextAction = ActionType.None;
 
-    private GameManager gm;
+    public GameManager gm;
 
     public int skillCounts;
 
@@ -143,13 +143,13 @@ public class Enemy : Pawn
         }
     }
 
-    public virtual void DoSkill()
+    public virtual void DoSkill(Pawn target = null)
     {
         int skillid = Random.Range(0, skillCounts);
-        DoSkill(skillid);
+        DoSkill(skillid, target);
     }
 
-    public virtual void DoSkill(int skillid)
+    public virtual void DoSkill(int skillid, Pawn target = null)
     {
 
     }

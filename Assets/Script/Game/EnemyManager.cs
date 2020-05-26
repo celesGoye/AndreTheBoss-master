@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     public Enemy EnemyPrefab_magic;
 
     private List<Enemy> EnemyPawns;
+	private Enemy DeadEnemyPawn;
 
     private GameObject EnemyRoot;
     public void OnEnable()
@@ -79,6 +80,30 @@ public class EnemyManager : MonoBehaviour
         return (int)type / 5 + 1;
     }
 
+    public List<Enemy> getCurrentEnemies()
+    {
+        return EnemyPawns;
+    }
+	
+	public Enemy getDeadEnemy()
+	{
+		return DeadEnemyPawn;
+	}
+	
+	public void setDeadEnemy(Enemy enemy=null)
+	{
+		DeadEnemyPawn=enemy;
+	}
+	
+	public void testAltar()
+	{
+		
+		int ran = Random.Range(0, (int)EnemyType.NUM);
+        Enemy newEnemy = Instantiate<Enemy>(EnemyPrefab_sword);
+		gameManager.characterReader.InitEnemyData(ref newEnemy, getEnemyLevel((EnemyType)ran), (EnemyType)ran);
+		DeadEnemyPawn=newEnemy;
+		Debug.Log("testAltar:"+newEnemy.enemyType.ToString());
+	}
 
     /*
     public void SpawnEnemies()

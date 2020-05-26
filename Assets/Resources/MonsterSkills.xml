@@ -213,55 +213,55 @@
             </level>
         </goblin>
         
-        <tidehunter>
+        <bloodseeker>
             <level value="1">
-                <name>海妖外壳</name>
+                <name>棺材</name>
                 <description>防止最多5点物理伤害(包括物理贯伤)(一回合)</description>
             </level>
             <level value="2">
-                <name>巨浪</name>
+                <name>凶狠杀机</name>
                 <description>普通攻击的物理伤害*=周围一格的敌人数n</description>
             </level>
             <level value="3">
-                <name>锚击</name>
+                <name>毁灭</name>
                 <description>普通攻击的同时造成额外两点伤害(物理贯伤)</description>
             </level>
             <level value="4">
-                <name>海啸</name>
+                <name>獠牙</name>
                 <description>普通攻击的魔法伤害*=周围一格的敌人数n</description>
             </level>
             <level value="5">
-                <name>毁灭</name>
+                <name>利齿</name>
                 <description>眩晕周围一格敌人(跳过一回合)</description>
             </level>
-        </tidehunter>
+        </bloodseeker>
     </unlocklevel>
     
     <unlocklevel>
-        <haguebeast>
+        <chimera>
             <level value="1">
-                <name>雪球</name>
+                <name>扫尾</name>
                 <description>对周围一格目标造成2点物理贯伤</description>
             </level>
             <level value="2">
-                <name>极地血统</name>
+                <name>混血血统</name>
                 <description>防御+2</description>
             </level>
             <level value="3">
-                <name>寒冰风暴</name>
+                <name>绝对一击</name>
                 <description>目标单位将会被眩晕(跳过一回合)并受到3点伤害(物理贯)</description>
             </level>
             <level value="4">
-                <name>极地血统Ⅱ</name>
+                <name>混血血统Ⅱ</name>
                 <description>魔防+5</description>
             </level>
             <level value="5">
-                <name>海象飞踢</name>
+                <name>飞踢</name>
                 <description>对目标造成7点贯伤(物理)</description>
             </level>
-        </haguebeast>
+        </chimera>
         
-        <bearwarrior>
+        <bugbear>
             <level value="1">
                 <name>震撼大地</name>
                 <description>对周围一格的目标造成2点物理贯伤</description>
@@ -282,15 +282,15 @@
                 <name>激怒</name>
                 <description>最多减少受到的5伤害(持续一轮)</description>
             </level>
-        </bearwarrior>
+        </bugbear>
         
-        <taranspider>
+        <drow>
             <level value="1">
                 <name>织网</name>
                 <description>移动至攻击范围内的任意空位置</description>
             </level>
             <level value="2">
-                <name>节肢杀手</name>
+                <name>黑暗杀手</name>
                 <description>普通攻击无视物理防御</description>
             </level>
             <level value="3">
@@ -305,40 +305,40 @@
                 <name>极度饥渴</name>
                 <description>对目标进行一次普通攻击,并吸收50%的伤害回复HP</description>
             </level>
-        </taranspider>
+        </drow>
     </unlocklevel>
     
     <unlocklevel>
-        <halfmanrhino>
+        <centaur>
             <level value="1">
                 <name>震荡波</name>
                 <description>将周围一格的敌人往外移动一格(如果可以的话)</description>
             </level>
             <level value="2">
-                <name>野蛮力量</name>
+                <name>力量</name>
                 <description>攻击+1</description>
             </level>
             <level value="3">
-                <name>巨角冲撞</name>
+                <name>冲撞</name>
                 <description>攻击一个目标,将目标向外移动一格(如果可以的话)</description>
             </level>
             <level value="4">
-                <name>野蛮力量Ⅱ</name>
+                <name>力量Ⅱ</name>
                 <description>攻击+2</description>
             </level>
             <level value="5">
                 <name>强烈震荡波</name>
                 <description>普通攻击周围一格目标,无视物理防御</description>
             </level>
-        </halfmanrhino>
+        </centaur>
         
-        <murlocleader>
+        <mindflayer>
             <level value="1">
                 <name>幻象法球</name>
                 <description>下一回合无视所有伤害(持续一回合) </description>
             </level>
             <level value="2">
-                <name>鱼水之力</name>
+                <name>触须之力</name>
                 <description>敏捷+1</description>
             </level>
             <level value="3">
@@ -346,14 +346,14 @@
                 <description>下一回合敏捷+5(持续一回合)</description>
             </level>
             <level value="4">
-                <name>鱼水之力Ⅱ</name>
+                <name>触须之力Ⅱ</name>
                 <description>敏捷+2</description>
             </level>
             <level value="5">
                 <name>新月之痕</name>
                 <description>对周围一格敌人造成3点伤害(物理贯)</description>
             </level>
-        </murlocleader>
+        </mindflayer>
         
         <dragon>
             <level value="1">

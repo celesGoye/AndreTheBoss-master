@@ -17,6 +17,8 @@ public class GameInteraction : MonoBehaviour
     public PawnStatus pawnStatusPanel;
 
     public HexCellAction hexCellActionPanel;
+	public HexCellStatus hexCellStatusPanel;
+	public BuildingAction buildingActionPanel;
     public MonsterPallete monsterPalletePanel;
     public FacilityPallete facilityPalletePanel;
 	public NoticeBoard noticeBoard;
@@ -74,9 +76,25 @@ public class GameInteraction : MonoBehaviour
                 {
                     EnableHexCellActionPanel();
 					ShowBuildableHex();
-					hitCell.indicator.SetColor(Indicator.StartColor);
 					hexCellActionPanel.UpdateHexCellPanel(hitCell);
+					hitCell.indicator.SetColor(Indicator.StartColor);
                 }
+				else
+				{
+					EnableHexStatusPanel();
+					hexCellStatusPanel.UpdateHexStatusPanel(hitCell);
+					hitCell.indicator.SetColor(Indicator.StartColor);
+					if(hitCell.building!=null)
+					{
+						EnableBuildingActionPanel();
+						buildingActionPanel.UpdateBuildingActionPanel(hitCell);
+						if((hitCell.building as Teleporter)!=null)
+						{
+							((Teleporter)hitCell.building).another.currentCell.indicator.gameObject.SetActive(true);
+							((Teleporter)hitCell.building).another.currentCell.indicator.SetColor(Indicator.StartColor);
+						}
+					}
+				}
             }
             else if ((selectedPawn = hit.collider.GetComponent<Pawn>()) != null)
             {
@@ -98,7 +116,7 @@ public class GameInteraction : MonoBehaviour
         else
         {
 			gameManager.buildingManager.UpdateBuildMode(false);
-            ClearScreen();
+            Clear();
         }
     }
 
@@ -117,17 +135,27 @@ public class GameInteraction : MonoBehaviour
 	{
 		hexCellActionPanel.gameObject.SetActive(true);
 	}
-
+	
+	private void EnableHexStatusPanel()
+	{
+		hexCellStatusPanel.gameObject.SetActive(true);
+	}
+	
+	private void EnableBuildingActionPanel()
+	{
+		buildingActionPanel.gameObject.SetActive(true);
+	}
 
     private void DisableAllPanels()
     {
         pawnActionPanel.gameObject.SetActive(false);
         pawnStatusPanel.gameObject.SetActive(false);
         hexCellActionPanel.gameObject.SetActive(false);
+        hexCellStatusPanel.gameObject.SetActive(false);
+		buildingActionPanel.gameObject.SetActive(false);
         monsterPalletePanel.gameObject.SetActive(false);
         facilityPalletePanel.gameObject.SetActive(false);
 		noticeBoard.gameObject.SetActive(false);
-        
     }
 
     private void DisableAllPalletePanels()
@@ -163,7 +191,6 @@ public class GameInteraction : MonoBehaviour
     {
         DisableIndicators();
         DisableAllPanels();
-		ShowBuildableHex();
     }
 	
 	private void ShowBuildableHex()
@@ -187,7 +214,8 @@ public class GameInteraction : MonoBehaviour
 	
 	public void GameInteractionOnPlayerTurnBegin()
 	{
-		pawnStatusPanel.UpdatePawnStatusPanel();
+		//pawnStatusPanel.UpdatePawnStatusPanel();
+		Clear();
 	}
 
 }

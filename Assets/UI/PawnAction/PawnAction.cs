@@ -14,6 +14,7 @@ public class PawnAction : MonoBehaviour
     public Text txt_pawn;
 	
 	public Transform actionPanel;
+	public Button transferButton;
 	public AttackPanel attackPanel;
 	
 	public UILog uilog;
@@ -21,7 +22,7 @@ public class PawnAction : MonoBehaviour
 
     public float moveSpeed =1f;
 
-    public enum Status { PrepareAttack, PrepareMove, Rest, IsMoving, IsAttacking,};
+    public enum Status { PrepareAttack, PrepareMove, Rest, IsMoving, IsAttacking, IsTransfering};
 
     public Status currentStatus = Status.Rest;
 
@@ -39,6 +40,12 @@ public class PawnAction : MonoBehaviour
 		attackPanel.monster=(Monster)selectedPawn;
 		attackPanel.gameObject.SetActive(false);
 		actionPanel.transform.gameObject.SetActive(true);
+		if(selectedPawn.currentCell.building!=null
+			&&selectedPawn.currentCell.building.GetBuildingType()==BuildingType.Teleporter
+			&&selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid())
+			transferButton.gameObject.SetActive(true);
+		else
+			transferButton.gameObject.SetActive(false);
     }
 
     public void SetPawn(Pawn pawn)
@@ -70,6 +77,26 @@ public class PawnAction : MonoBehaviour
 	{
 		((Monster)selectedPawn).SwitchSkill();
 		this.transform.gameObject.SetActive(false);
+	}
+	
+	public void UseTeleporter()
+	{
+		if(selectedPawn != null)
+        {
+			uilog.UpdateLog(selectedPawn.Name + " is trying to transfer");
+            Debug.Log(selectedPawn.Name + " is trying to transfer");
+            gameInteraction.IsPawnAction = true;
+            currentStatus = Status.IsTransfering;
+			UpdateRoot(selectedPawn,selectedPawn.currentCell,selectedPawn.currentCell.building.GetComponent<Teleporter>().another.currentCell);
+			selectedPawn.currentCell.building.GetComponent<Teleporter>().SetIsValid(false);
+			Debug.Log("pawn use teleporter: "+selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid());
+			if(selectedPawn.currentCell.building!=null
+				&&selectedPawn.currentCell.building.GetBuildingType()==BuildingType.Teleporter
+				&&selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid())
+				transferButton.gameObject.SetActive(true);
+			else
+				transferButton.gameObject.SetActive(false);
+        }
 	}
 	
     public void PrepareAttack()
@@ -113,6 +140,12 @@ public class PawnAction : MonoBehaviour
         currentStatus = Status.IsMoving;
 
         UpdateRoot(selectedPawn, selectedPawn.currentCell, routes[routes.Count - 1]);
+		if(selectedPawn.currentCell.building!=null
+			&&selectedPawn.currentCell.building.GetBuildingType()==BuildingType.Teleporter
+			&&selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid())
+			transferButton.gameObject.SetActive(true);
+		else
+			transferButton.gameObject.SetActive(false);
     }
 
     public void Attack()
@@ -201,6 +234,12 @@ public class PawnAction : MonoBehaviour
             Debug.Log("Showing attack animation");
             ClearStatus();
         }
+		else if(currentStatus==Status.IsTransfering)
+		{
+			Debug.Log("transfering");
+			selectedPawn.transform.position=selectedPawn.currentCell.transform.position;
+			ClearStatus();
+		}
     }
 
     private void UpdateRoute()
@@ -297,5 +336,5 @@ public class PawnAction : MonoBehaviour
         newCell.pawn = pawn;
         oldCell.pawn = null;
     }
-
+	
 }

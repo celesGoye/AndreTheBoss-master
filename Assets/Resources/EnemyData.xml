@@ -1,7 +1,7 @@
 <enemy>
     <normal>
         <level value="1">
-            <wanderingswordsman>
+            <wanderingswordman>
                 <attack>5</attack>
                 <magicattack>0</magicattack>
                 <defense>3</defense>
@@ -11,7 +11,7 @@
                 <attackRange>1</attackRange>
                 <dropsoul>2</dropsoul>
                 <skillcounts>0</skillcounts>
-            </wanderingswordsman>
+            </wanderingswordman>
             <magicapprentice>
                 <attack>0</attack>
                 <magicattack>6</magicattack>

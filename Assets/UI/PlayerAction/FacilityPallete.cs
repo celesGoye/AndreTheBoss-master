@@ -27,7 +27,6 @@ public class FacilityPallete : MonoBehaviour
 	
 	public bool isSelecting;
 	
-	public Text name;
 	public FacilityBuildButton facilityBuildButton;
 	
     //private BuildingReader buildingReader;
@@ -43,7 +42,6 @@ public class FacilityPallete : MonoBehaviour
 		currentItem=ItemType.NUM;
 		currentLevel=1;
 		facilityBuildPanel.UpdateBuildPanel();
-		name.text="";
 		UpdateFacilityPallete();
 		gameManager.hexMap.selectedCell.indicator.gameObject.SetActive(true);
 		gameManager.hexMap.selectedCell.indicator.SetColor(Indicator.StartColor);
@@ -106,7 +104,6 @@ public class FacilityPallete : MonoBehaviour
 			FacilityDisplay facility=content.transform.GetChild(i).GetComponent<FacilityDisplay>();
 			facility.gameObject.GetComponent<Image>().color=facility.type!=currentType?Color.white:color;
 		}
-		name.text=currentType.ToString();
 		currentItem=ItemType.NUM;
 		currentLevel=1;
 		currentDestination=null;
@@ -117,13 +114,11 @@ public class FacilityPallete : MonoBehaviour
 	
 	public void OnItemButton()
 	{
-		Debug.Log("itemBtn");
 		for(int i=0;i<ValidProduct.Count;i++)
 		{
 			Product_Item item=productcontent.transform.GetChild(i).GetComponent<Product_Item>();
 			item.gameObject.GetComponent<Image>().color=item.type!=currentItem?Color.white:color;
 		}
-		name.text=currentItem.ToString()+" "+currentType.ToString();
 		facilityBuildPanel.UpdateBuildPanel();
 	}
 	
