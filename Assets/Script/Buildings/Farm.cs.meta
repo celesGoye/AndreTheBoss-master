@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Script/Buildings/Farm.cs.meta
 guid: d087e378589630a49ad9648dee1cad9f
+=======
+guid: a01dc1b68aae05b489563b04eb69c25b
+>>>>>>> e15574711d3442faf8da98251ac632c2684bb40e:Assets/Script/Pawn/Enemies/1/Bandit.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

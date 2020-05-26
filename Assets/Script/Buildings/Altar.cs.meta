@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Script/Buildings/Altar.cs.meta
 guid: 115f858e5d379714fbede7605afb5b54
+=======
+guid: dc090113a9355364db0be2c9fdef4ad2
+>>>>>>> e15574711d3442faf8da98251ac632c2684bb40e:Assets/Script/Buildings/Teleporter.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
