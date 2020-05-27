@@ -17,9 +17,12 @@ public class FacilityBuildPanel : MonoBehaviour
 	public Button higher;
 	public Button lower;
 	public Button selectDestination;
+	
+	public Text txtname;
 	public Text txtlevel;
 	public Text txtsometitle;
 	public Text txtselected;
+	public Text txtdescription;
 	
 	private int requireSoul;
 	private CharacterReader characterReader;
@@ -80,6 +83,7 @@ public class FacilityBuildPanel : MonoBehaviour
 	
 	public void UpdateBuildPanel()
 	{
+		txtname.text=facilityPallete.currentType.ToString();
 		txtlevel.text=facilityPallete.currentLevel+"";
 		SetIsSelecting(false);
 		facilityPallete.gameManager.hexMap.HideIndicator();
@@ -101,7 +105,6 @@ public class FacilityBuildPanel : MonoBehaviour
 				if(facilityPallete.currentDestination!=null)
 				{
 					txtselected.transform.gameObject.SetActive(true);
-					Debug.Log("GREEN!");
 					facilityPallete.currentDestination.indicator.gameObject.SetActive(true);
 					facilityPallete.currentDestination.indicator.SetColor(Indicator.EndColor);
 				}
@@ -110,7 +113,19 @@ public class FacilityBuildPanel : MonoBehaviour
 				txtsometitle.text="";
 				break;
 		}
-		facilityPallete.facilityBuildButton.GetComponent<Button>().interactable=IsBuildOK()?true:false; 
+		
+		if(IsBuildOK())
+		{
+			txtdescription.gameObject.SetActive(true);
+			facilityPallete.facilityBuildButton.GetComponent<Button>().interactable=true;
+			
+			txtdescription.text="<size=22>"+Building.GetDescription(facilityPallete.currentType,facilityPallete.currentItem,facilityPallete.currentLevel)+"</size>";
+		}
+		else
+		{
+			txtdescription.gameObject.SetActive(false);
+			facilityPallete.facilityBuildButton.GetComponent<Button>().interactable=false;
+		}
 		ClearProduct(facilityPallete.ValidProduct.Count);
 
 		if(facilityPallete.currentType!=BuildingType.None)

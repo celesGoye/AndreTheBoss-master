@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Script/Buildings/Mine.cs.meta
+guid: 88c77b802f08d8544b0850afd1656d1e
+=======
+guid: 582c1b0d7d12c634dac794fb26af6660
+>>>>>>> e15574711d3442faf8da98251ac632c2684bb40e:Assets/Script/Pawn/Enemies/1/MagicApprentice.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

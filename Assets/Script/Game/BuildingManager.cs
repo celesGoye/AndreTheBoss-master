@@ -11,26 +11,13 @@ public class BuildingManager : MonoBehaviour
 	public List<Building> Buildings;
 	public Dictionary<ItemType,int> itemProduced;
 	
-	public Building BuildingPrefab_Farm_1_Spiderlily;
-	public Building BuildingPrefab_Farm_2_Spiderlily;
-	public Building BuildingPrefab_Farm_3_Spiderlily;
-	public Building BuildingPrefab_Farm_1_DemonFruit;
-	public Building BuildingPrefab_Farm_2_DemonFruit;
-	public Building BuildingPrefab_Farm_3_DemonFruit;
-	public Building BuildingPrefab_Farm_1_GoldenApple;
-	public Building BuildingPrefab_Farm_2_GoldenApple;
-	public Building BuildingPrefab_Farm_3_GoldenApple;
-	public Building BuildingPrefab_Mine_1_Sulphur;
-	public Building BuildingPrefab_Mine_2_Sulphur;
-	public Building BuildingPrefab_Mine_3_Sulphur;
-	public Building BuildingPrefab_Mine_1_Mercury;
-	public Building BuildingPrefab_Mine_2_Mercury;
-	public Building BuildingPrefab_Mine_3_Mercury;
-	public Building BuildingPrefab_Mine_1_Gold;
-	public Building BuildingPrefab_Mine_2_Gold;
-	public Building BuildingPrefab_Mine_3_Gold;
-	public Building BuildingPrefab_Teleporter_1;
-	public Building BuildingPrefab_Teleporter_2;
+	public Building BuildingPrefab_Farm_Spiderlily;
+	public Building BuildingPrefab_Farm_DemonFruit;
+	public Building BuildingPrefab_Farm_GoldenApple;
+	public Building BuildingPrefab_Mine_Sulphur;
+	public Building BuildingPrefab_Mine_Mercury;
+	public Building BuildingPrefab_Mine_Gold;
+	public Building BuildingPrefab_Teleporter;
 	public Building BuildingPrefab_Altar;
 	
 	//public HexCell currentHex;
@@ -55,29 +42,16 @@ public class BuildingManager : MonoBehaviour
 
         prefabs = new Dictionary<Vector3, Building>
         {
-            {new Vector3((int)BuildingType.Farm,1,0), BuildingPrefab_Farm_1_Spiderlily },
-            {new Vector3((int)BuildingType.Farm,2,0), BuildingPrefab_Farm_2_Spiderlily },
-            {new Vector3((int)BuildingType.Farm,3,0), BuildingPrefab_Farm_3_Spiderlily },
-			{new Vector3((int)BuildingType.Farm,1,1), BuildingPrefab_Farm_1_DemonFruit },
-            {new Vector3((int)BuildingType.Farm,2,1), BuildingPrefab_Farm_2_DemonFruit },
-            {new Vector3((int)BuildingType.Farm,3,1), BuildingPrefab_Farm_3_DemonFruit },
-			{new Vector3((int)BuildingType.Farm,1,2), BuildingPrefab_Farm_1_GoldenApple },
-            {new Vector3((int)BuildingType.Farm,2,2), BuildingPrefab_Farm_2_GoldenApple },
-            {new Vector3((int)BuildingType.Farm,3,2), BuildingPrefab_Farm_3_GoldenApple },
+            {new Vector2((int)BuildingType.Farm,0), BuildingPrefab_Farm_Spiderlily },
+			{new Vector2((int)BuildingType.Farm,1), BuildingPrefab_Farm_DemonFruit },
+			{new Vector2((int)BuildingType.Farm,2), BuildingPrefab_Farm_GoldenApple },
 			
-            {new Vector3((int)BuildingType.Mine,1,0), BuildingPrefab_Mine_1_Sulphur },
-            {new Vector3((int)BuildingType.Mine,2,0), BuildingPrefab_Mine_2_Sulphur },
-            {new Vector3((int)BuildingType.Mine,3,0), BuildingPrefab_Mine_3_Sulphur },
-			{new Vector3((int)BuildingType.Mine,1,1), BuildingPrefab_Mine_1_Mercury },
-            {new Vector3((int)BuildingType.Mine,2,1), BuildingPrefab_Mine_2_Mercury },
-            {new Vector3((int)BuildingType.Mine,3,1), BuildingPrefab_Mine_3_Mercury },
-			{new Vector3((int)BuildingType.Mine,1,2), BuildingPrefab_Mine_1_Gold },
-            {new Vector3((int)BuildingType.Mine,2,2), BuildingPrefab_Mine_2_Gold },
-            {new Vector3((int)BuildingType.Mine,3,2), BuildingPrefab_Mine_3_Gold },
+            {new Vector2((int)BuildingType.Mine,0), BuildingPrefab_Mine_Sulphur },
+			{new Vector2((int)BuildingType.Mine,1), BuildingPrefab_Mine_Mercury },
+			{new Vector2((int)BuildingType.Mine,2), BuildingPrefab_Mine_Gold },
 			
-			{new Vector3((int)BuildingType.Teleporter,1,-1), BuildingPrefab_Teleporter_1 },
-            {new Vector3((int)BuildingType.Teleporter,2,-1), BuildingPrefab_Teleporter_2 },
-            {new Vector3((int)BuildingType.Altar,1,-1), BuildingPrefab_Altar },
+			{new Vector2((int)BuildingType.Teleporter,-1), BuildingPrefab_Teleporter },
+            {new Vector2((int)BuildingType.Altar,-1), BuildingPrefab_Altar },
         };
 	}
 	
@@ -85,13 +59,15 @@ public class BuildingManager : MonoBehaviour
 	public Building CreateBuilding(BuildingType buildingType,ItemType itemType, HexCell cellToBuild, int level)
     {
 		
-        Building building = GameObject.Instantiate<Building>(prefabs[new Vector3((int)buildingType,level,Building.GetValidProduct(buildingType).IndexOf(itemType))]);
+        Building building = GameObject.Instantiate<Building>(prefabs[new Vector2((int)buildingType,Building.GetValidProduct(buildingType).IndexOf(itemType))]);
         building.transform.SetParent(transform);
         gameManager.hexMap.SetBuildingCell(building, cellToBuild);
 
        building.InitBuilding(buildingType,itemType,level);
+	   building.SetAppearance(level);
 	   Buildings.Add(building);
-        return building;
+	   
+       return building;
     }
 	
     public void UpdateBuildMode(bool isbuildmode)
@@ -131,6 +107,7 @@ public class BuildingManager : MonoBehaviour
 				else
 					itemProduced[building.GetItemType()]=building.GetCurrentProduceNumber();
 			}
+			building.OnPlayerTurnBegin();
 		}
 		
 		string logstring="";
@@ -150,17 +127,20 @@ public class BuildingManager : MonoBehaviour
 		gameManager.gameInteraction.uilog.UpdateLog(logstring);
 	}
 	
+	
+	
+	public void BuildingAccelerate(Building building)
+	{
+		if(building.GetItemType()!=ItemType.NUM)
+			gameManager.itemManager.GetItem(building.GetItemType(),building.GetCurrentProduceNumber());
+	}
+	
 	public void DestroyBuilding(Building building)
 	{
 		if(Buildings.Contains(building))
 		{
-			if((building as Teleporter)!=null)
-			{
-				((Teleporter)building).TeleporterDestroy();
-			}
 			building.currentCell.building=null;
-			GameObject.Destroy(building.gameObject);
-			
+			building.DestroyBuilding();
 		}
 		else
 		{

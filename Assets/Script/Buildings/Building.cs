@@ -12,9 +12,9 @@ public class Building: MonoBehaviour
 		new Dictionary<int, int> (),new Dictionary<int, int> ()};
 		
 	public HexCell currentCell;
-	private BuildingType buildingType;
-    private int currentLevel; // 1,2,3
-    private ItemType itemTypeProduced;
+	protected BuildingType buildingType;
+    protected int currentLevel; // 1,2,3
+    protected ItemType itemTypeProduced;
 
 	// a little hack
 	Pawn buildingPawn;
@@ -31,26 +31,35 @@ public class Building: MonoBehaviour
 		buildingPawn.Type = PawnType.Building;
     }
 
-    public int LevelUp(BuildingType type, int souls) // return souls used
+    public int LevelUp() // return souls used
     {
-        if (currentLevel == GetMaxLevel(type))
+        if (currentLevel == GetMaxLevel(buildingType))
             return 0;
 		int before=0;
 		int after=0;
-		requireSouls[(int)type].TryGetValue(currentLevel + 1, out after);
-		requireSouls[(int)type].TryGetValue(currentLevel,out before);
+		requireSouls[(int)buildingType].TryGetValue(currentLevel + 1, out after);
+		requireSouls[(int)buildingType].TryGetValue(currentLevel,out before);
         int required = after-before;
-        if (souls < required)
-            return 0;
 
         currentLevel++;
+		SetAppearance(currentLevel);
+		OnLevelUp();
         return required;
     }
+	
+	
 
     public int GetCurrentProduceNumber()
     {
 		int result=0;
 		produceItems[(int)buildingType].TryGetValue(currentLevel,out result);
+		return result;
+    }
+	
+	public int GetNextLevelProduceNumber()
+    {
+		int result=0;
+		produceItems[(int)buildingType].TryGetValue(currentLevel+1,out result);
 		return result;
     }
 	
@@ -83,18 +92,55 @@ public class Building: MonoBehaviour
 		return list;
 	}
 	
-	/*public Vector3 GetBuildingData()
+	public static string GetDescription(BuildingType type,ItemType itemType,int level)
 	{
-		Vector3 data=new Vector3();
-		data.x=(int)buildingType;
-		data.y=currentLevel;
-		data.z=GetValidProduct(buildingType).IndexOf(itemTypeProduced);
-		return data;
-	}*/
+		Building building=new Building();
+		switch((int)type)
+		{
+			case 0:
+				building = new Farm();
+				break;
+			case 1:
+				building = new Mine();
+				break;
+			case 2:
+				building = new Teleporter();
+				break;
+			case 3:
+				building = new Altar();
+				break;
+		}
+		building.InitBuilding(type,itemType,level);
+		return building.GetDescription();
+	}
 	
+	public virtual string GetDescription(){return "Description";}
+	public virtual string GetUpgradeDescription(){return "Description";}
+	public virtual void OnLevelUp(){}
+	public virtual void OnPlayerTurnBegin(){}
+	
+	public virtual void DestroyBuilding()
+	{
+		Debug.Log("Destroying");
+		GameObject.DestroyImmediate(gameObject);
+		
+		Debug.Log("Destroying2");
+	}
+	
+	public void SetAppearance(int level)
+	{
+		for(int i=0;i<this.transform.childCount;i++)
+			this.transform.GetChild(i).gameObject.SetActive((i+1)==level?true:false);
+	}
+
 	public BuildingType GetBuildingType()
 	{
 		return buildingType;
+	}
+	
+	public int GetCurrentLevel()
+	{
+		return currentLevel;
 	}
 	
 	public ItemType GetItemType()
@@ -104,5 +150,6 @@ public class Building: MonoBehaviour
 		else
 			return ItemType.NUM;
 	}
+	
 }
 
