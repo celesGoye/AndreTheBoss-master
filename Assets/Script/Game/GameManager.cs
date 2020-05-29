@@ -23,26 +23,25 @@ public class GameManager : MonoBehaviour
 	public MonsterActionManager monsterActionManager;
 
     // Main Character
-    private Boss boss;
+    public Boss boss;
 
     // Misc
     // TODO: Add more
 
     public void OnEnable()
     {
-		
         InitCharacterReader();
 		InitReaders();
         hexMap.GenerateCells();
         hexMap.HideCells();
-        gameTurnManager = new GameTurnManager();
 		HexCell hexcell=hexMap.GetRandomCellToSpawn();
 		monsterManager.InitMonsterManager();
         InitBoss();
         gameCamera.FocusOnPoint(boss.transform.position);
 		buildingManager.InitBuildingManager();
 		monsterActionManager.InitMonsterAcitonManager();
-		enemyManager.testAltar();
+        gameTurnManager.initGameTurnManager();
+        enemyManager.testAltar();
     }
 
     private void InitBoss()
@@ -72,7 +71,6 @@ public class GameManager : MonoBehaviour
 		itemReader=new ItemReader();
 		itemReader.ReadFile();
 	}
-
 
     public void QuitGame()
     {

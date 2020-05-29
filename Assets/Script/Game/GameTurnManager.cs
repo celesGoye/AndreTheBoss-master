@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTurnManager
+public class GameTurnManager : MonoBehaviour
 {
 	
     private int turnNumber;     // one turn is after player's playing and enemies' movement
     private bool isPlayerTurn;
 
-    public GameTurnManager()
+    private GameManager gm;
+
+    public void initGameTurnManager()
     {
         turnNumber = 0;
         isPlayerTurn = true;
     }
 
-    public void IncreaseGameTurn()
+    public void OnEnable()
     {
-        turnNumber++;
-        isPlayerTurn = true;
+        if (gm == null)
+            gm = GameObject.FindObjectOfType<GameManager>();
     }
 
     public int GetCurrentGameTurn()
@@ -35,9 +37,22 @@ public class GameTurnManager
         return !isPlayerTurn;
     }
 
+    // use below two functions to switch from player to enemy or vice-versa
+    public void NextGameTurn()
+    {
+        gm.gameCamera.FocusOnPoint(gm.boss.transform.position);
+        gm.monsterManager.OnMonsterTurnBegin();
+        turnNumber++;
+        isPlayerTurn = true;
+    }
+
     public void EndPlayerTurn()
     {
         isPlayerTurn = false;
+
+        gm.monsterManager.OnMonsterTurnEnd();
+        gm.enemyManager.OnEnemyTurnBegin();
+
     }
 
 }

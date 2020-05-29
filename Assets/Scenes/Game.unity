@@ -5185,6 +5185,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a02ae0c18dd9e4181e8d3045f3cdf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &881833990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 881833992}
+  - component: {fileID: 881833991}
+  m_Layer: 0
+  m_Name: GameTurnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &881833991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881833990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d38ed6c5cf97d4ba5df7afb3524c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &881833992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881833990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1489101249}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &894467679
 GameObject:
   m_ObjectHideFlags: 0
@@ -9045,6 +9088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexMap: {fileID: 102536389}
   gameCamera: {fileID: 1254747751}
+  gameTurnManager: {fileID: 881833991}
   enemyManager: {fileID: 642015632}
   monsterManager: {fileID: 664889263}
   buildingManager: {fileID: 910696885}
@@ -9068,6 +9112,7 @@ Transform:
   - {fileID: 137422299}
   - {fileID: 910696884}
   - {fileID: 1152840717}
+  - {fileID: 881833992}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -75,4 +75,15 @@ public class MonsterManager : MonoBehaviour
         return false;
     }
 
+
+    public void OnMonsterTurnBegin()
+    {
+
+    }
+
+    public void OnMonsterTurnEnd()
+    {
+
+    }
+
 }

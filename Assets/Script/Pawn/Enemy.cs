@@ -44,7 +44,8 @@ public class Enemy : Pawn
     public bool IsMoving = false;
     public List<HexCell> routes = new List<HexCell>();
     private int routePtr = 0;
-    private int movespeed = 1000;
+    private int movespeed = 10;
+    private bool isAction = false;
 
     public Pawn GetCurrentTarget() { return currentTarget; }
 
@@ -53,12 +54,23 @@ public class Enemy : Pawn
         gm = FindObjectOfType<GameManager>();
     }
 
+    public override void OnActionBegin()
+    {
+        base.OnActionBegin();
+        gm.gameCamera.FocusOnPoint(currentCell.transform.position);
+        isAction = true;
+        ProbeAction();
+        DoAction();
+    }
+
+    public bool IsAction() { return isAction; }
+
     public virtual void ProbeAction()
     {
         gm.hexMap.ProbeAttackTarget(currentCell);
         List<HexCell> targets = gm.hexMap.GetAttackableTargets();
 
-        if (currentTarget != null)
+        if (currentTarget != null && targets.Count != 0)
         {
             if(targets.Contains(currentTarget.currentCell))
             {
@@ -172,6 +184,10 @@ public class Enemy : Pawn
                 gm.hexMap.SetCharacterCell(this, routes[routes.Count - 1]);
                 IsMoving = false;
             }
+        }
+        else
+        {
+            isAction = false;
         }
     }
 }

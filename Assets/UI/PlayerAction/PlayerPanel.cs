@@ -43,7 +43,6 @@ public class PlayerPanel : MonoBehaviour
 	public void OnSkipTurn()
 	{
 		gameManager.gameTurnManager.EndPlayerTurn();
-		gameManager.gameTurnManager.IncreaseGameTurn();
 		
 		//0，0
 		gameManager.monsterActionManager.MonsterActionOnPlayerTurnBegin();
