@@ -125,6 +125,7 @@ public class Enemy : Pawn
         if(currentTarget != null)
         {
             ((Pawn)this).DoAttack(currentTarget);
+            Debug.Log(((Pawn)this).ToString() + " attacks " + currentTarget.ToString());
         }
     }
 
@@ -159,6 +160,7 @@ public class Enemy : Pawn
     {
         int skillid = Random.Range(0, skillCounts);
         DoSkill(skillid, target);
+        Debug.Log(((Pawn)this).ToString() + " do skill");
     }
 
     public virtual void DoSkill(int skillid, Pawn target = null)
@@ -177,11 +179,16 @@ public class Enemy : Pawn
                 if(Vector3.Distance(this.transform.position, routes[routePtr].transform.position) < 0.01f)
                 {
                     routePtr++;
+                    gm.hexMap.RevealCell(routes[routePtr]); 
                 }
+            }
+            else if(routes.Count > 0)
+            {
+                gm.hexMap.SetCharacterCell(this, routes[routes.Count - 1]);
+                IsMoving = false;
             }
             else
             {
-                gm.hexMap.SetCharacterCell(this, routes[routes.Count - 1]);
                 IsMoving = false;
             }
         }

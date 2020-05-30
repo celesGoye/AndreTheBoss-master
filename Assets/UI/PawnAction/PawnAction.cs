@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Runtime.InteropServices;
+using System;
 
 public class PawnAction : MonoBehaviour
 {
@@ -22,7 +24,7 @@ public class PawnAction : MonoBehaviour
 
     public float moveSpeed =1f;
 
-    public enum Status { PrepareAttack, PrepareMove, Rest, IsMoving, IsAttacking, IsTransfering};
+    public enum Status { PrepareAttack, PrepareMove, PrepareDoSkill, Rest, IsMoving, IsAttacking, IsDoSkill, IsTransfering};
 
     public Status currentStatus = Status.Rest;
 
@@ -32,7 +34,12 @@ public class PawnAction : MonoBehaviour
 
     private Pawn attackTarget;
     private bool validAttackTarget;
-	
+
+    public bool requirePawnSelection;      // for skill action
+    private int selectedSkill;
+    public bool requireCellSelection;
+
+
 
     public void OnEnable()
     {
@@ -61,17 +68,15 @@ public class PawnAction : MonoBehaviour
 		actionPanel.transform.gameObject.SetActive(false);
 	}
 	
-	public void OnSkill1()
+	public void OnSkill1()  // currentSkill
 	{
-		((Monster)selectedPawn).currentSkill=1;
-		PrepareAttack();
-	}
+        PrepareDoSkill(1);
+    }
 	
-	public void OnSkill2()
+	public void OnSkill2()  // equippedSkill
 	{
-		((Monster)selectedPawn).currentSkill=((Monster)selectedPawn).equippedSkill;
-		PrepareAttack();
-	}
+        PrepareDoSkill(2);
+    }
 	
 	public void OnSwitchSkill()
 	{
@@ -110,6 +115,61 @@ public class PawnAction : MonoBehaviour
             validAttackTarget = true;
             hexMap.ProbeAttackTarget(selectedPawn.currentCell);
             hexMap.ShowAttackCandidates();
+        }
+    }
+
+    public void PrepareDoSkill(int which)   // 1 - defaultSkill, 2 - equippedSkill
+    {
+        requirePawnSelection = false;
+        requireCellSelection = false;
+        currentStatus = Status.PrepareDoSkill;
+        try {
+            Monster monster = (Monster)selectedPawn;
+            if (monster != null)
+            {
+                uilog.UpdateLog(monster.Name + " is trying to attack");
+                gameInteraction.IsPawnAction = true;
+                switch (which)
+                {
+                    case 1:
+                        monster.PrepareSkillOne();
+                        selectedSkill = 1;
+                        break;
+                    case 2:
+                        int equippedSkill = monster.GetEquippedSkill();
+                        if (equippedSkill == 3)
+                        {
+                            monster.PrepareSkillThree();
+                            selectedSkill = 3;
+                        }
+                        else if (equippedSkill == 5)
+                        {
+                            monster.PrepareSkillFive();
+                            selectedSkill = 5;
+                        }
+                        else
+                        {
+                            ClearStatus();
+                        }
+                        break;
+                    default:
+                        ClearStatus();
+                        break;
+                }
+            }
+
+        }
+        catch(InvalidCastException ex)
+        {
+            Debug.Log(ex.StackTrace);
+            try
+            {
+                Enemy enemy = (Enemy)selectedPawn;
+
+            }catch(InvalidCastException ex2)
+            {
+                Debug.Log(ex2.StackTrace);
+            }
         }
     }
 
@@ -155,6 +215,11 @@ public class PawnAction : MonoBehaviour
         hexMap.HideIndicator();
         currentStatus = Status.IsAttacking;
         selectedPawn.DoAttack(attackTarget);
+    }
+
+    public void DoSkill(int which)  // 1 - defaultSkill, 2 - equippedSkill
+    {
+
     }
 
     public void Skip()
@@ -208,7 +273,6 @@ public class PawnAction : MonoBehaviour
 					
                 }
             }
-
         }
         else if(currentStatus == Status.IsMoving)
         {
@@ -240,6 +304,62 @@ public class PawnAction : MonoBehaviour
 			selectedPawn.transform.position=selectedPawn.currentCell.transform.position;
 			ClearStatus();
 		}
+        else if(currentStatus==Status.PrepareDoSkill)
+        {
+            if(requirePawnSelection)
+            {
+                if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+                {
+                    Pawn pawn = getCurrentPointerPawn();
+                    if(pawn != null)
+                    {
+                        try
+                        {
+                            Monster monster = (Monster)selectedPawn;
+                            switch(selectedSkill)
+                            {
+                                case 1:
+                                    monster.DoSkillOne(pawn);
+                                    break;
+                                case 3:
+                                    monster.DoSkillThree(pawn);
+                                    break;
+                                case 5:
+                                    monster.DoSkillFive(pawn);
+                                    break;
+                                default:
+                                    ClearStatus();
+                                    break;
+                            }
+                        }catch(InvalidCastException ex)
+                        {
+                            Debug.Log(ex.StackTrace);
+                            try
+                            {
+                                Enemy enemy = (Enemy)selectedPawn;
+                            }catch(InvalidCastException ex2)
+                            {
+                                Debug.Log(ex2.StackTrace);
+                            }
+                        }
+                    }
+                }
+            }
+            else if(requireCellSelection)
+            {
+                currentStatus = Status.IsDoSkill;
+            }
+            else
+            {
+                currentStatus = Status.IsDoSkill;
+            }
+        }
+        else if(currentStatus==Status.IsDoSkill)
+        {
+            ClearStatus();
+        }
+
+        ClearStatus();
     }
 
     private void UpdateRoute()

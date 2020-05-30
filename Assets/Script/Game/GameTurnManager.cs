@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameTurnManager : MonoBehaviour
 {
@@ -10,10 +11,15 @@ public class GameTurnManager : MonoBehaviour
 
     private GameManager gm;
 
+    public GameObject turnIndicator;
+    private Text txtTurnNum;
+
     public void initGameTurnManager()
     {
-        turnNumber = 0;
+        turnNumber = 1;
         isPlayerTurn = true;
+        if (turnIndicator != null)
+            txtTurnNum = turnIndicator.GetComponentInChildren<Text>();
     }
 
     public void OnEnable()
@@ -44,6 +50,7 @@ public class GameTurnManager : MonoBehaviour
         gm.monsterManager.OnMonsterTurnBegin();
         turnNumber++;
         isPlayerTurn = true;
+        if(txtTurnNum != null) txtTurnNum.text = turnNumber.ToString();
     }
 
     public void EndPlayerTurn()

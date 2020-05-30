@@ -555,6 +555,8 @@ public class HexMap : MonoBehaviour
             else
                 emptyCells.Add(cell);
         }
+        if(startCell.pawn != null)
+            friendCells.Add(startCell);
     }
 
     public HexCell GetNearestAttackableTarget(HexCell fromCell)

@@ -7,13 +7,19 @@ public abstract class Monster: Pawn
 {
     public MonsterType monsterType;
 
-    public int currentSkill; // either 1, 3, 5 not exceed current level
-	public int equippedSkill; //3, 5
+    public int defaultSkill; // level 1 skill
+	public int equippedSkill; //3 or 5
 	
 	public int remainedStep;
 	public ActionType actionType;
 	
     Dictionary<int, string> skillsAndPassives;
+
+    // a contorl boolean for monster action, turn it off after [swichskill | attack | doskill]
+    public bool CanDoAction;
+
+    public GameManager gm;
+    public PawnAction pawnAction;
 
     public void InitializeMonster(MonsterType monsterType, string name, int level,
         int attack, int magicAttack, int defense, int magicDefense, int HP, int dexterity, int attackRange)
@@ -22,11 +28,16 @@ public abstract class Monster: Pawn
         Name = monsterType.ToString();
         InitializePawn(PawnType.Monster, name, level, attack, magicAttack, defense, magicDefense, HP, dexterity, attackRange);
 
-        currentSkill = 1;
-		equippedSkill=3;
+        defaultSkill = 1;
+		equippedSkill = 3;
 
         skillsAndPassives = new Dictionary<int, string>();
         ReadSkillNames(this);
+
+        CanDoAction = true;
+
+        gm = FindObjectOfType<GameManager>();
+        pawnAction = gm.gameInteraction.pawnActionPanel;
     }
 
     private static void ReadSkillNames(Monster monster)
@@ -35,11 +46,11 @@ public abstract class Monster: Pawn
         
     }
 
-    public int SetCurrentSkill(int which)
+    public int SetEquippedSkill(int which)
     {
-        if(which < this.GetLevel() && which % 2 == 1)
+        if(which <= GetLevel() && (which == 3 || which == 5))
         {
-            currentSkill = which;
+            equippedSkill = which;
 
             // TODO: UI update stuff
             return which;
@@ -56,7 +67,12 @@ public abstract class Monster: Pawn
 	{
 		if(this.GetLevel()!=5)
 			return;
+
 		equippedSkill=(equippedSkill==3)?5:3;
+
+        // TODO: UI updating
+
+        CanDoAction = false;
 	}
 
     // Skills to be overrided in child classes
@@ -71,6 +87,10 @@ public abstract class Monster: Pawn
     public virtual void DoPassiveTwo(Pawn other = null) { }
 
     public virtual void DoPassiveFour(Pawn other = null) { }
+
+    public virtual void PrepareSkillOne() { }
+    public virtual void PrepareSkillThree() { }
+    public virtual void PrepareSkillFive() { }
 
     public override string ToString()
     {
@@ -116,7 +136,18 @@ public abstract class Monster: Pawn
     public void UpdateMonster()
     {
         UpdatePawn();
+    }
 
+    public override void OnActionBegin()
+    {
+        CanDoAction = true;
+        base.OnActionBegin();
+    }
+
+    public override void OnActionEnd()
+    {
+        CanDoAction = false;
+        base.OnActionEnd();
     }
 
 
