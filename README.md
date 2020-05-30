@@ -1,4 +1,5 @@
-#Andre the Boss
+Andre the Boss
+========
 
 - A little game development project for our college lesson
 - using Unity personal edition
