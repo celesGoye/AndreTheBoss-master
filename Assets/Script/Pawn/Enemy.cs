@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -79,6 +80,7 @@ public class Enemy : Pawn
             }
             else
             {
+                Debug.Log(this.Name + " Moves");
                 nextAction = ActionType.Move;
             }
         }
@@ -95,6 +97,7 @@ public class Enemy : Pawn
                 nextAction = ActionType.Patrol;
             }
         }
+
     }
 
     public virtual void DoAction()
@@ -124,8 +127,16 @@ public class Enemy : Pawn
     {
         if(currentTarget != null)
         {
+            gm.hexMap.HideIndicator();
+            currentTarget.currentCell.indicator.gameObject.SetActive(true);
+            currentTarget.currentCell.indicator.SetColor(Indicator.AttackColor);
+            currentCell.indicator.gameObject.SetActive(true);
+            currentCell.indicator.SetColor(Indicator.StartColor);
+            Thread.Sleep(500);
+
             ((Pawn)this).DoAttack(currentTarget);
-            Debug.Log(((Pawn)this).ToString() + " attacks " + currentTarget.ToString());
+            gm.gameInteraction.pawnActionPanel.uilog.UpdateLog(this.Name + " attacks " + currentTarget.Name);
+            gm.hexMap.HideIndicator();
         }
     }
 
@@ -159,7 +170,7 @@ public class Enemy : Pawn
     public virtual void DoSkill(Pawn target = null)
     {
         int skillid = Random.Range(0, skillCounts);
-        DoSkill(skillid, target);
+        DoSkill(skillid, currentTarget);
         Debug.Log(((Pawn)this).ToString() + " do skill");
     }
 
@@ -173,18 +184,18 @@ public class Enemy : Pawn
         // Moving animation
         if(gm.gameTurnManager.IsEnemyTurn() && IsMoving)
         {
-            if(routePtr < routes.Count)
+            if(routePtr >= 0 && routePtr < routes.Count)
             {
                 this.transform.position = Vector3.Lerp(this.transform.position, routes[routePtr].transform.position, Time.deltaTime * movespeed);
                 if(Vector3.Distance(this.transform.position, routes[routePtr].transform.position) < 0.01f)
                 {
-                    routePtr++;
-                    gm.hexMap.RevealCell(routes[routePtr]); 
+                    gm.hexMap.RevealCell(routes[routePtr++]); 
                 }
             }
-            else if(routes.Count > 0)
+            else if(routePtr == routes.Count)
             {
                 gm.hexMap.SetCharacterCell(this, routes[routes.Count - 1]);
+                gm.hexMap.RevealCell(routes[routes.Count - 1]);
                 IsMoving = false;
             }
             else

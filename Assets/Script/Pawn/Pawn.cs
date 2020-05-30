@@ -40,13 +40,13 @@ public abstract class Pawn : MonoBehaviour
 	
 	public HealthBar healthbar;
     public HexCell currentCell;
-    public PawnType Type { get; set; }
+    public PawnType pawnType { get; set; }
 
 	
     public void InitializePawn(PawnType type, string name, int initlevel,
 	int initattack, int initmagicAttack, int initdefense, int initmagicDefense, int inithp, int initdexterity, int initattackRange)
     {
-        Type = type;
+        pawnType = type;
         Name = name;
 		level=initlevel;
 
@@ -116,7 +116,7 @@ public abstract class Pawn : MonoBehaviour
 	public int GetDexterity() { return dexterity; }
 	public int GetAttackRange() { return attackRange; }
 
-	public int recoverHPPercentage(Pawn other,float percentage)
+	public int recoverHPPercentage(Pawn other, float percentage)
 	{
 		int hp=(int)(other.GetMaxHP()*percentage);
 		int ret = 0;
@@ -129,6 +129,11 @@ public abstract class Pawn : MonoBehaviour
 		{
 			ret = hp;
 			other.currentHP += hp;
+		}
+		if(other != null)
+		{
+			GameManager gm = FindObjectOfType<GameManager>();
+			gm.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(other);
 		}
 		return ret;
 	}
@@ -145,6 +150,11 @@ public abstract class Pawn : MonoBehaviour
 		{
 			ret = hp;
 			other.currentHP += hp;
+		}
+		if (other != null)
+		{
+			GameManager gm = FindObjectOfType<GameManager>();
+			gm.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(other);
 		}
 		return ret;
 	}
@@ -242,7 +252,7 @@ public abstract class Pawn : MonoBehaviour
 	
 	public void Upgrade()
 	{
-		if (level == 5 || Type == PawnType.Enemy)
+		if (level == 5 || pawnType == PawnType.Enemy)
 			return;
 
 		GameManager gm = FindObjectOfType<GameManager>();

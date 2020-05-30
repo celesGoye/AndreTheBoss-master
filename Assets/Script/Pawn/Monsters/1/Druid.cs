@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Druid : Monster
@@ -20,17 +21,30 @@ public class Druid : Monster
     {
         gameManager = FindObjectOfType<GameManager>();
     }
+
     public override void DoSkillOne(Pawn other = null)
     {
         other.TakeDamage(4, 0, null, true);
     }
 
     // TODO: implementation of farm class
+
+    public override void PrepareSkillThree()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillThree(Pawn other = null)
     {
 
     }
 
+    public override void PrepareSkillFive()
+    {
+        gm.hexMap.ProbeAttackTarget(currentCell);
+        gm.hexMap.ShowFriendCandidates();
+        Thread.Sleep(500);
+        pawnAction.DoSkill();
+    }
 
     public override void DoSkillFive(Pawn other = null)
     {

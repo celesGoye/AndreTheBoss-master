@@ -30,7 +30,7 @@ public class EnemyManager : MonoBehaviour
     {
         EnemyPawns = new List<Enemy>();
         gm = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
-        EnemyRoot = new GameObject();
+        EnemyRoot = new GameObject("EnemyRoot");
         EnemyRoot.transform.SetParent(transform);
         EnemyRoot.transform.position = Vector3.zero;
     }
@@ -74,6 +74,11 @@ public class EnemyManager : MonoBehaviour
                     EnemyPawns[currentEnemyIndex].OnActionBegin();
                 }
             }
+        }
+
+        foreach (Enemy enemy in EnemyPawns)
+        {
+            enemy.healthbar.UpdateLife();
         }
     }
 
@@ -203,8 +208,5 @@ public class EnemyManager : MonoBehaviour
 		DeadEnemyPawn=newEnemy;
 		Debug.Log("testAltar:"+newEnemy.enemyType.ToString());
 	}
-
-
-
 
 }

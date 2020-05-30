@@ -98,12 +98,12 @@ public class GameInteraction : MonoBehaviour
             else if ((selectedPawn = hit.collider.GetComponent<Pawn>()) != null)
             {
 				gameManager.buildingManager.UpdateBuildMode(false);
-                if(selectedPawn.Type == PawnType.Enemy)
+                if(selectedPawn.pawnType == PawnType.Enemy)
                 {
                     pawnStatusPanel.UpdatePawnStatusPanel(selectedPawn);
                     EnablePawnStatusPanel();
                 }
-                else if(selectedPawn.Type == PawnType.Monster)
+                else if(selectedPawn.pawnType == PawnType.Monster)
                 {
                     pawnActionPanel.SetPawn(selectedPawn);
                     pawnStatusPanel.UpdatePawnStatusPanel(selectedPawn);

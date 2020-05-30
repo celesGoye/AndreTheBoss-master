@@ -28,7 +28,7 @@ public class Building: MonoBehaviour
 
 		// for catapult
 		buildingPawn = gameObject.AddComponent<Pawn>();
-		buildingPawn.Type = PawnType.Building;
+		buildingPawn.pawnType = PawnType.Building;
     }
 
     public int LevelUp() // return souls used

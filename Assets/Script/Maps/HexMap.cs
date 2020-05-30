@@ -316,7 +316,7 @@ public class HexMap : MonoBehaviour
                 if (nextCell != null)
                 {
                     int distance = cell.Distance;
-                    if (nextCell.hexType == HexType.Mountain||nextCell.hexType == HexType.Stones||nextCell.hexType == HexType.Thorns)
+                    if (!nextCell.CanbeDestination())
                         continue;
                     else if (nextCell.hexType == HexType.Plain)
                         distance = cell.Distance + 1;
@@ -366,9 +366,11 @@ public class HexMap : MonoBehaviour
 
         FindPath(pawn.currentCell, Target);
 
+        int pathDistance = 0;
         for(int i = 0; i < currentRoutes.Count-1; i++)
         {
-            if (currentRoutes[i].Distance <= pawn.GetDexterity())
+            pathDistance += currentRoutes[i].hexType == HexType.Plain ? 1 : 2;
+            if (pathDistance <= pawn.GetDexterity())
                 routes.Add(currentRoutes[i]);
             else
                 break;
@@ -459,7 +461,7 @@ public class HexMap : MonoBehaviour
             reachableCells[i].indicator.SetColor(Indicator.StartColor);
         }
     }
-	
+
 	 public void UpdateBuildableCells(HexCell startCell, int maxDistance, bool buildmode)
     {
         List<HexCell> cellToFind = new List<HexCell>();
@@ -584,31 +586,21 @@ public class HexMap : MonoBehaviour
                 HexCell nextCell = cell.GetNeighbour(dir);
                 if (nextCell != null)
                 {
-                    int distance = cell.Distance;
-                    if (!nextCell.CanbeDestination())
-                        continue;
-                    else if (nextCell.hexType == HexType.Plain)
-                        distance = cell.Distance + 1;
-                    else if (nextCell.hexType == HexType.Forest || nextCell.hexType == HexType.Swamp)
-                        distance = cell.Distance + 2;
-
                     if (nextCell.Distance == int.MaxValue)
                     {
-                        nextCell.Distance = distance;
+                        nextCell.Distance = 0;
                         cellToFind.Add(nextCell);
-                    }
-                    else if (nextCell.Distance > distance)
-                    {
-                        nextCell.Distance = distance;
                     }
                 }
             }
             if (cell.CanbeAttackTargetOf(fromCell))
+            {
                 return cell;
+            }
+                
 
             cellToFind.Sort((x, y) => x.Distance.CompareTo(y.Distance));
         }
-
         return null;
     }
 
@@ -698,7 +690,6 @@ public class HexMap : MonoBehaviour
             attackableCells[i].indicator.gameObject.SetActive(true);
             attackableCells[i].indicator.SetColor(Indicator.AttackColor);
         }
-        Debug.Log("Candidates: " + attackableCells.Count);
     }
 
     public void ShowFriendCandidates()
@@ -710,7 +701,6 @@ public class HexMap : MonoBehaviour
             friendCells[i].indicator.gameObject.SetActive(true);
             friendCells[i].indicator.SetColor(Indicator.FriendColor);
         }
-        Debug.Log("Candidates: " + friendCells.Count);
     }
 
     public bool IsReachable(HexCell cell)

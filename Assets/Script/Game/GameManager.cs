@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
 		InitReaders();
         hexMap.GenerateCells();
         hexMap.HideCells();
-		HexCell hexcell=hexMap.GetRandomCellToSpawn();
 		monsterManager.InitMonsterManager();
         InitBoss();
         gameCamera.FocusOnPoint(boss.transform.position);

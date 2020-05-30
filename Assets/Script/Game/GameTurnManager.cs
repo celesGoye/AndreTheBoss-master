@@ -59,7 +59,6 @@ public class GameTurnManager : MonoBehaviour
 
         gm.monsterManager.OnMonsterTurnEnd();
         gm.enemyManager.OnEnemyTurnBegin();
-
     }
 
 }
