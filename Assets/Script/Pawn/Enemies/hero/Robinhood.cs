@@ -37,4 +37,9 @@ public class Robinhood : Enemy
             enemy.isDirty = true;
         }
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 2;
+    }
 }

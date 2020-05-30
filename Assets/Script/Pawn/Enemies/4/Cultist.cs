@@ -27,4 +27,9 @@ public class Cultist : Enemy
         }
         Type = PawnType.Enemy;
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }

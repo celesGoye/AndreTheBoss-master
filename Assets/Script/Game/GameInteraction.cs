@@ -26,7 +26,6 @@ public class GameInteraction : MonoBehaviour
 	public PlayerPanel playerPanel;
 
     public bool IsPawnAction = false;
-    
 
     public void OnEnable()
     {

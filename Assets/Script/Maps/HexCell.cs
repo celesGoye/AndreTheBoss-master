@@ -117,7 +117,7 @@ public class HexCell : MonoBehaviour
 
     public bool CanbeAttackTargetOf(HexCell fromCell)
     {
-        return (pawn != null && fromCell.pawn.Type != pawn.Type);
+        return (pawn != null && fromCell.pawn != null && fromCell.pawn.Type != pawn.Type);
     }
 
 }

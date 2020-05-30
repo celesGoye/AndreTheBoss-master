@@ -555,16 +555,16 @@ public class HexMap : MonoBehaviour
             else
                 emptyCells.Add(cell);
         }
+        if(startCell.pawn != null)
+            friendCells.Add(startCell);
     }
 
-    public HexCell GetNearestAttackableTarget(HexCell fromCell, int probeDistance=30)
+    public HexCell GetNearestAttackableTarget(HexCell fromCell)
     {
         if (fromCell.pawn == null)
             return null;
 
         List<HexCell> cellToFind = new List<HexCell>();
-
-        int maxDistance = probeDistance;
 
         for (int i = 0; i < cells.Length; i++)
         {
@@ -573,7 +573,6 @@ public class HexMap : MonoBehaviour
 
         fromCell.Distance = 0;
         cellToFind.Add(fromCell);
-        reachableCells.Clear();
 
         while (cellToFind.Count > 0)
         {
@@ -596,23 +595,17 @@ public class HexMap : MonoBehaviour
                     if (nextCell.Distance == int.MaxValue)
                     {
                         nextCell.Distance = distance;
-                        if (nextCell.Distance < maxDistance + 1)
-                            cellToFind.Add(nextCell);
+                        cellToFind.Add(nextCell);
                     }
                     else if (nextCell.Distance > distance)
                     {
-                        if (nextCell.Distance > distance)
-                        {
-                            nextCell.Distance = distance;
-                        }
+                        nextCell.Distance = distance;
                     }
-                    if (cell.Distance <= maxDistance && cell != fromCell)
-                        reachableCells.Add(cell);
-
-                    if (nextCell.pawn != null && nextCell.pawn.Type != fromCell.pawn.Type)
-                        return nextCell;
                 }
             }
+            if (cell.CanbeAttackTargetOf(fromCell))
+                return cell;
+
             cellToFind.Sort((x, y) => x.Distance.CompareTo(y.Distance));
         }
 

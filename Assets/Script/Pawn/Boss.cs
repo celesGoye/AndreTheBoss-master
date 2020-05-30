@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Boss : Monster
 {
-    private GameManager gameManager;
-    
+
     public void OnEnable()
     {
-        gameManager = FindObjectOfType<GameManager>();
     }
 
     public void InitializeBoss(MonsterType monsterType, string name,
@@ -18,16 +17,38 @@ public class Boss : Monster
     
     }
 
+    public override void PrepareSkillOne() 
+    {
+        pawnAction.requirePawnSelection = true;
+        gm.hexMap.ProbeAttackTarget(this.currentCell);
+        List<HexCell> cells = gm.hexMap.GetFriendTargets();
+        foreach(HexCell cell in cells)
+        {
+            cell.indicator.SetColor(Indicator.FriendColor);
+        }
+    }
+
     public override void DoSkillOne(Pawn other = null)
     {
-        if (gameManager.monsterManager.IsFriendlyUnit(other))
+        if (gm.monsterManager.IsFriendlyUnit(other))
             recoverHPPercentage(other, 0.6f);
     }
 
+    public override void PrepareSkillThree() 
+    {
+        gm.hexMap.ProbeAttackTarget(this.currentCell);
+        List<HexCell> targets = gm.hexMap.GetAttackableTargets();
+        foreach(HexCell cell in targets)
+        {
+            cell.indicator.SetColor(Indicator.AttackColor);
+        }
+    }
+
+
     public override void DoSkillThree(Pawn other = null)
     {
-        gameManager.hexMap.ProbeAttackTarget(this.currentCell);
-        foreach(HexCell cell in gameManager.hexMap.GetAttackableTargets())
+        gm.hexMap.ProbeAttackTarget(this.currentCell);
+        foreach(HexCell cell in gm.hexMap.GetAttackableTargets())
         {
             Enemy enemy = (Enemy)cell.pawn;
 
@@ -41,10 +62,13 @@ public class Boss : Monster
         }
     }
 
+
+    public override void PrepareSkillFive() { }
+
     public override void DoSkillFive(Pawn other = null)
     {
-        gameManager.hexMap.ProbeAttackTarget(this.currentCell);
-        foreach(HexCell cell in gameManager.hexMap.GetFriendTargets())
+        gm.hexMap.ProbeAttackTarget(this.currentCell);
+        foreach(HexCell cell in gm.hexMap.GetFriendTargets())
         {
             Pawn pawn = cell.pawn;
             if(pawn != null)

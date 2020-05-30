@@ -48,4 +48,9 @@ public class Catapult : Enemy
             }
         }
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }

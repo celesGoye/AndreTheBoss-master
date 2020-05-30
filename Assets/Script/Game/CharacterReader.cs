@@ -85,35 +85,6 @@ public class CharacterReader
         xmlDocDescription.Load(Application.dataPath + pathDescription);
     }
 
-    /*
-    public CharacterData GetCharacterData(PawnType pawnType, string characterName, int level)
-    {
-        CharacterData data = new CharacterData();
-        string xpath = characterName;
-        if (pawnType == PawnType.Enemy)
-            xpath = "/characters/enemies/" + xpath;
-        else if (pawnType == PawnType.Monster)
-            xpath = "/characters/monsters/" + xpath;
-        
-        XmlElement node = (XmlElement)xmlDoc.SelectSingleNode(xpath).ChildNodes[level-1];
-        
-        if(node == null)
-        {
-            Debug.Log("On CharacterReader: " + characterName + " not found");
-            return null;
-        }
-
-        data.attack = int.Parse(node["attack"].InnerXml);
-        data.defense = int.Parse(node["defense"].InnerXml);
-        data.HP = int.Parse(node["hp"].InnerXml);
-        data.dexterity = int.Parse(node["dexterity"].InnerXml);
-        data.attackRange = int.Parse(node["attackRange"].InnerXml);
-		data.magicAttack=int.Parse(node["magic"].InnerXml);
-		data.magicDefense=int.Parse(node["resistance"].InnerXml);
-        return data;
-    }
-    */
-
     public CharacterData GetMonsterData(int unlocklevel, string monsterName, int level)
     {
         // TODO: parser here

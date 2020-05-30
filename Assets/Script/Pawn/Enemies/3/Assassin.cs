@@ -12,4 +12,9 @@ public class Assassin : Enemy
             target.TakeDamage((int)(target.GetMaxHP() * 0.3), 0, this, true);
         }
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }

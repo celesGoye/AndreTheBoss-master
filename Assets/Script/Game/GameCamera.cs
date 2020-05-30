@@ -15,12 +15,6 @@ public class GameCamera : MonoBehaviour
     public float cameraVerticalSpeed = 1f;
     public float cameraHorizontalSpeed = 1f;
 
-    //[Range(30, 50)]
-    //public float minFieldOfView = 50;
-    //[Range(50, 80)]
-    //public float maxFieldOfView = 70;
-    //private float fieldOfView;
-    //public float fovChangeSpeed = 2f;
 
     [Range(0, 5)]
     public float fieldOfViewChangeSpeed = 0.01f;
@@ -32,12 +26,9 @@ public class GameCamera : MonoBehaviour
     public float cameraMinHeight = 10f;
     public float cameraHeightChangeSpeed = 1f;
 
-
-
     private Vector3 mouseOldPos;
     private Vector3 mouseCurrentPos;
 
-   
 
     private Rect cameraBorder;
     public void OnEnable()
@@ -58,7 +49,6 @@ public class GameCamera : MonoBehaviour
     {
         if(Input.mouseScrollDelta.y != 0f && !EventSystem.current.IsPointerOverGameObject())
         {
-            //UpdateFieldOfView(-Input.mouseScrollDelta.y * fieldOfViewChangeSpeed);
             UpdateCameraHeight(-Input.mouseScrollDelta.y * cameraHeightChangeSpeed);
         }
         if(Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
@@ -74,18 +64,6 @@ public class GameCamera : MonoBehaviour
         }
     }
 
-    /*
-    public void UpdateFieldOfView(float value)
-    {
-        value = gameCamera.fieldOfView + value;
-        if (value > maxFieldOfView)
-            fieldOfView = maxFieldOfView;
-        else if (value < minFieldOfView)
-            fieldOfView = minFieldOfView;
-        else
-            fieldOfView = value;
-    }
-    */
 
     public void UpdateCameraHeight(float value)
     {
@@ -127,7 +105,6 @@ public class GameCamera : MonoBehaviour
         if(targetPoint != null)
         {
             transform.position = Vector3.Lerp(transform.position, targetPoint, Time.deltaTime * cameraSmooth);
-            //gameCamera.fieldOfView = Mathf.Lerp(gameCamera.fieldOfView, fieldOfView, Time.deltaTime * fovChangeSpeed);
         }  
     }
 

@@ -15,5 +15,6 @@ public class OrchestraLeader : Enemy
     public override void InitPawn()
     {
         isIgnoreMagicDefense = true;
+        skillCounts = 1;
     }
 }
