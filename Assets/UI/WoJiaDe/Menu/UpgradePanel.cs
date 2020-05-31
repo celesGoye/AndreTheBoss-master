@@ -78,7 +78,7 @@ public class UpgradePanel : MonoBehaviour
 	{
 		currentMonster=menu.currentMonster;
 		consumePanel.UpdateConsumePanel();
-		Debug.Log("On next,current monster is:"+menu.currentMonster);
+		//Debug.Log("On next,current monster is:"+menu.currentMonster);
 		UpdateInfo();
 	}
 	

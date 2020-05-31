@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 	public HealthBarManager healthbarManager;
 	public ItemManager itemManager;
     public GameInteraction gameInteraction;
+    public GameEventManager gameEventManager;
 	
 	public MonsterActionManager monsterActionManager;
 
@@ -36,11 +37,13 @@ public class GameManager : MonoBehaviour
         hexMap.HideCells();
 		monsterManager.InitMonsterManager();
         InitBoss();
+        enemyManager.InitEnemyManager();
         gameCamera.FocusOnPoint(boss.transform.position);
 		buildingManager.InitBuildingManager();
 		monsterActionManager.InitMonsterAcitonManager();
-        gameTurnManager.initGameTurnManager();
+        gameTurnManager.InitGameTurnManager();
         enemyManager.testAltar();
+        gameEventManager.InitGameEventManager();
     }
 
     private void InitBoss()

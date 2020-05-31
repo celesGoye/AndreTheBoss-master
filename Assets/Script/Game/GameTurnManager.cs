@@ -14,12 +14,14 @@ public class GameTurnManager : MonoBehaviour
     public GameObject turnIndicator;
     private Text txtTurnNum;
 
-    public void initGameTurnManager()
+    public void InitGameTurnManager()
     {
         turnNumber = 1;
         isPlayerTurn = true;
         if (turnIndicator != null)
             txtTurnNum = turnIndicator.GetComponentInChildren<Text>();
+
+        
     }
 
     public void OnEnable()
@@ -46,11 +48,13 @@ public class GameTurnManager : MonoBehaviour
     // use below two functions to switch from player to enemy or vice-versa
     public void NextGameTurn()
     {
-        gm.gameCamera.FocusOnPoint(gm.boss.transform.position);
         gm.monsterManager.OnMonsterTurnBegin();
+        gm.gameEventManager.OnTurnBegin();
         turnNumber++;
         isPlayerTurn = true;
         if(txtTurnNum != null) txtTurnNum.text = turnNumber.ToString();
+
+        gm.gameCamera.FocusOnPoint(gm.boss.transform.position);
     }
 
     public void EndPlayerTurn()
@@ -58,6 +62,7 @@ public class GameTurnManager : MonoBehaviour
         isPlayerTurn = false;
 
         gm.monsterManager.OnMonsterTurnEnd();
+        gm.gameEventManager.OnTurnEnd();
         gm.enemyManager.OnEnemyTurnBegin();
     }
 

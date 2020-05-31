@@ -42,7 +42,7 @@ public class MonsterSpawnPanel : MonoBehaviour
 	
 	public void ConsumeItem()
 	{
-		Debug.Log("Consume.");
+		//Debug.Log("Consume.");
 		for(int i=0;i<content.childCount;i++)
 		{
 			Upgrade_Item item=content.GetChild(i).GetComponent<Upgrade_Item>();

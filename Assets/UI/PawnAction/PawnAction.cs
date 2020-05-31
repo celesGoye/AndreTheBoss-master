@@ -58,7 +58,7 @@ public class PawnAction : MonoBehaviour
     public void SetPawn(Pawn pawn)
     {
         selectedPawn = pawn;
-        Debug.Log(selectedPawn.currentCell.GetComponent<RectTransform>() == null);
+        //Debug.Log(selectedPawn.currentCell.GetComponent<RectTransform>() == null);
         this.GetComponent<followGameObject>().follow = selectedPawn.GetComponent<Transform>();
     }
 
@@ -89,12 +89,12 @@ public class PawnAction : MonoBehaviour
         if (selectedPawn != null)
         {
             uilog.UpdateLog(selectedPawn.Name + " is trying to transfer");
-            Debug.Log(selectedPawn.Name + " is trying to transfer");
+            //Debug.Log(selectedPawn.Name + " is trying to transfer");
             gameInteraction.IsPawnAction = true;
             currentStatus = Status.IsTransfering;
             UpdateRoot(selectedPawn, selectedPawn.currentCell, selectedPawn.currentCell.building.GetComponent<Teleporter>().another.currentCell);
             selectedPawn.currentCell.building.GetComponent<Teleporter>().SetIsValid(false);
-            Debug.Log("pawn use teleporter: " + selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid());
+            //Debug.Log("pawn use teleporter: " + selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid());
             if (selectedPawn.currentCell.building != null
                 && selectedPawn.currentCell.building.GetBuildingType() == BuildingType.Teleporter
                 && selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid())
@@ -109,7 +109,7 @@ public class PawnAction : MonoBehaviour
         if (selectedPawn != null)
         {
             uilog.UpdateLog(selectedPawn.Name + " is trying to attack");
-            Debug.Log(selectedPawn.Name + " is trying to attack");
+            //Debug.Log(selectedPawn.Name + " is trying to attack");
             gameInteraction.IsPawnAction = true;
             currentStatus = Status.PrepareAttack;
             validAttackTarget = true;
@@ -180,7 +180,7 @@ public class PawnAction : MonoBehaviour
         if (selectedPawn != null)
         {
             uilog.UpdateLog(selectedPawn.Name + " is trying to move");
-            Debug.Log(selectedPawn.Name + " is trying to move");
+            //Debug.Log(selectedPawn.Name + " is trying to move");
             gameInteraction.IsPawnAction = true;
             currentStatus = Status.PrepareMove;
             validRoute = true;
@@ -197,7 +197,7 @@ public class PawnAction : MonoBehaviour
             monsterActionManager.SetActionType(hexMap.GetPathLength(), (Monster)selectedPawn);
         }
         uilog.UpdateLog(selectedPawn.Name + " Moves");
-        Debug.Log(selectedPawn.Name + " Moves");
+        //Debug.Log(selectedPawn.Name + " Moves");
         hexMap.HideIndicator();
         currentStatus = Status.IsMoving;
 
@@ -213,7 +213,7 @@ public class PawnAction : MonoBehaviour
     public void Attack()
     {
         uilog.UpdateLog(selectedPawn.Name + " Attacks" + attackTarget);
-        Debug.Log(selectedPawn.Name + " Attacks" + attackTarget);
+        //Debug.Log(selectedPawn.Name + " Attacks" + attackTarget);
         hexMap.HideIndicator();
         currentStatus = Status.IsAttacking;
         selectedPawn.DoAttack(attackTarget);
@@ -268,7 +268,7 @@ public class PawnAction : MonoBehaviour
         {
             //0,0
             uilog.UpdateLog(selectedPawn.Name + " is skiping turn");
-            Debug.Log(selectedPawn.Name + " is skiping turn");
+            //Debug.Log(selectedPawn.Name + " is skiping turn");
         }
     }
 
@@ -334,12 +334,12 @@ public class PawnAction : MonoBehaviour
         }
         else if (currentStatus == Status.IsAttacking)
         {
-            Debug.Log("Showing attack animation");
+            //Debug.Log("Showing attack animation");
             ClearStatus();
         }
         else if (currentStatus == Status.IsTransfering)
         {
-            Debug.Log("transfering");
+            //Debug.Log("transfering");
             selectedPawn.transform.position = selectedPawn.currentCell.transform.position;
             ClearStatus();
         }

@@ -187,7 +187,7 @@ public class HexMap : MonoBehaviour
         cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
         cell.SetMaterial(plainMat[ran]);
-		Debug.Log("cell created");
+		//Debug.Log("cell created");
         cell.coordinate = HexCoordinate.FromOffsetCoordinate(x, z);
         hiddenCells.Add(cell);
     }
@@ -511,7 +511,7 @@ public class HexMap : MonoBehaviour
             cells[i].Distance = int.MaxValue;
         }
 
-        Debug.Log("Attack range: " + startCell.pawn.currentAttackRange);
+        //Debug.Log("Attack range: " + startCell.pawn.currentAttackRange);
 
         startCell.Distance = 0;
         cellToFind.Add(startCell);
@@ -597,7 +597,6 @@ public class HexMap : MonoBehaviour
             {
                 return cell;
             }
-                
 
             cellToFind.Sort((x, y) => x.Distance.CompareTo(y.Distance));
         }
@@ -731,13 +730,13 @@ public class HexMap : MonoBehaviour
     public HexCell GetRandomCellToSpawn()
     {
         // make it centered
-        int ranX = Random.Range(mapWidth / 4, mapWidth / 4 * 3);
-        int ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
+        int ranX = Random.Range(mapWidth / 8, mapWidth / 8 * 3);
+        int ranY = Random.Range(mapHeight / 8, mapHeight / 8 * 3);
         HexCell cell = cells[ranX + ranY * mapWidth];
         while (!cell.CanbeDestination())
         {
-            ranX = Random.Range(mapWidth / 4, mapWidth / 4 * 3);
-            ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
+            ranX = Random.Range(mapWidth / 8, mapWidth / 8 * 3);
+            ranY = Random.Range(mapHeight / 8, mapHeight / 8 * 3);
             cell = cells[ranX + ranY * mapWidth];
         }
             return cell;
@@ -791,5 +790,16 @@ public class HexMap : MonoBehaviour
 		building.transform.position=cell.transform.position;
 		return true;
 	}
+
+    public bool SetGameEventDisplayerCell(GameEventDisplayer displayer, HexCell cell)
+    {
+        if (displayer == null || cell == null || !cell.CanbeDestination())
+            return false;
+        cell.gameEventDisplayer = displayer;
+        displayer.currentCell = cell;
+
+        displayer.transform.position = cell.transform.position;
+        return true;
+    }
 
 }

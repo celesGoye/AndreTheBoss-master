@@ -80,7 +80,7 @@ public class Enemy : Pawn
             }
             else
             {
-                Debug.Log(this.Name + " Moves");
+                //Debug.Log(this.Name + " Moves");
                 nextAction = ActionType.Move;
             }
         }
@@ -132,7 +132,6 @@ public class Enemy : Pawn
             currentTarget.currentCell.indicator.SetColor(Indicator.AttackColor);
             currentCell.indicator.gameObject.SetActive(true);
             currentCell.indicator.SetColor(Indicator.StartColor);
-            Thread.Sleep(500);
 
             ((Pawn)this).DoAttack(currentTarget);
             gm.gameInteraction.pawnActionPanel.uilog.UpdateLog(this.Name + " attacks " + currentTarget.Name);
@@ -171,7 +170,7 @@ public class Enemy : Pawn
     {
         int skillid = Random.Range(0, skillCounts);
         DoSkill(skillid, currentTarget);
-        Debug.Log(((Pawn)this).ToString() + " do skill");
+        //Debug.Log(((Pawn)this).ToString() + " do skill");
     }
 
     public virtual void DoSkill(int skillid, Pawn target = null)
