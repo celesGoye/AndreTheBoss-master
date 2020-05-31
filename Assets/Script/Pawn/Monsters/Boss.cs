@@ -10,40 +10,39 @@ public class Boss : Monster
     {
     }
 
+    /*
     public void InitializeBoss(MonsterType monsterType, string name,
     int attack, int defense, int HP, int dexterity, int attackRange ,int magicAttack , int magicDefense,int level)
     {
         InitializeMonster(MonsterType.boss, name, attack, defense, HP, dexterity, attackRange , magicAttack , magicDefense,level);
-    
     }
+    */
 
     public override void PrepareSkillOne() 
     {
         pawnAction.requirePawnSelection = true;
         gm.hexMap.ProbeAttackTarget(this.currentCell);
-        List<HexCell> cells = gm.hexMap.GetFriendTargets();
-        foreach(HexCell cell in cells)
-        {
-            cell.indicator.SetColor(Indicator.FriendColor);
-        }
+        gm.hexMap.ShowFriendCandidates();
     }
 
     public override void DoSkillOne(Pawn other = null)
     {
         if (gm.monsterManager.IsFriendlyUnit(other))
+        {
             recoverHPPercentage(other, 0.6f);
+            //Debug.Log("Yes it's a friend");
+        }
+            
     }
 
     public override void PrepareSkillThree() 
     {
         gm.hexMap.ProbeAttackTarget(this.currentCell);
-        List<HexCell> targets = gm.hexMap.GetAttackableTargets();
-        foreach(HexCell cell in targets)
-        {
-            cell.indicator.SetColor(Indicator.AttackColor);
-        }
+        gm.hexMap.ShowAttackCandidates();
+        Thread.Sleep(500);
+        DoSkillThree();
+        pawnAction.DoSkill();
     }
-
 
     public override void DoSkillThree(Pawn other = null)
     {
@@ -63,7 +62,14 @@ public class Boss : Monster
     }
 
 
-    public override void PrepareSkillFive() { }
+    public override void PrepareSkillFive()
+    {
+        gm.hexMap.ProbeAttackTarget(this.currentCell);
+        gm.hexMap.ShowFriendCandidates();
+        Thread.Sleep(500);
+        DoSkillFive();
+        pawnAction.DoSkill();
+    }
 
     public override void DoSkillFive(Pawn other = null)
     {

@@ -17,20 +17,17 @@ public class EnemyManager : MonoBehaviour
 
     private GameObject EnemyRoot;
 
+    public int MaxEnemyOnMap = 10;
+
     private static int[] heroAppearingTurn ={
         10, 20, 30, 40, 50
     };
 
-    public void OnEnable()
-    {
-        InitEnemyManager();
-    }
-
-    private void InitEnemyManager()
+    public void InitEnemyManager()
     {
         EnemyPawns = new List<Enemy>();
         gm = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
-        EnemyRoot = new GameObject();
+        EnemyRoot = new GameObject("EnemyRoot");
         EnemyRoot.transform.SetParent(transform);
         EnemyRoot.transform.position = Vector3.zero;
     }
@@ -49,20 +46,20 @@ public class EnemyManager : MonoBehaviour
 
     public void OnEnemyTurn()
     {
-        currentEnemyIndex = EnemyPawns.Count > 0 ? 0 : -1;
-        if (currentEnemyIndex == 0)
+        currentEnemyIndex = 0;
+        if (EnemyPawns.Count > 0)
             EnemyPawns[currentEnemyIndex].OnActionBegin();
         else
             OnEnemyTurnEnd();
     }
 
-    private int currentEnemyIndex;
+    private int currentEnemyIndex = 0;
 
     public void Update()
     {
-        if(gm.gameTurnManager.IsEnemyTurn())
+        if(gm.gameTurnManager.IsEnemyTurn() && EnemyPawns.Count > 0)
         {
-            if(!EnemyPawns[currentEnemyIndex].IsAction() || currentEnemyIndex < 0 || currentEnemyIndex >= EnemyPawns.Count)
+            if(currentEnemyIndex >= EnemyPawns.Count || !EnemyPawns[currentEnemyIndex].IsAction())
             {
                 currentEnemyIndex++;
                 if(currentEnemyIndex >= EnemyPawns.Count)
@@ -75,6 +72,11 @@ public class EnemyManager : MonoBehaviour
                 }
             }
         }
+
+        foreach (Enemy enemy in EnemyPawns)
+        {
+            enemy.healthbar.UpdateLife();
+        }
     }
 
     public void OnEnemyTurnEnd()
@@ -86,6 +88,9 @@ public class EnemyManager : MonoBehaviour
     private void SpawnEnemy()
     {
         int turnNum = gm.gameTurnManager.GetCurrentGameTurn();
+
+        if (EnemyPawns.Count >= MaxEnemyOnMap)
+            return;
 
         EnemyType enemyType = EnemyType.NUM;
         if (turnNum < heroAppearingTurn[0])          // level 1
@@ -196,15 +201,13 @@ public class EnemyManager : MonoBehaviour
 	
 	public void testAltar()
 	{
-		
+		/*
 		int ran = Random.Range(0, (int)EnemyType.NUM);
         Enemy newEnemy = Instantiate<Enemy>(EnemyPrefab_sword);
 		gm.characterReader.InitEnemyData(ref newEnemy, getEnemyLevel((EnemyType)ran), (EnemyType)ran);
 		DeadEnemyPawn=newEnemy;
 		Debug.Log("testAltar:"+newEnemy.enemyType.ToString());
+        */
 	}
-
-
-
 
 }

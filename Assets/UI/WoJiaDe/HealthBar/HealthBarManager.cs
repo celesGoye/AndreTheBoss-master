@@ -20,7 +20,7 @@ public class HealthBarManager : MonoBehaviour
 		//hb.transform.SetParent(this.transform);
 		hb.pawn=pawn;
 		
-		Debug.Log("manager      "+pawn.Name);
+		//Debug.Log("manager "+pawn.Name);
 		hb.slider=hb.GetComponent<Slider>();
 		hb.Init();
 		hb.UpdateLife();

@@ -78,7 +78,7 @@ public abstract class Monster: Pawn
     // Skills to be overrided in child classes
     public virtual void DoSkillOne(Pawn other = null) { }
 
-    public virtual void DoSkillOne(HexCell cell = null) { }
+    public virtual void DoSkillOneCell(HexCell cell = null) { }
 
     public virtual void DoSkillThree(Pawn other = null) { }
 
@@ -88,9 +88,24 @@ public abstract class Monster: Pawn
 
     public virtual void DoPassiveFour(Pawn other = null) { }
 
-    public virtual void PrepareSkillOne() { }
-    public virtual void PrepareSkillThree() { }
-    public virtual void PrepareSkillFive() { }
+    public virtual void PrepareSkillOne() 
+    {
+        pawnAction.requirePawnSelection = true;
+        gm.hexMap.ProbeAttackTarget(currentCell);
+        gm.hexMap.ShowAttackCandidates();
+    }
+    public virtual void PrepareSkillThree() 
+    {
+        pawnAction.requirePawnSelection = true;
+        gm.hexMap.ProbeAttackTarget(currentCell);
+        gm.hexMap.ShowAttackCandidates();
+    }
+    public virtual void PrepareSkillFive() 
+    {
+        pawnAction.requirePawnSelection = true;
+        gm.hexMap.ProbeAttackTarget(currentCell);
+        gm.hexMap.ShowAttackCandidates();
+    }
 
     public override string ToString()
     {

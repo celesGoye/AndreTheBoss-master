@@ -72,9 +72,6 @@ public class CharacterReader
         xmlDocUpgrade = new XmlDocument();
         xmlDocUpgrade.Load(Application.dataPath + pathUpgrade);
 
-        if (xmlDocUpgrade != null)
-            Debug.Log(xmlDocUpgrade.OuterXml);
-
         xmlDocMonsterSkill = new XmlDocument();
         xmlDocMonsterSkill.Load(Application.dataPath + pathMonsterSkill);
 		
@@ -134,8 +131,6 @@ public class CharacterReader
         data.magicDefense = int.Parse(node["magicdefense"].InnerXml);
         data.dropsoul = int.Parse(node["dropsoul"].InnerXml);
 		data.skillcounts = int.Parse(node["skillcounts"].InnerXml);
-
-        Debug.Log(data.ToString());
 
         return data;
     }

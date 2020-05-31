@@ -28,9 +28,9 @@ public class PawnStatus : MonoBehaviour
     public void UpdatePawnStatusPanel(Pawn pawn)
     {	
 		currentPawn=pawn;
-		if(pawn.Type == PawnType.Monster)
+		if(pawn.pawnType == PawnType.Monster)
 		{
-			UpdatePanel(pawn.Type, pawn.currentAttack, pawn.currentDefense, pawn.currentHP, pawn.currentDexterity,
+			UpdatePanel(pawn.pawnType, pawn.currentAttack, pawn.currentDefense, pawn.currentHP, pawn.currentDexterity,
 					pawn.currentAttackRange, pawn.Name, pawn.GetMaxHP(), pawn.GetLevel(), pawn.currentMagicAttack,
 					pawn.currentMagicDefense, ((Monster)pawn).remainedStep, ((Monster)pawn).actionType);
 		}
@@ -39,7 +39,7 @@ public class PawnStatus : MonoBehaviour
 	public void UpdatePawnStatusPanel()
     {	
 		if(currentPawn!=null)
-        UpdatePanel(currentPawn.Type,currentPawn.currentAttack, currentPawn.currentDefense, currentPawn.currentHP, currentPawn.currentDexterity,
+        UpdatePanel(currentPawn.pawnType, currentPawn.currentAttack, currentPawn.currentDefense, currentPawn.currentHP, currentPawn.currentDexterity,
 					currentPawn.currentAttackRange,currentPawn.Name,currentPawn.GetMaxHP(),currentPawn.GetLevel(),currentPawn.currentMagicAttack,
 					currentPawn.currentMagicDefense,((Monster)currentPawn).remainedStep,((Monster)currentPawn).actionType);
     }

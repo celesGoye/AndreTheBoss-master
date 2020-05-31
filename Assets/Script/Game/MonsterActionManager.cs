@@ -33,7 +33,7 @@ public class MonsterActionManager : MonoBehaviour
 		if(actionPoint<=0)
 			ActionPointExhausted();
 		
-		Debug.Log("action point :"+actionPoint);
+		//Debug.Log("action point :"+actionPoint);
 		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(monster);
 	}
     
@@ -63,7 +63,7 @@ public class MonsterActionManager : MonoBehaviour
 		if(actionPoint<=0)
 			ActionPointExhausted();
 		
-		Debug.Log("action point :"+actionPoint);
+		//Debug.Log("action point :"+actionPoint);
 		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(monster);
 	}
 	
