@@ -90,12 +90,18 @@ public class MonsterManager : MonoBehaviour
 
     public void OnMonsterTurnBegin()
     {
-
+        foreach(Monster monster in MonsterPawns)
+        {
+            monster.OnActionBegin();
+        }
     }
 
     public void OnMonsterTurnEnd()
     {
-
+        foreach(Monster monster in MonsterPawns)
+        {
+            monster.OnActionEnd();
+        }
     }
 
     public void Update()

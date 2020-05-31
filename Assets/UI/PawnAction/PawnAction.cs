@@ -39,6 +39,7 @@ public class PawnAction : MonoBehaviour
     public bool requireCellSelection;
     private int selectedSkill;
     private Pawn skillTarget;
+    private HexCell skillTargetCell;
     private bool validSkillTarget;
 
     public void OnEnable()
@@ -221,45 +222,91 @@ public class PawnAction : MonoBehaviour
 
     public void DoSkill()
     {
-        try
+        if(requireCellSelection)
         {
-            Monster monster = (Monster)selectedPawn;
-            if (monster != null)
-            {
-                switch (selectedSkill)
-                {
-                    case 1:
-                        uilog.UpdateLog(monster.Name + " do skill one");
-                        monster.DoSkillOne(skillTarget);
-                        break;
-                    case 3:
-                        uilog.UpdateLog(monster.Name + " do skill three");
-                        monster.DoSkillThree(skillTarget);
-                        break;
-                    case 5:
-                        uilog.UpdateLog(monster.Name + " do skill five");
-                        monster.DoSkillFive(skillTarget);
-                        break;
-                    default:
-                        ClearStatus();
-                        break;
-                }
-            }
-        }
-        catch (InvalidCastException ex)
-        {
-            Debug.Log(ex.StackTrace);
             try
             {
-                Enemy enemy = (Enemy)selectedPawn;
-                uilog.UpdateLog(enemy.Name + " do skill");
+                Monster monster = (Monster)selectedPawn;
+                if (monster != null)
+                {
+                    switch (selectedSkill)
+                    {
+                        case 1:
+                            uilog.UpdateLog(monster.Name + " do skill one");
+                            monster.DoSkillOneCell(skillTargetCell);
+                            break;
+                        case 3:
+                            uilog.UpdateLog(monster.Name + " do skill three");
+                            monster.DoSkillThreeCell(skillTargetCell);
+                            break;
+                        case 5:
+                            uilog.UpdateLog(monster.Name + " do skill five");
+                            monster.DoSkillFiveCell(skillTargetCell);
+                            break;
+                        default:
+                            ClearStatus();
+                            break;
+                    }
+                }
             }
-            catch (InvalidCastException ex2)
+            catch (InvalidCastException ex)
             {
-                Debug.Log(ex2.StackTrace);
+                Debug.Log(ex.StackTrace);
+                try
+                {
+                    Enemy enemy = (Enemy)selectedPawn;
+                    uilog.UpdateLog(enemy.Name + " do skill");
+                    // TODO: Enemey control
+                }
+                catch (InvalidCastException ex2)
+                {
+                    Debug.Log(ex2.StackTrace);
+                }
             }
+            ClearStatus();
         }
-        ClearStatus();
+        else
+        {
+            try
+            {
+                Monster monster = (Monster)selectedPawn;
+                if (monster != null)
+                {
+                    switch (selectedSkill)
+                    {
+                        case 1:
+                            uilog.UpdateLog(monster.Name + " do skill one");
+                            monster.DoSkillOne(skillTarget);
+                            break;
+                        case 3:
+                            uilog.UpdateLog(monster.Name + " do skill three");
+                            monster.DoSkillThree(skillTarget);
+                            break;
+                        case 5:
+                            uilog.UpdateLog(monster.Name + " do skill five");
+                            monster.DoSkillFive(skillTarget);
+                            break;
+                        default:
+                            ClearStatus();
+                            break;
+                    }
+                }
+            }
+            catch (InvalidCastException ex)
+            {
+                Debug.Log(ex.StackTrace);
+                try
+                {
+                    Enemy enemy = (Enemy)selectedPawn;
+                    uilog.UpdateLog(enemy.Name + " do skill");
+                }
+                catch (InvalidCastException ex2)
+                {
+                    Debug.Log(ex2.StackTrace);
+                }
+            }
+            ClearStatus();
+        }
     }
 
     public void Skip()
@@ -362,7 +409,18 @@ public class PawnAction : MonoBehaviour
             }
             else if (requireCellSelection)
             {
-                currentStatus = Status.IsDoSkill;
+                if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+                {
+                    UpdateSkillTarget();
+                    if (validSkillTarget)
+                    {
+                        DoSkill();
+                    }
+                    else
+                    {
+                        ClearStatus();
+                    }
+                }
             }
             else
             {
@@ -426,6 +484,12 @@ public class PawnAction : MonoBehaviour
     public void UpdateSkillTarget()
     {
         HexCell cell = getCurrentPointerCell();
+        if (requireCellSelection && cell != null)
+        {
+            skillTargetCell = cell;
+            validSkillTarget = true;
+        }
+
         if (cell != null && cell.pawn != null)
         {
             validSkillTarget = true;
@@ -436,6 +500,12 @@ public class PawnAction : MonoBehaviour
             Pawn pawn = getCurrentPointerPawn();
             if (pawn != null)
             {
+                if(requireCellSelection)
+                {
+                    skillTargetCell = pawn.currentCell;
+                    if (skillTargetCell != null)
+                        validSkillTarget = true;
+                }
                 validSkillTarget = true;
                 skillTarget = pawn;
             }

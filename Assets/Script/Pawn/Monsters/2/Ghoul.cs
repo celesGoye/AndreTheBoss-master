@@ -6,6 +6,12 @@ using UnityEngine;
 public class Ghoul : Monster
 {
     bool isReflect = false;
+    bool isDoPassiveTwo, isDoPassiveFour;
+
+    public Ghoul()
+    {
+        isDoPassiveFour = isDoPassiveTwo = false;
+    }
 
     public override void DoSkillOne(Pawn other = null)
     {
@@ -14,9 +20,21 @@ public class Ghoul : Monster
         other.TakeDamage(damage, 0, this, true);
     }
 
+    public override void PrepareSkillThree()
+    {
+        pawnAction.DoSkill();
+    }
+
     public override void DoSkillThree(Pawn other = null)
     {
         isReflect = true;
+    }
+
+    public override void PrepareSkillFive()
+    {
+        pawnAction.requirePawnSelection = true;
+        gm.hexMap.ProbeAttackTarget(currentCell);
+        gm.hexMap.ShowFriendCandidates();
     }
 
     public override void DoSkillFive(Pawn other = null)
@@ -28,13 +46,14 @@ public class Ghoul : Monster
 
     public override void DoPassiveTwo(Pawn other = null)
     {
-        // boss gain 6 souls
+        // boss gain 6 souls after this unit dies
+        isDoPassiveTwo = true;
     }
 
     public override void DoPassiveFour(Pawn other = null)
     {
-        
-        // boss gain 10 souls
+        // boss gain 10 souls after this unit dies
+        isDoPassiveFour = true;
     }
 
     public override int TakeDamage(int damage, int magicDamage, Pawn from = null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)
@@ -61,9 +80,12 @@ public class Ghoul : Monster
         {
             DoPassiveFour();
             DoPassiveTwo();
+            // Boss gain soul: 16
         }
         else if (this.GetLevel() >= 2)
-            DoPassiveTwo();
+        {
+            // Boss gain soul: 6
+        }
 
         base.OnDie();
     }

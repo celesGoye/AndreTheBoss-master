@@ -5,19 +5,11 @@ using UnityEngine;
 
 public class Boss : Monster
 {
-
-    public void OnEnable()
+    bool isDoPassive2, isDoPassive4;
+    public Boss()
     {
+        isDoPassive2 = isDoPassive4 = false;
     }
-
-    /*
-    public void InitializeBoss(MonsterType monsterType, string name,
-    int attack, int defense, int HP, int dexterity, int attackRange ,int magicAttack , int magicDefense,int level)
-    {
-        InitializeMonster(MonsterType.boss, name, attack, defense, HP, dexterity, attackRange , magicAttack , magicDefense,level);
-    }
-    */
-
     public override void PrepareSkillOne() 
     {
         pawnAction.requirePawnSelection = true;
@@ -84,11 +76,19 @@ public class Boss : Monster
 
     public override void DoPassiveTwo(Pawn other = null)
     {
-        recoverHP(this, 2);
+        isDoPassive2 = true;
     }
 
     public override void DoPassiveFour(Pawn other = null)
     {
-        recoverHP(this, 5);
+        isDoPassive4 = true;
+    }
+
+    public override void OnActionEnd()
+    {
+        if (isDoPassive2)
+            recoverHP(this, 2);
+        if (isDoPassive4)
+            recoverHP(this, 5);
     }
 }

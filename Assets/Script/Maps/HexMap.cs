@@ -730,13 +730,13 @@ public class HexMap : MonoBehaviour
     public HexCell GetRandomCellToSpawn()
     {
         // make it centered
-        int ranX = Random.Range(mapWidth / 8, mapWidth / 8 * 3);
-        int ranY = Random.Range(mapHeight / 8, mapHeight / 8 * 3);
+        int ranX = Random.Range(mapWidth / 4, mapWidth / 4 * 3);
+        int ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
         HexCell cell = cells[ranX + ranY * mapWidth];
         while (!cell.CanbeDestination())
         {
-            ranX = Random.Range(mapWidth / 8, mapWidth / 8 * 3);
-            ranY = Random.Range(mapHeight / 8, mapHeight / 8 * 3);
+            ranX = Random.Range(mapWidth / 4, mapWidth / 4 * 3);
+            ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
             cell = cells[ranX + ranY * mapWidth];
         }
             return cell;

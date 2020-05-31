@@ -16,6 +16,11 @@ public class Giant : Monster
         other.TakeDamage(4, 0, this, true);
     }
 
+    public override void PrepareSkillThree()
+    {
+        pawnAction.DoSkill();
+    }
+
     public override void DoSkillThree(Pawn other = null)
     {
         addBuff(AttributeType.Defense, 5, skillthreeTurns);
@@ -28,16 +33,7 @@ public class Giant : Monster
 
     public override void DoPassiveTwo(Pawn other = null)
     {
-        if (isDoPassive2)
-            return;
-
         isDoPassive2 = true;
-        GameManager gm = FindObjectOfType<GameManager>();
-        gm.hexMap.ProbeAttackTarget(currentCell);
-        foreach(HexCell cell in gm.hexMap.GetAttackableTargets())
-        {
-            cell.pawn.TakeDamage(10, 0);
-        }
     }
 
     public override void DoPassiveFour(Pawn other = null)
@@ -51,7 +47,14 @@ public class Giant : Monster
 
     public override void OnDie()
     {
-        DoPassiveTwo();
+        if(isDoPassive2)
+        {
+            gm.hexMap.ProbeAttackTarget(currentCell);
+            foreach (HexCell cell in gm.hexMap.GetAttackableTargets())
+            {
+                cell.pawn.TakeDamage(10, 0);
+            }
+        }
         base.OnDie();
     }
 }

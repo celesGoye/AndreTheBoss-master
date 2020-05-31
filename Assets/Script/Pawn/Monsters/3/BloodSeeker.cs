@@ -11,6 +11,10 @@ public class BloodSeeker : Monster
     {
         isDoPassive2 = isDoPassive4 = false;
     }
+    public override void PrepareSkillOne()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillOne(Pawn other = null)
     {
         isSirenShell = true;
@@ -20,6 +24,11 @@ public class BloodSeeker : Monster
     {
         DoAttack(other);
         other.TakeDamage(2, 0, this, true);
+    }
+
+    public override void PrepareSkillFive()
+    {
+        pawnAction.DoSkill();
     }
 
     public override void DoSkillFive(Pawn other = null)
@@ -36,20 +45,12 @@ public class BloodSeeker : Monster
 
     public override void DoPassiveTwo(Pawn other = null)
     {
-        if (isDoPassive2)
-            return;
-
         isDoPassive2 = true;
-
     }
 
     public override void DoPassiveFour(Pawn other = null)
     {
-        if (isDoPassive4)
-            return;
-
         isDoPassive4 = true;
-
     }
 
     public override int TakeDamage(int damage, int magicDamage, Pawn from = null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)

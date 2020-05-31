@@ -6,14 +6,14 @@ using UnityEngine;
 
 public abstract class Pawn : MonoBehaviour
 {
-	private int level;
-	private int attack;
-	private int magicAttack;
-	private int defense;
-	private int magicDefense;
-	private int hp;
-	private int dexterity;
-	private int attackRange;
+	public int level;
+	public int attack;
+	public int magicAttack;
+	public int defense;
+	public int magicDefense;
+	public int hp;
+	public int dexterity;
+	public int attackRange;
 	
 	public int currentAttack;
 	public int currentMagicAttack;
@@ -248,36 +248,6 @@ public abstract class Pawn : MonoBehaviour
 				break;
 		}
 		isDirty = true;
-	}
-	
-	public void Upgrade()
-	{
-		if (level == 5 || pawnType == PawnType.Enemy)
-			return;
-
-		GameManager gm = FindObjectOfType<GameManager>();
-
-		Monster monster = (Monster)this;
-		
-		CharacterReader.CharacterData olddata = gm.characterReader.GetMonsterData(
-			gm.monsterManager.GetMonsterUnlockLevel(monster.monsterType),monster.monsterType.ToString(),level);
-		CharacterReader.CharacterData data = gm.characterReader.GetMonsterData(
-			gm.monsterManager.GetMonsterUnlockLevel(monster.monsterType), monster.monsterType.ToString(), level+1);
-
-		if (data!=null)
-		{
-			currentHP = hp= data.HP;
-			currentAttack = attack - olddata.attack + data.attack;
-			currentMagicAttack = magicAttack = magicAttack - olddata.magicAttack + data.magicAttack;
-			currentDefense = defense - olddata.defense + data.defense;
-			magicDefense = magicDefense - olddata.magicDefense + data.magicDefense;
-			currentDexterity = dexterity = dexterity - olddata.dexterity + data.dexterity;
-			currentAttackRange = attackRange = attackRange - olddata.attackRange + data.attackRange;
-			level++;
-
-			isDirty = true; // need to update current value with buffs
-		}
-		healthbar.UpdateLife();
 	}
 
 	private void UpdateCounter()

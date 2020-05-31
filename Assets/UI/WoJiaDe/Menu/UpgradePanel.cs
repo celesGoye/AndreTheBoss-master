@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,12 +67,20 @@ public class UpgradePanel : MonoBehaviour
 	
 	public void ConfirmUpgrade()
 	{
-		currentMonster.Upgrade();
-		menu.pawnStatus.UpdatePawnStatusPanel(currentMonster);
-		menu.UpdateMenu();
-		consumePanel.ConsumeItem();
-		consumePanel.UpdateConsumePanel();
-		UpdateInfo();
+		try
+		{
+			Monster monster = (Monster)currentMonster;
+			monster.Upgrade();
+			menu.pawnStatus.UpdatePawnStatusPanel(currentMonster);
+			menu.UpdateMenu();
+			consumePanel.ConsumeItem();
+			consumePanel.UpdateConsumePanel();
+			UpdateInfo();
+		}catch(Exception ex)
+		{
+			Debug.Log(ex.StackTrace);
+		}
+
 	}
 	
 	public void OnNext()

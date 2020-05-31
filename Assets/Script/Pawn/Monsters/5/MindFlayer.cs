@@ -11,16 +11,30 @@ public class MindFlayer : Monster
     {
         isDoPassive2 = isDoPassive4 = false;
     }
+
+
+    public override void PrepareSkillOne()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillOne(Pawn other = null)
     {
         isHarden = true;
     }
 
+    public override void PrepareSkillThree()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillThree(Pawn other = null)
     {
         addBuff(AttributeType.Dexertiry, 5, 1);
     }
 
+    public override void PrepareSkillFive()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillFive(Pawn other = null)
     {
         for(HexDirection i = HexDirection.NE; i <= HexDirection.NW; i++)

@@ -29,7 +29,7 @@ public class Drawf : Monster
                 cell.indicator.SetColor(Indicator.AttackColor);
             }    
         }
-        Thread.Sleep(500);
+        // maybe a button for confirmation from player?
         pawnAction.DoSkill();
     }
 
