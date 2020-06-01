@@ -62,7 +62,7 @@ public class GameEventManager : MonoBehaviour
 			gm.hexMap.SetGameEventDisplayerCell(newDisplayer, cell);
 			newDisplayer.gameEvent = gameEvent;
 
-			gm.hexMap.RevealCell(cell);
+			//gm.hexMap.RevealCell(cell);
 			gm.gameCamera.FocusOnPoint(cell.transform.localPosition);
 
 			return newDisplayer;

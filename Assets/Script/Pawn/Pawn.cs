@@ -172,6 +172,13 @@ public abstract class Pawn : MonoBehaviour
 
 	public virtual void OnDie() 
 	{
+		currentCell.pawn = null;
+		if (healthbar != null)
+		{
+			GameManager gm = FindObjectOfType<GameManager>();
+			gm.healthbarManager.RemoveHealthBar(healthbar);
+		}
+		GameObject.Destroy(gameObject);
 	}
 
 	public virtual void OnActionBegin(){;}

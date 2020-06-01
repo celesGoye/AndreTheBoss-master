@@ -360,11 +360,51 @@ public class HexMap : MonoBehaviour
 		return pathLength;
 	}
 
+    public HexCell GetEmptyNearestCellAround(HexCell startcell)
+    {
+        if (startcell == null)
+            return null;
+
+        List<HexCell> cellToFind = new List<HexCell>();
+
+        // Set distance to max value
+        for (int i = 0; i < cells.Length; i++)
+        {
+            cells[i].Distance = int.MaxValue;
+            cells[i].prevCell = null;
+        }
+
+        startcell.Distance = 0;
+        cellToFind.Add(startcell);
+        while (cellToFind.Count > 0)
+        {
+            HexCell cell = cellToFind[0];
+            cellToFind.RemoveAt(0);
+
+            for (HexDirection dir = (HexDirection)0; dir <= (HexDirection)5; dir++)
+            {
+                HexCell nextCell = cell.GetNeighbour(dir);
+                if (nextCell != null)
+                {
+                    if (nextCell.Distance == int.MaxValue)
+                    {
+                        nextCell.Distance = 0;
+                        cellToFind.Add(nextCell);
+                    }
+                }
+                if (cell != startcell && cell.CanbeDestination())
+                    return cell;
+            }
+            cellToFind.Sort((x, y) => x.Distance.CompareTo(y.Distance));
+        }
+        return null;
+    }
+
     public List<HexCell> GetRoutes(Pawn pawn, HexCell Target)
     {
         List<HexCell> routes = new List<HexCell>();
 
-        FindPath(pawn.currentCell, Target);
+        FindPath(pawn.currentCell, GetEmptyNearestCellAround(Target));
 
         int pathDistance = 0;
         for(int i = 0; i < currentRoutes.Count-1; i++)
@@ -563,7 +603,7 @@ public class HexMap : MonoBehaviour
             friendCells.Add(startCell);
     }
 
-    public HexCell GetNearestAttackableTarget(HexCell fromCell)
+    public HexCell GetNearestAttackableTarget(HexCell fromCell, int radius = 20)
     {
         if (fromCell.pawn == null)
             return null;
@@ -588,14 +628,19 @@ public class HexMap : MonoBehaviour
                 HexCell nextCell = cell.GetNeighbour(dir);
                 if (nextCell != null)
                 {
+                    int distance = cell.Distance + 1;
                     if (nextCell.Distance == int.MaxValue)
                     {
-                        nextCell.Distance = 0;
+                        nextCell.Distance = distance;
                         cellToFind.Add(nextCell);
+                    }
+                    else if(nextCell.Distance > distance)
+                    {
+                        nextCell.Distance = distance;
                     }
                 }
             }
-            if (cell.CanbeAttackTargetOf(fromCell))
+            if (cell.Distance <= radius && cell.CanbeAttackTargetOf(fromCell))
             {
                 return cell;
             }

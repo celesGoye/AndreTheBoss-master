@@ -85,8 +85,17 @@ public class Enemy : Pawn
             }
             else
             {
-                //Debug.Log(this.Name + " Moves");
-                nextAction = ActionType.Move;
+                HexCell cell = gm.hexMap.GetNearestAttackableTarget(currentCell);
+                if (cell != null)
+                {
+                    currentTarget = cell.pawn;
+                    nextAction = ActionType.Move;
+                }
+                else
+                {
+                    currentTarget = null;
+                    nextAction = ActionType.Patrol;
+                }
             }
         }
         else
@@ -140,7 +149,7 @@ public class Enemy : Pawn
 
             ((Pawn)this).DoAttack(currentTarget);
             gm.gameInteraction.pawnActionPanel.uilog.UpdateLog(this.Name + " attacks " + currentTarget.Name);
-            gm.hexMap.HideIndicator();
+           // gm.hexMap.HideIndicator();
         }
     }
 
@@ -193,13 +202,14 @@ public class Enemy : Pawn
                 this.transform.position = Vector3.Lerp(this.transform.position, routes[routePtr].transform.position, Time.deltaTime * movespeed);
                 if(Vector3.Distance(this.transform.position, routes[routePtr].transform.position) < 0.01f)
                 {
-                    gm.hexMap.RevealCell(routes[routePtr++]); 
+                    //gm.hexMap.RevealCell(routes[routePtr++]); 
+                    routePtr++;
                 }
             }
             else if(routePtr == routes.Count)
             {
                 gm.hexMap.SetCharacterCell(this, routes[routes.Count - 1]);
-                gm.hexMap.RevealCell(routes[routes.Count - 1]);
+                //gm.hexMap.RevealCell(routes[routes.Count - 1]);
                 IsMoving = false;
             }
             else
@@ -225,11 +235,6 @@ public class Enemy : Pawn
         {
             gm.monsterManager.RemoveRevivedEnemy(this);
         }
-        currentCell.pawn = null;
-        if (healthbar != null)
-        {
-            gm.healthbarManager.RemoveHealthBar(healthbar);
-        }
-        GameObject.DestroyImmediate(gameObject);
+        base.OnDie();
     }
 }

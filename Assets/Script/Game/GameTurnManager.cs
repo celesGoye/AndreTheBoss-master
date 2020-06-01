@@ -54,6 +54,7 @@ public class GameTurnManager : MonoBehaviour
         isPlayerTurn = true;
         if(txtTurnNum != null) txtTurnNum.text = turnNumber.ToString();
 
+        gm.hexMap.HideIndicator();
         gm.gameCamera.FocusOnPoint(gm.boss.transform.position);
     }
 
