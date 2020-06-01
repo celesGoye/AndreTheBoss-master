@@ -14,6 +14,11 @@ public class BugBear : Monster
     {
         isDoPassive2 = isDoPassive4 = false;
     }
+
+    public override void PrepareSkillOne()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillOne(Pawn other = null)
     {
         for (HexDirection i = HexDirection.NE; i <= HexDirection.NW; i++)
@@ -55,6 +60,10 @@ public class BugBear : Monster
         other.TakeDamage(damage, magicDamage, this, isIgnoreDefense, isIgnoreMagicDefense);
     }
 
+    public override void PrepareSkillFive()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillFive(Pawn other = null)
     {
         isSkillFive = true;

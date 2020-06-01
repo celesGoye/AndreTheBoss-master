@@ -13,7 +13,8 @@ public class EnemyManager : MonoBehaviour
     public Enemy EnemyPrefab_magic;
 
     private List<Enemy> EnemyPawns;
-	private Enemy DeadEnemyPawn;
+    private Enemy DeadEnemyPawn = null;
+    private EnemyType LastDeadEnemyType = EnemyType.NUM;
 
     private GameObject EnemyRoot;
 
@@ -23,6 +24,8 @@ public class EnemyManager : MonoBehaviour
         10, 20, 30, 40, 50
     };
 
+    private Dictionary<EnemyType, Enemy> prefabs;
+
     public void InitEnemyManager()
     {
         EnemyPawns = new List<Enemy>();
@@ -30,6 +33,13 @@ public class EnemyManager : MonoBehaviour
         EnemyRoot = new GameObject("EnemyRoot");
         EnemyRoot.transform.SetParent(transform);
         EnemyRoot.transform.position = Vector3.zero;
+
+        prefabs = new Dictionary<EnemyType, Enemy>
+        {
+            {EnemyType.wanderingswordman, EnemyPrefab_sword },
+            {EnemyType.magicapprentice, EnemyPrefab_magic},
+            {EnemyType.thief, EnemyPrefab_thief },
+        };
     }
 
     public void OnEnemyTurnBegin()
@@ -159,7 +169,7 @@ public class EnemyManager : MonoBehaviour
                 newEnemy.transform.SetParent(EnemyRoot.transform);
                 gm.hexMap.SetCharacterCell(newEnemy, cell);
 
-                gm.hexMap.RevealCell(cell);
+                //gm.hexMap.RevealCell(cell);
                 gm.gameCamera.FocusOnPoint(cell.transform.localPosition);
             }
         }
@@ -188,26 +198,49 @@ public class EnemyManager : MonoBehaviour
     {
         return EnemyPawns;
     }
+
+    public Enemy getDeadEnemy()
+    {
+        return DeadEnemyPawn;
+    }
+
+    public void setDeadEnemy(Enemy enemy = null)
+    {
+        DeadEnemyPawn = enemy;
+    }
 	
-	public Enemy getDeadEnemy()
+	public EnemyType getLastDeadEnemyType()
 	{
-		return DeadEnemyPawn;
+		return LastDeadEnemyType;
 	}
 	
-	public void setDeadEnemy(Enemy enemy=null)
+	public void setDeadEnemyType(EnemyType enemyType)
 	{
-		DeadEnemyPawn=enemy;
+		LastDeadEnemyType = enemyType;
 	}
+
+    public void RemoveEnemyPawn(Enemy enemy)
+    {
+        if(EnemyPawns.Contains(enemy))
+        {
+            EnemyPawns.Remove(enemy);
+        }
+    }
 	
 	public void testAltar()
 	{
-		/*
-		int ran = Random.Range(0, (int)EnemyType.NUM);
-        Enemy newEnemy = Instantiate<Enemy>(EnemyPrefab_sword);
-		gm.characterReader.InitEnemyData(ref newEnemy, getEnemyLevel((EnemyType)ran), (EnemyType)ran);
-		DeadEnemyPawn=newEnemy;
-		Debug.Log("testAltar:"+newEnemy.enemyType.ToString());
-        */
+		
+		//int ran = Random.Range(0, (int)EnemyType.NUM);
+        //if(LastDeadEnemyType != EnemyType.NUM)
+       // {
+            //Enemy newEnemy = Instantiate<Enemy>(EnemyPrefab_sword);
+            //Enemy newEnemy = Instantiate<Enemy>(prefabs[DeadEnemyPawn]);
+            //gm.characterReader.InitEnemyData(ref newEnemy, getEnemyLevel(DeadEnemyPawn), DeadEnemyPawn);
+            //DeadEnemyPawn = newEnemy;
+            //Debug.Log("testAltar:" + newEnemy.enemyType.ToString());
+       // }
+
+        
 	}
 
 }

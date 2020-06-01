@@ -26,7 +26,7 @@ public class HexCell : MonoBehaviour
 	public Building building;
     public Pawn pawn;
     public Indicator indicator;
-    public GameEventDisplayer gameEventDisplayer = null;
+    public GameEventDisplayer gameEventDisplayer;
 
     public int Distance { get; set; }
     public int heuristicDistance;

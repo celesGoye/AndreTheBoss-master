@@ -90,12 +90,18 @@ public class MonsterManager : MonoBehaviour
 
     public void OnMonsterTurnBegin()
     {
-
+        foreach(Monster monster in MonsterPawns)
+        {
+            monster.OnActionBegin();
+        }
     }
 
     public void OnMonsterTurnEnd()
     {
-
+        foreach(Monster monster in MonsterPawns)
+        {
+            monster.OnActionEnd();
+        }
     }
 
     public void Update()
@@ -107,6 +113,22 @@ public class MonsterManager : MonoBehaviour
         foreach(Enemy enemy in RevivedEnemyPawns)
         {
             enemy.healthbar.UpdateLife();
+        }
+    }
+
+    public void RemoveMonster(Monster monster)
+    {
+        if(MonsterPawns.Contains(monster))
+        {
+            MonsterPawns.Remove(monster);
+        }
+    }
+
+    public void RemoveRevivedEnemy(Enemy enemy)
+    {
+        if(RevivedEnemyPawns.Contains(enemy))
+        {
+            RevivedEnemyPawns.Remove(enemy);
         }
     }
 

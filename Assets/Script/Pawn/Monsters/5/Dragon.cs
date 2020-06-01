@@ -19,6 +19,10 @@ public class Dragon : Monster
         }
     }
 
+    public override void PrepareSkillThree()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillThree(Pawn other = null)
     {
         GameManager gm = FindObjectOfType<GameManager>();
@@ -32,6 +36,10 @@ public class Dragon : Monster
         }
     }
 
+    public override void PrepareSkillFive()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillFive(Pawn other = null)
     {
         GameManager gm = FindObjectOfType<GameManager>();

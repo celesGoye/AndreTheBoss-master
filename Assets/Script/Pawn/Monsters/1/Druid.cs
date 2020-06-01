@@ -42,7 +42,6 @@ public class Druid : Monster
     {
         gm.hexMap.ProbeAttackTarget(currentCell);
         gm.hexMap.ShowFriendCandidates();
-        Thread.Sleep(500);
         pawnAction.DoSkill();
     }
 

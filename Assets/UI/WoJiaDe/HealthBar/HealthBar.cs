@@ -25,4 +25,13 @@ public class HealthBar : MonoBehaviour
 		currentlife=pawn.currentHP;
 		slider.value=currentlife/maxlife;
 	}
+
+	public void OnDestroy()
+	{
+		if(slider != null)
+		{
+			GameObject.Destroy(slider);
+		}
+	}
+
 }

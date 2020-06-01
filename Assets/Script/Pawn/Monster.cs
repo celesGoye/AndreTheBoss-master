@@ -80,6 +80,10 @@ public abstract class Monster: Pawn
 
     public virtual void DoSkillOneCell(HexCell cell = null) { }
 
+    public virtual void DoSkillThreeCell(HexCell cell = null) { }
+
+    public virtual void DoSkillFiveCell(HexCell cell = null) { }
+
     public virtual void DoSkillThree(Pawn other = null) { }
 
     public virtual void DoSkillFive(Pawn other = null) { }
@@ -165,5 +169,35 @@ public abstract class Monster: Pawn
         base.OnActionEnd();
     }
 
+    public void Upgrade()
+    {
+        if (GetLevel() == 5)
+            return;
+
+        CharacterReader.CharacterData olddata = gm.characterReader.GetMonsterData(
+            gm.monsterManager.GetMonsterUnlockLevel(this.monsterType), this.monsterType.ToString(), level);
+        CharacterReader.CharacterData data = gm.characterReader.GetMonsterData(
+            gm.monsterManager.GetMonsterUnlockLevel(this.monsterType), this.monsterType.ToString(), level + 1);
+
+        if (data != null)
+        {
+            currentHP = hp = data.HP;
+            currentAttack = attack - olddata.attack + data.attack;
+            currentMagicAttack = magicAttack = magicAttack - olddata.magicAttack + data.magicAttack;
+            currentDefense = defense - olddata.defense + data.defense;
+            magicDefense = magicDefense - olddata.magicDefense + data.magicDefense;
+            currentDexterity = dexterity = dexterity - olddata.dexterity + data.dexterity;
+            currentAttackRange = attackRange = attackRange - olddata.attackRange + data.attackRange;
+            level++;
+
+            isDirty = true; // need to update current value with buffs
+        }
+        healthbar.UpdateLife();
+
+        if (GetLevel() == 2)
+            this.DoPassiveTwo();
+        else if (GetLevel() == 4)
+            this.DoPassiveFour();
+    }
 
 }
