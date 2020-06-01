@@ -32,6 +32,7 @@ public class HealthBar : MonoBehaviour
 		{
 			GameObject.Destroy(slider);
 		}
+		GameObject.Destroy(gameObject);
 	}
 
 }
