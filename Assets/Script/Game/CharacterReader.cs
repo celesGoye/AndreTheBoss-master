@@ -142,7 +142,7 @@ public class CharacterReader
 
         CharacterData data = GetEnemyData(level, type.ToString());
         enemy.InitializeEnemy(type, type.ToString(), level, data.skillcounts,
-            data.attack, data.magicAttack, data.defense, data.magicDefense, data.HP, data.dexterity, data.attackRange);
+            data.attack, data.magicAttack, data.defense, data.magicDefense, data.HP, data.dexterity, data.attackRange, data.dropsoul);
         return true;
     }
 

@@ -376,7 +376,9 @@ public class HexMap : MonoBehaviour
                 break;
         }
 
-        return routes;
+        currentRoutes = routes;
+
+        return currentRoutes;
     }
 
     public void ShowPath(HexCell fromCell, HexCell toCell)

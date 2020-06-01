@@ -13,8 +13,7 @@ public class HealthBarManager : MonoBehaviour
 	
 	public HealthBar InitializeHealthBar(Pawn pawn)
 	{
-		HealthBar hb = new HealthBar();
-		hb=Instantiate<HealthBar>(healthBar_Prefab);
+		HealthBar hb=Instantiate<HealthBar>(healthBar_Prefab);
 		healthBars.Add(hb);
 		hb.transform.SetParent(parent);
 		//hb.transform.SetParent(this.transform);
@@ -27,14 +26,23 @@ public class HealthBarManager : MonoBehaviour
 		hb.mainCam=mainCam;
 		return hb;
 	}
+
+	// part of cleanup process referenced by Pawn.OnDie()
 	public void RemoveHealthBar(HealthBar hb)//。。。我想表达什么？i是啥
 	{
+		/*
 		int i=0;
 		foreach(HealthBar bar in healthBars)
 		{
 			if(bar==hb)
 				healthBars.Remove(bar);
 			i++;
+		}
+		*/
+		if(healthBars.Contains(hb))
+		{
+			healthBars.Remove(hb);
+			hb.OnDestroy();
 		}
 	}
 }

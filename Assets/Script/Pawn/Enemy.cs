@@ -1,7 +1,9 @@
 ﻿using Boo.Lang.Environments;
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -9,14 +11,16 @@ using UnityEngine.PlayerLoop;
 public class Enemy : Pawn
 {
     public EnemyType enemyType;
+    
     public void InitializeEnemy(EnemyType enemyType, string name, int level, int skillCounts,
-    int attack,int magicAttack, int defense, int magicDefense, int HP, int dexterity, int attackRange)
+    int attack,int magicAttack, int defense, int magicDefense, int HP, int dexterity, int attackRange, int dropsoul)
     {
         this.enemyType = enemyType;
         Name = enemyType.ToString();
         InitializePawn(PawnType.Enemy, name,level, attack,magicAttack, defense,magicDefense, HP, dexterity, attackRange);
         
         this.skillCounts = skillCounts;
+        this.dropsoul = dropsoul;
     }
 
     public override string ToString()
@@ -41,6 +45,7 @@ public class Enemy : Pawn
     public GameManager gm;
 
     public int skillCounts;
+    public int dropsoul;
 
     public bool IsMoving = false;
     public List<HexCell> routes = new List<HexCell>();
@@ -75,7 +80,7 @@ public class Enemy : Pawn
         {
             if(targets.Contains(currentTarget.currentCell))
             {
-                float posibility = (float)Random.Range(0, 1+skillCounts);
+                float posibility = (float)UnityEngine.Random.Range(0, 1+skillCounts);
                 nextAction = posibility < 1 ? ActionType.Attack : ActionType.Skill;
             }
             else
@@ -153,7 +158,7 @@ public class Enemy : Pawn
     {
         for (int i = 0; i < 10; i++)
         {
-            int dir = Random.Range(0, 6);
+            int dir = UnityEngine.Random.Range(0, 6);
             HexCell cell = currentCell.GetNeighbour((HexDirection)dir);
             if(cell.CanbeDestination())
             {
@@ -168,7 +173,7 @@ public class Enemy : Pawn
 
     public virtual void DoSkill(Pawn target = null)
     {
-        int skillid = Random.Range(0, skillCounts);
+        int skillid = UnityEngine.Random.Range(0, skillCounts);
         DoSkill(skillid, currentTarget);
         //Debug.Log(((Pawn)this).ToString() + " do skill");
     }
@@ -206,5 +211,25 @@ public class Enemy : Pawn
         {
             isAction = false;
         }
+    }
+
+    public override void OnDie()
+    {
+        if(this.pawnType == PawnType.Enemy)
+        {
+            gm.enemyManager.setDeadEnemyType(this.enemyType);
+            gm.enemyManager.RemoveEnemyPawn(this);
+            gm.itemManager.GetItem(ItemType.Soul, dropsoul);
+        }
+        else
+        {
+            gm.monsterManager.RemoveRevivedEnemy(this);
+        }
+        currentCell.pawn = null;
+        if (healthbar != null)
+        {
+            gm.healthbarManager.RemoveHealthBar(healthbar);
+        }
+        GameObject.DestroyImmediate(gameObject);
     }
 }

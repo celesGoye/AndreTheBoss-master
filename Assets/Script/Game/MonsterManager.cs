@@ -116,4 +116,20 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
+    public void RemoveMonster(Monster monster)
+    {
+        if(MonsterPawns.Contains(monster))
+        {
+            MonsterPawns.Remove(monster);
+        }
+    }
+
+    public void RemoveRevivedEnemy(Enemy enemy)
+    {
+        if(RevivedEnemyPawns.Contains(enemy))
+        {
+            RevivedEnemyPawns.Remove(enemy);
+        }
+    }
+
 }

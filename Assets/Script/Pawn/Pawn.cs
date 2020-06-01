@@ -170,7 +170,10 @@ public abstract class Pawn : MonoBehaviour
 		skipCounter += turnToSkip;
 	}
 
-	public virtual void OnDie() {; }
+	public virtual void OnDie() 
+	{
+	}
+
 	public virtual void OnActionBegin(){;}
 	public virtual void OnActionEnd(){;}
 	
