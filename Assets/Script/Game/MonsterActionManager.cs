@@ -61,7 +61,7 @@ public class MonsterActionManager : MonoBehaviour
 		actionPoint=MaxActionPoint-monstersTookAction.Count;
 		if(actionPoint<=0)
 			ActionPointExhausted();
-		
+
 		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(monster);
 	}
 	

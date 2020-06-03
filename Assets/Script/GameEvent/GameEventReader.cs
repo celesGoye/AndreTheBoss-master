@@ -102,6 +102,7 @@ public class GameEventReader
         string eventName = "";
         string eventDescription = "";
         int eventCounter = 0;
+		int eventid=0;
 
         if (xmlDoc != null)
         {

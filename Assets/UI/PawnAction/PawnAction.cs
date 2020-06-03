@@ -23,7 +23,7 @@ public class PawnAction : MonoBehaviour
 
     public UILog uilog;
     public MenuControl menu;
-	
+
     public float moveSpeed = 1f;
 
     public enum Status { PrepareAttack, PrepareMove, PrepareDoSkill, Rest, IsMoving, IsAttacking, IsDoSkill, IsTransfering };

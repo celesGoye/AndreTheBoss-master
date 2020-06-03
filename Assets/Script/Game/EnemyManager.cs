@@ -128,6 +128,7 @@ public class EnemyManager : MonoBehaviour
         if(enemyType != EnemyType.NUM)
             SpawnEnemyAtCell(enemyType, gm.hexMap.GetRandomCellToSpawn());
     }
+
     private void SpawnHero()
     {
         EnemyType heroType = EnemyType.NUM;
@@ -197,16 +198,6 @@ public class EnemyManager : MonoBehaviour
     {
         return EnemyPawns;
     }
-
-    public Enemy getDeadEnemy()
-    {
-        return DeadEnemyPawn;
-    }
-
-    public void setDeadEnemy(Enemy enemy = null)
-    {
-        DeadEnemyPawn = enemy;
-    }
 	
 	public Enemy getDeadEnemy()
     {
@@ -222,7 +213,7 @@ public class EnemyManager : MonoBehaviour
 	{
 		return LastDeadEnemyType;
 	}
-	
+
 	public void setDeadEnemyType(EnemyType enemyType)
 	{
 		LastDeadEnemyType = enemyType;
