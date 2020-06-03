@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Material/BuildingsMat.meta
 guid: 5c4fbfb18d8f02e4a8debf856da45c2d
+=======
+guid: e5608c6a80c9ef44f94351a59b4eeb2b
+>>>>>>> 1fcff8bb1e323a5fbb3bcef7a2085bc7d9ff9b97:Assets/Prefabs/GameEvent.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

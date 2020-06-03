@@ -185,7 +185,7 @@ public abstract class Pawn : MonoBehaviour
 	{
 		UpdatePawn();
 	}
-	
+
 	public virtual void OnActionEnd(){;}
 	
 	public void Move(HexCell from,HexCell to)
