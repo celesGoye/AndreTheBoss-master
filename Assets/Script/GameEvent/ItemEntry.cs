@@ -4,8 +4,27 @@ using UnityEngine;
 
 public class ItemEntry
 {
-    ItemType type;
-    int itemEnum;
-    int number;
-    float posibility;
+    public ItemPrimaryType primaryType;
+    public ItemType itemType;
+    public int number;
+    public int posibility;    // XX.OO% -> posibility = XX for each item
+
+    public ItemEntry(ItemPrimaryType primaryType, ItemType itemType, int number, int posibility)
+    {
+        this.primaryType = primaryType;
+        this.itemType = itemType;
+        this.number = number;
+        this.posibility = posibility;
+    }
+
+    public ItemEntry()
+    {
+
+    }
+
+    public override string ToString()
+    {
+        return "PrimaryType: " + primaryType.ToString() + "\nItemType: " +
+            itemType.ToString() + "\nnumber: " + number + "\nposibility: " + posibility;
+    }
 }

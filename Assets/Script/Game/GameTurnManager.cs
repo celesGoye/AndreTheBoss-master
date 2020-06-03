@@ -1,31 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameTurnManager
+public class GameTurnManager : MonoBehaviour
 {
 	
     private int turnNumber;     // one turn is after player's playing and enemies' movement
     private bool isPlayerTurn;
 
-    public GameTurnManager()
+    private GameManager gm;
+
+    public GameObject turnIndicator;
+    private Text txtTurnNum;
+
+    public void InitGameTurnManager()
     {
-        turnNumber = 0;
+        turnNumber = 1;
         isPlayerTurn = true;
+        if (turnIndicator != null)
+            txtTurnNum = turnIndicator.GetComponentInChildren<Text>();
+
+        
     }
 
-    public static int[] heroAppearingTurn =
+    public void OnEnable()
     {
-        10, 20, 30,
-    };
-
-    public void IncreaseGameTurn()
-    {
-        turnNumber++;
-        isPlayerTurn = true;
+        if (gm == null)
+            gm = GameObject.FindObjectOfType<GameManager>();
     }
 
-    public int CurrentGameTurn()
+    public int GetCurrentGameTurn()
     {
         return turnNumber;
     }
@@ -40,9 +45,31 @@ public class GameTurnManager
         return !isPlayerTurn;
     }
 
+    // use below two functions to switch from player to enemy or vice-versa
+    public void NextGameTurn()
+    {
+        gm.monsterManager.OnMonsterTurnBegin();
+		gm.monsterActionManager.OnMonsterTurnBegin();
+		gm.gameInteraction.OnMonsterTurnBegin();
+		gm.buildingManager.OnMonsterTurnBegin();
+        gm.gameEventManager.OnTurnBegin();
+        turnNumber++;
+        isPlayerTurn = true;
+        if(txtTurnNum != null) txtTurnNum.text = turnNumber.ToString();
+
+        gm.hexMap.HideIndicator();
+        gm.gameCamera.FocusOnPoint(gm.boss.transform.position);
+    }
+
     public void EndPlayerTurn()
     {
         isPlayerTurn = false;
+
+        gm.monsterManager.OnMonsterTurnEnd();
+        gm.gameEventManager.OnTurnEnd();
+        gm.enemyManager.OnEnemyTurnBegin();
+		
+		gm.gameInteraction.OnMonsterTurnEnd();
     }
 
 }

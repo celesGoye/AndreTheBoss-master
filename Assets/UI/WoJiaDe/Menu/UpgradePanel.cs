@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +20,6 @@ public class UpgradePanel : MonoBehaviour
 	
 	public void OnEnable()
 	{
-		menu.UpdateMenu();
 		if(gameManager == null)
 			gameManager = FindObjectOfType<GameManager>();
 		characterReader=gameManager.characterReader;
@@ -66,19 +66,26 @@ public class UpgradePanel : MonoBehaviour
 	
 	public void ConfirmUpgrade()
 	{
-		currentMonster.Upgrade();
-		menu.pawnStatus.UpdatePawnStatusPanel(currentMonster);
-		menu.UpdateMenu();
-		consumePanel.ConsumeItem();
-		consumePanel.UpdateConsumePanel();
-		UpdateInfo();
+		try
+		{
+			Monster monster = (Monster)currentMonster;
+			monster.Upgrade();
+			gameManager.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(currentMonster);
+			menu.UpdateMenu();
+			consumePanel.ConsumeItem();
+			consumePanel.UpdateConsumePanel();
+			UpdateInfo();
+		}catch(Exception ex)
+		{
+			Debug.Log(ex.StackTrace);
+		}
 	}
 	
 	public void OnNext()
 	{
 		currentMonster=menu.currentMonster;
 		consumePanel.UpdateConsumePanel();
-		Debug.Log("On next,current monster is:"+menu.currentMonster);
+		//Debug.Log("On next,current monster is:"+menu.currentMonster);
 		UpdateInfo();
 	}
 	

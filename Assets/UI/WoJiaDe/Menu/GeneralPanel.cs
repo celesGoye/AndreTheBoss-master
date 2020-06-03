@@ -18,14 +18,14 @@ public class GeneralPanel : MonoBehaviour
 
     void OnEnable()
     {
-        menu.UpdateMenu();
+        UpdateGeneral();
 		monsterManager=menu.gameManager.monsterManager;
     }
 	
 	public void UpdateGeneral(){
 		currentMonster=menu.currentMonster;
 		nameText.text=currentMonster.Name;
-		healthSlider.value=currentMonster.currentHP/currentMonster.GetMaxHP();
+		healthSlider.value=(float)currentMonster.currentHP/currentMonster.GetMaxHP();
 		lifeText.text=currentMonster.currentHP+"/"+currentMonster.GetMaxHP();
 		if((sprite=Resources.Load("Image/character/"+currentMonster.Name, typeof(Sprite)) as Sprite)!=null)
 			characterImg.sprite =sprite;
@@ -35,31 +35,28 @@ public class GeneralPanel : MonoBehaviour
 	
 	public void OnPrevoius()
 	{
-		for(int i=0;i<monsterManager.MonsterPawns.Count;i++)
+		if(monsterManager.MonsterPawns.Contains(currentMonster))
 		{
-			if(currentMonster.GetHashCode()==monsterManager.MonsterPawns[i].GetHashCode())
-			{
-				menu.currentMonster=(i<monsterManager.MonsterPawns.Count-1)?monsterManager.MonsterPawns[i+1]:monsterManager.MonsterPawns[0];
-				menu.UpdateMenu();
-				menu.upgradePanel.OnNext();
-				menu.skillPanel.OnNext();
-				return;
-			}
+			int i=monsterManager.MonsterPawns.IndexOf(currentMonster);
+			menu.currentMonster=(i<monsterManager.MonsterPawns.Count-1)?monsterManager.MonsterPawns[i+1]:monsterManager.MonsterPawns[0];
+			menu.UpdateMenu();
+			menu.upgradePanel.OnNext();
+			menu.skillPanel.OnNext();
+			return;
 		}
 		Debug.Log("failed to find prevoius");
 	}
 	
 	public void OnNext()
 	{
-		for(int i=0;i<monsterManager.MonsterPawns.Count;i++){
-			if(currentMonster.GetHashCode()==monsterManager.MonsterPawns[i].GetHashCode())
-			{
-				menu.currentMonster=(i==0)?monsterManager.MonsterPawns[monsterManager.MonsterPawns.Count-1]:monsterManager.MonsterPawns[i-1];
-				menu.UpdateMenu();
-				menu.upgradePanel.OnNext();
-				menu.skillPanel.OnNext();
-				return;
-			}
+		if(monsterManager.MonsterPawns.Contains(currentMonster))
+		{
+			int i=monsterManager.MonsterPawns.IndexOf(currentMonster);
+			menu.currentMonster=(i==0)?monsterManager.MonsterPawns[monsterManager.MonsterPawns.Count-1]:monsterManager.MonsterPawns[i-1];
+			menu.UpdateMenu();
+			menu.upgradePanel.OnNext();
+			menu.skillPanel.OnNext();
+			return;
 		}
 		Debug.Log("failed to find next");
 	}

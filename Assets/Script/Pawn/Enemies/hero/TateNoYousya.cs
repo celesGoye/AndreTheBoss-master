@@ -18,4 +18,9 @@ public class TateNoYousya : Enemy
         addBuff(AttributeType.Defense, 5, 1);
         addBuff(AttributeType.MagicDefense, 5, 1);
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }

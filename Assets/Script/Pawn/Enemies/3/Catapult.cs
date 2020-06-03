@@ -7,7 +7,7 @@ public class Catapult : Enemy
     public override void DoSkill(Pawn target = null)
     {
         target = target != null ? target : GetCurrentTarget();
-        if(target != null && target.Type == PawnType.Building)
+        if(target != null && target.pawnType == PawnType.Building)
         {
             // destroy buildings
             //GameObject.DestroyImmediate(target.gameObject);
@@ -47,5 +47,10 @@ public class Catapult : Enemy
                 nextAction = ActionType.Patrol;
             }
         }
+    }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
     }
 }

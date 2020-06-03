@@ -11,6 +11,10 @@ public class Chimera : Monster
     {
         isDoPassive2 = isDoPassive4 = false;
     }
+    public override void PrepareSkillOne()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillOne(Pawn other = null)
     {
         for (HexDirection i = HexDirection.NE; i <= HexDirection.NW; i++)

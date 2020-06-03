@@ -7,13 +7,19 @@ public abstract class Monster: Pawn
 {
     public MonsterType monsterType;
 
-    public int currentSkill; // either 1, 3, 5 not exceed current level
-	public int equippedSkill; //3, 5
+    public int defaultSkill; // level 1 skill
+	public int equippedSkill; //3 or 5
 	
 	public int remainedStep;
 	public ActionType actionType;
 	
     Dictionary<int, string> skillsAndPassives;
+
+    // a contorl boolean for monster action, turn it off after [swichskill | attack | doskill]
+    public bool CanDoAction;
+
+    public GameManager gm;
+    public PawnAction pawnAction;
 
     public void InitializeMonster(MonsterType monsterType, string name, int level,
         int attack, int magicAttack, int defense, int magicDefense, int HP, int dexterity, int attackRange)
@@ -22,11 +28,16 @@ public abstract class Monster: Pawn
         Name = monsterType.ToString();
         InitializePawn(PawnType.Monster, name, level, attack, magicAttack, defense, magicDefense, HP, dexterity, attackRange);
 
-        currentSkill = 1;
-		equippedSkill=3;
+        defaultSkill = 1;
+		equippedSkill = 3;
 
         skillsAndPassives = new Dictionary<int, string>();
         ReadSkillNames(this);
+
+        CanDoAction = true;
+
+        gm = FindObjectOfType<GameManager>();
+        pawnAction = gm.gameInteraction.pawnActionPanel;
     }
 
     private static void ReadSkillNames(Monster monster)
@@ -35,11 +46,11 @@ public abstract class Monster: Pawn
         
     }
 
-    public int SetCurrentSkill(int which)
+    public int SetEquippedSkill(int which)
     {
-        if(which < this.GetLevel() && which % 2 == 1)
+        if(which <= GetLevel() && (which == 3 || which == 5))
         {
-            currentSkill = which;
+            equippedSkill = which;
 
             // TODO: UI update stuff
             return which;
@@ -56,14 +67,23 @@ public abstract class Monster: Pawn
 	{
 		if(this.GetLevel()!=5)
 			return;
+
 		equippedSkill=(equippedSkill==3)?5:3;
+
+        // TODO: UI updating
+
+        CanDoAction = false;
 	}
 
     // Skills to be overrided in child classes
     public virtual void DoSkillOne(Pawn other = null) { }
 
-    public virtual void DoSkillOne(HexCell cell = null) { }
+    public virtual void DoSkillOneCell(HexCell cell = null) { }
+	
+    public virtual void DoSkillThreeCell(HexCell cell = null) { }
 
+    public virtual void DoSkillFiveCell(HexCell cell = null) { }
+	
     public virtual void DoSkillThree(Pawn other = null) { }
 
     public virtual void DoSkillFive(Pawn other = null) { }
@@ -71,6 +91,25 @@ public abstract class Monster: Pawn
     public virtual void DoPassiveTwo(Pawn other = null) { }
 
     public virtual void DoPassiveFour(Pawn other = null) { }
+
+    public virtual void PrepareSkillOne() 
+    {
+        pawnAction.requirePawnSelection = true;
+        gm.hexMap.ProbeAttackTarget(currentCell);
+        gm.hexMap.ShowAttackCandidates();
+    }
+    public virtual void PrepareSkillThree() 
+    {
+        pawnAction.requirePawnSelection = true;
+        gm.hexMap.ProbeAttackTarget(currentCell);
+        gm.hexMap.ShowAttackCandidates();
+    }
+    public virtual void PrepareSkillFive() 
+    {
+        pawnAction.requirePawnSelection = true;
+        gm.hexMap.ProbeAttackTarget(currentCell);
+        gm.hexMap.ShowAttackCandidates();
+    }
 
     public override string ToString()
     {
@@ -116,8 +155,48 @@ public abstract class Monster: Pawn
     public void UpdateMonster()
     {
         UpdatePawn();
-
     }
 
+    public override void OnActionBegin()
+    {
+        CanDoAction = true;
+        base.OnActionBegin();
+    }
 
+    public override void OnActionEnd()
+    {
+        CanDoAction = false;
+        base.OnActionEnd();
+    }
+
+	 public void Upgrade()
+    {
+        if (GetLevel() == 5)
+            return;
+
+        CharacterReader.CharacterData olddata = gm.characterReader.GetMonsterData(
+            gm.monsterManager.GetMonsterUnlockLevel(this.monsterType), this.monsterType.ToString(), level);
+        CharacterReader.CharacterData data = gm.characterReader.GetMonsterData(
+            gm.monsterManager.GetMonsterUnlockLevel(this.monsterType), this.monsterType.ToString(), level + 1);
+
+        if (data != null)
+        {
+            currentHP = hp = data.HP;
+            currentAttack = attack - olddata.attack + data.attack;
+            currentMagicAttack = magicAttack = magicAttack - olddata.magicAttack + data.magicAttack;
+            currentDefense = defense - olddata.defense + data.defense;
+            magicDefense = magicDefense - olddata.magicDefense + data.magicDefense;
+            currentDexterity = dexterity = dexterity - olddata.dexterity + data.dexterity;
+            currentAttackRange = attackRange = attackRange - olddata.attackRange + data.attackRange;
+            level++;
+
+            isDirty = true; // need to update current value with buffs
+        }
+        healthbar.UpdateLife();
+
+        if (GetLevel() == 2)
+            this.DoPassiveTwo();
+        else if (GetLevel() == 4)
+            this.DoPassiveFour();
+    }
 }

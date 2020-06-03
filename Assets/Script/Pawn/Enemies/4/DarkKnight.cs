@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class DarkKnight : Enemy
 {
-
+    public override void InitPawn()
+    {
+        skillCounts = 0;
+    }
 }

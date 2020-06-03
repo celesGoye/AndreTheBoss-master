@@ -59,4 +59,9 @@ public class CinderLord : Enemy
 
         return damage;
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 2;
+    }
 }

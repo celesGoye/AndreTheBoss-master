@@ -6,7 +6,7 @@ public class Altar : Building
 {
 	public int cd;
 	
-    public override string GetDescription()
+    public static string GetDescription()
 	{
 		string description="Revive the last human who died in battle, after reviving the altar records nothing.";
 		return description;

@@ -7,4 +7,6 @@
 	Dexertiry,
 	AttackRange,
 	Mobility,
+	HP,
+	NUM,
 }

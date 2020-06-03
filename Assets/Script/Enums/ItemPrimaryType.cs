@@ -4,4 +4,5 @@
     Farm,
     Mine,
     Buff,
+    NUM,
 }

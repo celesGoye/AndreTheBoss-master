@@ -28,7 +28,7 @@ public class AltarPanel : MonoBehaviour
 			txt_tips.text="<size=22>No one on the record.</size>";
 			return false;
 		}
-		else if(hexCell.pawn!=null&&(hexCell.pawn.Type==PawnType.Monster||hexCell.pawn.Type==PawnType.Enemy))
+		else if(hexCell.pawn!=null&&(hexCell.pawn.pawnType==PawnType.Monster||hexCell.pawn.pawnType==PawnType.Enemy))
 		{
 			txt_tips.text="<size=22>Can't revive when altar is occupied.</size>";
 			return false;

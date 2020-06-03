@@ -22,5 +22,10 @@ public class BloodWitch : Enemy
             }
         }
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }
 

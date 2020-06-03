@@ -95,7 +95,7 @@ public class BuildingManager : MonoBehaviour
 		return false;
 	}
 	
-	public void BuildingsOnPlayerTurnBegin()
+	public void OnMonsterTurnBegin()
 	{
 		itemProduced=new Dictionary<ItemType,int>();
 		foreach(Building building in Buildings)

@@ -13,28 +13,27 @@ public class HealthBarManager : MonoBehaviour
 	
 	public HealthBar InitializeHealthBar(Pawn pawn)
 	{
-		HealthBar hb = new HealthBar();
-		hb=Instantiate<HealthBar>(healthBar_Prefab);
+		HealthBar hb=Instantiate<HealthBar>(healthBar_Prefab);
 		healthBars.Add(hb);
 		hb.transform.SetParent(parent);
 		//hb.transform.SetParent(this.transform);
 		hb.pawn=pawn;
 		
-		Debug.Log("manager      "+pawn.Name);
+		//Debug.Log("manager "+pawn.Name);
 		hb.slider=hb.GetComponent<Slider>();
 		hb.Init();
 		hb.UpdateLife();
 		hb.mainCam=mainCam;
 		return hb;
 	}
-	public void RemoveHealthBar(HealthBar hb)//。。。我想表达什么？i是啥
+
+	// part of cleanup process referenced by Pawn.OnDie()
+	public void RemoveHealthBar(HealthBar hb)
 	{
-		int i=0;
-		foreach(HealthBar bar in healthBars)
+		if(healthBars.Contains(hb))
 		{
-			if(bar==hb)
-				healthBars.Remove(bar);
-			i++;
+			healthBars.Remove(hb);
+			GameObject.Destroy(hb);
 		}
 	}
 }

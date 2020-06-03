@@ -187,7 +187,7 @@ public class HexMap : MonoBehaviour
         cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
         cell.SetMaterial(plainMat[ran]);
-		Debug.Log("cell created");
+		//Debug.Log("cell created");
         cell.coordinate = HexCoordinate.FromOffsetCoordinate(x, z);
         hiddenCells.Add(cell);
     }
@@ -316,7 +316,7 @@ public class HexMap : MonoBehaviour
                 if (nextCell != null)
                 {
                     int distance = cell.Distance;
-                    if (nextCell.hexType == HexType.Mountain||nextCell.hexType == HexType.Stones||nextCell.hexType == HexType.Thorns)
+                    if (!nextCell.CanbeDestination())
                         continue;
                     else if (nextCell.hexType == HexType.Plain)
                         distance = cell.Distance + 1;
@@ -360,21 +360,65 @@ public class HexMap : MonoBehaviour
 		return pathLength;
 	}
 
+    public HexCell GetEmptyNearestCellAround(HexCell startcell)
+    {
+        if (startcell == null)
+            return null;
+
+        List<HexCell> cellToFind = new List<HexCell>();
+
+        // Set distance to max value
+        for (int i = 0; i < cells.Length; i++)
+        {
+            cells[i].Distance = int.MaxValue;
+            cells[i].prevCell = null;
+        }
+
+        startcell.Distance = 0;
+        cellToFind.Add(startcell);
+        while (cellToFind.Count > 0)
+        {
+            HexCell cell = cellToFind[0];
+            cellToFind.RemoveAt(0);
+
+            for (HexDirection dir = (HexDirection)0; dir <= (HexDirection)5; dir++)
+            {
+                HexCell nextCell = cell.GetNeighbour(dir);
+                if (nextCell != null)
+                {
+                    if (nextCell.Distance == int.MaxValue)
+                    {
+                        nextCell.Distance = 0;
+                        cellToFind.Add(nextCell);
+                    }
+                }
+                if (cell != startcell && cell.CanbeDestination())
+                    return cell;
+            }
+            cellToFind.Sort((x, y) => x.Distance.CompareTo(y.Distance));
+        }
+        return null;
+    }
+
     public List<HexCell> GetRoutes(Pawn pawn, HexCell Target)
     {
         List<HexCell> routes = new List<HexCell>();
 
-        FindPath(pawn.currentCell, Target);
+        FindPath(pawn.currentCell, GetEmptyNearestCellAround(Target));
 
+        int pathDistance = 0;
         for(int i = 0; i < currentRoutes.Count-1; i++)
         {
-            if (currentRoutes[i].Distance <= pawn.GetDexterity())
+            pathDistance += currentRoutes[i].hexType == HexType.Plain ? 1 : 2;
+            if (pathDistance <= pawn.GetDexterity())
                 routes.Add(currentRoutes[i]);
             else
                 break;
         }
 
-        return routes;
+        currentRoutes = routes;
+
+        return currentRoutes;
     }
 
     public void ShowPath(HexCell fromCell, HexCell toCell)
@@ -459,7 +503,7 @@ public class HexMap : MonoBehaviour
             reachableCells[i].indicator.SetColor(Indicator.StartColor);
         }
     }
-	
+
 	 public void UpdateBuildableCells(HexCell startCell, int maxDistance, bool buildmode)
     {
         List<HexCell> cellToFind = new List<HexCell>();
@@ -472,7 +516,7 @@ public class HexMap : MonoBehaviour
 		}
         for (int i = 0; i < cells.Length; i++)
         {
-            if(startCell.DistanceTo(cells[i])<=maxDistance&&cells[i].hexType==HexType.Plain&&cells[i].pawn==null&&cells[i].building==null)
+            if(startCell.DistanceTo(cells[i])<=maxDistance&&cells[i].CanbeCellConstructTarget())
 			{
 				cells[i].buildable=true;
 				cells[i].indicator.gameObject.SetActive(true);
@@ -509,7 +553,7 @@ public class HexMap : MonoBehaviour
             cells[i].Distance = int.MaxValue;
         }
 
-        Debug.Log("Attack range: " + startCell.pawn.currentAttackRange);
+        //Debug.Log("Attack range: " + startCell.pawn.currentAttackRange);
 
         startCell.Distance = 0;
         cellToFind.Add(startCell);
@@ -555,16 +599,16 @@ public class HexMap : MonoBehaviour
             else
                 emptyCells.Add(cell);
         }
+        if(startCell.pawn != null)
+            friendCells.Add(startCell);
     }
 
-    public HexCell GetNearestAttackableTarget(HexCell fromCell, int probeDistance=30)
+    public HexCell GetNearestAttackableTarget(HexCell fromCell, int radius = 20)
     {
         if (fromCell.pawn == null)
             return null;
 
         List<HexCell> cellToFind = new List<HexCell>();
-
-        int maxDistance = probeDistance;
 
         for (int i = 0; i < cells.Length; i++)
         {
@@ -573,7 +617,6 @@ public class HexMap : MonoBehaviour
 
         fromCell.Distance = 0;
         cellToFind.Add(fromCell);
-        reachableCells.Clear();
 
         while (cellToFind.Count > 0)
         {
@@ -585,37 +628,25 @@ public class HexMap : MonoBehaviour
                 HexCell nextCell = cell.GetNeighbour(dir);
                 if (nextCell != null)
                 {
-                    int distance = cell.Distance;
-                    if (!nextCell.CanbeDestination())
-                        continue;
-                    else if (nextCell.hexType == HexType.Plain)
-                        distance = cell.Distance + 1;
-                    else if (nextCell.hexType == HexType.Forest || nextCell.hexType == HexType.Swamp)
-                        distance = cell.Distance + 2;
-
+                    int distance = cell.Distance + 1;
                     if (nextCell.Distance == int.MaxValue)
                     {
                         nextCell.Distance = distance;
-                        if (nextCell.Distance < maxDistance + 1)
-                            cellToFind.Add(nextCell);
+                        cellToFind.Add(nextCell);
                     }
-                    else if (nextCell.Distance > distance)
+                    else if(nextCell.Distance > distance)
                     {
-                        if (nextCell.Distance > distance)
-                        {
-                            nextCell.Distance = distance;
-                        }
+                        nextCell.Distance = distance;
                     }
-                    if (cell.Distance <= maxDistance && cell != fromCell)
-                        reachableCells.Add(cell);
-
-                    if (nextCell.pawn != null && nextCell.pawn.Type != fromCell.pawn.Type)
-                        return nextCell;
                 }
             }
+            if (cell.Distance <= radius && cell.CanbeAttackTargetOf(fromCell))
+            {
+                return cell;
+            }
+
             cellToFind.Sort((x, y) => x.Distance.CompareTo(y.Distance));
         }
-
         return null;
     }
 
@@ -705,7 +736,6 @@ public class HexMap : MonoBehaviour
             attackableCells[i].indicator.gameObject.SetActive(true);
             attackableCells[i].indicator.SetColor(Indicator.AttackColor);
         }
-        Debug.Log("Candidates: " + attackableCells.Count);
     }
 
     public void ShowFriendCandidates()
@@ -717,7 +747,6 @@ public class HexMap : MonoBehaviour
             friendCells[i].indicator.gameObject.SetActive(true);
             friendCells[i].indicator.SetColor(Indicator.FriendColor);
         }
-        Debug.Log("Candidates: " + friendCells.Count);
     }
 
     public bool IsReachable(HexCell cell)
@@ -752,6 +781,21 @@ public class HexMap : MonoBehaviour
         int ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
         HexCell cell = cells[ranX + ranY * mapWidth];
         while (!cell.CanbeDestination())
+        {
+            ranX = Random.Range(mapWidth / 4, mapWidth / 4 * 3);
+            ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
+            cell = cells[ranX + ranY * mapWidth];
+        }
+            return cell;
+    }
+	
+	public HexCell GetRandomCellToSpawnEvent()
+    {
+        // make it centered
+        int ranX = Random.Range(mapWidth / 4, mapWidth / 4 * 3);
+        int ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
+        HexCell cell = cells[ranX + ranY * mapWidth];
+        while (!cell.CanbeEventDestination())
         {
             ranX = Random.Range(mapWidth / 4, mapWidth / 4 * 3);
             ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
@@ -808,5 +852,16 @@ public class HexMap : MonoBehaviour
 		building.transform.position=cell.transform.position;
 		return true;
 	}
+
+    public bool SetGameEventDisplayerCell(GameEventDisplayer displayer, HexCell cell)
+    {
+        if (displayer == null || cell == null || !cell.CanbeDestination())
+            return false;
+        cell.gameEventDisplayer = displayer;
+        displayer.currentCell = cell;
+
+        displayer.transform.position = cell.transform.position;
+        return true;
+    }
 
 }

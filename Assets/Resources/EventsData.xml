@@ -5,28 +5,35 @@
                 <event id="0">
                     <name>trap</name>
                     <description>狗屎运……也是一种运气吧……</description>
+                    <counter>10</counter>
                     <effectDescription>2回合内不可移动该角色</effectDescription>
-                    <counter>2</counter>
-                    <attribute>mobility</attribute>
-                    <value>0</value>
+                    <buff>
+                        <counter>2</counter>
+                        <attribute>mobility</attribute>
+                        <value>0</value>
+                    </buff>
                 </event>
                 <event id="1">
                     <name>wind</name>
                     <description>顺风！你的移动方向恰好与风向相同</description>
+                    <counter>10</counter>
                     <effectDescription>3回合内敏捷+1</effectDescription>
-                    <counter>3</counter>
-                    <attribute>dexiterity</attribute>
-                    <value>1</value>
+                    <buff>
+                        <counter>3</counter>
+                        <attribute>dexterity</attribute>
+                        <value>1</value>
+                    </buff>
                 </event>
             </gainBuffEvents>
             <gainItemsEvents>
                 <event id="0">
                     <name>skull</name>
                     <description>某种怪物的头骨</description>
+                    <counter>10</counter>
                     <effectDescription>获得2灵魂</effectDescription>
                     <item>
-                        <type>Soul</type>
-                        <typeEnum>Soul</typeEnum>
+                        <type>soultype</type>
+                        <typeEnum>soul</typeEnum>
                         <number>2</number>
                         <posibility>100</posibility>
                     </item>
@@ -34,10 +41,11 @@
                 <event id="1">
                     <name>simpleTomb</name>
                     <description>两条树枝造就的简易十字架，和一个小小的土包</description>
+                    <counter>10</counter>
                     <effectDescription>获得3灵魂</effectDescription>
                     <item>
-                        <type>Soul</type>
-                        <typeEnum>Soul</typeEnum>
+                        <type>soultype</type>
+                        <typeEnum>soul</typeEnum>
                         <number>3</number>
                         <posibility>100</posibility>
                     </item>
@@ -45,10 +53,11 @@
                 <event id="2">
                     <name>fossil</name>
                     <description>形状奇怪的化石，可能是某种远古野兽的尸骨</description>
+                    <counter>10</counter>
                     <effectDescription>获得1月光石</effectDescription>
                     <item>
-                        <type>Soul</type>
-                        <typeEnum>MoonlightStone</typeEnum>
+                        <type>soultype</type>
+                        <typeEnum>moonlightstone</typeEnum>
                         <number>1</number>
                         <posibility>100</posibility>
                     </item>
@@ -56,30 +65,43 @@
                 <event id="3">
                     <name>deadWarrior</name>
                     <description>不幸的人</description>
+                    <counter>10</counter>
                     <effectDescription>70%获得2灵魂/10%获得1红色的糖果/10%获得1蓝色的糖果/10%获得1紫色的糖果</effectDescription>
                     <item>
-                        <type>Soul</type>
-                        <typeEnum>Soul</typeEnum>
+                        <type>soultype</type>
+                        <typeEnum>soul</typeEnum>
                         <number>2</number>
                         <posibility>70</posibility>
                     </item>
                     <item>
-                        <type>Buff</type>
-                        <typeEnum>RedCandy</typeEnum>
+                        <type>buff</type>
+                        <typeEnum>redcandy</typeEnum>
                         <number>1</number>
                         <posibility>10</posibility>
                     </item>
                     <item>
-                        <type>Buff</type>
-                        <typeEnum>BlueCandy</typeEnum>
+                        <type>buff</type>
+                        <typeEnum>bluecandy</typeEnum>
                         <number>1</number>
                         <posibility>10</posibility>
                     </item>
                     <item>
-                        <type>Buff</type>
-                        <typeEnum>PurpleCandy</typeEnum>
+                        <type>buff</type>
+                        <typeEnum>purplecandy</typeEnum>
                         <number>1</number>
                         <posibility>10</posibility>
+                    </item>
+                </event>
+				<event id="4">
+                    <name>seaofFlowers</name>
+                    <description>一片无人看管的的彼岸花海，不知是何人栽种的呢？</description>
+                    <counter>10</counter>
+                    <effectDescription>获得5彼岸花</effectDescription>
+                    <item>
+                        <type>farm</type>
+                        <typeEnum>spiderlily</typeEnum>
+                        <number>5</number>
+                        <posibility>100</posibility>
                     </item>
                 </event>
             </gainItemsEvents>
@@ -89,41 +111,42 @@
             <event id="0">
                 <name>chest</name>
                 <description>朴素的宝箱，是否开启？</description>
+                <counter>10</counter>
                 <options>
                     <option id="A">
                         <name>开启</name>
                         <item>
-                            <type>Soul</type>
-                            <typeEnum>Soul</typeEnum>
+                            <type>soultype</type>
+                            <typeEnum>soul</typeEnum>
                             <number>3</number>
                             <posibility>50</posibility>
                         </item>
                         <item>
-                            <type>Buff</type>
-                            <typeEnum>SpringWater</typeEnum>
+                            <type>buff</type>
+                            <typeEnum>springwater</typeEnum>
                             <number>3</number>
                             <posibility>20</posibility>
                         </item>
                         <item>
-                            <type>Farm</type>
-                            <typeEnum>SpiderLily</typeEnum>
+                            <type>farm</type>
+                            <typeEnum>spiderlily</typeEnum>
                             <number>5</number>
                             <posibility>10</posibility>
                         </item>
                         <item>
-                            <type>Mine</type>
-                            <typeEnum>Sulfur</typeEnum>
+                            <type>mine</type>
+                            <typeEnum>sulphur</typeEnum>
                             <number>5</number>
                             <posibility>10</posibility>
                         </item>
                         <item>
-                            <type>Farm</type>
-                            <typeEnum>DemonFruit</typeEnum>
+                            <type>farm</type>
+                            <typeEnum>demonfruit</typeEnum>
                             <number>2</number>
                             <posibility>5</posibility>
                         </item>
                         <item>
-                            <type>Mine</type>
+                            <type>mine</type>
                             <typeEnum>mercury</typeEnum>
                             <number>2</number>
                             <posibility>5</posibility>
@@ -137,36 +160,37 @@
             <event id="1">
                 <name>gorgeousChest</name>
                 <description>华丽的宝箱，是否开启？</description>
+                <counter>10</counter>
                 <options>
                     <option id="A">
                         <name>开启</name>
                         <item>
-                            <type>Soul</type>
-                            <typeEnum>Soul</typeEnum>
+                            <type>soultype</type>
+                            <typeEnum>soul</typeEnum>
                             <number>20</number>
                             <posibility>50</posibility>
                         </item>
                         <item>
-                            <type>Soul</type>
-                            <typeEnum>MoonlightStone</typeEnum>
+                            <type>soultype</type>
+                            <typeEnum>moonlightstone</typeEnum>
                             <number>2</number>
                             <posibility>20</posibility>
                         </item>
                         <item>
-                            <type>Farm</type>
-                            <typeEnum>GoldenApple</typeEnum>
+                            <type>farm</type>
+                            <typeEnum>goldenapple</typeEnum>
                             <number>2</number>
                             <posibility>10</posibility>
                         </item>
                         <item>
-                            <type>Mine</type>
-                            <typeEnum>Gold</typeEnum>
+                            <type>mine</type>
+                            <typeEnum>gold</typeEnum>
                             <number>2</number>
                             <posibility>10</posibility>
                         </item>
                         <item>
-                            <type>Buff</type>
-                            <typeEnum>BlackCandy</typeEnum>
+                            <type>buff</type>
+                            <typeEnum>blackcandy</typeEnum>
                             <number>2</number>
                             <posibility>10</posibility>
                         </item>
@@ -177,29 +201,29 @@
                 </options>
             </event>
             <event id="2">
-                <name>springWater</name>
+                <name>SpringWater</name>
                 <description>冒着气泡的温泉，放松身心的好地方</description>
                 <counter>10</counter>
                 <options>
                     <option id="A">
                         <name>休息</name>
                         <buff>
-                            <attribute>HP</attribute>
-                            <value>50</value>
-                            <isPercentage>1</isPercentage>
+                            <counter>0</counter>
+                            <attribute>hp</attribute>
+                            <value>20</value>
                         </buff>
                     </option>
                     <option id="B">
                         <name>汲水</name>
                         <item>
-                            <type>Buff</type>
-                            <typeEnum>SpringWater</typeEnum>
+                            <type>buff</type>
+                            <typeEnum>springwater</typeEnum>
                             <number>2</number>
                             <posibility>100</posibility>
                         </item>
                         <item>
-                            <type>Mine</type>
-                            <typeEnum>Sulfur</typeEnum>
+                            <type>mine</type>
+                            <typeEnum>sulphur</typeEnum>
                             <number>1</number>
                             <posibility>100</posibility>
                         </item>
@@ -212,15 +236,16 @@
     <mysteryPersonEvents>
         <gainItemsEvents>
             <event id="0">
-                <name>lostWanderer</name>
+                <name>LostWanderer</name>
                 <description>不知道为什么会出现在这里的可疑的旅人，是否伸出援手？</description>
+                <counter>10</counter>
                 <options>
                     <option id="A">
                         <name>帮助</name>
                         <result>他表示感谢，并给了你不菲的报酬。</result>
                         <item>
-                            <type>Buff</type>
-                            <typeEnum>RedCandy</typeEnum>
+                            <type>buff</type>
+                            <typeEnum>redcandy</typeEnum>
                             <number>1</number>
                             <posibility>100</posibility>
                         </item>
@@ -229,38 +254,42 @@
                         <name>攻击</name>
                         <result>你毫不客气地结果了他的性命。</result>
                         <item>
-                            <type>Soul</type>
-                            <typeEnum>Soul</typeEnum>
+                            <type>soultype</type>
+                            <typeEnum>soul</typeEnum>
                             <number>1</number>
                             <posibility>100</posibility>
                         </item>
                     </option>
                     <option id="C">
                         <name>路过</name>
+                        <result>nothing happened</result>
                     </option>
                 </options>
             </event>
             <event id="1">
                 <name>ghost</name>
                 <description>一个迷路的幽灵，向你寻求帮助</description>
+                <counter>10</counter>
                 <options>
                     <option id="A">
                         <name>帮助</name>
                         <result>他表示感谢，并给了你不菲的报酬。</result>
                         <cost>
-                            <type>Soul</type>
-                            <typeEnum>Soul</typeEnum>
-                            <number>5</number>
+                            <item>
+                                <type>soultype</type>
+                                <typeEnum>soul</typeEnum>
+                                <number>5</number>
+                            </item>
                         </cost>
                         <item>
-                            <type>Farm</type>
-                            <typeEnum>SpiderLily</typeEnum>
+                            <type>farm</type>
+                            <typeEnum>spiderlily</typeEnum>
                             <number>5</number>
                             <posibility>50</posibility>
                         </item>
                         <item>
-                            <type>Mine</type>
-                            <typeEnum>Sulfur</typeEnum>
+                            <type>mine</type>
+                            <typeEnum>sulphur</typeEnum>
                             <number>5</number>
                             <posibility>50</posibility>
                         </item>
@@ -269,8 +298,8 @@
                         <name>攻击</name>
                         <result>获得2灵魂</result>
                         <item>
-                            <type>Soul</type>
-                            <typeEnum>Soul</typeEnum>
+                            <type>soultype</type>
+                            <typeEnum>soul</typeEnum>
                             <number>2</number>
                             <posibility>100</posibility>
                         </item>
@@ -283,6 +312,7 @@
             <event id="0">
                 <name>newBornZombie</name>
                 <description>一具刚刚转化成为僵尸（1级）的尸体，惊恐于自己的变化</description>
+                <counter>10</counter>
                 <character>zombie</character>
                 <level>1</level>
                 <options>
@@ -291,20 +321,22 @@
                         <result>她表示感谢，并加入了你的阵营</result>
                         <cost>
                             <item>
-                                <type>Mine</type>
-                                <typeEnum>Sulfur</typeEnum>
+                                <type>mine</type>
+                                <typeEnum>sulphur</typeEnum>
                                 <number>4</number>
                             </item>
                         </cost>
                     </option>
                     <option id="B">
                         <name>拒绝</name>
+                        <result>She disappeared</result>
                     </option>
                 </options>
             </event>
             <event id="1">
                 <name>hurtSprite</name>
                 <description>一位受伤的妖精（1级），向你寻求帮助</description>
+                <counter>10</counter>
                 <character>sprite</character>
                 <level>1</level>
                 <options>
@@ -313,20 +345,22 @@
                         <result>她表示感谢，并加入了你的阵营</result>
                         <cost>
                             <item>
-                                <type>Farm</type>
-                                <typeEnum>SpiderLily</typeEnum>
+                                <type>farm</type>
+                                <typeEnum>spiderlily</typeEnum>
                                 <number>5</number>
                             </item>
                         </cost>
                     </option>
                     <option id="B">
                         <name>拒绝</name>
+                        <result>She disappeared</result>
                     </option>
                 </options>
             </event>
             <event id="2">
                 <name>deportedDruid</name>
                 <description>被自己族群驱逐的德鲁伊（1级）</description>
+                <counter>10</counter>
                 <character>druid</character>
                 <level>1</level>
                 <options>
@@ -335,21 +369,23 @@
                         <result>他愉快地加入了你的阵营</result>
                         <cost>
                             <item>
-                                <type>Farm</type>
-                                <typeEnum>SpiderLily</typeEnum>
+                                <type>farm</type>
+                                <typeEnum>spiderlily</typeEnum>
                                 <number>5</number>
                             </item>
                         </cost>
                     </option>
                     <option id="B">
                         <name>再会</name>
+                        <result>She disappeared</result>
                     </option>
                 </options>
             </event>
             <event id="3">
                 <name>frustratedDrawf</name>
                 <description>一位不得志的矮人（2级），郁闷地喝着啤酒</description>
-                <character>drawf</character>
+                <counter>10</counter>
+                <character>dwarf</character>
                 <level>2</level>
                 <options>
                     <option id="A">
@@ -357,20 +393,22 @@
                         <result>他愉快地加入了你的阵营</result>
                         <cost>
                             <item>
-                                <type>Mine</type>
-                                <typeEnum>Mercury</typeEnum>
+                                <type>mine</type>
+                                <typeEnum>mercury</typeEnum>
                                 <number>2</number>
                             </item>
                         </cost>
                     </option>
                     <option id="B">
                         <name>再会</name>
+                        <result>She disappeared</result>
                     </option>
                 </options>
             </event>
             <event id="4">
                 <name>idleGiant</name>
                 <description>一位正在发呆的巨人（2级），你的出现引起了他的注意</description>
+                <counter>10</counter>
                 <character>giant</character>
                 <level>2</level>
                 <options>
@@ -379,14 +417,15 @@
                         <result>他愉快地加入了你的阵营</result>
                         <cost>
                             <item>
-                                <type>Farm</type>
-                                <typeEnum>DemonFruit</typeEnum>
+                                <type>farm</type>
+                                <typeEnum>demonfruit</typeEnum>
                                 <number>2</number>
                             </item>
                         </cost>
                     </option>
                     <option id="B">
                         <name>再会</name>
+                        <result>She disappeared</result>
                     </option>
                 </options>
             </event>

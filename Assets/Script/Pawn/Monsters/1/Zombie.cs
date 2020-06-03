@@ -11,6 +11,7 @@ public class Zombie : Monster
     {
         isDoPassive2 = isDoPassive4 = false;
     }
+
     public override void DoSkillOne(Pawn other = null)
     {
         other.TakeDamage(5, 0, this, true);

@@ -54,5 +54,9 @@ public class ItemManager : MonoBehaviour
 		else
 			Debug.Log("consumeitem error");
 	}
-
+	
+	public bool IsHaveEnoughItem(ItemType itemType, int num)
+	{
+		return ItemsOwn.ContainsKey(itemType)&&ItemsOwn[itemType]>=num;
+	}
 }

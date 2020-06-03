@@ -6,14 +6,14 @@ using UnityEngine;
 
 public abstract class Pawn : MonoBehaviour
 {
-	private int level;
-	private int attack;
-	private int magicAttack;
-	private int defense;
-	private int magicDefense;
-	private int hp;
-	private int dexterity;
-	private int attackRange;
+	public int level;
+	public int attack;
+	public int magicAttack;
+	public int defense;
+	public int magicDefense;
+	public int hp;
+	public int dexterity;
+	public int attackRange;
 	
 	public int currentAttack;
 	public int currentMagicAttack;
@@ -40,13 +40,13 @@ public abstract class Pawn : MonoBehaviour
 	
 	public HealthBar healthbar;
     public HexCell currentCell;
-    public PawnType Type { get; set; }
+    public PawnType pawnType { get; set; }
 
 	
     public void InitializePawn(PawnType type, string name, int initlevel,
 	int initattack, int initmagicAttack, int initdefense, int initmagicDefense, int inithp, int initdexterity, int initattackRange)
     {
-        Type = type;
+        pawnType = type;
         Name = name;
 		level=initlevel;
 
@@ -116,7 +116,7 @@ public abstract class Pawn : MonoBehaviour
 	public int GetDexterity() { return dexterity; }
 	public int GetAttackRange() { return attackRange; }
 
-	public int recoverHPPercentage(Pawn other,float percentage)
+	public int recoverHPPercentage(Pawn other, float percentage)
 	{
 		int hp=(int)(other.GetMaxHP()*percentage);
 		int ret = 0;
@@ -129,6 +129,11 @@ public abstract class Pawn : MonoBehaviour
 		{
 			ret = hp;
 			other.currentHP += hp;
+		}
+		if(other != null)
+		{
+			GameManager gm = FindObjectOfType<GameManager>();
+			gm.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(other);
 		}
 		return ret;
 	}
@@ -146,6 +151,11 @@ public abstract class Pawn : MonoBehaviour
 			ret = hp;
 			other.currentHP += hp;
 		}
+		if (other != null)
+		{
+			GameManager gm = FindObjectOfType<GameManager>();
+			gm.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(other);
+		}
 		return ret;
 	}
 	
@@ -160,8 +170,22 @@ public abstract class Pawn : MonoBehaviour
 		skipCounter += turnToSkip;
 	}
 
-	public virtual void OnDie() {; }
-	public virtual void OnActionBegin(){;}
+	public virtual void OnDie() 
+	{
+		currentCell.pawn = null;
+		if (healthbar != null)
+		{
+			GameManager gm = FindObjectOfType<GameManager>();
+			gm.healthbarManager.RemoveHealthBar(healthbar);
+		}
+		GameObject.Destroy(gameObject);
+	}
+
+	public virtual void OnActionBegin()
+	{
+		UpdatePawn();
+	}
+	
 	public virtual void OnActionEnd(){;}
 	
 	public void Move(HexCell from,HexCell to)
@@ -211,6 +235,15 @@ public abstract class Pawn : MonoBehaviour
 				case AttributeType.AttackRange:
 					currentAttackRange+=modifiedvalue;
 					break;
+					
+				case AttributeType.Mobility:
+					currentDexterity=0;
+					if(this as Monster!=null)
+						((Monster)this).remainedStep=0;
+					break;
+				case AttributeType.HP:
+					recoverHP(this,modifiedvalue);
+					break;
 			}
 	}
 
@@ -238,36 +271,6 @@ public abstract class Pawn : MonoBehaviour
 				break;
 		}
 		isDirty = true;
-	}
-	
-	public void Upgrade()
-	{
-		if (level == 5 || Type == PawnType.Enemy)
-			return;
-
-		GameManager gm = FindObjectOfType<GameManager>();
-
-		Monster monster = (Monster)this;
-		
-		CharacterReader.CharacterData olddata = gm.characterReader.GetMonsterData(
-			gm.monsterManager.GetMonsterUnlockLevel(monster.monsterType),monster.monsterType.ToString(),level);
-		CharacterReader.CharacterData data = gm.characterReader.GetMonsterData(
-			gm.monsterManager.GetMonsterUnlockLevel(monster.monsterType), monster.monsterType.ToString(), level+1);
-
-		if (data!=null)
-		{
-			currentHP = hp= data.HP;
-			currentAttack = attack - olddata.attack + data.attack;
-			currentMagicAttack = magicAttack = magicAttack - olddata.magicAttack + data.magicAttack;
-			currentDefense = defense - olddata.defense + data.defense;
-			magicDefense = magicDefense - olddata.magicDefense + data.magicDefense;
-			currentDexterity = dexterity = dexterity - olddata.dexterity + data.dexterity;
-			currentAttackRange = attackRange = attackRange - olddata.attackRange + data.attackRange;
-			level++;
-
-			isDirty = true; // need to update current value with buffs
-		}
-		healthbar.UpdateLife();
 	}
 
 	private void UpdateCounter()

@@ -11,7 +11,17 @@ public class Drow : Monster
     {
         isDoPassive2 = isDoPassive4 = false;
     }
-    public override void DoSkillOne(HexCell cell)
+
+    public override void PrepareSkillOne()
+    {
+        if (isDirty)
+            UpdateCurrentValue();
+
+        pawnAction.requireCellSelection = true;
+        gm.hexMap.FindReachableCells(currentCell, currentDexterity);
+        gm.hexMap.ShowReachableCells();
+    }
+    public override void DoSkillOneCell(HexCell cell)
     {
         GameManager gm = FindObjectOfType<GameManager>();
         gm.hexMap.ProbeAttackTarget(this.currentCell);

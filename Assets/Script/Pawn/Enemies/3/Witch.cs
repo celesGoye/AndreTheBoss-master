@@ -14,4 +14,9 @@ public class Witch : Enemy
                 cell.pawn.TakeDamage(0, 2, this, false, true);
         }
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }

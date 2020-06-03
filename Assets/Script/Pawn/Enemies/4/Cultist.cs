@@ -16,15 +16,20 @@ public class Cultist : Enemy
     public override void OnActionBegin()
     {
         base.OnActionBegin();
-        Type = PawnType.Monster;
+        pawnType = PawnType.Monster;
         gm.hexMap.ProbeAttackTarget(currentCell);
         foreach(HexCell cell in gm.hexMap.GetAttackableTargets())
         {
-            if(cell.pawn != null && cell.pawn.Type == PawnType.Enemy)
+            if(cell.pawn != null && cell.pawn.pawnType == PawnType.Enemy)
             {
                 ((Enemy)cell.pawn).currentTarget = this;
             }
         }
-        Type = PawnType.Enemy;
+        pawnType = PawnType.Enemy;
+    }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
     }
 }

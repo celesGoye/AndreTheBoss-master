@@ -17,7 +17,7 @@ public class MenuControl : MonoBehaviour
 
     public void UpdateMenu()
     {
-        //upgradePanel.UpdateInfo();
+        upgradePanel.UpdateInfo();
 		general.UpdateGeneral();
     }
 	
@@ -27,7 +27,7 @@ public class MenuControl : MonoBehaviour
 			Debug.Log("current monster: "+currentMonster.Name);
 		else
 			Debug.Log("current monster is null!");
-		Debug.Log("menu enabled ");
+		//Debug.Log("menu enabled ");
 	}
 	
 	public void DisableAll()

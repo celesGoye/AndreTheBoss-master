@@ -17,4 +17,9 @@ public class JinjaMiko : Enemy
             target.TakeDamage(0, 14, this, false, true);
         }
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }

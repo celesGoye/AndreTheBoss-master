@@ -72,9 +72,6 @@ public class CharacterReader
         xmlDocUpgrade = new XmlDocument();
         xmlDocUpgrade.Load(Application.dataPath + pathUpgrade);
 
-        if (xmlDocUpgrade != null)
-            Debug.Log(xmlDocUpgrade.OuterXml);
-
         xmlDocMonsterSkill = new XmlDocument();
         xmlDocMonsterSkill.Load(Application.dataPath + pathMonsterSkill);
 		
@@ -84,35 +81,6 @@ public class CharacterReader
         xmlDocDescription = new XmlDocument();
         xmlDocDescription.Load(Application.dataPath + pathDescription);
     }
-
-    /*
-    public CharacterData GetCharacterData(PawnType pawnType, string characterName, int level)
-    {
-        CharacterData data = new CharacterData();
-        string xpath = characterName;
-        if (pawnType == PawnType.Enemy)
-            xpath = "/characters/enemies/" + xpath;
-        else if (pawnType == PawnType.Monster)
-            xpath = "/characters/monsters/" + xpath;
-        
-        XmlElement node = (XmlElement)xmlDoc.SelectSingleNode(xpath).ChildNodes[level-1];
-        
-        if(node == null)
-        {
-            Debug.Log("On CharacterReader: " + characterName + " not found");
-            return null;
-        }
-
-        data.attack = int.Parse(node["attack"].InnerXml);
-        data.defense = int.Parse(node["defense"].InnerXml);
-        data.HP = int.Parse(node["hp"].InnerXml);
-        data.dexterity = int.Parse(node["dexterity"].InnerXml);
-        data.attackRange = int.Parse(node["attackRange"].InnerXml);
-		data.magicAttack=int.Parse(node["magic"].InnerXml);
-		data.magicDefense=int.Parse(node["resistance"].InnerXml);
-        return data;
-    }
-    */
 
     public CharacterData GetMonsterData(int unlocklevel, string monsterName, int level)
     {
@@ -164,8 +132,6 @@ public class CharacterReader
         data.dropsoul = int.Parse(node["dropsoul"].InnerXml);
 		data.skillcounts = int.Parse(node["skillcounts"].InnerXml);
 
-        Debug.Log(data.ToString());
-
         return data;
     }
 
@@ -176,7 +142,7 @@ public class CharacterReader
 
         CharacterData data = GetEnemyData(level, type.ToString());
         enemy.InitializeEnemy(type, type.ToString(), level, data.skillcounts,
-            data.attack, data.magicAttack, data.defense, data.magicDefense, data.HP, data.dexterity, data.attackRange);
+            data.attack, data.magicAttack, data.defense, data.magicDefense, data.HP, data.dexterity, data.attackRange, data.dropsoul);
         return true;
     }
 

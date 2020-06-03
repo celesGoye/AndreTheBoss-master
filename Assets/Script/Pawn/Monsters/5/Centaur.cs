@@ -10,6 +10,11 @@ public class Centaur : Monster
     {
         isDoPassive2 = isDoPassive4 = false;
     }
+
+    public override void PrepareSkillOne()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillOne(Pawn other = null)
     {
         GameManager gm = FindObjectOfType<GameManager>();
@@ -23,6 +28,7 @@ public class Centaur : Monster
         }
     }
 
+    
     public override void DoSkillThree(Pawn other = null)
     {
         GameManager gm = FindObjectOfType<GameManager>();
@@ -38,7 +44,10 @@ public class Centaur : Monster
             }
         }
     }
-
+    public override void PrepareSkillFive()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillFive(Pawn other = null)
     {
         GameManager gm = FindObjectOfType<GameManager>();

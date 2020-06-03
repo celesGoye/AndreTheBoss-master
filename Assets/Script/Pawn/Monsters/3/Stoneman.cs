@@ -11,6 +11,11 @@ public class Stoneman : Monster
     {
         isDoPassive2 = isDoPassive4 = false;
     }
+
+    public override void PrepareSkillOne()
+    {
+        pawnAction.DoSkill();
+    }
     public override void DoSkillOne(Pawn other = null)
     {
         for (HexDirection i = HexDirection.NE; i <= HexDirection.NW; i++)
@@ -23,9 +28,19 @@ public class Stoneman : Monster
         }
     }
 
+    public override void PrepareSkillThree()
+    {
+        pawnAction.DoSkill();
+    }
+
     public override void DoSkillThree(Pawn other = null)
     {
         isHarden = true;
+    }
+
+    public override void PrepareSkillFive()
+    {
+        pawnAction.DoSkill();
     }
 
     public override void DoSkillFive(Pawn other = null)

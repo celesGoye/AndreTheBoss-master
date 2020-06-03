@@ -61,9 +61,9 @@ public class Teleporter : Building
 		}
 	}
 	
-    public override string GetDescription()
+    public static string GetDescription(int maxdistance)
 	{
-		string description="Max transmission distance:"+GetMaxDistance(currentLevel);
+		string description="Max transmission distance:"+maxdistance;
 		return description;
 	}
 	

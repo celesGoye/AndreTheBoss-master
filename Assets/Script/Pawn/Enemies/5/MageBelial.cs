@@ -36,4 +36,9 @@ public class MageBelial : Enemy
     {
         addBuff(AttributeType.Defense, 10, 1);
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 2;
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,50 +9,33 @@ public class MonsterManager : MonoBehaviour
 
     public List<Monster> MonsterPawns;
 
-    // the type of revived enemy should be PawnType.Monster
+    // the type of revived enemy should be set as PawnType.Monster
     public List<Enemy> RevivedEnemyPawns;
 
     public Monster MonsterPrefab_zombie;
     public Monster MonsterPrefab_sprite;
     public Monster MonsterPrefab_dwarf;
     public Monster MonsterPrefab_giant;
-    public Boss Boss_Prefab;
+    public Monster MonsterPrefab_boss;
 
     private Dictionary<MonsterType, Monster> prefabs;
 
     private GameObject MonsterRoot;
 
-    public void OnEnable()
-    {
-        /*gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
-        MonsterPawns = new List<Monster>();
-        MonsterRoot = new GameObject();
-        MonsterRoot.transform.SetParent(transform);
-        MonsterRoot.transform.position = Vector3.zero;
-
-        prefabs = new Dictionary<MonsterType, Monster>
-        {
-            {MonsterType.boss, Boss_Prefab },
-            {MonsterType.dwarf, MonsterPrefab_dwarf},
-            {MonsterType.giant, MonsterPrefab_giant },
-            {MonsterType.sprite, MonsterPrefab_sprite },
-            {MonsterType.zombie, MonsterPrefab_zombie }
-        };*/
-		InitMonsterManager();
-    }
 	 public void InitMonsterManager()
     {
-        gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+
         MonsterPawns = new List<Monster>();
         RevivedEnemyPawns = new List<Enemy>();
 
-        MonsterRoot = new GameObject();
+        MonsterRoot = new GameObject("Monster Root");
         MonsterRoot.transform.SetParent(transform);
         MonsterRoot.transform.position = Vector3.zero;
 
         prefabs = new Dictionary<MonsterType, Monster>
         {
-            {MonsterType.boss, Boss_Prefab },
+            {MonsterType.boss, MonsterPrefab_boss },
             {MonsterType.dwarf, MonsterPrefab_dwarf},
             {MonsterType.giant, MonsterPrefab_giant },
             {MonsterType.sprite, MonsterPrefab_sprite },
@@ -69,6 +53,7 @@ public class MonsterManager : MonoBehaviour
         gameManager.hexMap.RevealCellsFrom(monster.currentCell);
 		monster.healthbar=gameManager.healthbarManager.InitializeHealthBar(monster);
 		MonsterPawns.Add(monster);
+        monster.transform.SetParent(MonsterRoot.transform);
         return monster;
     }
 
@@ -81,12 +66,69 @@ public class MonsterManager : MonoBehaviour
     {
         if (pawn == null)
             return false;
-
-        if (RevivedEnemyPawns.Contains((Enemy)pawn) || MonsterPawns.Contains((Monster)pawn))
+        if (RevivedEnemyPawns.Contains(pawn as Enemy) || MonsterPawns.Contains(pawn as Monster))
             return true;
-
+        try
+        {
+            if (MonsterPawns.Contains((Monster)pawn))
+                return true;
+        }catch(InvalidCastException ex)
+        {
+            Debug.Log(ex.StackTrace);
+            try
+            {
+                if (RevivedEnemyPawns.Contains((Enemy)pawn))
+                    return true;
+            }catch(InvalidCastException ex2)
+            {
+                Debug.Log(ex2.StackTrace);
+            }
+        }
         return false;
     }
 
 
+    public void OnMonsterTurnBegin()
+    {
+		foreach(Monster monster in MonsterPawns)
+        {
+            monster.OnActionBegin();
+        }
+    }
+
+    public void OnMonsterTurnEnd()
+    {
+		foreach(Monster monster in MonsterPawns)
+        {
+            monster.OnActionEnd();
+        }
+    }
+
+    public void Update()
+    {
+        foreach(Monster monster in MonsterPawns)
+        {
+            monster.healthbar.UpdateLife();
+        }
+        foreach(Enemy enemy in RevivedEnemyPawns)
+        {
+            enemy.healthbar.UpdateLife();
+        }
+    }
+	
+	public void RemoveMonster(Monster monster)
+    {
+        if(MonsterPawns.Contains(monster))
+        {
+            MonsterPawns.Remove(monster);
+        }
+    }
+
+    public void RemoveRevivedEnemy(Enemy enemy)
+    {
+        if(RevivedEnemyPawns.Contains(enemy))
+        {
+            RevivedEnemyPawns.Remove(enemy);
+        }
+    }
 }

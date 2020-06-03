@@ -32,4 +32,9 @@ public class MagicGrandMaster : Enemy
     {
         addBuff(AttributeType.Defense, 3, 1);
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 2;
+    }
 }

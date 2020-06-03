@@ -15,4 +15,9 @@ public class Berserker : Enemy
             }
         }
     }
+
+    public override void InitPawn()
+    {
+        skillCounts = 1;
+    }
 }

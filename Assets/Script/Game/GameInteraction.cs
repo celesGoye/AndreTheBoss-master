@@ -21,12 +21,12 @@ public class GameInteraction : MonoBehaviour
 	public BuildingAction buildingActionPanel;
     public MonsterPallete monsterPalletePanel;
     public FacilityPallete facilityPalletePanel;
+	public GameEventPanel gameEventPanel;
 	public NoticeBoard noticeBoard;
 	public UILog uilog;
 	public PlayerPanel playerPanel;
 
     public bool IsPawnAction = false;
-    
 
     public void OnEnable()
     {
@@ -99,12 +99,12 @@ public class GameInteraction : MonoBehaviour
             else if ((selectedPawn = hit.collider.GetComponent<Pawn>()) != null)
             {
 				gameManager.buildingManager.UpdateBuildMode(false);
-                if(selectedPawn.Type == PawnType.Enemy)
+                if(selectedPawn.pawnType == PawnType.Enemy)
                 {
                     pawnStatusPanel.UpdatePawnStatusPanel(selectedPawn);
                     EnablePawnStatusPanel();
                 }
-                else if(selectedPawn.Type == PawnType.Monster)
+                else if(selectedPawn.pawnType == PawnType.Monster)
                 {
                     pawnActionPanel.SetPawn(selectedPawn);
                     pawnStatusPanel.UpdatePawnStatusPanel(selectedPawn);
@@ -119,7 +119,18 @@ public class GameInteraction : MonoBehaviour
             Clear();
         }
     }
+	
+	public void SetIsPawnAction(bool action)
+	{
+		IsPawnAction=action;
+		playerPanel.OnPawnActionChange(action);
+		//Animator animator=selectedPawn.transform.GetChild(0).GetComponent<Animator>();
 
+		//animator.SetBool("BeginPrepare",action);
+
+		//animator.SetBool("EndPrepare",!action);
+	}
+	
     private void EnablePawnStatusPanel()
     {
         pawnStatusPanel.gameObject.SetActive(true);
@@ -212,12 +223,16 @@ public class GameInteraction : MonoBehaviour
         facilityPalletePanel.gameObject.SetActive(true);
     }
 	
-	public void GameInteractionOnPlayerTurnBegin()
+	public void OnMonsterTurnEnd()
 	{
-		//pawnStatusPanel.UpdatePawnStatusPanel();
+		playerPanel.OnTurnEnd();
 		Clear();
 	}
-
+	
+	public void OnMonsterTurnBegin()
+	{
+		playerPanel.OnTurnBegin();
+	}
 }
 
 
