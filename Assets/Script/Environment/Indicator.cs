@@ -21,4 +21,9 @@ public class Indicator : MonoBehaviour
     {
         spriteRenderer.color = color;
     }
+	
+	public void OnDisable()
+	{
+		//Debug.Log("bye");
+	}
 }

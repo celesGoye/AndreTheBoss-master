@@ -18,7 +18,7 @@ public class MonsterActionManager : MonoBehaviour
 	public void InitMonsterAcitonManager()
 	{
 		monstersTookAction=new List<Monster>();
-		MonsterActionOnPlayerTurnBegin();
+		OnMonsterTurnBegin();
 	}
 	
 	public void MonsterAttack(Monster monster)
@@ -33,11 +33,10 @@ public class MonsterActionManager : MonoBehaviour
 		if(actionPoint<=0)
 			ActionPointExhausted();
 		
-		//Debug.Log("action point :"+actionPoint);
 		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(monster);
 	}
     
-	public void MonsterActionOnPlayerTurnBegin()
+	public void OnMonsterTurnBegin()
 	{
 		actionPoint=MaxActionPoint;
 		monstersTookAction.Clear();
@@ -62,8 +61,7 @@ public class MonsterActionManager : MonoBehaviour
 		actionPoint=MaxActionPoint-monstersTookAction.Count;
 		if(actionPoint<=0)
 			ActionPointExhausted();
-		
-		//Debug.Log("action point :"+actionPoint);
+
 		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(monster);
 	}
 	

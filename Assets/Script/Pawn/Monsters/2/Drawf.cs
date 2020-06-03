@@ -29,7 +29,8 @@ public class Drawf : Monster
                 cell.indicator.SetColor(Indicator.AttackColor);
             }    
         }
-        // maybe a button for confirmation from player?
+		        // maybe a button for confirmation from player?
+				//额 为啥啊
         pawnAction.DoSkill();
     }
 

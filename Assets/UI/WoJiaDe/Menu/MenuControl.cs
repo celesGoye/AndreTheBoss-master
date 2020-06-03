@@ -17,7 +17,7 @@ public class MenuControl : MonoBehaviour
 
     public void UpdateMenu()
     {
-        //upgradePanel.UpdateInfo();
+        upgradePanel.UpdateInfo();
 		general.UpdateGeneral();
     }
 	

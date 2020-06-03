@@ -49,6 +49,9 @@ public class GameTurnManager : MonoBehaviour
     public void NextGameTurn()
     {
         gm.monsterManager.OnMonsterTurnBegin();
+		gm.monsterActionManager.OnMonsterTurnBegin();
+		gm.gameInteraction.OnMonsterTurnBegin();
+		gm.buildingManager.OnMonsterTurnBegin();
         gm.gameEventManager.OnTurnBegin();
         turnNumber++;
         isPlayerTurn = true;
@@ -65,6 +68,8 @@ public class GameTurnManager : MonoBehaviour
         gm.monsterManager.OnMonsterTurnEnd();
         gm.gameEventManager.OnTurnEnd();
         gm.enemyManager.OnEnemyTurnBegin();
+		
+		gm.gameInteraction.OnMonsterTurnEnd();
     }
 
 }

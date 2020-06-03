@@ -13,7 +13,7 @@ public class EnemyManager : MonoBehaviour
     public Enemy EnemyPrefab_magic;
 
     private List<Enemy> EnemyPawns;
-    private Enemy DeadEnemyPawn = null;
+	private Enemy DeadEnemyPawn = null;
     private EnemyType LastDeadEnemyType = EnemyType.NUM;
 
     private GameObject EnemyRoot;
@@ -23,8 +23,8 @@ public class EnemyManager : MonoBehaviour
     private static int[] heroAppearingTurn ={
         10, 20, 30, 40, 50
     };
-
-    private Dictionary<EnemyType, Enemy> prefabs;
+	
+	private Dictionary<EnemyType, Enemy> prefabs;
 
     public void InitEnemyManager()
     {
@@ -33,8 +33,8 @@ public class EnemyManager : MonoBehaviour
         EnemyRoot = new GameObject("EnemyRoot");
         EnemyRoot.transform.SetParent(transform);
         EnemyRoot.transform.position = Vector3.zero;
-
-        prefabs = new Dictionary<EnemyType, Enemy>
+		
+		prefabs = new Dictionary<EnemyType, Enemy>
         {
             {EnemyType.wanderingswordman, EnemyPrefab_sword },
             {EnemyType.magicapprentice, EnemyPrefab_magic},
@@ -198,8 +198,8 @@ public class EnemyManager : MonoBehaviour
     {
         return EnemyPawns;
     }
-
-    public Enemy getDeadEnemy()
+	
+	public Enemy getDeadEnemy()
     {
         return DeadEnemyPawn;
     }
@@ -213,7 +213,7 @@ public class EnemyManager : MonoBehaviour
 	{
 		return LastDeadEnemyType;
 	}
-	
+
 	public void setDeadEnemyType(EnemyType enemyType)
 	{
 		LastDeadEnemyType = enemyType;
@@ -226,21 +226,20 @@ public class EnemyManager : MonoBehaviour
             EnemyPawns.Remove(enemy);
         }
     }
+
 	
 	public void testAltar()
 	{
-		
+
 		//int ran = Random.Range(0, (int)EnemyType.NUM);
         //if(LastDeadEnemyType != EnemyType.NUM)
-       // {
+		// {
             //Enemy newEnemy = Instantiate<Enemy>(EnemyPrefab_sword);
             //Enemy newEnemy = Instantiate<Enemy>(prefabs[DeadEnemyPawn]);
             //gm.characterReader.InitEnemyData(ref newEnemy, getEnemyLevel(DeadEnemyPawn), DeadEnemyPawn);
             //DeadEnemyPawn = newEnemy;
             //Debug.Log("testAltar:" + newEnemy.enemyType.ToString());
-       // }
-
-        
+		// }
 	}
 
 }

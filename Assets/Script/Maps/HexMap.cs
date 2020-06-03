@@ -516,7 +516,7 @@ public class HexMap : MonoBehaviour
 		}
         for (int i = 0; i < cells.Length; i++)
         {
-            if(startCell.DistanceTo(cells[i])<=maxDistance&&cells[i].hexType==HexType.Plain&&cells[i].pawn==null&&cells[i].building==null)
+            if(startCell.DistanceTo(cells[i])<=maxDistance&&cells[i].CanbeCellConstructTarget())
 			{
 				cells[i].buildable=true;
 				cells[i].indicator.gameObject.SetActive(true);
@@ -781,6 +781,21 @@ public class HexMap : MonoBehaviour
         int ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
         HexCell cell = cells[ranX + ranY * mapWidth];
         while (!cell.CanbeDestination())
+        {
+            ranX = Random.Range(mapWidth / 4, mapWidth / 4 * 3);
+            ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
+            cell = cells[ranX + ranY * mapWidth];
+        }
+            return cell;
+    }
+	
+	public HexCell GetRandomCellToSpawnEvent()
+    {
+        // make it centered
+        int ranX = Random.Range(mapWidth / 4, mapWidth / 4 * 3);
+        int ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);
+        HexCell cell = cells[ranX + ranY * mapWidth];
+        while (!cell.CanbeEventDestination())
         {
             ranX = Random.Range(mapWidth / 4, mapWidth / 4 * 3);
             ranY = Random.Range(mapHeight / 4, mapHeight / 4 * 3);

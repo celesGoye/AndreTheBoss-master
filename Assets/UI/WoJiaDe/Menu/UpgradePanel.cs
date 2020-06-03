@@ -20,7 +20,6 @@ public class UpgradePanel : MonoBehaviour
 	
 	public void OnEnable()
 	{
-		menu.UpdateMenu();
 		if(gameManager == null)
 			gameManager = FindObjectOfType<GameManager>();
 		characterReader=gameManager.characterReader;
@@ -71,7 +70,7 @@ public class UpgradePanel : MonoBehaviour
 		{
 			Monster monster = (Monster)currentMonster;
 			monster.Upgrade();
-			menu.pawnStatus.UpdatePawnStatusPanel(currentMonster);
+			gameManager.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(currentMonster);
 			menu.UpdateMenu();
 			consumePanel.ConsumeItem();
 			consumePanel.UpdateConsumePanel();
@@ -80,7 +79,6 @@ public class UpgradePanel : MonoBehaviour
 		{
 			Debug.Log(ex.StackTrace);
 		}
-
 	}
 	
 	public void OnNext()

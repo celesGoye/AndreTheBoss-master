@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7715916309972373945}
   - component: {fileID: 7447059206129835805}
-  - component: {fileID: -8441748889432098899}
+  - component: {fileID: 2280035433618920412}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
@@ -128,7 +128,7 @@ CapsuleCollider:
   m_Height: 3.3
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
---- !u!114 &-8441748889432098899
+--- !u!114 &2280035433618920412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,8 +137,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 8737018112692964093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3a8b82aefa1ff4199088ed44f36acd, type: 3}
+  m_Script: {fileID: 11500000, guid: 87a98248e5362244c9554b5118fbebc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAttack: 0
+  currentMagicAttack: 0
+  currentDefense: 0
+  currentMagicDefense: 0
+  currentHP: 0
+  currentDexterity: 0
+  currentAttackRange: 0
+  skipCounter: 0
+  isSkip: 0
+  isDirty: 0
+  isIgnoreDefense: 0
+  isIgnoreMagicDefense: 0
+  buffs: []
+  healthbar: {fileID: 0}
   currentCell: {fileID: 0}
   monsterType: 0
+  defaultSkill: 0
+  equippedSkill: 0
+  remainedStep: 0
+  actionType: 0
+  CanDoAction: 0
+  gm: {fileID: 0}
+  pawnAction: {fileID: 0}

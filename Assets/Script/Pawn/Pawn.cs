@@ -181,7 +181,11 @@ public abstract class Pawn : MonoBehaviour
 		GameObject.Destroy(gameObject);
 	}
 
-	public virtual void OnActionBegin(){;}
+	public virtual void OnActionBegin()
+	{
+		UpdatePawn();
+	}
+	
 	public virtual void OnActionEnd(){;}
 	
 	public void Move(HexCell from,HexCell to)
@@ -230,6 +234,15 @@ public abstract class Pawn : MonoBehaviour
 					break;
 				case AttributeType.AttackRange:
 					currentAttackRange+=modifiedvalue;
+					break;
+					
+				case AttributeType.Mobility:
+					currentDexterity=0;
+					if(this as Monster!=null)
+						((Monster)this).remainedStep=0;
+					break;
+				case AttributeType.HP:
+					recoverHP(this,modifiedvalue);
 					break;
 			}
 	}

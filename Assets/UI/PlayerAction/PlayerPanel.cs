@@ -9,6 +9,8 @@ public class PlayerPanel : MonoBehaviour
 	public Text txtLevel;
 	public Text txtbuildmode;
 	public Text txtActionPoint;
+	public Button buttonSkip;
+	public Button buttonBuild;
 	
 	public MonstersTookAction monstersTookAction;
 	
@@ -43,11 +45,26 @@ public class PlayerPanel : MonoBehaviour
 	public void OnSkipTurn()
 	{
 		gameManager.gameTurnManager.EndPlayerTurn();
-		
-		//0，0
-		gameManager.monsterActionManager.MonsterActionOnPlayerTurnBegin();
-		gameManager.gameInteraction.GameInteractionOnPlayerTurnBegin();
-		gameManager.buildingManager.BuildingsOnPlayerTurnBegin();
 	}
-
+	
+	public void OnPawnActionChange(bool action)
+	{
+		EnableButtons(!action);
+	}
+	
+	private void EnableButtons(bool interactable)
+	{
+		buttonSkip.interactable=interactable;
+		buttonBuild.interactable=interactable;
+	}
+	
+	public void OnTurnBegin()
+	{
+		EnableButtons(true);
+	}
+	
+	public void OnTurnEnd()
+	{
+		EnableButtons(false);
+	}
 }

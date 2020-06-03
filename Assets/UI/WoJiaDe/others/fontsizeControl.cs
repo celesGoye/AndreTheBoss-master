@@ -10,12 +10,22 @@ public class fontsizeControl : MonoBehaviour
 	
 	private int newsize;
 	private string newtext;
-    // Update is called once per frame
+	private Text mytext;
+	
+	public void OnEnable()
+	{
+		mytext=this.GetComponent<Text>();
+	}
     void Update()
     {
+		if(mytext==null)
+			return;
 		Regex rgx=new Regex("<size=\\d*>");
 		newsize=(int)(UnityEngine.Screen.height*fontsize);
-		newtext=rgx.Replace(this.GetComponent<Text>().text,"<size="+newsize+">");
-		this.GetComponent<Text>().text=newtext;
+		if(rgx.IsMatch(mytext.text))
+			newtext=rgx.Replace(mytext.text,"<size="+newsize+">");
+		else
+			newtext="<size="+newsize+">"+mytext.text+"</size>";
+		mytext.text=newtext;
     }
 }

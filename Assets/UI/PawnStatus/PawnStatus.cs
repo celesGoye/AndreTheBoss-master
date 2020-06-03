@@ -20,26 +20,26 @@ public class PawnStatus : MonoBehaviour
 	public Text txtRemainedStep;
 	public Image imgAvatar;
 	
-	public MonsterManager monsterManager;
-	
 	private Sprite sprite;
 	private Pawn currentPawn;
 	
     public void UpdatePawnStatusPanel(Pawn pawn)
     {	
 		currentPawn=pawn;
-		if(pawn.pawnType == PawnType.Monster)
-		{
-			UpdatePanel(pawn.pawnType, pawn.currentAttack, pawn.currentDefense, pawn.currentHP, pawn.currentDexterity,
-					pawn.currentAttackRange, pawn.Name, pawn.GetMaxHP(), pawn.GetLevel(), pawn.currentMagicAttack,
-					pawn.currentMagicDefense, ((Monster)pawn).remainedStep, ((Monster)pawn).actionType);
-		}
+		if(pawn as Monster!=null)
+			UpdatePanel(pawn.pawnType,pawn.currentAttack, pawn.currentDefense, pawn.currentHP, pawn.currentDexterity,
+					pawn.currentAttackRange,pawn.Name,pawn.GetMaxHP(),pawn.GetLevel(),pawn.currentMagicAttack,
+					pawn.currentMagicDefense,((Monster)pawn).remainedStep,((Monster)pawn).actionType);
+		else
+			UpdatePanel(pawn.pawnType,pawn.currentAttack, pawn.currentDefense, pawn.currentHP, pawn.currentDexterity,
+					pawn.currentAttackRange,pawn.Name,pawn.GetMaxHP(),pawn.GetLevel(),pawn.currentMagicAttack,
+					pawn.currentMagicDefense,0,ActionType.NoAction);
     }
 	
 	public void UpdatePawnStatusPanel()
     {	
 		if(currentPawn!=null)
-        UpdatePanel(currentPawn.pawnType, currentPawn.currentAttack, currentPawn.currentDefense, currentPawn.currentHP, currentPawn.currentDexterity,
+        UpdatePanel(currentPawn.pawnType,currentPawn.currentAttack, currentPawn.currentDefense, currentPawn.currentHP, currentPawn.currentDexterity,
 					currentPawn.currentAttackRange,currentPawn.Name,currentPawn.GetMaxHP(),currentPawn.GetLevel(),currentPawn.currentMagicAttack,
 					currentPawn.currentMagicDefense,((Monster)currentPawn).remainedStep,((Monster)currentPawn).actionType);
     }
@@ -58,16 +58,20 @@ public class PawnStatus : MonoBehaviour
 		txtResistant.text="RES:"+resistance;
         txtName.text = ""+name;
 		txtLevel.text="."+level;
-		txtActionType.text=actionType.ToString();
 		if((sprite=Resources.Load("UI/avatar/avatar_"+name, typeof(Sprite)) as Sprite)!=null)
 			imgAvatar.sprite =sprite;
 		
 		if(type==PawnType.Monster)
 		{
-			txtRemainedStep.transform.gameObject.SetActive(true);
+			txtRemainedStep.gameObject.SetActive(true);
 			txtRemainedStep.text=""+remainedStep;
+			txtActionType.gameObject.SetActive(true);
+			txtActionType.text=actionType.ToString();
 		}
 		else
-			txtRemainedStep.transform.gameObject.SetActive(false);
+		{
+		txtRemainedStep.transform.gameObject.SetActive(false);
+		txtActionType.transform.gameObject.SetActive(false);
+		}
     }
 }

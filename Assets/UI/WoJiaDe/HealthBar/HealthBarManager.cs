@@ -28,17 +28,8 @@ public class HealthBarManager : MonoBehaviour
 	}
 
 	// part of cleanup process referenced by Pawn.OnDie()
-	public void RemoveHealthBar(HealthBar hb)//。。。我想表达什么？i是啥
+	public void RemoveHealthBar(HealthBar hb)
 	{
-		/*
-		int i=0;
-		foreach(HealthBar bar in healthBars)
-		{
-			if(bar==hb)
-				healthBars.Remove(bar);
-			i++;
-		}
-		*/
 		if(healthBars.Contains(hb))
 		{
 			healthBars.Remove(hb);

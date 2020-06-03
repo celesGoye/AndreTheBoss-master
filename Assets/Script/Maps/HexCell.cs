@@ -26,7 +26,7 @@ public class HexCell : MonoBehaviour
 	public Building building;
     public Pawn pawn;
     public Indicator indicator;
-    public GameEventDisplayer gameEventDisplayer;
+	public GameEventDisplayer gameEventDisplayer;
 
     public int Distance { get; set; }
     public int heuristicDistance;
@@ -106,14 +106,20 @@ public class HexCell : MonoBehaviour
 
     public bool CanbeDestination()
     {
-		return (hexType != HexType.Mountain && pawn == null && building == null && gameEventDisplayer == null);
+		//return (hexType != HexType.Mountain && pawn == null && building == null && gameEventDisplayer == null);
+		return (hexType != HexType.Mountain&&hexType!=HexType.Stones&&hexType!=HexType.Thorns && pawn == null );
     }
+	
+	public bool CanbeEventDestination()
+	{
+		return CanbeDestination()&& building == null && gameEventDisplayer == null;
+	}
 
     public bool CanbeCellConstructTarget()
     {
         // stub
         // Todo: add requirments for utilizing a cell
-        return CanbeDestination() && hexType == HexType.Plain &&building==null;
+        return CanbeDestination() && hexType == HexType.Plain &&building==null &&gameEventDisplayer == null;
     }
 
     public bool CanbeAttackTargetOf(HexCell fromCell)

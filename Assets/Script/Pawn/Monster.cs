@@ -79,11 +79,11 @@ public abstract class Monster: Pawn
     public virtual void DoSkillOne(Pawn other = null) { }
 
     public virtual void DoSkillOneCell(HexCell cell = null) { }
-
+	
     public virtual void DoSkillThreeCell(HexCell cell = null) { }
 
     public virtual void DoSkillFiveCell(HexCell cell = null) { }
-
+	
     public virtual void DoSkillThree(Pawn other = null) { }
 
     public virtual void DoSkillFive(Pawn other = null) { }
@@ -169,7 +169,7 @@ public abstract class Monster: Pawn
         base.OnActionEnd();
     }
 
-    public void Upgrade()
+	 public void Upgrade()
     {
         if (GetLevel() == 5)
             return;
@@ -199,5 +199,4 @@ public abstract class Monster: Pawn
         else if (GetLevel() == 4)
             this.DoPassiveFour();
     }
-
 }

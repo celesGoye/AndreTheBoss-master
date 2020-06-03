@@ -8,6 +8,8 @@ public class GameEvent
     public string eventName;
     public string eventDescription;
     public int counter;
+	
+	public int eventType;
 
     public GameEvent(string eventName, string eventDescription, int counter)
     {
@@ -29,6 +31,16 @@ public class NormalNonoptionGainbuffEvent : GameEvent
         this.buff = buff;
         this.effectDescription = effectDescription;
     }
+	
+	public BuffEntry GetBuff()
+	{
+		return buff;
+	}
+	
+	public string GetEffectDescription()
+	{
+		return effectDescription;
+	}
 
     public override string ToString()
     {
@@ -49,6 +61,16 @@ public class NormalNonoptionGainitemsEvent : GameEvent
         this.effectDescription = effectDescription;
         this.items = items;
     }
+	
+	public List<ItemEntry> GetItems()
+	{
+		return items;
+	}
+	
+	public string GetEffectDescription()
+	{
+		return effectDescription;
+	}
 
     public override string ToString()
     {
@@ -71,6 +93,11 @@ public class NormalOptionEvent : GameEvent
     {
         this.options = options;
     }
+	
+	public List<GameEventOption> GetOptions()
+	{
+		return options;
+	}
 
     public override string ToString()
     {
@@ -92,7 +119,12 @@ public class MysterypersonGainitemsEvent : GameEvent
     {
         this.options = options;
     }
-
+	
+	public List<GameEventOption> GetOptions()
+	{
+		return options;
+	}
+	
     public override string ToString()
     {
         string ret = "name: " + this.eventName + "\ndescription: " + this.eventDescription +
@@ -117,6 +149,21 @@ public class MysterypersonGaincharacterEvent : GameEvent
         this.level = level;
         this.options = options;
     }
+	
+	public MonsterType GetMonsterType()
+	{
+		return monsterType;
+	}
+	
+	public int GetLevel()
+	{
+		return level;
+	}
+	
+	public List<GameEventOption> GetOptions()
+	{
+		return options;
+	}
 
     public override string ToString()
     {

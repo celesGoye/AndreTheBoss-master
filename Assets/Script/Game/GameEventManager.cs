@@ -60,7 +60,7 @@ public class GameEventManager : MonoBehaviour
 			HexCell cell = gm.hexMap.GetRandomCellToSpawn();
 			gm.hexMap.SetGameEventDisplayerCell(newDisplayer, cell);
 			newDisplayer.gameEvent = gameEvent;
-
+			newDisplayer.InitDisplayer();
 			//gm.hexMap.RevealCell(cell);
 			gm.gameCamera.FocusOnPoint(cell.transform.localPosition);
 
@@ -109,7 +109,14 @@ public class GameEventManager : MonoBehaviour
 			GameObject.DestroyImmediate(displayer.gameObject);
 		}
 	}
+	
+	public void CloseEvent(GameEventDisplayer displayer)
+	{
+		displayer.currentCell.gameEventDisplayer = null;
+		gameEventDisplayers.Remove(displayer);
 
+		GameObject.DestroyImmediate(displayer.gameObject);
+	}
 }
 
 

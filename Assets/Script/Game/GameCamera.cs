@@ -21,7 +21,7 @@ public class GameCamera : MonoBehaviour
     [Range(5, 50)]
     public float cameraHeight = 15f;
     [Range(5, 30)]
-    public float cameraZOffset = 10f;
+    public float cameraZOffset = 5f;
     public float cameraMaxHeight = 20f;
     public float cameraMinHeight = 10f;
     public float cameraHeightChangeSpeed = 1f;

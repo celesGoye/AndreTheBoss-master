@@ -66,7 +66,8 @@ public class MonsterManager : MonoBehaviour
     {
         if (pawn == null)
             return false;
-
+        if (RevivedEnemyPawns.Contains(pawn as Enemy) || MonsterPawns.Contains(pawn as Monster))
+            return true;
         try
         {
             if (MonsterPawns.Contains((Monster)pawn))
@@ -83,14 +84,13 @@ public class MonsterManager : MonoBehaviour
                 Debug.Log(ex2.StackTrace);
             }
         }
-
         return false;
     }
 
 
     public void OnMonsterTurnBegin()
     {
-        foreach(Monster monster in MonsterPawns)
+		foreach(Monster monster in MonsterPawns)
         {
             monster.OnActionBegin();
         }
@@ -98,7 +98,7 @@ public class MonsterManager : MonoBehaviour
 
     public void OnMonsterTurnEnd()
     {
-        foreach(Monster monster in MonsterPawns)
+		foreach(Monster monster in MonsterPawns)
         {
             monster.OnActionEnd();
         }
@@ -115,8 +115,8 @@ public class MonsterManager : MonoBehaviour
             enemy.healthbar.UpdateLife();
         }
     }
-
-    public void RemoveMonster(Monster monster)
+	
+	public void RemoveMonster(Monster monster)
     {
         if(MonsterPawns.Contains(monster))
         {
@@ -131,5 +131,4 @@ public class MonsterManager : MonoBehaviour
             RevivedEnemyPawns.Remove(enemy);
         }
     }
-
 }

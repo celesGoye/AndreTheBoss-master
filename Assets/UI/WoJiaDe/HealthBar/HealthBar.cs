@@ -30,7 +30,8 @@ public class HealthBar : MonoBehaviour
 	{
 		if(slider != null)
 		{
-			GameObject.Destroy(slider);
+			//GameObject.Destroy(slider);
+			GameObject.Destroy(this.gameObject);
 		}
 		GameObject.Destroy(gameObject);
 	}

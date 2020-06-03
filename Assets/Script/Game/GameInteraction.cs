@@ -21,6 +21,7 @@ public class GameInteraction : MonoBehaviour
 	public BuildingAction buildingActionPanel;
     public MonsterPallete monsterPalletePanel;
     public FacilityPallete facilityPalletePanel;
+	public GameEventPanel gameEventPanel;
 	public NoticeBoard noticeBoard;
 	public UILog uilog;
 	public PlayerPanel playerPanel;
@@ -118,7 +119,18 @@ public class GameInteraction : MonoBehaviour
             Clear();
         }
     }
+	
+	public void SetIsPawnAction(bool action)
+	{
+		IsPawnAction=action;
+		playerPanel.OnPawnActionChange(action);
+		//Animator animator=selectedPawn.transform.GetChild(0).GetComponent<Animator>();
 
+		//animator.SetBool("BeginPrepare",action);
+
+		//animator.SetBool("EndPrepare",!action);
+	}
+	
     private void EnablePawnStatusPanel()
     {
         pawnStatusPanel.gameObject.SetActive(true);
@@ -211,12 +223,16 @@ public class GameInteraction : MonoBehaviour
         facilityPalletePanel.gameObject.SetActive(true);
     }
 	
-	public void GameInteractionOnPlayerTurnBegin()
+	public void OnMonsterTurnEnd()
 	{
-		//pawnStatusPanel.UpdatePawnStatusPanel();
+		playerPanel.OnTurnEnd();
 		Clear();
 	}
-
+	
+	public void OnMonsterTurnBegin()
+	{
+		playerPanel.OnTurnBegin();
+	}
 }
 
 

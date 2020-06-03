@@ -16,7 +16,6 @@ public class SkillPanel : MonoBehaviour
 	private GameManager gameManager;
 
 	public void OnEnable(){
-		menu.UpdateMenu();
 		if(gameManager == null)
 			gameManager = FindObjectOfType<GameManager>();
 		characterReader=gameManager.characterReader;

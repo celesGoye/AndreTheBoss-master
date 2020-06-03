@@ -69,6 +69,29 @@ public class GameEventReader
             }
         }
     }
+	
+	public int GetGameEventIndex(GameEvent ge)
+	{
+		int type=ge.eventType;
+		int index=0;
+		for(int i=0;i<(int)type;i++)
+			index+=eventNums[i];
+		
+		if (xmlDoc != null)
+        {
+            string xpath = eventxpath[type];
+			for(int i=0;i<getTotalEventNumOfType(type);i++)
+			{
+				XmlElement node = (XmlElement)xmlDoc.SelectNodes(xpath)[i];
+				index++;
+				if(ge.eventName== node["name"].InnerXml)
+				{
+					return index;
+				}
+			}				
+		}
+		return 0;
+	}
 
     public GameEvent getNewGameEvent(GameEventType type, int which)
     {
@@ -79,6 +102,7 @@ public class GameEventReader
         string eventName = "";
         string eventDescription = "";
         int eventCounter = 0;
+		int eventid=0;
 
         if (xmlDoc != null)
         {
@@ -340,6 +364,7 @@ public class GameEventReader
                 break;
         }
 
+		gameEvent.eventType=(int)type;
         return gameEvent;
     }
 

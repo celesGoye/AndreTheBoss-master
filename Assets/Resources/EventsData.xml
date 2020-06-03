@@ -92,6 +92,18 @@
                         <posibility>10</posibility>
                     </item>
                 </event>
+				<event id="4">
+                    <name>seaofFlowers</name>
+                    <description>一片无人看管的的彼岸花海，不知是何人栽种的呢？</description>
+                    <counter>10</counter>
+                    <effectDescription>获得5彼岸花</effectDescription>
+                    <item>
+                        <type>farm</type>
+                        <typeEnum>spiderlily</typeEnum>
+                        <number>5</number>
+                        <posibility>100</posibility>
+                    </item>
+                </event>
             </gainItemsEvents>
         </nonoptionsEvents>
         

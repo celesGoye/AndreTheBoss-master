@@ -27,8 +27,10 @@ public class Building: MonoBehaviour
 			this.itemTypeProduced = itemTypeProduced;
 
 		// for catapult
-		buildingPawn = gameObject.AddComponent<Pawn>();
-		buildingPawn.pawnType = PawnType.Building;
+		//buildingPawn = gameObject.AddComponent<Pawn>();
+		Debug.Log("initbuilding: "+ gameObject);
+		gameObject.AddComponent<Pawn>();
+		//buildingPawn.Type = PawnType.Building;
     }
 
     public int LevelUp() // return souls used
@@ -75,6 +77,13 @@ public class Building: MonoBehaviour
 		return result;
 	}
 	
+	public static int GetProduceNumber(BuildingType type, int level)
+	{
+		int result=0;
+		produceItems[(int)type].TryGetValue(level,out result);
+		return result;
+	}
+	
 	public static List<ItemType> GetValidProduct(BuildingType type)
 	{
 		List<ItemType> list=new List<ItemType>();;
@@ -94,24 +103,25 @@ public class Building: MonoBehaviour
 	
 	public static string GetDescription(BuildingType type,ItemType itemType,int level)
 	{
-		Building building=new Building();
+		string description="";
 		switch((int)type)
 		{
 			case 0:
-				building = new Farm();
+				description=Farm.GetDescription(itemType,GetProduceNumber(type, level));
 				break;
 			case 1:
-				building = new Mine();
+				description=Mine.GetDescription(itemType,GetProduceNumber(type, level));
 				break;
 			case 2:
-				building = new Teleporter();
+				description = Teleporter.GetDescription(Teleporter.GetMaxDistance(level));
 				break;
 			case 3:
-				building = new Altar();
+				description = Altar.GetDescription();
+				break;
+			default:
 				break;
 		}
-		building.InitBuilding(type,itemType,level);
-		return building.GetDescription();
+		return description;
 	}
 	
 	public virtual string GetDescription(){return "Description";}

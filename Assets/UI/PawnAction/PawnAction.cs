@@ -16,6 +16,8 @@ public class PawnAction : MonoBehaviour
     public Text txt_pawn;
 
     public Transform actionPanel;
+	public Button moveButton;
+	public Button attackButton;
     public Button transferButton;
     public AttackPanel attackPanel;
 
@@ -48,12 +50,7 @@ public class PawnAction : MonoBehaviour
         attackPanel.monster = (Monster)selectedPawn;
         attackPanel.gameObject.SetActive(false);
         actionPanel.transform.gameObject.SetActive(true);
-        if (selectedPawn.currentCell.building != null
-            && selectedPawn.currentCell.building.GetBuildingType() == BuildingType.Teleporter
-            && selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid())
-            transferButton.gameObject.SetActive(true);
-        else
-            transferButton.gameObject.SetActive(false);
+        ActiveTransferButton();
     }
 
     public void SetPawn(Pawn pawn)
@@ -84,26 +81,54 @@ public class PawnAction : MonoBehaviour
         ((Monster)selectedPawn).SwitchSkill();
         this.transform.gameObject.SetActive(false);
     }
-
+	
+	public void ActiveTransferButton()
+	{		
+			if(selectedPawn.currentCell.building!=null
+				&&selectedPawn.currentCell.building.GetBuildingType()==BuildingType.Teleporter
+				&&selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid()
+				&&selectedPawn.currentCell.building.GetComponent<Teleporter>().another.currentCell.pawn==null)
+				transferButton.gameObject.SetActive(true);
+			else
+				transferButton.gameObject.SetActive(false);
+	}
+	
     public void UseTeleporter()
     {
         if (selectedPawn != null)
         {
             uilog.UpdateLog(selectedPawn.Name + " is trying to transfer");
             //Debug.Log(selectedPawn.Name + " is trying to transfer");
-            gameInteraction.IsPawnAction = true;
+            gameInteraction.SetIsPawnAction(true);
             currentStatus = Status.IsTransfering;
             UpdateRoot(selectedPawn, selectedPawn.currentCell, selectedPawn.currentCell.building.GetComponent<Teleporter>().another.currentCell);
             selectedPawn.currentCell.building.GetComponent<Teleporter>().SetIsValid(false);
             //Debug.Log("pawn use teleporter: " + selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid());
-            if (selectedPawn.currentCell.building != null
-                && selectedPawn.currentCell.building.GetBuildingType() == BuildingType.Teleporter
-                && selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid())
-                transferButton.gameObject.SetActive(true);
-            else
-                transferButton.gameObject.SetActive(false);
+            ActiveTransferButton();
         }
     }
+	
+	public void UpdatePawnActionPanel()
+	{
+		try
+		{
+			Monster monster=(Monster)selectedPawn;
+			if(monster.actionType==ActionType.PostAction)
+			{
+				moveButton.interactable=false;
+				attackButton.interactable=false;
+			}
+			else
+			{
+				moveButton.interactable=true;
+				attackButton.interactable=true;
+			}
+		}
+		catch (InvalidCastException ex)
+        {
+			 Debug.Log(ex.StackTrace);
+		}
+	}
 
     public void PrepareAttack()
     {
@@ -111,7 +136,7 @@ public class PawnAction : MonoBehaviour
         {
             uilog.UpdateLog(selectedPawn.Name + " is trying to attack");
             //Debug.Log(selectedPawn.Name + " is trying to attack");
-            gameInteraction.IsPawnAction = true;
+            gameInteraction.SetIsPawnAction(true);
             currentStatus = Status.PrepareAttack;
             validAttackTarget = true;
             hexMap.ProbeAttackTarget(selectedPawn.currentCell);
@@ -125,13 +150,13 @@ public class PawnAction : MonoBehaviour
         requireCellSelection = false;
         currentStatus = Status.PrepareDoSkill;
         validSkillTarget = false;
-        gameInteraction.IsPawnAction = true;
+        gameInteraction.SetIsPawnAction(true);
         try {
             Monster monster = (Monster)selectedPawn;
             if (monster != null)
             {
                 uilog.UpdateLog(monster.Name + " is trying to do skill");
-                gameInteraction.IsPawnAction = true;
+                 gameInteraction.SetIsPawnAction(true);
                 switch (which)
                 {
                     case 1:
@@ -182,7 +207,7 @@ public class PawnAction : MonoBehaviour
         {
             uilog.UpdateLog(selectedPawn.Name + " is trying to move");
             //Debug.Log(selectedPawn.Name + " is trying to move");
-            gameInteraction.IsPawnAction = true;
+            gameInteraction.SetIsPawnAction(true);
             currentStatus = Status.PrepareMove;
             validRoute = true;
             hexMap.FindReachableCells(selectedPawn.currentCell, ((Monster)selectedPawn).remainedStep);
@@ -203,12 +228,7 @@ public class PawnAction : MonoBehaviour
         currentStatus = Status.IsMoving;
 
         UpdateRoot(selectedPawn, selectedPawn.currentCell, routes[routes.Count - 1]);
-        if (selectedPawn.currentCell.building != null
-            && selectedPawn.currentCell.building.GetBuildingType() == BuildingType.Teleporter
-            && selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid())
-            transferButton.gameObject.SetActive(true);
-        else
-            transferButton.gameObject.SetActive(false);
+        ActiveTransferButton();
     }
 
     public void Attack()
@@ -306,7 +326,16 @@ public class PawnAction : MonoBehaviour
                 }
             }
             ClearStatus();
-        }
+        } 
+		try
+        {
+            Monster monster = (Monster)selectedPawn;
+			monsterActionManager.MonsterAttack(monster);
+		}
+		catch(InvalidCastException ex)
+		{
+			Debug.Log(ex.StackTrace);
+		}
     }
 
     public void Skip()
@@ -517,7 +546,7 @@ public class PawnAction : MonoBehaviour
     {
         hexMap.HideIndicator();
         currentStatus = Status.Rest;
-        gameInteraction.IsPawnAction = false;
+        gameInteraction.SetIsPawnAction(false);
     }
 
     public HexCell getCurrentPointerCell()

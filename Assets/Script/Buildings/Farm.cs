@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Farm : Building
 {
-    public override string GetDescription()
+    public static string GetDescription(ItemType type,int num)
 	{
-		string description="Produce: "+itemTypeProduced+"*"+GetCurrentProduceNumber();
+		string description="Produce: "+type+"*"+num;
 		return description;
 	}
 	
