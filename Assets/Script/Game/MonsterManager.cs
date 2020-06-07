@@ -43,6 +43,20 @@ public class MonsterManager : MonoBehaviour
         };
     }
 
+    public void ClearMonster()
+    {
+        for (int i = 0; i < MonsterPawns.Count; i++)
+        {
+            if (MonsterPawns[i].monsterType == MonsterType.boss)
+                continue;
+            else
+            {
+                GameObject.Destroy(MonsterPawns[i]);
+                MonsterPawns.RemoveAt(i);
+            }
+        }
+    }
+
     public Monster CreateMonster(MonsterType type, HexCell cellToSpawn, int level)
     {
         Monster monster = GameObject.Instantiate<Monster>(prefabs[type]);

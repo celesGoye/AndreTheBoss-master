@@ -34,8 +34,8 @@ public class HexMap : MonoBehaviour
     public HexTypeInfo hexPrefab_thorns;
     public HexCell hexCellPrefab;
 
-    private HexCell[] cells;
-    private HexType[] hexTypes;
+    public HexCell[] cells;
+    //private HexType[] hexTypes;
     private Indicator[] indicators;
 
     private List<HexCell> currentRoutes;
@@ -57,7 +57,7 @@ public class HexMap : MonoBehaviour
     public void GenerateCells()
     {
         cells = new HexCell[mapHeight * mapWidth];
-        hexTypes = new HexType[mapHeight * mapWidth];
+        //hexTypes = new HexType[mapHeight * mapWidth];
         indicators = new Indicator[mapHeight * mapWidth];
         currentRoutes = new List<HexCell>();
         reachableCells = new List<HexCell>();
@@ -73,12 +73,13 @@ public class HexMap : MonoBehaviour
             {
                 HexCell cell = cells[x + z * mapWidth] = Instantiate<HexCell>(hexCellPrefab);
                 CreateCell(cell, x, z);
-                GenerateHexType(cell, x, z);
+                GenerateHexTypeRandom(cell, x, z);
                 CreateAttachIndicator(cell, x, z);
             }
         }
 
         ConnectNeighbours();
+
     }
 
     private void ConnectNeighbours()
@@ -189,33 +190,54 @@ public class HexMap : MonoBehaviour
         cell.SetMaterial(plainMat[ran]);
 		//Debug.Log("cell created");
         cell.coordinate = HexCoordinate.FromOffsetCoordinate(x, z);
+        cell.index = x + z * mapWidth;
         hiddenCells.Add(cell);
     }
 
-    private void GenerateHexType(HexCell cell, int x, int z)
+    private void GenerateHexTypeRandom(HexCell cell, int x, int z)
     {
         HexType type = GetRandomHexType();
-        hexTypes[x + z * mapWidth] = cell.hexType = type;
-        
+
+        GenerateHexType(cell, type);
+    }
+
+    // Create hexmap indicator attached to hexcell
+    public void GenerateHexType(HexCell cell, HexType type)
+    {
+        cell.hexType = type;
+        // hexTypes[x+mapWidth*z] = type;
+
         if (type != HexType.Plain)
         {
             HexTypeInfo gm = null;
-            if(type == HexType.Forest)
+            if (type == HexType.Forest)
                 gm = Instantiate(hexPrefab_forest);
-            else if(type == HexType.Swamp)
+            else if (type == HexType.Swamp)
                 gm = Instantiate(hexPrefab_swamp);
-            else if(type == HexType.Mountain)
+            else if (type == HexType.Mountain)
                 gm = Instantiate(hexPrefab_mountain);
-			else if(type==HexType.Stones)
-				gm = Instantiate(hexPrefab_stones);
-			else if(type==HexType.Thorns)
-				gm = Instantiate(hexPrefab_thorns);
+            else if (type == HexType.Stones)
+                gm = Instantiate(hexPrefab_stones);
+            else if (type == HexType.Thorns)
+                gm = Instantiate(hexPrefab_thorns);
 
-            if(gm != null)
+            if (gm != null)
             {
                 gm.ChangeType(type);
                 gm.gameObject.transform.SetParent(cell.transform);
                 gm.gameObject.transform.localPosition = Vector3.zero;
+            }
+        }
+    }
+
+    public void ClearHexType()
+    {
+        for(int i = 0; i < cells.Length; i++)
+        {
+            HexTypeInfo gm = cells[i].gameObject.GetComponentInChildren<HexTypeInfo>();
+            if(gm != null)
+            {
+                GameObject.Destroy(gm.gameObject);
             }
         }
     }
