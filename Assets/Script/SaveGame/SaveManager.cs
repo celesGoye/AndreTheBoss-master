@@ -37,7 +37,6 @@ public class SaveManager : MonoBehaviour
             }
 
             // Monster
-            
             savedata.monsterData = new List<SerializableMonsterData>();
             for (int i = 0; i  < gm.monsterManager.MonsterPawns.Count; i++)
             {
@@ -52,6 +51,7 @@ public class SaveManager : MonoBehaviour
                 pawndata.isSkip = monster.isSkip;
                 pawndata.isIgnoreDefense = monster.isIgnoreDefense;
                 pawndata.isIgnoreMagicDefense = monster.isIgnoreMagicDefense;
+                pawndata.currentHP = monster.currentHP;
                 pawndata.buffs = new List<SerializableBuff>();
                 for (int j = 0; j < monster.buffs.Count; j++)
                 {
@@ -65,7 +65,85 @@ public class SaveManager : MonoBehaviour
                 data.pawnData = pawndata;
                 savedata.monsterData.Add(data);
             }
-            
+
+            // Enemy
+            savedata.enemyData = new List<SerializableEnemyData>();
+            for (int i = 0; i < gm.enemyManager.EnemyPawns.Count; i++)
+            {
+                Enemy enemy = gm.enemyManager.EnemyPawns[i];
+                SerializableEnemyData data = new SerializableEnemyData();
+                data.enemyType = (int)enemy.enemyType;
+                SerializablePawnData pawndata = new SerializablePawnData();
+
+                pawndata.hexcellIndex = enemy.currentCell.index;
+                pawndata.level = enemy.level;
+                pawndata.skipCounter = enemy.skipCounter;
+                pawndata.isSkip = enemy.isSkip;
+                pawndata.isIgnoreDefense = enemy.isIgnoreDefense;
+                pawndata.isIgnoreMagicDefense = enemy.isIgnoreMagicDefense;
+                pawndata.currentHP = enemy.currentHP;
+                pawndata.buffs = new List<SerializableBuff>();
+                for (int j = 0; j < enemy.buffs.Count; j++)
+                {
+                    SerializableBuff buff = new SerializableBuff();
+                    buff.attributeType = (int)enemy.buffs[j].x;
+                    buff.modifiedValue = (int)enemy.buffs[j].y;
+                    buff.counter = (int)enemy.buffs[j].z;
+                    pawndata.buffs.Add(buff);
+                }
+                data.pawnData = pawndata;
+                savedata.enemyData.Add(data);
+            }
+
+            // Revived Enemy
+            savedata.revivedEnemyData = new List<SerializableEnemyData>();
+            for (int i = 0; i < gm.monsterManager.RevivedEnemyPawns.Count; i++)
+            {
+                Enemy enemy = gm.monsterManager.RevivedEnemyPawns[i];
+                SerializableEnemyData data = new SerializableEnemyData();
+                data.enemyType = (int)enemy.enemyType;
+                SerializablePawnData pawndata = new SerializablePawnData();
+
+                pawndata.hexcellIndex = enemy.currentCell.index;
+                pawndata.level = enemy.level;
+                pawndata.skipCounter = enemy.skipCounter;
+                pawndata.isSkip = enemy.isSkip;
+                pawndata.isIgnoreDefense = enemy.isIgnoreDefense;
+                pawndata.isIgnoreMagicDefense = enemy.isIgnoreMagicDefense;
+                pawndata.currentHP = enemy.currentHP;
+                pawndata.buffs = new List<SerializableBuff>();
+                for (int j = 0; j < enemy.buffs.Count; j++)
+                {
+                    SerializableBuff buff = new SerializableBuff();
+                    buff.attributeType = (int)enemy.buffs[j].x;
+                    buff.modifiedValue = (int)enemy.buffs[j].y;
+                    buff.counter = (int)enemy.buffs[j].z;
+                    pawndata.buffs.Add(buff);
+                }
+                data.pawnData = pawndata;
+                savedata.revivedEnemyData.Add(data);
+            }
+
+            // Player data (own items and turn number)
+            savedata.playerData = new SerializablePlayerData();
+            savedata.playerData.turnNumber = gm.gameTurnManager.GetCurrentGameTurn();
+            savedata.playerData.ItemsGot = gm.itemManager.ItemsGot;
+            savedata.playerData.ItemsOwn = gm.itemManager.ItemsOwn;
+
+
+            // Buildings
+            savedata.buildingData = new List<SerializableBuildingData>();
+            for (int i = 0; i < gm.buildingManager.Buildings.Count; i++)
+            {
+                SerializableBuildingData data = new SerializableBuildingData();
+                Building building = gm.buildingManager.Buildings[i];
+                data.buildingType = (int)building.GetBuildingType();
+                data.hexcellIndex = building.currentCell.index;
+                data.itemType = (int)building.GetItemType();
+                data.level = building.GetCurrentLevel();
+
+                savedata.buildingData.Add(data);
+            }
 
             formatter.Serialize(fs, savedata);
         }
@@ -122,6 +200,7 @@ public class SaveManager : MonoBehaviour
                 monster.isDirty = true;
                 monster.isIgnoreDefense = pawndata.isIgnoreDefense;
                 monster.isIgnoreMagicDefense = pawndata.isIgnoreMagicDefense;
+                monster.currentHP = pawndata.currentHP;
 
                 for (int j = 0; j < pawndata.buffs.Count; j++)
                 {
@@ -131,6 +210,71 @@ public class SaveManager : MonoBehaviour
 
                 gm.hexMap.SetCharacterCell(monster, gm.hexMap.cells[pawndata.hexcellIndex]);
             }
+
+            // Enemy
+            gm.enemyManager.ClearEnemy();
+            for (int i = 0; i < savedata.enemyData.Count; i++)
+            {
+                SerializableEnemyData data = savedata.enemyData[i];
+                SerializablePawnData pawndata = data.pawnData;
+                Enemy enemy = gm.enemyManager.SpawnEnemyAtCell((EnemyType)data.enemyType, gm.hexMap.cells[pawndata.hexcellIndex]);
+
+                if (enemy == null)
+                    continue;
+
+                enemy.skipCounter = pawndata.skipCounter;
+                enemy.isSkip = pawndata.isSkip;
+                enemy.isDirty = true;
+                enemy.isIgnoreDefense = pawndata.isIgnoreDefense;
+                enemy.isIgnoreMagicDefense = pawndata.isIgnoreMagicDefense;
+                enemy.currentHP = pawndata.currentHP;
+
+                for (int j = 0; j < pawndata.buffs.Count; j++)
+                {
+                    SerializableBuff buff = pawndata.buffs[j];
+                    enemy.buffs.Add(new Vector3(buff.attributeType, buff.modifiedValue, buff.counter));
+                }
+            }
+
+            // Revived Enemy
+            gm.monsterManager.ClearRevivedEnemy();
+            for (int i = 0; i < savedata.revivedEnemyData.Count; i++)
+            {
+                SerializableEnemyData data = savedata.enemyData[i];
+                SerializablePawnData pawndata = data.pawnData;
+
+                Enemy enemy = gm.monsterManager.CreateRevivedEnemy((EnemyType)data.enemyType, gm.hexMap.cells[pawndata.hexcellIndex]);
+
+                if (enemy == null)
+                    continue;
+
+                enemy.skipCounter = pawndata.skipCounter;
+                enemy.isSkip = pawndata.isSkip;
+                enemy.isDirty = true;
+                enemy.isIgnoreDefense = pawndata.isIgnoreDefense;
+                enemy.isIgnoreMagicDefense = pawndata.isIgnoreMagicDefense;
+                enemy.currentHP = pawndata.currentHP;
+
+                for (int j = 0; j < pawndata.buffs.Count; j++)
+                {
+                    SerializableBuff buff = pawndata.buffs[j];
+                    enemy.buffs.Add(new Vector3(buff.attributeType, buff.modifiedValue, buff.counter));
+                }
+            }
+
+            // Player data (own items and turn number)
+            gm.gameTurnManager.ResetCurrentTurn(savedata.playerData.turnNumber);
+            gm.itemManager.ItemsGot = savedata.playerData.ItemsGot;
+            gm.itemManager.ItemsOwn = savedata.playerData.ItemsOwn;
+
+            // Buildings
+            gm.buildingManager.ClearBuildings();
+            for (int i = 0; i < savedata.buildingData.Count; i++)
+            {
+                SerializableBuildingData data = savedata.buildingData[i];
+                gm.buildingManager.CreateBuilding((BuildingType)data.buildingType, (ItemType)data.itemType, gm.hexMap.cells[data.hexcellIndex], data.level);
+            }
+
 
 
             // after loading

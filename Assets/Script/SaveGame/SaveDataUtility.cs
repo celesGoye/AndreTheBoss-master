@@ -6,12 +6,12 @@ using UnityEngine;
 [Serializable]
 public class SaveData
 {
-    public List<SerializableHexCellData> hexcellData;		// [x]
-    public List<SerializableEnemyData> enemyData;			// [ ]
-    public List<SerializableMonsterData> monsterData;		// [x]
-    public List<SerializableEnemyData> revivedEnemyData;	// [ ]
-    public List<SerializablePlayerData> playerData;			// [ ]
-    public List<SerializableBuildingData> buildingData;		// [ ]
+    public List<SerializableHexCellData> hexcellData;
+    public List<SerializableEnemyData> enemyData;
+    public List<SerializableMonsterData> monsterData;
+    public List<SerializableEnemyData> revivedEnemyData;
+    public SerializablePlayerData playerData;	
+    public List<SerializableBuildingData> buildingData;
 }
 
 [Serializable]
@@ -28,6 +28,7 @@ public struct SerializablePawnData
 
 	public int level;
 	public int skipCounter;
+	public int currentHP;
 	public bool isSkip;
 	public bool isIgnoreDefense;
 	public bool isIgnoreMagicDefense;
@@ -68,5 +69,7 @@ public struct SerializablePlayerData
 public struct SerializableBuildingData
 {
 	public int hexcellIndex;
+	public int buildingType;
 	public int itemType;
+	public int level;
 }

@@ -55,6 +55,15 @@ public class BuildingManager : MonoBehaviour
         };
 	}
 	
+
+	public void ClearBuildings()
+    {
+		for(int i = 0; i < Buildings.Count; i++)
+        {
+			GameObject.Destroy(Buildings[i]);
+        }
+		Buildings.Clear();
+    }
 	
 	public Building CreateBuilding(BuildingType buildingType,ItemType itemType, HexCell cellToBuild, int level)
     {
@@ -97,7 +106,10 @@ public class BuildingManager : MonoBehaviour
 	
 	public void OnMonsterTurnBegin()
 	{
-		itemProduced=new Dictionary<ItemType,int>();
+		if(itemProduced == null)
+			itemProduced=new Dictionary<ItemType,int>();
+
+		itemProduced.Clear();
 		foreach(Building building in Buildings)
 		{
 			if(building.GetItemType()!=ItemType.NUM)

@@ -155,7 +155,6 @@ public class HexMap : MonoBehaviour
                 }
             }
         }
-
     }
 
     public void UpdateHideCells()

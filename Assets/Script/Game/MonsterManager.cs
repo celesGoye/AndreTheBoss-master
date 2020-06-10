@@ -57,6 +57,15 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
+    public void ClearRevivedEnemy()
+    {
+        for (int i = 0; i < RevivedEnemyPawns.Count; i++)
+        {
+            GameObject.Destroy(RevivedEnemyPawns[i]);
+        }
+        RevivedEnemyPawns.Clear();
+    }
+
     public Monster CreateMonster(MonsterType type, HexCell cellToSpawn, int level)
     {
         Monster monster = GameObject.Instantiate<Monster>(prefabs[type]);
@@ -69,6 +78,20 @@ public class MonsterManager : MonoBehaviour
 		MonsterPawns.Add(monster);
         monster.transform.SetParent(MonsterRoot.transform);
         return monster;
+    }
+
+    public Enemy CreateRevivedEnemy(EnemyType type, HexCell cellToSpawn)
+    {
+        Enemy enemy = gameManager.enemyManager.SpawnEnemyAtCell(type, cellToSpawn);
+        if (enemy == null)
+            return null;
+
+        gameManager.enemyManager.EnemyPawns.Remove(enemy);
+        RevivedEnemyPawns.Add(enemy);
+
+        // The Enemy revived being a monster
+        enemy.pawnType = PawnType.Monster;
+        return enemy;
     }
 
     public int GetMonsterUnlockLevel(MonsterType type)

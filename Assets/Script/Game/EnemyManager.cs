@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour
     public Enemy EnemyPrefab_sword;
     public Enemy EnemyPrefab_magic;
 
-    private List<Enemy> EnemyPawns;
+    public List<Enemy> EnemyPawns;
 	private Enemy DeadEnemyPawn = null;
     private EnemyType LastDeadEnemyType = EnemyType.NUM;
 
@@ -42,13 +42,27 @@ public class EnemyManager : MonoBehaviour
         };
     }
 
+    public void ClearEnemy()
+    {
+        for (int i = 0; i < EnemyPawns.Count; i++)
+        {
+            GameObject.Destroy(EnemyPawns[i]);
+            EnemyPawns.RemoveAt(i);
+        }
+    }
+
     public void OnEnemyTurnBegin()
     {
         // Spawn new Enemy
+        Enemy enemy = null;
         if (!heroAppearingTurn.Contains<int>(gm.gameTurnManager.GetCurrentGameTurn()))
-            SpawnEnemy();
+            enemy = SpawnEnemy();
         else
-            SpawnHero();
+            enemy = SpawnHero();
+
+        // Camera focus
+        if (enemy != null)
+            gm.gameCamera.FocusOnPoint(enemy.transform.position);
 
         // Enemy movement
         OnEnemyTurn();
@@ -95,12 +109,12 @@ public class EnemyManager : MonoBehaviour
         gm.gameTurnManager.NextGameTurn();
     }
 
-    private void SpawnEnemy()
+    private Enemy SpawnEnemy()
     {
         int turnNum = gm.gameTurnManager.GetCurrentGameTurn();
 
         if (EnemyPawns.Count >= MaxEnemyOnMap)
-            return;
+            return null;
 
         EnemyType enemyType = EnemyType.NUM;
         if (turnNum < heroAppearingTurn[0])          // level 1
@@ -126,25 +140,27 @@ public class EnemyManager : MonoBehaviour
 
         // TODO: get portal code here
         if(enemyType != EnemyType.NUM)
-            SpawnEnemyAtCell(enemyType, gm.hexMap.GetRandomCellToSpawn());
+            return SpawnEnemyAtCell(enemyType, gm.hexMap.GetRandomCellToSpawn());
+
+        return null;
     }
 
-    private void SpawnHero()
+    private Enemy SpawnHero()
     {
         EnemyType heroType = EnemyType.NUM;
         heroType = getHeroType(gm.gameTurnManager.GetCurrentGameTurn() / 10);
         if(heroType != EnemyType.NUM)
         {
-            SpawnEnemyAtCell(heroType, gm.hexMap.GetRandomCellToSpawn());
+            return SpawnEnemyAtCell(heroType, gm.hexMap.GetRandomCellToSpawn());
         }
+        return null;
     }
 
-    private void SpawnEnemyAtCell(EnemyType type, HexCell cell)
+    public Enemy SpawnEnemyAtCell(EnemyType type, HexCell cell)
     {
-        if(cell.CanbeDestination())
+        Enemy newEnemy = null;
+        if (cell.CanbeDestination())
         {
-            Enemy newEnemy = null;
-
             switch (type)
             {
                 case EnemyType.wanderingswordman:
@@ -168,11 +184,9 @@ public class EnemyManager : MonoBehaviour
 
                 newEnemy.transform.SetParent(EnemyRoot.transform);
                 gm.hexMap.SetCharacterCell(newEnemy, cell);
-
-                //gm.hexMap.RevealCell(cell);
-                gm.gameCamera.FocusOnPoint(cell.transform.localPosition);
             }
         }
+        return newEnemy;
     }
 
     // level : 1 - 5
@@ -226,11 +240,9 @@ public class EnemyManager : MonoBehaviour
             EnemyPawns.Remove(enemy);
         }
     }
-
 	
 	public void testAltar()
 	{
-
 		//int ran = Random.Range(0, (int)EnemyType.NUM);
         //if(LastDeadEnemyType != EnemyType.NUM)
 		// {
