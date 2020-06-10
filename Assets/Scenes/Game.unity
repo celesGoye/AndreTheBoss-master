@@ -9097,42 +9097,42 @@ PrefabInstance:
     - target: {fileID: 8245014047592512638, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.0500183
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8245014047592512638, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.20999908
+      value: -1.1000061
       objectReference: {fileID: 0}
     - target: {fileID: 8245014047592512638, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.18010965
+      value: 0.028
       objectReference: {fileID: 0}
     - target: {fileID: 8245014047592512638, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2.1
+      value: 1.6300049
       objectReference: {fileID: 0}
     - target: {fileID: 8245014047592512638, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.91836137
+      value: 0.7463614
       objectReference: {fileID: 0}
     - target: {fileID: 8245014047592512638, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -2.38
+      value: 5.619995
       objectReference: {fileID: 0}
     - target: {fileID: 8245014047592512638, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.27800003
+      value: 0.08589037
       objectReference: {fileID: 0}
     - target: {fileID: 8245014047592512638, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.9616807
+      value: 0.77672267
       objectReference: {fileID: 0}
     - target: {fileID: 8245014047592512639, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
@@ -9158,7 +9158,12 @@ PrefabInstance:
     - target: {fileID: 8245014047592512639, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
       propertyPath: m_Text
-      value: 'ActionPoint:  '
+      value: 'AP: '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245014047592512639, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8245014047624695853, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
@@ -9260,6 +9265,11 @@ PrefabInstance:
     - target: {fileID: 8245014048743374342, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
         type: 3}
       propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245014048843855859, guid: af2ce33f8bf98734bb1bf0c3da1b392a,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8245014048843855860, guid: af2ce33f8bf98734bb1bf0c3da1b392a,

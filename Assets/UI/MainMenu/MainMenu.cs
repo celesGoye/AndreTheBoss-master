@@ -9,6 +9,22 @@ namespace AndreTheBoss.Menu
 {
     public class MainMenu : MonoBehaviour
     {
+        public Button LoadGameButton;
+        public void OnEnable()
+        {
+            if (LoadGameButton == null)
+                return;
+
+            if (File.Exists(Application.persistentDataPath + "/atb.dat"))
+            {
+                LoadGameButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                LoadGameButton.gameObject.SetActive(false);
+            }
+        }
+
         public void NewGame()
         {
             //Debug.Log("NewGame was called");
