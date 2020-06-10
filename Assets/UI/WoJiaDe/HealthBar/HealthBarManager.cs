@@ -33,7 +33,7 @@ public class HealthBarManager : MonoBehaviour
 		if(healthBars.Contains(hb))
 		{
 			healthBars.Remove(hb);
-			GameObject.Destroy(hb);
+			hb.OnDestroy();
 		}
 	}
 }
