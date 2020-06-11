@@ -72,7 +72,7 @@ public class GameEventReader
 	
 	public int GetGameEventIndex(GameEvent ge)
 	{
-		int type=ge.eventType;
+		int type=(int)ge.eventType;
 		int index=0;
 		for(int i=0;i<(int)type;i++)
 			index+=eventNums[i];
@@ -102,7 +102,7 @@ public class GameEventReader
         string eventName = "";
         string eventDescription = "";
         int eventCounter = 0;
-		int eventid=0;
+		//int eventid=0;
 
         if (xmlDoc != null)
         {
@@ -135,7 +135,8 @@ public class GameEventReader
                     string effectDescription = node["effectDescription"].InnerXml;
                     BuffEntry entry = new BuffEntry(GameEventHelper.getAttributeTypeFromString(attributeType),
                         counter, value);
-                    gameEvent = new NormalNonoptionGainbuffEvent(eventName, eventDescription, eventCounter, effectDescription,
+                    gameEvent = new NormalNonoptionGainbuffEvent(eventName, eventDescription, eventCounter, type, which,
+                        effectDescription,
                         entry);
                     //Debug.Log(gameEvent.ToString());
                 }
@@ -162,7 +163,7 @@ public class GameEventReader
                         itemEntry.posibility = int.Parse(itemnode["posibility"].InnerXml);
                         items.Add(itemEntry);
                     }
-                    gameEvent = new NormalNonoptionGainitemsEvent(eventName, eventDescription, eventCounter, effectDescription,
+                    gameEvent = new NormalNonoptionGainitemsEvent(eventName, eventDescription, eventCounter, type, which, effectDescription,
                         items);
                     //Debug.Log(gameEvent.ToString());
                 }
@@ -212,7 +213,7 @@ public class GameEventReader
                         GameEventOption option = new GameEventOption(name, items, buffs, null, null);
                         options.Add(option);
                     }
-                    gameEvent = new NormalOptionEvent(eventName, eventDescription, eventCounter,
+                    gameEvent = new NormalOptionEvent(eventName, eventDescription, eventCounter, type, which, 
                             options);
                     //Debug.Log(gameEvent.ToString());
                 }
@@ -279,7 +280,7 @@ public class GameEventReader
                         GameEventOption option = new GameEventOption(name, items, buffs, costs, result);
                         options.Add(option);
                     }
-                    gameEvent = new MysterypersonGainitemsEvent(eventName, eventDescription, eventCounter, options);
+                    gameEvent = new MysterypersonGainitemsEvent(eventName, eventDescription, eventCounter, type, which, options);
                     //Debug.Log(gameEvent.ToString());
                 }
                 catch (Exception ex)
@@ -350,7 +351,7 @@ public class GameEventReader
                         options.Add(option);
                     }
 
-                    gameEvent = new MysterypersonGaincharacterEvent(eventName, eventDescription, eventCounter,
+                    gameEvent = new MysterypersonGaincharacterEvent(eventName, eventDescription, eventCounter, type, which,
                         monsterType, level, options);
                     //Debug.Log(gameEvent.ToString());
                 }
@@ -364,7 +365,6 @@ public class GameEventReader
                 break;
         }
 
-		gameEvent.eventType=(int)type;
         return gameEvent;
     }
 

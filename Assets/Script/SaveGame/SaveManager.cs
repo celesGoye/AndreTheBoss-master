@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.IO;
 using System;
+using System.Data.Common;
 
 public class SaveManager : MonoBehaviour
 {
@@ -138,7 +139,6 @@ public class SaveManager : MonoBehaviour
             savedata.playerData.ItemsGot = gm.itemManager.ItemsGot;
             savedata.playerData.ItemsOwn = gm.itemManager.ItemsOwn;
 
-
             // Buildings
             savedata.buildingData = new List<SerializableBuildingData>();
             for (int i = 0; i < gm.buildingManager.Buildings.Count; i++)
@@ -152,6 +152,22 @@ public class SaveManager : MonoBehaviour
 
                 savedata.buildingData.Add(data);
             }
+
+            /*
+            // GameEvent
+            savedata.gameeventData = new List<SerializableGameEventData>();
+            for (int i = 0; i < gm.gameEventManager.gameEventDisplayers.Count; i++)
+            {
+                Debug.Log(gm.gameEventManager.gameEventDisplayers.Count);
+                SerializableGameEventData data = new SerializableGameEventData();
+                GameEventDisplayer gd = gm.gameEventManager.gameEventDisplayers[i];
+                data.eventType = (int)gd.gameEvent.eventType;
+                data.whichEvent = gd.gameEvent.whichEvent;
+                data.hexcellIndex = gd.currentCell.index;
+
+                savedata.gameeventData.Add(data);
+            }
+            */
 
             formatter.Serialize(fs, savedata);
         }
@@ -287,6 +303,21 @@ public class SaveManager : MonoBehaviour
                 gm.buildingManager.CreateBuilding((BuildingType)data.buildingType, (ItemType)data.itemType, gm.hexMap.cells[data.hexcellIndex], data.level);
             }
 
+
+            
+            /*
+            // Game Event
+            gm.gameEventManager.ClearGameEventDisplayers();
+            for (int i = 0; i < savedata.gameeventData.Count; i++)
+            {
+                SerializableGameEventData data = savedata.gameeventData[i];
+                GameEventDisplayer gd = gm.gameEventManager.CreateNewEventDisplayer(gm.gameEventManager.eventReader.getNewGameEvent((GameEventType)data.eventType, data.whichEvent));
+                if (gd != null)
+                    gm.hexMap.SetGameEventDisplayerCell(gd, gm.hexMap.cells[data.hexcellIndex]);
+            }
+            */
+            
+            
 
             // after loading
             gm.gameCamera.FocusOnPoint(gm.boss.transform.position);
