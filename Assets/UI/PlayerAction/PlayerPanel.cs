@@ -39,7 +39,7 @@ public class PlayerPanel : MonoBehaviour
 		txtLevel.text="Lv."+gameManager.monsterManager.MonsterPawns[0].GetLevel();
 		monstersTookAction.UpdateMonstersTookAction();
 		txtbuildmode.text=gameManager.buildingManager.buildmode?"buildmode On":"buildmode Off";
-		txtActionPoint.text="ActionPoint:"+gameManager.monsterActionManager.actionPoint;
+		txtActionPoint.text="AP: "+gameManager.monsterActionManager.actionPoint;
 	}
 	
 	public void OnSkipTurn()

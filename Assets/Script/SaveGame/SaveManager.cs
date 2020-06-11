@@ -16,6 +16,14 @@ public class SaveManager : MonoBehaviour
 
     GameManager gm;
 
+    public void Start()
+    {
+        if (PlayerPrefs.GetInt("IsNewGame") == 0)
+        {
+            Load();
+        }
+    }
+
     public void Save()
     {
         FileStream fs = new FileStream(Application.persistentDataPath + "/atb.dat", FileMode.OpenOrCreate);
@@ -169,6 +177,7 @@ public class SaveManager : MonoBehaviour
 
             savedata = (SaveData)formatter.Deserialize(fs);
 
+            
             // Hexmap
             gm.hexMap.ClearHexType();
             for (int i = 0; i < gm.hexMap.cells.Length; i++)
@@ -179,6 +188,7 @@ public class SaveManager : MonoBehaviour
                 cell.gameObject.SetActive(savedata.hexcellData[i].activeSelf);
             }
 
+            
             // Monster
             gm.monsterManager.ClearMonster();
             for (int i = 0; i < savedata.monsterData.Count; i++)
@@ -236,6 +246,7 @@ public class SaveManager : MonoBehaviour
                 }
             }
 
+            
             // Revived Enemy
             gm.monsterManager.ClearRevivedEnemy();
             for (int i = 0; i < savedata.revivedEnemyData.Count; i++)
@@ -267,6 +278,7 @@ public class SaveManager : MonoBehaviour
             gm.itemManager.ItemsGot = savedata.playerData.ItemsGot;
             gm.itemManager.ItemsOwn = savedata.playerData.ItemsOwn;
 
+            
             // Buildings
             gm.buildingManager.ClearBuildings();
             for (int i = 0; i < savedata.buildingData.Count; i++)
@@ -274,7 +286,6 @@ public class SaveManager : MonoBehaviour
                 SerializableBuildingData data = savedata.buildingData[i];
                 gm.buildingManager.CreateBuilding((BuildingType)data.buildingType, (ItemType)data.itemType, gm.hexMap.cells[data.hexcellIndex], data.level);
             }
-
 
 
             // after loading
