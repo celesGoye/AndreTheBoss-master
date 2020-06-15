@@ -13,7 +13,7 @@ public class Building: MonoBehaviour
 		
 	public HexCell currentCell;
 	protected BuildingType buildingType;
-    protected int currentLevel; // 1,2,3
+	protected int currentLevel; // 1,2,3
     protected ItemType itemTypeProduced;
 
 	// a little hack
