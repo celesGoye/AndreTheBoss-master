@@ -14,13 +14,12 @@ public abstract class Pawn : MonoBehaviour
 	public int hp;
 	public int dexterity;
 	public int attackRange;
-
-	public int currentHP;
-
+	
 	public int currentAttack;
 	public int currentMagicAttack;
 	public int currentDefense;
 	public int currentMagicDefense;
+	public int currentHP;
 	public int currentDexterity;
 	public int currentAttackRange;
 
