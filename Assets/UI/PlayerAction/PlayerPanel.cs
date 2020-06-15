@@ -9,10 +9,11 @@ public class PlayerPanel : MonoBehaviour
 	public Text txtLevel;
 	public Text txtbuildmode;
 	public Text txtActionPoint;
+	public Image imgBoss;
 	public Button buttonSkip;
 	public Button buttonBuild;
 	
-	public MonstersTookAction monstersTookAction;
+	public ActionableMonsters actionableMonsters;
 	
 	private GameManager gameManager;
 	
@@ -21,11 +22,12 @@ public class PlayerPanel : MonoBehaviour
 		if(gameManager == null)
 			gameManager = FindObjectOfType<GameManager>();
 		txtbuildmode.text="buildmode ON";
+		UpdateBossUI();
 	}
 	
     public void OpenMenu()
 	{
-		menu.SetCurrentMonster(gameManager.monsterManager.MonsterPawns[0]);
+		menu.SetCurrentMonster(gameManager.boss);
 		menu.OpenMenu();
 	}
 	
@@ -36,10 +38,17 @@ public class PlayerPanel : MonoBehaviour
 	
 	public void Update()
 	{
-		txtLevel.text="Lv."+gameManager.monsterManager.MonsterPawns[0].GetLevel();
-		monstersTookAction.UpdateMonstersTookAction();
+		actionableMonsters.UpdateActionableMonsters();
 		txtbuildmode.text=gameManager.buildingManager.buildmode?"buildmode On":"buildmode Off";
-		txtActionPoint.text="ActionPoint:"+gameManager.monsterActionManager.actionPoint;
+	}
+	
+	public void UpdateBossUI()
+	{
+		txtLevel.text="Lv."+gameManager.boss.GetLevel();
+		if((Resources.Load("UI/avatar/boss"+gameManager.boss.GetLevel(), typeof(Sprite)) as Sprite)!=null)
+			imgBoss.sprite=Resources.Load("UI/avatar/boss"+gameManager.boss.GetLevel(), typeof(Sprite)) as Sprite;
+		else 
+			Debug.Log("??");
 	}
 	
 	public void OnSkipTurn()

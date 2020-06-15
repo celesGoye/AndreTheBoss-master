@@ -399,7 +399,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 3643605118872916129}
   button: {fileID: 3643605118872916126}
+  moveEnds: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
   index: 0
   offset: 0
   size: 0
-  gameCamera: {fileID: 0}
+  numperline: 0

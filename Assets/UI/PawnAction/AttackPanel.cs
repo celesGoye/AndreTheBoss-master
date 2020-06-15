@@ -12,6 +12,7 @@ public class AttackPanel : MonoBehaviour
 	public Image icon2;
 	public Button buttonskill2;
 	public Button buttonswitch;
+	public Text skilldescription;
 	
 	public Monster monster;
 	
@@ -47,7 +48,7 @@ public class AttackPanel : MonoBehaviour
 			{
 				skill2.text="Locked";
 				buttonskill2.interactable=false;
-				icon2.sprite=Resources.Load("UI/skill/NoSkill", typeof(Sprite)) as Sprite;
+				//icon2.sprite=Resources.Load("UI/skill/NoSkill", typeof(Sprite)) as Sprite;
 			}
 		}
 		
@@ -61,5 +62,32 @@ public class AttackPanel : MonoBehaviour
 			buttonswitch.interactable=true;
 			textswitch.text="Switch";
 		}
+		skill1.gameObject.SetActive(false);
+		skill2.gameObject.SetActive(false);
+		textswitch.gameObject.SetActive(false);
+	}
+	
+	public void OnPointerEnter(int s)
+	{
+		switch(s)
+		{
+			case 1:
+				skill=characterReader.GetMonsterSkillUI(monster.monsterType.ToString(),1);
+				skilldescription.gameObject.SetActive(true);
+				break;
+			case 2:
+				skill=characterReader.GetMonsterSkillUI(monster.monsterType.ToString(),monster.GetEquippedSkill());
+				if(monster.GetLevel()>=3)
+					skilldescription.gameObject.SetActive(true);
+				break;
+			default:
+				return;
+		}
+		skilldescription.text=skill.description;
+	}
+	
+	public void OnPointerExit()
+	{
+		skilldescription.gameObject.SetActive(false);
 	}
 }

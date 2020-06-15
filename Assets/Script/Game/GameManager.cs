@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 	public ItemManager itemManager;
     public GameInteraction gameInteraction;
     public GameEventManager gameEventManager;
+	public SaveManager saveManager;
 	
 	public MonsterActionManager monsterActionManager;
 
@@ -83,6 +84,7 @@ public class GameManager : MonoBehaviour
     public void SaveGame()
     {
         // stub
+        saveManager.Save();
     }
 
     public CharacterReader getCharacterReader()

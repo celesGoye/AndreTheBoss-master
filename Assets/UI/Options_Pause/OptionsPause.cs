@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OptionsPause : MonoBehaviour
 {
     public GameObject pauseMenu;
+
     
     public void ShowPauseMenu()
     {
@@ -19,7 +21,6 @@ public class OptionsPause : MonoBehaviour
     public void Quit()
     {
         GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>().QuitGame();
-
     }
 
     public void Settings()
@@ -29,6 +30,8 @@ public class OptionsPause : MonoBehaviour
 
     public void Exit()
     {
-        // exit to main menu
+        GameManager gm = FindObjectOfType<GameManager>();
+        gm.saveManager.Save();
+        SceneManager.LoadScene(0);
     }
 }

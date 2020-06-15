@@ -33,52 +33,54 @@ public class MenuControl : MonoBehaviour
 	public void DisableAll()
 	{
 		
-		upgradePanel.transform.gameObject.SetActive(false);
-		galleryPanel.transform.gameObject.SetActive(false);
-		skillPanel.transform.gameObject.SetActive(false);
-		inventoryPanel.transform.gameObject.SetActive(false);
-		general.transform.gameObject.SetActive(false);
+		upgradePanel.gameObject.SetActive(false);
+		galleryPanel.gameObject.SetActive(false);
+		skillPanel.gameObject.SetActive(false);
+		inventoryPanel.gameObject.SetActive(false);
+		general.gameObject.SetActive(false);
 	}
 	
 	public void OnBtnClose()
 	{
 		//Debug.Log("menu closed");
-		this.transform.gameObject.SetActive(false);
+		this.gameObject.SetActive(false);
 	}
 	public void OnBtnGallery()
 	{
 		//Debug.Log("menu gallery");
 		DisableAll();
-		galleryPanel.transform.gameObject.SetActive(true);
+		galleryPanel.gameObject.SetActive(true);
 		title.text="Gallery";
 	}
 	public void OnBtnUpgrade()
 	{
 		//Debug.Log("menu upgrade panel");
 		DisableAll();
-		upgradePanel.transform.gameObject.SetActive(true);
-		general.transform.gameObject.SetActive(true);
+		upgradePanel.gameObject.SetActive(true);
+		general.gameObject.SetActive(true);
 		title.text="Upgrade";
 	}
 	public void OnBtnSkill()
 	{
 		//Debug.Log("menu skill");
 		DisableAll();
-		skillPanel.transform.gameObject.SetActive(true);
-		general.transform.gameObject.SetActive(true);
+		skillPanel.gameObject.SetActive(true);
+		general.gameObject.SetActive(true);
+		skillPanel.InitSkillPanel();
 		title.text="Skill";
 	}
 	public void OnBtnInventory()
 	{
 		//Debug.Log("menu inventory");
 		DisableAll();
-		inventoryPanel.transform.gameObject.SetActive(true);
-		general.transform.gameObject.SetActive(true);
+		inventoryPanel.gameObject.SetActive(true);
+		general.gameObject.SetActive(true);
+		inventoryPanel.UpdateInventory();
 		title.text="Inventory";
 	}
 	public void OpenMenu()
 	{
-		this.transform.gameObject.SetActive(true);
+		this.gameObject.SetActive(true);
 		OnBtnUpgrade();
 		UpdateMenu();
 	}

@@ -78,10 +78,21 @@ public class GameEventHelper
             case ItemPrimaryType.SoulType:
                 if (itemType == "soul")
                     ret = ItemType.Soul;
-                else if (itemType == "herosoul")
-                    ret = ItemType.HeroSoul;
+                /*else if (itemType == "herosoul")
+                    ret = ItemType.HeroSoul;*/
                 else if (itemType == "moonlightstone")
                     ret = ItemType.MoonlightStone;
+				
+				else if(itemType=="robinhood")
+					ret=ItemType.RobinhoodSoul;
+				else if(itemType=="tatenoyousya")
+					ret=ItemType.TatenoyousyaSoul;
+				else if(itemType=="jinjyamiko")
+					ret=ItemType.JinjyamikoSoul;
+				else if(itemType=="orchestraleader")
+					ret=ItemType.OrchestraleaderSoul;
+				else if(itemType=="cinderlord")
+					ret=ItemType.CinderlordSoul;
                 break;
             default:
                 break;

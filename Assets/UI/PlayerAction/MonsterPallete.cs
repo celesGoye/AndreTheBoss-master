@@ -58,7 +58,7 @@ public class MonsterPallete : MonoBehaviour
 					monster=content.GetChild(i).GetComponent<MonsterDisplay>();
 					monster.type=SpawnableMonsters[i];
 				}
-				
+			monster.UpdateMonsterDisplay();	
 			monster.gameObject.GetComponent<Image>().color=Color.white;
 		}
 		

@@ -25,16 +25,19 @@ public class Gallery_BuildingPage : MonoBehaviour
 	}
 	public void OnNext()
 	{
-		if(currentid<catalog.childCount-1)
+		/*if(currentid<catalog.childCount-1)
 			catalog.GetChild(++currentid).GetComponent<Gallery_BuildingButton>().OnBuildingBtn();
 		else
-			catalog.GetChild(0).GetComponent<Gallery_BuildingButton>().OnBuildingBtn();
+			catalog.GetChild(0).GetComponent<Gallery_BuildingButton>().OnBuildingBtn();*/
+		
+		catalog.GetChild((++currentid)%((int)BuildingType.None)).GetComponent<Gallery_BuildingButton>().OnBuildingBtn();
 	}
 	public void OnPrevious()
 	{
-		if(currentid==0)
+		/*if(currentid==0)
 			catalog.GetChild(catalog.childCount-1).GetComponent<Gallery_BuildingButton>().OnBuildingBtn();
 		else
-			catalog.GetChild(--currentid).GetComponent<Gallery_BuildingButton>().OnBuildingBtn();
+			catalog.GetChild(--currentid).GetComponent<Gallery_BuildingButton>().OnBuildingBtn();*/
+		catalog.GetChild((--currentid)%((int)BuildingType.None)).GetComponent<Gallery_BuildingButton>().OnBuildingBtn();
 	}
 }

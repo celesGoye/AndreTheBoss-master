@@ -131,16 +131,13 @@ public class Building: MonoBehaviour
 	
 	public virtual void DestroyBuilding()
 	{
-		Debug.Log("Destroying");
 		GameObject.DestroyImmediate(gameObject);
-		
-		Debug.Log("Destroying2");
 	}
 	
 	public void SetAppearance(int level)
 	{
-		for(int i=0;i<this.transform.childCount;i++)
-			this.transform.GetChild(i).gameObject.SetActive((i+1)==level?true:false);
+		for(int i=0;i<this.transform.transform.GetChild(0).childCount;i++)
+			this.transform.GetChild(0).GetChild(i).gameObject.SetActive((i+1)==level?true:false);
 	}
 
 	public BuildingType GetBuildingType()

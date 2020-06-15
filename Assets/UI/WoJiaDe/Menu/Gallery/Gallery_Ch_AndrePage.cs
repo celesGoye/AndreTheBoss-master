@@ -14,6 +14,8 @@ public class Gallery_Ch_AndrePage : MonoBehaviour
 	private CharacterReader characterReader;
 	private List<CharacterReader.CharacterSkillUI> skilldata;
 	private CharacterReader.CharacterDescription description;
+	private Sprite sprite;
+	private int index;
 	
 	public void OnEnable()
 	{
@@ -36,5 +38,26 @@ public class Gallery_Ch_AndrePage : MonoBehaviour
 		skill.text="<size=22>"+skilltext+"</size>";
 		story.text="<size=22>"+description.story+"</size>";
 		race.text=description.race;
+		
+		index=0;
+		UpdateImage();
+	}
+	
+	public void OnPrevious()
+	{
+		index--;
+		UpdateImage();
+	}
+	
+	public void OnNext()
+	{
+		index++;
+		UpdateImage();
+	}
+	
+	public void UpdateImage()
+	{
+		if((sprite=Resources.Load("Image/character/boss"+(index%3*2+1), typeof(Sprite)) as Sprite)!=null)
+			image.sprite =sprite;
 	}
 }

@@ -18,6 +18,7 @@ public class InventoryPanel : MonoBehaviour
 	{
 		itemsOwn=itemManager.ItemsOwn;
 		itemcount=itemsOwn.Count;
+		items.UpdateInventory();
 	}
 
 }

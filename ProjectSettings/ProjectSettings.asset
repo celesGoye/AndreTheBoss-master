@@ -48,8 +48,8 @@ PlayerSettings:
   m_SloganImage: {fileID: 0}
   m_SloganHeight: 150
   m_HolographicTrackingLossScreen: {fileID: 0}
-  defaultScreenWidth: 1280
-  defaultScreenHeight: 720
+  defaultScreenWidth: 1600
+  defaultScreenHeight: 900
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
@@ -280,7 +280,14 @@ PlayerSettings:
   androidGamepadSupportLevel: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 90b4588f81e37cd439a6e774b1403c87, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons: []
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone

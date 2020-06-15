@@ -11,12 +11,40 @@ public class EnemyManager : MonoBehaviour
     public Enemy EnemyPrefab_thief;
     public Enemy EnemyPrefab_sword;
     public Enemy EnemyPrefab_magic;
+    public Enemy EnemyPrefab_bandit;
+    public Enemy EnemyPrefab_robinhood;
+	
+    public Enemy EnemyPrefab_banditcaptain;
+    public Enemy EnemyPrefab_berserker;
+    public Enemy EnemyPrefab_bard;
+    public Enemy EnemyPrefab_magicmaster;
+    public Enemy EnemyPrefab_tatenoyousta;
+	
+    public Enemy EnemyPrefab_magicmgraneaster;
+    public Enemy EnemyPrefab_witch;
+    public Enemy EnemyPrefab_assassin;
+    //public Enemy EnemyPrefab_catapult;
+    public Enemy EnemyPrefab_jinjyamiko;
+	
+    public Enemy EnemyPrefab_cultist;
+    public Enemy EnemyPrefab_priest;
+    public Enemy EnemyPrefab_bloodwitch;
+    //public Enemy EnemyPrefab_darkknight;
+    public Enemy EnemyPrefab_orchestraleader;
+	
+    public Enemy EnemyPrefab_magebelial;
+    public Enemy EnemyPrefab_royalinquisitor;
+    public Enemy EnemyPrefab_shadowfran;
+    public Enemy EnemyPrefab_cardinaleriri;
+    public Enemy EnemyPrefab_cinderlord;
 
-    private List<Enemy> EnemyPawns;
+    public List<Enemy> EnemyPawns;
 	private Enemy DeadEnemyPawn = null;
     private EnemyType LastDeadEnemyType = EnemyType.NUM;
 
     private GameObject EnemyRoot;
+	
+	private EnemyLootReader reader;
 
     public int MaxEnemyOnMap = 10;
 
@@ -34,21 +62,64 @@ public class EnemyManager : MonoBehaviour
         EnemyRoot.transform.SetParent(transform);
         EnemyRoot.transform.position = Vector3.zero;
 		
+		reader=new EnemyLootReader();
+		
 		prefabs = new Dictionary<EnemyType, Enemy>
         {
             {EnemyType.wanderingswordman, EnemyPrefab_sword },
             {EnemyType.magicapprentice, EnemyPrefab_magic},
             {EnemyType.thief, EnemyPrefab_thief },
+            {EnemyType.bandit, EnemyPrefab_bandit },
+            {EnemyType.robinhood, EnemyPrefab_robinhood },
+			
+            {EnemyType.banditcaptain, EnemyPrefab_banditcaptain },
+            {EnemyType.berserker, EnemyPrefab_berserker },
+            {EnemyType.bard, EnemyPrefab_bard },
+            {EnemyType.magicmaster, EnemyPrefab_magicmaster },
+            {EnemyType.tatenoyousya, EnemyPrefab_tatenoyousta },
+			
+            {EnemyType.magicgrandmaster, EnemyPrefab_magicmgraneaster },
+            {EnemyType.witch, EnemyPrefab_witch },
+            {EnemyType.assassin, EnemyPrefab_assassin },
+            //{EnemyType.catapult, EnemyPrefab_catapult },
+            {EnemyType.jinjyamiko, EnemyPrefab_jinjyamiko },
+			
+            {EnemyType.cultist, EnemyPrefab_cultist },
+            {EnemyType.priest, EnemyPrefab_priest },
+            {EnemyType.bloodwitch, EnemyPrefab_bloodwitch },
+            //{EnemyType.darkknight, EnemyPrefab_darkknight },
+            {EnemyType.orchestraleader, EnemyPrefab_orchestraleader },
+			
+            {EnemyType.magebelial, EnemyPrefab_magebelial },
+            {EnemyType.shadowfran, EnemyPrefab_shadowfran },
+            {EnemyType.royalinquisitor, EnemyPrefab_royalinquisitor },
+            {EnemyType.cardinaleriri, EnemyPrefab_cardinaleriri },
+            {EnemyType.cinderlord, EnemyPrefab_cinderlord },
         };
+    }
+
+    public void ClearEnemy()
+    {
+		Debug.Log("clearing "+EnemyPawns.Count);
+        for (int i = 0; i < EnemyPawns.Count; i++)
+        {
+            GameObject.Destroy(EnemyPawns[i]);
+            EnemyPawns.RemoveAt(i);
+        }
     }
 
     public void OnEnemyTurnBegin()
     {
         // Spawn new Enemy
+        Enemy enemy = null;
         if (!heroAppearingTurn.Contains<int>(gm.gameTurnManager.GetCurrentGameTurn()))
-            SpawnEnemy();
+            enemy = SpawnEnemy();
         else
-            SpawnHero();
+            enemy = SpawnHero();
+
+        // Camera focus
+        if (enemy != null)
+            gm.gameCamera.FocusOnPoint(enemy.transform.position);
 
         // Enemy movement
         OnEnemyTurn();
@@ -95,12 +166,12 @@ public class EnemyManager : MonoBehaviour
         gm.gameTurnManager.NextGameTurn();
     }
 
-    private void SpawnEnemy()
+    private Enemy SpawnEnemy()
     {
         int turnNum = gm.gameTurnManager.GetCurrentGameTurn();
 
         if (EnemyPawns.Count >= MaxEnemyOnMap)
-            return;
+            return null;
 
         EnemyType enemyType = EnemyType.NUM;
         if (turnNum < heroAppearingTurn[0])          // level 1
@@ -126,25 +197,27 @@ public class EnemyManager : MonoBehaviour
 
         // TODO: get portal code here
         if(enemyType != EnemyType.NUM)
-            SpawnEnemyAtCell(enemyType, gm.hexMap.GetRandomCellToSpawn());
+            return SpawnEnemyAtCell(enemyType, gm.hexMap.GetRandomCellToSpawn());
+
+        return null;
     }
 
-    private void SpawnHero()
+    private Enemy SpawnHero()
     {
         EnemyType heroType = EnemyType.NUM;
         heroType = getHeroType(gm.gameTurnManager.GetCurrentGameTurn() / 10);
         if(heroType != EnemyType.NUM)
         {
-            SpawnEnemyAtCell(heroType, gm.hexMap.GetRandomCellToSpawn());
+            return SpawnEnemyAtCell(heroType, gm.hexMap.GetRandomCellToSpawn());
         }
+        return null;
     }
 
-    private void SpawnEnemyAtCell(EnemyType type, HexCell cell)
+    public Enemy SpawnEnemyAtCell(EnemyType type, HexCell cell)
     {
+        Enemy newEnemy = null;
         if(cell.CanbeDestination())
         {
-            Enemy newEnemy = null;
-
             switch (type)
             {
                 case EnemyType.wanderingswordman:
@@ -155,6 +228,76 @@ public class EnemyManager : MonoBehaviour
                     break;
                 case EnemyType.thief:
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_thief);
+                    break;
+				case EnemyType.bandit:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_bandit);
+                    break;
+                case EnemyType.robinhood:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_robinhood);
+                    break;
+				
+				case EnemyType.banditcaptain:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_banditcaptain);
+                    break;
+                case EnemyType.berserker:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_berserker);
+                    break;
+                case EnemyType.bard:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_bard);
+                    break;
+				case EnemyType.magicmaster:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_magicmaster);
+                    break;
+                case EnemyType.tatenoyousya:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_tatenoyousta);
+                    break;
+					
+				case EnemyType.magicgrandmaster:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_magicmgraneaster);
+                    break;
+                case EnemyType.witch:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_witch);
+                    break;
+                case EnemyType.assassin:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_assassin);
+                    break;
+				/*case EnemyType.catapult:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_catapult);
+                    break;*/
+                case EnemyType.jinjyamiko:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_jinjyamiko);
+                    break;
+					
+				case EnemyType.cultist:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_cultist);
+                    break;
+                case EnemyType.priest:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_priest);
+                    break;
+                case EnemyType.bloodwitch:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_bloodwitch);
+                    break;
+				/*case EnemyType.darkknight:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_darkknight);
+                    break;*/
+                case EnemyType.orchestraleader:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_orchestraleader);
+                    break;
+					
+				case EnemyType.magebelial:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_magebelial);
+                    break;
+                case EnemyType.royalinquisitor:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_royalinquisitor);
+                    break;
+                case EnemyType.shadowfran:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_shadowfran);
+                    break;
+				case EnemyType.cardinaleriri:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_cardinaleriri);
+                    break;
+                case EnemyType.cinderlord:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_cinderlord);
                     break;
                 default:
                     break;
@@ -173,6 +316,7 @@ public class EnemyManager : MonoBehaviour
                 gm.gameCamera.FocusOnPoint(cell.transform.localPosition);
             }
         }
+        return newEnemy;
     }
 
     // level : 1 - 5
@@ -180,6 +324,7 @@ public class EnemyManager : MonoBehaviour
     {
         int offset = (level - 1) * 5;
         int ran = Random.Range(offset, offset + 4);
+		Debug.Log("enemytype "+ran);
         return (EnemyType)ran;
     }
 
@@ -226,6 +371,44 @@ public class EnemyManager : MonoBehaviour
             EnemyPawns.Remove(enemy);
         }
     }
+	
+	public void GetLoot(EnemyType type)
+	{
+		List<ItemEntry> list=new List<ItemEntry>();
+		list=reader.GetItems(type,IsHero(type),((int)type)/5+1);
+		if(list==null)
+			return;
+		Debug.Log("first,hello");
+		List<ItemEntry> finalItems=new List<ItemEntry>();
+		float posibility = (float)UnityEngine.Random.Range(1, 100);
+		int sum=0;
+		foreach(ItemEntry item in list)
+		{
+			if(item.posibility==100)
+			{
+				finalItems.Add(item);
+				continue;
+			}
+			sum+=item.posibility;
+			if(posibility<sum)
+			{
+				finalItems.Add(item);
+				break;
+			}	
+		}
+		if(finalItems.Count>0)
+			{
+				foreach(ItemEntry item in finalItems)
+				{
+					gm.itemManager.GetItem(item.itemType, item.number);
+				}
+			}
+	}
+	
+	public bool IsHero(EnemyType type)
+	{
+		return ((int)type+1)%5==0;
+	}
 
 	
 	public void testAltar()

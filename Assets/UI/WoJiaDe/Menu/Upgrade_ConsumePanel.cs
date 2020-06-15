@@ -22,9 +22,6 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 	
 	public void OnEnable()
 	{
-		characterReader = FindObjectOfType<GameManager>().characterReader;
-		itemManager = FindObjectOfType<GameManager>().itemManager;
-		UpdateConsumePanel();
 	}
 	
 	public bool IsUpgradeOK()
@@ -49,6 +46,10 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 	
 	public void UpdateConsumePanel()
 	{
+		if(characterReader==null)
+			characterReader = FindObjectOfType<GameManager>().characterReader;
+		if(itemManager==null)
+			itemManager = FindObjectOfType<GameManager>().itemManager;
 		monster=upgradePanel.currentMonster;
 		if(monster.GetLevel()>=Pawn.MaxLevel)
 		{
@@ -61,15 +62,16 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 		}
 
 		int unlocklevel = Mathf.CeilToInt((float) ((Monster)monster).monsterType / 3);
-
+		
+		items=new List<Vector2>();
 		items=characterReader.GetCharacterUpgrade(unlocklevel,monster.Name,monster.GetLevel()+1);
 		itemcount=items.Count;
 		if(content.childCount>itemcount)
 		{
-			for(int i=itemcount;i<content.childCount;i++)
+			for(int i=content.childCount-1;i>=itemcount;i--)
 			{
 				Transform child=content.GetChild(i);
-				GameObject.Destroy(child.gameObject);
+				GameObject.DestroyImmediate(child.gameObject);
 			}
 		}
 		for(int i=0;i<itemcount;i++)
@@ -98,10 +100,20 @@ public class Upgrade_ConsumePanel : MonoBehaviour
 		UpdateItem(newitem,index);
 		return newitem;
 	}
+	
 	public void UpdateItem(Upgrade_Item item, int index)
 	{
 		item.index=index;
 		item.size=size;
 		item.width=width;
+		item.UpdateItemDisplay();
+	}
+	
+	public void Update()
+	{
+		foreach(Transform child in content)
+		{
+			child.GetComponent<Upgrade_Item>().UpdatePosition();
+		}
 	}
 }

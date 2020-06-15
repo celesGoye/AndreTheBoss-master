@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
@@ -35,6 +36,9 @@ public abstract class Monster: Pawn
         ReadSkillNames(this);
 
         CanDoAction = true;
+		
+		remainedStep=dexterity;
+		actionType=ActionType.Actionable;
 
         gm = FindObjectOfType<GameManager>();
         pawnAction = gm.gameInteraction.pawnActionPanel;
@@ -198,5 +202,12 @@ public abstract class Monster: Pawn
             this.DoPassiveTwo();
         else if (GetLevel() == 4)
             this.DoPassiveFour();
+    }   
+
+	public override void OnDie()
+    {
+		gm.monsterManager.RemoveMonster(this);
+		
+        base.OnDie();
     }
 }

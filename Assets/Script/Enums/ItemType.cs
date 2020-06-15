@@ -15,7 +15,7 @@
     Gold,
 	
 	Soul,
-    HeroSoul,
+    //HeroSoul,
     MoonlightStone,
     RobinhoodSoul,
     TatenoyousyaSoul,

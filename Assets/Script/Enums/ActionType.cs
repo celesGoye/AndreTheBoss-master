@@ -1,7 +1,7 @@
 ﻿public enum ActionType
 {
-	PreAction,
-	InAction,
-	PostAction,//AfterAttack
-	NoAction
+	Actionable,
+	MoveEnds,
+	AttackEnds,
+	Nonactionable
 }

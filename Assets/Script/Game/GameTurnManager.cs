@@ -23,6 +23,13 @@ public class GameTurnManager : MonoBehaviour
 
         
     }
+	
+	public void ResetCurrentTurn(int turnNum)
+    {
+        this.turnNumber = turnNum;
+        isPlayerTurn = true;
+        txtTurnNum.text = this.turnNumber.ToString();
+    }
 
     public void OnEnable()
     {

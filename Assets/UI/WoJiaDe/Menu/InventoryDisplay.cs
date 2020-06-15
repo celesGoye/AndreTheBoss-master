@@ -16,11 +16,15 @@ public class InventoryDisplay : MonoBehaviour
 	public ItemType currentType;
 	
 	public Text name;
+	public Text typename;
 	public Text use;
 	public Button usebutton;
 	
 	private Dictionary<ItemType,int> items;
 	private int itemcount;
+	
+	private GameManager gameManager;
+	private ItemReader itemReader;
 	
 	void Awake()
 	{
@@ -29,7 +33,10 @@ public class InventoryDisplay : MonoBehaviour
 	
 	public void OnEnable()
 	{
-		UpdateInventory();
+        if (gameManager == null)
+            gameManager = GameObject.FindObjectOfType<GameManager>();
+		itemReader=new ItemReader();
+		itemReader.ReadFile();
 	}
 
 	public void UpdateInventory()
@@ -56,12 +63,14 @@ public class InventoryDisplay : MonoBehaviour
 					ItemDisplay item=GenItem(i);
 					item.type=en.Current.Key;
 					item.num=en.Current.Value;
+					item.UpdateItemDisplay();
 				}
 				else
 				{
 					ItemDisplay item=this.transform.GetChild(i).GetComponent<ItemDisplay>();
 					item.type=en.Current.Key;
 					item.num=en.Current.Value;
+					item.UpdateItemDisplay();
 				}
 			}
 		}
@@ -75,6 +84,7 @@ public class InventoryDisplay : MonoBehaviour
 		newitem.transform.SetParent(this.transform);
 		newitem.inventory=this.GetComponent<InventoryDisplay>();
 		UpdateItem(newitem,index);
+		newitem.UpdateItemDisplay();
 		return newitem;
 	}
 	
@@ -88,16 +98,42 @@ public class InventoryDisplay : MonoBehaviour
 	
 	public void OnItemBtn()
 	{
-		for(int i=0;i<itemcount;i++)
+		/*for(int i=0;i<itemcount;i++)
 		{
 			ItemDisplay item=this.transform.GetChild(i).GetComponent<ItemDisplay>();
 			item.gameObject.GetComponent<Image>().color=item.type!=currentType?Color.white:color;
+		}*/
+		UpdateInventory();
+		for(int i=0;i<itemcount;i++)
+		{
+			ItemDisplay item=this.transform.GetChild(i).GetComponent<ItemDisplay>();
+			if(item.type==currentType)
+				item.gameObject.GetComponent<Image>().color=color;
 		}
+		
 	}
 	
 	public void OnUseBtn()
 	{
+		Item useditem = itemReader.GetItemData(currentType);
+		BuffEntry currentBuff=useditem.buff;
+		Monster monster=gameManager.gameInteraction.menu.currentMonster;
+		if(currentBuff==null)
+			return;
+		if(currentBuff.counter>=0)
+			monster.addBuff(currentBuff.attributeType,currentBuff.value,currentBuff.counter);
+		else
+			monster.modifyAttribute(currentBuff.attributeType,currentBuff.value);
+		monster.UpdateCurrentValue();
 		inventory.itemManager.ConsumeItem(currentType, 1);
 		UpdateInventory();
+	}
+	
+	public void Update()
+	{
+		foreach(Transform child in transform)
+		{
+			child.GetComponent<ItemDisplay>().UpdatePosition();
+		}
 	}
 }
