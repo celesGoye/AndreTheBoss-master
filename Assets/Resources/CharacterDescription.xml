@@ -14,15 +14,17 @@
 		</boss>
 <zombie>
 			<race>undead</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<story>The medium undead reanimated corpse shambles about in a jerky, uneven gait without fear or hesitation. Drawn from the grave, half decayed and partially consumed by worms, it wears the tattered moldering remains of its burial clothes. A rank odor of death and decay hangs heavy in the air. 
+            </story>
+			<description>There Is A Zombie On Your Lawn</description>
 			<avatar>UI/avatar/avatar_zombie</avatar>
 			<image>Image/character/zombie</image>
 </zombie>
 <sprite>
 			<race>fey</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<story>Sprites travel in swarms and can bite if provoked. They are playful, and at times obnoxious. One of their favorite past-times is pestering butterflies. This is a great game for them as they are able to fly much faster than butterflies and can go greater distances before requiring rest.
+            </story>
+			<description>The refreshing taste of lemon lime sprite Dayum dats gud</description>
 			<avatar>UI/avatar/avatar_sprite</avatar>
 			<image>Image/character/sprite</image>
 </sprite>
@@ -30,100 +32,113 @@
 	</unlocklevel>
 	<unlocklevel value="1">
 <druid>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>druid</race>
+			<story>Guardians of nature who seek to preserve balance and protect life, Druids have unmatched versatility on the field of battle. This is in part because druidism is much more than a fighting discipline—it’s a way of life steeped in traditions so ancient that even the origin of their kind is preserved largely in mythology passed on through millennia.
+</story>
+			<description>We are the preservers of the balance, now and forever</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </druid>
 <dwarf>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>humanoid</race>
+			<story>The Dwarf people as a whole are sturdy and strong, brilliant craftsmen and excellent warriors, but above all they prize themselves on their loyalty to each other and to those they are indebted to.This strong bond of kinship has ensured that the Dwarfs are considered amongst the most united races in the face of the world.
+            </story>
+			<description>If there's one thing dwarves love, it's drinking. And fighting. Two things</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </dwarf>
 <giant>
-			<story>storyyy</story>
-			<description>description</description>
+            <race>giant</race>
+			<story>Giants are one-eyed giants that eke out a meager existence in wild lands. They are a terrifying threat in combat due to their size and strength, but they can often be tricked by clever foes.
+            </story>
+			<description>If your name is Noman, use a fake name</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </giant>
 </unlocklevel>
 <unlocklevel value="2">
 <ghoul>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>humanoid</race>
+			<story>In ancient Arabic folklore, ghūls belonged to a diabolic class of jinn (spirits) and were said to be the offspring of Iblīs, the prince of darkness in Islam. They were capable of constantly changing form, but their presence was always recognizable by their unalterable sign—ass’s hooves.
+            </story>
+			<description>Neither man nor woman…neither brute nor human</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </ghoul>
 <stoneman>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>humanoid</race>
+			<story>These creatures seem to be affected by an unknown disease. Although their origin remains mystery, the disease have changed their appearance and even inside  that the most impacted part of them is the stone-constructed body.
+            </story>
+			<description>A rough devil</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </stoneman>
 <goblin>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>goblinoid</race>
+			<story>Their love of money, explosives, and technology leaves them to be a very dangerous race, both to their enemies and themselves. Most goblins have a neutral standpoint, preferring to sell their contraptions, knowledge and services to other races.
+</story>
+			<description>Clever as they come, but not the most friendly of beasts</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </goblin>
 </unlocklevel>
 <unlocklevel value="3">
 <bloodseeker>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>humanoid</race>
+			<story>Bloodseekers feed exclusively on blood and are especially drawn to large animals, such as livestock. While solitary bloodseekers are timid beings and will flee from attackers, they are social creatures and often live in large groups referred to as clots.
+</story>
+			<description>Luring for blood, seeking satisfactory</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </bloodseeker>
 <chimera>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>hybrid</race>
+			<story>It is said to be having a body and a head of a male lion, with the head of a goat arising from its back,  and a tail that might end with a snake head. She does not typically have the power of flight.
+</story>
+			<description>Self-aware creatures, with a limited capacity for language</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </chimera>
 <bugbear>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>goblinoid</race>
+			<story>Bugbears, like other goblinoids, had a reputation for being dim-witted and brutish. This claim was not unfounded and like their kin bugbears had easily provoked tempers and were prone to rages. Few bugbears overcame this flaw and their culture's brutal nature.
+            </story>
+			<description>Like many goblinoids, bugbears spoke the Goblin language</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </bugbear>
 </unlocklevel>
 <unlocklevel value="4">
 <drow>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>elf</race>
+			<story>Drow, by reputation, were almost entirely evil. The teachings of Lolth represented the standard moral code for most of the race. They were overall decadent but managed to hide it under a veneer of sophistication.
+            </story>
+			<description>The Ones Who Went Below</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </drow>
 <centaur>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>humanoid</race>
+			<story>Centaurs were a strong and proud race. Although they typically strove to find peace and balance with nature, they could act with violence when the need arose. Despite this desire for balance, centaurs had to eat a lot to fuel their large bodies and were known to overindulge, especially with wine and ale.</story>
+			<description>They had good relations with elves, being as they were both creatures of the forest</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </centaur>
 <mindflayer>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>humanoid</race>
+			<story>The mind flayer mind knew only negative emotions, only finding fulfillment in the angry and sadistic act of consuming a brain. The closest to happiness any mind flayer could know was in its pride and in satisfying its curiosity.
+            </story>
+			<description>To put out the myriad suns―to darken the light</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </mindflayer>
 </unlocklevel>
 <unlocklevel value="5">
 <dragon>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>dragon</race>
+			<story>Dragons were inherently magical beings, and in no case should dragons be considered reptiles, despite obvious similarities such as a scaled epidermis and reproduction by laying eggs.[30] In fact, they were more akin to feline creatures than reptiles, particularly in regards to their posture and movements, as well as being inherently warm-blooded and an eye composition similar to felines, although far more complex.
+            </story>
+			<description>Thet could cross-breed with virtually any other creature</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
 </dragon>
