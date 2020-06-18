@@ -2,9 +2,10 @@
 <monster>
 	<unlocklevel value="0">
 		<boss>
-			<race>andre</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>boss</race>
+			<story>His origin remains unclear, but according to some human survivors that he is once a legend in the human empire.
+            </story>
+			<description>Souls And Hearts</description>
 			<avatar1>UI/avatar/avatar_boss</avatar1>
 			<image1>Image/character/boss</image1>			
 			<avatar2>UI/avatar/avatar_boss</avatar2>
@@ -148,150 +149,168 @@
     <normal>
         <level value="1">
             <wanderingswordsman>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>A man of honor.
+Picked up a couple tricks along the way, done what needed to be done to simply get by. He's a seasoned swordsman now, his trusty blades have served him well over the past years. Where will they take him now?
+</story>
+			<description>Not all those who wander are lost</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </wanderingswordsman>
             <magicapprentice>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Bein' a mage means knowin' power can flow in more than one direction. Usually in the tutelage of more powerful spellcasters, apprentice mages are young people searching for strength in the arcane arts.
+            </story>
+			<description>Cast a cold eye, on life, on death, horseman, pass by</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </magicapprentice>
             <thief>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Rogues fend for themselves, looking for fights in which they dictate the terms. They’re the shadows in the night that remain unseen until the right moment comes to strike. Rogues are opportunistic thieves, bandits, and assassins, but there’s an unparalleled art to what they do.
+            </story>
+			<description>You're your own man. Don't let nobody bully you into doing something you don't wanna do!</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </thief>
             <bandit>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Bandits rove in gangs and are sometimes led by thugs, veterans, or spellcasters. Not all bandits are evil. Oppression, drought, disease, or famine can often drive otherwise honest folk to a life of banditry.
+            </story>
+			<description>You seemed familiar, ain't  I killed you before?</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </bandit>
         </level>
         <level value="2">
             <banditcaptain>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>It takes a strong personality, ruthless cunning, and a Silver Tongue to keep a gang of bandits in line. The Bandit captain has these qualities in spades.
+            </story>
+			<description>Wanted: Dead or Alive</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </banditcaptain>
             <berserker>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>In battle, the berserkers were subject to fits of frenzy. They would howl like wild beasts, foamed at the mouth, and gnawed the iron rim of their shields. According to belief, during these fits they were immune to steel and fire, and made great havoc in the ranks of the enemy. 
+            </story>
+			<description>For some barbarians, rage is a means to an end – that end being violence</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </berserker>
             <bard>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Humming as she traces her fingers over an ancient monument in a long-forgotten ruin, a half-elf in rugged leathers finds knowledge springing into her mind, conjured forth by the magic of her song—knowledge of the people who constructed the monument and the mythic saga it depicts.
+            </story>
+			<description>One day, your grandchildren shall tell the tale of this moment</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </bard>
             <magicmaster>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>After the mastery of magic, apprentices become self independent, well-learned magic participants.</story>
+			<description>A little bit better fireball</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </magicmaster>
         </level>
         <level value="3">
             <magicgrandmaster>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>The greater honor comes as the magic master earns himself with the capability of serving the royal family. Doing such honorable job makes them famous during the students who have a desire for magic. 
+            </story>
+			<description>Greatest honor</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </magicgrandmaster>
             <witch>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Witches are a type of wizards and almost all of them are female.</story>
+			<description>Destruction for good</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </witch>
             <assassin>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Assassins spent their lifetimes engaged in spy missions, some involving spending months or even years in hostile territory. The aim was to gather crucial information, and return to their spymasters or employers with intel that could change the fate of worlds.
+            </story>
+			<description>Shadow Spellcasters</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </assassin>
             <catapult>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>weapon</race>
+			<story>Nearly all catapults employed in ancient and medieval artillery operated by a sudden release of tension on bent wooden beams or of torsion in twisted cords of horsehair, gut, sinew, or other fibers. An exception was the medieval trebuchet, powered by gravity.
+            </story>
+			<description>Only a lever can do it</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </catapult>
         </level>
         <level value="4">
             <cultist>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Cultists swear allegiance to dark powers. Most conceal their loyalties to avoid being ostracized, imprisoned, or executed for their beliefs. Unlike evil acolytes, cultists often show signs of insanity in their beliefs and practices.
+            </story>
+			<description>Serve in dark hours</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </cultist>
             <priest>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Priests are common units inside a church, from where they preaching the highest One’s goodness and travel to other nations for missionary.</story>
+			<description>For the highest One</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </priest>
             <bloodwitch>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Blood witches are powerful witches who specialize in the use of blood magic. They are known to chant and perform blood rituals.
+            </story>
+			<description>Desire… more blood</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </bloodwitch>
             <darkknight>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>The Dark Knights were once the proud Silver Knights of Cinder Lord. Long ago they fought chaos demons and were charred black. Many traveled with Cinder Lord to the First Flame, and were burned to ashes when he linked the First Flame. 
+            </story>
+			<description>Silence...</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </darkknight>
         </level>
         <level value="5">
             <magebelial>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Grand Master Mage Belial is one of the most powerful mages living in the ancient kingdom Hammord. He serves the king as a magic consultant and provides strategies against dark beings.
+            </story>
+			<description>For the Empire! For the Lion!</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </magebelial>
             <royalinquisitor>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>The Empire crashes its enemies in the battlefield. However, sometimes it requires special personnel  to carry secret missions so that the destruction of its hidden rebels is inevitable.
+            </story>
+			<description>In darkness waiting for glory to come</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </royalinquisitor>
             <shadowfran>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Not everyone believes the power of shadow, but Fran has become so mush towards darkness that the shadow itself replaces his body at one night. From that on, he have been the shadow.
+            </story>
+			<description>See me in the moon</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </shadowfran>
             <cardinaleriri>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>There is a wealthy kingdom sits aside the far east. After its discovery, the church sends out its priests trying to convert it. However, after the transfer of this kingdom’s religion, there comes a Cardinal Eriri, who fights for independence from the origin church. And now it is he who controls this kingdom instead of the old king.
+            </story>
+			<description>Super religion political power</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </cardinaleriri>
@@ -300,48 +319,62 @@
     <hero>
         <level value="1">
             <robinhood>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>A legendary outlaw hero.</story>
+			<description>By the bare scalp of Robin Hood's fat friar, This fellow were a king for our wild faction!</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </robinhood>
         </level>
         <level value="2">
             <tatenoyousya>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Emotionally unmoved, being a strong man means knowing the situation and protecting who you love and yourself.
+            </story>
+			<description>No! At least not this time...</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </tatenoyousya>
         </level>
         <level value="3">
             <jinjyamiko>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>A courageous shrine lady doing her best to protect the town from youkai and other evils.
+            </story>
+			<description>Biu!</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </jinjyamiko>
         </level>
         <level value="4">
             <orchestraleader>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>A common leader working in a random national orchestra.
+            </story>
+			<description>μ’sic forever!</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </orchestraleader>
         </level>
         <level value="5">
             <cinderlord>
-			<race>race</race>
-			<story>storyyy</story>
-			<description>description</description>
+			<race>human</race>
+			<story>Once a normal person but some day became chosen.
+            </story>
+			<description>To link the fire</description>
 			<avatar>UI/avatar/avatar_boss</avatar>
 			<image>Image/character/boss</image>
             </cinderlord>
+        </level>
+        <level value="6">
+            <andrethehero>
+            <race>human</race>
+			<story>A legend.
+            </story>
+			<description>...</description>
+			<avatar>UI/avatar/avatar_boss</avatar>
+			<image>Image/character/boss</image>
+            </andrethehero>
         </level>
     </hero>
 

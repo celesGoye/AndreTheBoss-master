@@ -41,5 +41,9 @@
         <cinderlord>
             <soulnum>0</soulnum>
         </cinderlord>
+        
+        <andrethehero>
+            <coulnum>0</coulnum>
+        </andrethehero>
     </hero>
 </enemy>
