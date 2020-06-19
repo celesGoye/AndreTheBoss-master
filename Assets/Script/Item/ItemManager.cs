@@ -19,7 +19,10 @@ public class ItemManager : MonoBehaviour
 
 		//test
 		for(int i=0;i<(int)ItemType.NUM;i++)
+		{
 			GetItem((ItemType)i,99);
+		}
+		GetItem(ItemType.Soul,50);
     }
 	public void InitItems()
 	{
@@ -41,6 +44,7 @@ public class ItemManager : MonoBehaviour
 				ItemsGot.Add(itemType);
 			}
 		}
+		gameManager.gameInteraction.itemtips.AddTip(itemType,num);
 	}
 	
 	public void ConsumeItem(ItemType itemType, int num)
@@ -50,6 +54,8 @@ public class ItemManager : MonoBehaviour
 			ItemsOwn[itemType]-=num;
 			if(ItemsOwn[itemType]==0)
 				ItemsOwn.Remove(itemType);
+			
+			gameManager.gameInteraction.itemtips.AddTip(itemType,-num);
 		}
 		else
 			Debug.Log("consumeitem error");
@@ -58,5 +64,10 @@ public class ItemManager : MonoBehaviour
 	public bool IsHaveEnoughItem(ItemType itemType, int num)
 	{
 		return ItemsOwn.ContainsKey(itemType)&&ItemsOwn[itemType]>=num;
+	}
+	
+	public int GetItemNum(ItemType type)
+	{
+		return ItemsOwn.ContainsKey(type)?ItemsOwn[type]:0;
 	}
 }

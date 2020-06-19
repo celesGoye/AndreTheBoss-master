@@ -11,12 +11,17 @@ public class Gallery_TandOend : MonoBehaviour
 	public Text effect;
 	public Image image;
 	
-	public bool isTerrain;
 	public HexType hexType;
+	
+	private Sprite sprite;
     
 	public void UpdateTandO()
 	{
 		name.text=hexType.ToString();
 		kind.text="Terrain";
+		if((sprite=Resources.Load("Image/galleryThings/terrain/"+hexType.ToString(), typeof(Sprite)) as Sprite)!=null)
+		{
+			image.sprite=sprite;
+		}
 	}
 }

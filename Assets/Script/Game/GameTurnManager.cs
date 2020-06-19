@@ -16,12 +16,15 @@ public class GameTurnManager : MonoBehaviour
 
     public void InitGameTurnManager()
     {
+        turnNumber = 1;
+        isPlayerTurn = true;
         if (turnIndicator != null)
             txtTurnNum = turnIndicator.GetComponentInChildren<Text>();
-        ResetCurrentTurn(1);
-    }
 
-    public void ResetCurrentTurn(int turnNum)
+        
+    }
+	
+	public void ResetCurrentTurn(int turnNum)
     {
         this.turnNumber = turnNum;
         isPlayerTurn = true;

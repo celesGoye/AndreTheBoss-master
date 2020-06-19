@@ -31,10 +31,10 @@ public class HexCell : MonoBehaviour
     public int Distance { get; set; }
     public int heuristicDistance;
     public HexCell prevCell;
-
+    
     // index in hexMap.cells
     public int index;
-    
+	
     public void InitHexCell()
     {
         hexType = HexType.Plain;

@@ -109,17 +109,18 @@ public class FacilityPallete : MonoBehaviour
 		currentDestination=null;
 		productcontent.gameObject.SetActive(true);
 		facilityBuildPanel.UpdateBuildPanel();
-		UnselectItem();
+		//UnselectItem();
 	}
 	
 	public void OnItemButton()
 	{
+		facilityBuildPanel.UpdateBuildPanel();
 		for(int i=0;i<ValidProduct.Count;i++)
 		{
 			Product_Item item=productcontent.transform.GetChild(i).GetComponent<Product_Item>();
-			item.gameObject.GetComponent<Image>().color=item.type!=currentItem?Color.white:color;
+			if(item.type==currentItem)
+				item.gameObject.GetComponent<Image>().color=color;
 		}
-		facilityBuildPanel.UpdateBuildPanel();
 	}
 	
 	public void UnselectItem()

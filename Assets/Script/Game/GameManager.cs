@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 	public ItemManager itemManager;
     public GameInteraction gameInteraction;
     public GameEventManager gameEventManager;
-    public SaveManager saveManager;
+	public SaveManager saveManager;
 	
 	public MonsterActionManager monsterActionManager;
 
@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
         gameTurnManager.InitGameTurnManager();
         enemyManager.testAltar();
         gameEventManager.InitGameEventManager();
-
     }
 
     private void InitBoss()
@@ -84,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
+        // stub
         saveManager.Save();
     }
 

@@ -73,13 +73,13 @@ public class HexMap : MonoBehaviour
             {
                 HexCell cell = cells[x + z * mapWidth] = Instantiate<HexCell>(hexCellPrefab);
                 CreateCell(cell, x, z);
+                
                 GenerateHexTypeRandom(cell, x, z);
                 CreateAttachIndicator(cell, x, z);
             }
         }
 
         ConnectNeighbours();
-
     }
 
     private void ConnectNeighbours()
@@ -155,6 +155,7 @@ public class HexMap : MonoBehaviour
                 }
             }
         }
+
     }
 
     public void UpdateHideCells()
@@ -196,16 +197,14 @@ public class HexMap : MonoBehaviour
     private void GenerateHexTypeRandom(HexCell cell, int x, int z)
     {
         HexType type = GetRandomHexType();
-
         GenerateHexType(cell, type);
     }
-
-    // Create hexmap indicator attached to hexcell
+	
+        // Create hexmap indicator attached to hexcell
     public void GenerateHexType(HexCell cell, HexType type)
     {
         cell.hexType = type;
         // hexTypes[x+mapWidth*z] = type;
-
         if (type != HexType.Plain)
         {
             HexTypeInfo gm = null;
@@ -215,10 +214,10 @@ public class HexMap : MonoBehaviour
                 gm = Instantiate(hexPrefab_swamp);
             else if (type == HexType.Mountain)
                 gm = Instantiate(hexPrefab_mountain);
-            else if (type == HexType.Stones)
-                gm = Instantiate(hexPrefab_stones);
-            else if (type == HexType.Thorns)
-                gm = Instantiate(hexPrefab_thorns);
+			else if (type==HexType.Stones)
+				gm = Instantiate(hexPrefab_stones);
+			else if (type==HexType.Thorns)
+				gm = Instantiate(hexPrefab_thorns);
 
             if (gm != null)
             {
@@ -228,8 +227,8 @@ public class HexMap : MonoBehaviour
             }
         }
     }
-
-    public void ClearHexType()
+	
+	public void ClearHexType()
     {
         for(int i = 0; i < cells.Length; i++)
         {
@@ -240,7 +239,6 @@ public class HexMap : MonoBehaviour
             }
         }
     }
-
 
     private void CreateAttachIndicator(HexCell cell, int x, int z)
     {

@@ -5,11 +5,9 @@ using UnityEngine;
 public class MonsterActionManager : MonoBehaviour
 {
 	public MonsterManager monsterManager;
-	public List<Monster> monstersTookAction;
-	public int actionPoint;
+	public List<Monster> actionableMonsters;
 	
 	public GameInteraction gameInteraction;
-	public int MaxActionPoint=3;
 	
 	public void OnEnable()
 	{
@@ -17,33 +15,36 @@ public class MonsterActionManager : MonoBehaviour
 	
 	public void InitMonsterAcitonManager()
 	{
-		monstersTookAction=new List<Monster>();
+		actionableMonsters=new List<Monster>();
 		OnMonsterTurnBegin();
 	}
 	
 	public void MonsterAttack(Monster monster)
 	{
-		monster.actionType=ActionType.PostAction;
+		monster.actionType=ActionType.AttackEnds;
 		monster.remainedStep=0;
-		if(!monstersTookAction.Contains(monster))
+		if(actionableMonsters.Contains(monster))
 		{
-			monstersTookAction.Add(monster);
+			actionableMonsters.Remove(monster);
 		}
-		actionPoint=MaxActionPoint-monstersTookAction.Count;
-		if(actionPoint<=0)
-			ActionPointExhausted();
 		
+		gameInteraction.playerPanel.actionableMonsters.UpdateActionableMonsters();
 		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(monster);
 	}
     
 	public void OnMonsterTurnBegin()
 	{
-		actionPoint=MaxActionPoint;
-		monstersTookAction.Clear();
+		UpdateActionableMonsters();
+	}
+	
+	public void UpdateActionableMonsters()
+	{
+		actionableMonsters.Clear();
 		foreach(Monster monster in monsterManager.MonsterPawns)
 		{
-			monster.actionType=ActionType.PreAction;
+			monster.actionType=ActionType.Actionable;
 			monster.remainedStep=monster.currentDexterity;
+			actionableMonsters.Add(monster);
 		}
 	}
 	
@@ -51,21 +52,16 @@ public class MonsterActionManager : MonoBehaviour
 	{
 
 		monster.remainedStep-=step;
-		monster.actionType=ActionType.InAction;
-		
-		if(!monstersTookAction.Contains(monster))
+		if(monster.remainedStep<=0)
 		{
-			monstersTookAction.Add(monster);
+			monster.actionType=ActionType.MoveEnds;
 		}
 		
-		actionPoint=MaxActionPoint-monstersTookAction.Count;
-		if(actionPoint<=0)
-			ActionPointExhausted();
-
+		gameInteraction.playerPanel.actionableMonsters.UpdateActionableMonsters();
 		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(monster);
 	}
 	
-	public void ActionPointExhausted()
+	/*public void ActionPointExhausted()
 	{
 		foreach(Monster monster in monsterManager.MonsterPawns)
 		{
@@ -75,5 +71,10 @@ public class MonsterActionManager : MonoBehaviour
 				monster.remainedStep=0;
 			}
 		}
+	}*/
+	
+	public int GetActionNum()
+	{
+		return actionableMonsters.Count;
 	}
 }

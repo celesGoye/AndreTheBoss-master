@@ -22,6 +22,9 @@ public class GameInteraction : MonoBehaviour
     public MonsterPallete monsterPalletePanel;
     public FacilityPallete facilityPalletePanel;
 	public GameEventPanel gameEventPanel;
+	public Transform saveGamePanel;
+	public MenuControl menu;
+	public Item_tips itemtips;
 	public NoticeBoard noticeBoard;
 	public UILog uilog;
 	public PlayerPanel playerPanel;
@@ -120,6 +123,26 @@ public class GameInteraction : MonoBehaviour
         }
     }
 	
+	public void UpdateSelectedPawn(Pawn pawn)
+	{
+		if (IsPawnAction || !gameManager.gameTurnManager.IsPlayerTurn())
+            return;
+		selectedPawn=pawn;
+		gameManager.buildingManager.UpdateBuildMode(false);
+        if(selectedPawn.pawnType == PawnType.Enemy)
+        {
+            pawnStatusPanel.UpdatePawnStatusPanel(selectedPawn);
+            EnablePawnStatusPanel();
+        }
+        else if(selectedPawn.pawnType == PawnType.Monster)
+        {
+            pawnActionPanel.SetPawn(selectedPawn);
+            pawnStatusPanel.UpdatePawnStatusPanel(selectedPawn);
+            EnableAllPawnPanels();
+            hexMap.UnselectHex();
+        }
+	}
+	
 	public void SetIsPawnAction(bool action)
 	{
 		IsPawnAction=action;
@@ -166,6 +189,7 @@ public class GameInteraction : MonoBehaviour
 		buildingActionPanel.gameObject.SetActive(false);
         monsterPalletePanel.gameObject.SetActive(false);
         facilityPalletePanel.gameObject.SetActive(false);
+		saveGamePanel.gameObject.SetActive(false);
 		noticeBoard.gameObject.SetActive(false);
     }
 
@@ -232,6 +256,12 @@ public class GameInteraction : MonoBehaviour
 	public void OnMonsterTurnBegin()
 	{
 		playerPanel.OnTurnBegin();
+		pawnStatusPanel.UpdatePawnStatusPanel();
+	}
+	
+	public void OpenSavaGamePanel()
+	{
+		saveGamePanel.gameObject.SetActive(true);
 	}
 }
 

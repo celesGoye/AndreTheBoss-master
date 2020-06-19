@@ -17,6 +17,7 @@ public class MonsterPreview : MonoBehaviour
 	private CharacterReader characterReader;
 	private List<CharacterReader.CharacterSkillUI> skilldata;
 	private CharacterReader.CharacterData characterData;
+	private Sprite sprite;
 	
 	public void OnEnable()
 	{
@@ -43,10 +44,15 @@ public class MonsterPreview : MonoBehaviour
 		data1.text="1\n"
 				+(characterData.HP)+"\n"
 				+(characterData.attack)+"\n"
-				+(characterData.defense);
+				+(characterData.defense)+"\n";
 		data2.text=(characterData.dexterity)+"\n"
 				+(characterData.magicAttack)+"\n"
 				+(characterData.magicDefense)+"\n"
-				+(characterData.attackRange);
+				+(characterData.attackRange)+"\n";
+				
+		if((sprite=Resources.Load("Image/character/"+name, typeof(Sprite)) as Sprite)!=null)
+			image.sprite =sprite;
+		else if((sprite=Resources.Load("Image/character/"+name+"1", typeof(Sprite)) as Sprite)!=null)
+			image.sprite=sprite;
 	}
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1153835755592772042
+--- !u!1 &386979491133538762
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,87 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 168692776492102286}
-  - component: {fileID: 1016235489585036330}
-  - component: {fileID: 2237892716086633622}
-  m_Layer: 8
-  m_Name: MonsterSprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &168692776492102286
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153835755592772042}
-  m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.97629607}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 3957482669467086348}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
---- !u!136 &1016235489585036330
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153835755592772042}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.62
-  m_Height: 3.3
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.25, z: 0}
---- !u!114 &2237892716086633622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153835755592772042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3283721a7ee39d242aa4c2360c06ee1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentAttack: 0
-  currentMagicAttack: 0
-  currentDefense: 0
-  currentMagicDefense: 0
-  currentHP: 0
-  currentDexterity: 0
-  currentAttackRange: 0
-  skipCounter: 0
-  isSkip: 0
-  isDirty: 0
-  isIgnoreDefense: 0
-  isIgnoreMagicDefense: 0
-  buffs: []
-  healthbar: {fileID: 0}
-  currentCell: {fileID: 0}
-  monsterType: 0
-  currentSkill: 0
-  equippedSkill: 0
-  remainedStep: 0
-  actionType: 0
---- !u!1 &6808866934489648038
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3957482669467086348}
-  - component: {fileID: 6506082317872883827}
+  - component: {fileID: 7910830236400444512}
+  - component: {fileID: 101639745356669471}
   m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
@@ -96,27 +17,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3957482669467086348
+--- !u!4 &7910830236400444512
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6808866934489648038}
+  m_GameObject: {fileID: 386979491133538762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.38, y: 2.02, z: -0.22}
+  m_LocalPosition: {x: 0, y: 2.5, z: -0.4}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
-  m_Father: {fileID: 168692776492102286}
+  m_Father: {fileID: 6445907281681103074}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6506082317872883827
+--- !u!212 &101639745356669471
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6808866934489648038}
+  m_GameObject: {fileID: 386979491133538762}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -149,14 +70,105 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 41785d4f4dff4e448b6c56acc68d3f7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7bf37344766e144e8dc5de6b19716fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.77, y: 7.25}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5413353326337631142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6445907281681103074}
+  - component: {fileID: 6141013654236345926}
+  - component: {fileID: 4912776537768455930}
+  m_Layer: 8
+  m_Name: MonsterSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6445907281681103074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5413353326337631142}
+  m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.97629607}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7910830236400444512}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
+--- !u!136 &6141013654236345926
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5413353326337631142}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.62
+  m_Height: 3.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!114 &4912776537768455930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5413353326337631142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3283721a7ee39d242aa4c2360c06ee1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  attack: 0
+  magicAttack: 0
+  defense: 0
+  magicDefense: 0
+  hp: 0
+  dexterity: 0
+  attackRange: 0
+  currentAttack: 0
+  currentMagicAttack: 0
+  currentDefense: 0
+  currentMagicDefense: 0
+  currentHP: 0
+  currentDexterity: 0
+  currentAttackRange: 0
+  skipCounter: 0
+  isSkip: 0
+  isDirty: 0
+  isUIupdated: 0
+  isIgnoreDefense: 0
+  isIgnoreMagicDefense: 0
+  buffs: []
+  healthbar: {fileID: 0}
+  currentCell: {fileID: 0}
+  monsterType: 0
+  defaultSkill: 0
+  equippedSkill: 0
+  remainedStep: 0
+  actionType: 0
+  CanDoAction: 0
+  gm: {fileID: 0}
+  pawnAction: {fileID: 0}

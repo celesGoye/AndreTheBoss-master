@@ -2,44 +2,146 @@
     <normal>
         <level value="1">
             <soulnum>2</soulnum>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>1</number>
+                <posibility>40</posibility>
+			</item>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>2</number>
+                <posibility>20</posibility>
+			</item>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>3</number>
+                <posibility>10</posibility>
+			</item>
         </level>
         
         <level value="2">
             <soulnum>4</soulnum>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>1</number>
+                <posibility>40</posibility>
+			</item>
         </level>
         
         <level value="3">
             <soulnum>8</soulnum>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>1</number>
+                <posibility>40</posibility>
+			</item>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>2</number>
+                <posibility>20</posibility>
+			</item>
         </level>
         
         <level value="4">
             <soulnum>12</soulnum>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>1</number>
+                <posibility>40</posibility>
+			</item>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>2</number>
+                <posibility>20</posibility>
+			</item>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>3</number>
+                <posibility>10</posibility>
+			</item>
         </level>
         
         <level value="5">
             <soulnum>16</soulnum>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>1</number>
+                <posibility>40</posibility>
+			</item>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>2</number>
+                <posibility>20</posibility>
+			</item>
+			<item>
+				<type>soultype</type>
+                <typeEnum>moonlightstone</typeEnum>
+                <number>3</number>
+                <posibility>10</posibility>
+			</item>
         </level>
     </normal>
     
     <hero>
         <robinhood>
             <soulnum>12</soulnum>
+			<item>
+				<type>soultype</type>
+                <typeEnum>robinhood</typeEnum>
+                <number>1</number>
+                <posibility>100</posibility>
+			</item>
         </robinhood>
         
         <tatenoyousya>
             <soulnum>20</soulnum>
+			<item>
+				<type>soultype</type>
+                <typeEnum>tatenoyousya</typeEnum>
+                <number>1</number>
+                <posibility>100</posibility>
+			</item>
         </tatenoyousya>
         
         <jinjyamiko>
             <soulnum>30</soulnum>
+			<item>
+				<type>soultype</type>
+                <typeEnum>jinjyamiko</typeEnum>
+                <number>1</number>
+                <posibility>100</posibility>
+			</item>
         </jinjyamiko>
         
         <orchestraleader>
             <soulnum>40</soulnum>
+			<item>
+				<type>soultype</type>
+                <typeEnum>orchestraleader</typeEnum>
+                <number>1</number>
+                <posibility>100</posibility>
+			</item>
         </orchestraleader>
         
         <cinderlord>
             <soulnum>0</soulnum>
+			<item>
+				<type>soultype</type>
+                <typeEnum>cinderlord</typeEnum>
+                <number>1</number>
+                <posibility>100</posibility>
+			</item>
         </cinderlord>
         
         <andrethehero>

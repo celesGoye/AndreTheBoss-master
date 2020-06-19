@@ -44,7 +44,8 @@ public class Boss : Monster
             Enemy enemy = (Enemy)cell.pawn;
 
             UpdateCurrentValue();
-            int damage = this.currentMagicAttack + this.currentAttack;
+            //int damage = this.currentMagicAttack + this.currentAttack;
+            int damage = this.currentMagicAttack;
 
             if(enemy != null)
             {

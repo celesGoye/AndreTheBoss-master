@@ -16,11 +16,19 @@ public class MonsterDisplay : MonoBehaviour
 	public Button button;
 	public MonsterPallete monsterPallete;
 	
-	
+	private Sprite sprite;
 	
 	public void OnEnable()
 	{
 		button.onClick.AddListener(OnMonsterBtn);	
+	}
+	
+	public void UpdateMonsterDisplay()
+	{
+		if((sprite=Resources.Load("UI/avatar/"+type.ToString(), typeof(Sprite)) as Sprite)!=null)
+			image.sprite =sprite;
+		else if((sprite=Resources.Load("UI/avatar/"+type.ToString()+"1", typeof(Sprite)) as Sprite)!=null)
+			image.sprite=sprite;
 	}
 	
 	public void OnMonsterBtn()

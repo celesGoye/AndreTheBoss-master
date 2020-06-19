@@ -206,7 +206,7 @@ public class GameEventPanel : MonoBehaviour
 				{
 					finalItems.Add(item);
 					break;
-				}	
+				}
 			}
 			if(finalItems.Count>0)
 			{
@@ -214,7 +214,7 @@ public class GameEventPanel : MonoBehaviour
 				foreach(ItemEntry item in finalItems)
 				{
 					gm.itemManager.GetItem(item.itemType, item.number);
-					result.text+=item.itemType.ToString()+"*"+item.number+";";
+					result.text+=TextColor.SetTextColor(item.itemType.ToString(),TextColor.ItemColor)+"*"+item.number+";";
 				}
 			}
 		}
@@ -275,7 +275,7 @@ public class GameEventPanel : MonoBehaviour
 				foreach(ItemEntry item in finalItems)
 				{
 					gm.itemManager.GetItem(item.itemType, item.number);
-					result.text+=item.itemType.ToString()+"*"+item.number+";";
+					result.text+=TextColor.SetTextColor(item.itemType.ToString(),TextColor.ItemColor)+"*"+item.number+";";
 				}
 				result.text+="\n";
 			}
@@ -307,7 +307,7 @@ public class GameEventPanel : MonoBehaviour
 				foreach(ItemEntry item in finalItems)
 				{
 					gm.itemManager.ConsumeItem(item.itemType, item.number);
-					result.text+=item.itemType.ToString()+"*"+item.number+";";
+					result.text+=TextColor.SetTextColor(item.itemType.ToString(),TextColor.ItemColor)+"*"+item.number+";";
 				}
 				result.text+="\n";
 			}
