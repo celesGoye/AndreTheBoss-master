@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 public class PawnStatus : MonoBehaviour
 {
@@ -33,7 +36,7 @@ public class PawnStatus : MonoBehaviour
 		else
 			UpdatePanel(pawn.pawnType,pawn.currentAttack, pawn.currentDefense, pawn.currentHP, pawn.currentDexterity,
 					pawn.currentAttackRange,pawn.Name,pawn.GetMaxHP(),pawn.GetLevel(),pawn.currentMagicAttack,
-					pawn.currentMagicDefense,0,ActionType.NoAction);
+					pawn.currentMagicDefense,0,ActionType.Nonactionable);
     }
 	
 	public void UpdatePawnStatusPanel()
@@ -42,6 +45,8 @@ public class PawnStatus : MonoBehaviour
         UpdatePanel(currentPawn.pawnType,currentPawn.currentAttack, currentPawn.currentDefense, currentPawn.currentHP, currentPawn.currentDexterity,
 					currentPawn.currentAttackRange,currentPawn.Name,currentPawn.GetMaxHP(),currentPawn.GetLevel(),currentPawn.currentMagicAttack,
 					currentPawn.currentMagicDefense,((Monster)currentPawn).remainedStep,((Monster)currentPawn).actionType);
+		else
+			this.gameObject.SetActive(false);
     }
 	
     private void UpdatePanel(PawnType type,int attack, int def, int hp, int dex, int atkRange,string name,int maxHp,int level,int magic,int resistance,int remainedStep,ActionType actionType)
@@ -58,8 +63,10 @@ public class PawnStatus : MonoBehaviour
 		txtResistant.text="RES:"+resistance;
         txtName.text = ""+name;
 		txtLevel.text="."+level;
-		if((sprite=Resources.Load("UI/avatar/avatar_"+name, typeof(Sprite)) as Sprite)!=null)
+		if((sprite=Resources.Load("UI/avatar/"+name, typeof(Sprite)) as Sprite)!=null)
 			imgAvatar.sprite =sprite;
+		else if((sprite=Resources.Load("UI/avatar/"+name+level, typeof(Sprite)) as Sprite)!=null)
+			imgAvatar.sprite=sprite;
 		
 		if(type==PawnType.Monster)
 		{
@@ -73,5 +80,13 @@ public class PawnStatus : MonoBehaviour
 		txtRemainedStep.transform.gameObject.SetActive(false);
 		txtActionType.transform.gameObject.SetActive(false);
 		}
+		
+		currentPawn.isUIupdated=true;
     }
+	
+	public void Update()
+	{
+		if(currentPawn!=null&&!currentPawn.isUIupdated)
+			UpdatePawnStatusPanel();
+	}
 }

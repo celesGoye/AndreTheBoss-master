@@ -10,7 +10,7 @@ public class Gallery_Itemend : MonoBehaviour
 	public Text name;
 	public Text intro;
 	public Text use;
-	//public Text access;
+	public Text type;
 	public Image image;
 	
 	private ItemReader reader;
@@ -24,7 +24,8 @@ public class Gallery_Itemend : MonoBehaviour
 		item=reader.GetItemData(itemType);
 		
 		image.sprite=item.sprite;
-		intro.text="<size=22>"+item.Intro.Trim()+"</size>";
-		use.text="<size=22>"+item.Use.Trim()+"</size>";
+		type.text=item.itemPrimaryType.ToString();
+		intro.text=item.Intro.Trim()+"\n";
+		use.text=item.Use.Trim()+"\n"+item.Access.Trim()+"\n";
 	}
 }

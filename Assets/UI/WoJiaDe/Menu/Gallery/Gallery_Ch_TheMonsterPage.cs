@@ -17,6 +17,7 @@ public class Gallery_Ch_TheMonsterPage : MonoBehaviour
 	private CharacterReader characterReader;
 	private List<CharacterReader.CharacterSkillUI> skilldata;
 	private CharacterReader.CharacterDescription description;
+	private Sprite sprite;
 
 	public void OnEnable()
 	{
@@ -45,5 +46,10 @@ public class Gallery_Ch_TheMonsterPage : MonoBehaviour
 		skill.text="<size=22>"+skilltext+"</size>";
 		story.text="<size=22>"+description.story+"</size>";
 		race.text=description.race;
+		
+		if((sprite=Resources.Load("Image/character/"+name, typeof(Sprite)) as Sprite)!=null)
+			image.sprite =sprite;
+		else if((sprite=Resources.Load("Image/character/"+name+"5", typeof(Sprite)) as Sprite)!=null)
+			image.sprite=sprite;
 	}
 }

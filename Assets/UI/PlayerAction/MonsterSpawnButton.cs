@@ -22,6 +22,7 @@ public class MonsterSpawnButton : MonoBehaviour
 	{
 		gameManager.gameInteraction.monsterPalletePanel.monsterSpawnPanel.ConsumeItem();
 		SpawnMonster(gameManager.gameInteraction.monsterPalletePanel.currentType);
+		gameManager.buildingManager.UpdateBuildMode(true);
 	}
 
     public void OnEnable()

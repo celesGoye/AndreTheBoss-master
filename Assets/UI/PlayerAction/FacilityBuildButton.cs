@@ -30,12 +30,14 @@ public class FacilityBuildButton : MonoBehaviour
 		Debug.Log("clearing");
         gameManager.gameInteraction.Clear();
     }
+	
 	public void OnBuildFacilityButton()
 	{
 		gameManager.gameInteraction.facilityPalletePanel.facilityBuildPanel.ConsumeItem();
 		BuildFacility(gameManager.gameInteraction.facilityPalletePanel.currentType,
 						gameManager.gameInteraction.facilityPalletePanel.currentItem,
 						gameManager.gameInteraction.facilityPalletePanel.currentLevel);
+		gameManager.buildingManager.UpdateBuildMode(true);
 	}
 	
 

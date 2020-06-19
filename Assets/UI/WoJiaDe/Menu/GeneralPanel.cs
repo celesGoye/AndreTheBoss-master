@@ -22,15 +22,19 @@ public class GeneralPanel : MonoBehaviour
 		monsterManager=menu.gameManager.monsterManager;
     }
 	
+	public void Update()
+	{
+		healthSlider.value=(float)currentMonster.currentHP/currentMonster.GetMaxHP();
+	}
+	
 	public void UpdateGeneral(){
 		currentMonster=menu.currentMonster;
 		nameText.text=currentMonster.Name;
-		healthSlider.value=(float)currentMonster.currentHP/currentMonster.GetMaxHP();
 		lifeText.text=currentMonster.currentHP+"/"+currentMonster.GetMaxHP();
 		if((sprite=Resources.Load("Image/character/"+currentMonster.Name, typeof(Sprite)) as Sprite)!=null)
 			characterImg.sprite =sprite;
-		else
-			Debug.Log("can't find "+currentMonster.Name);
+		else if((sprite=Resources.Load("Image/character/"+currentMonster.Name+currentMonster.GetLevel(), typeof(Sprite)) as Sprite)!=null)
+			characterImg.sprite=sprite;
 	}
 	
 	public void OnPrevoius()

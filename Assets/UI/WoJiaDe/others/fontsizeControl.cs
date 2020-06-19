@@ -8,7 +8,7 @@ public class fontsizeControl : MonoBehaviour
 {
 	public float fontsize;
 	
-	private int newsize;
+	public int newsize;
 	private string newtext;
 	private Text mytext;
 	
@@ -20,10 +20,10 @@ public class fontsizeControl : MonoBehaviour
     {
 		if(mytext==null)
 			return;
-		Regex rgx=new Regex("<size=\\d*>");
+		Regex rgx=new Regex("(?:^|\n)<size=\\d*>");
 		newsize=(int)(UnityEngine.Screen.height*fontsize);
 		if(rgx.IsMatch(mytext.text))
-			newtext=rgx.Replace(mytext.text,"<size="+newsize+">");
+			newtext=rgx.Replace(mytext.text,"<size="+newsize+">",1);
 		else
 			newtext="<size="+newsize+">"+mytext.text+"</size>";
 		mytext.text=newtext;

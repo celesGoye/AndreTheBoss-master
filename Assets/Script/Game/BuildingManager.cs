@@ -55,7 +55,6 @@ public class BuildingManager : MonoBehaviour
         };
 	}
 	
-
 	public void ClearBuildings()
     {
 		for(int i = 0; i < Buildings.Count; i++)
@@ -106,10 +105,7 @@ public class BuildingManager : MonoBehaviour
 	
 	public void OnMonsterTurnBegin()
 	{
-		if(itemProduced == null)
-			itemProduced=new Dictionary<ItemType,int>();
-
-		itemProduced.Clear();
+		itemProduced=new Dictionary<ItemType,int>();
 		foreach(Building building in Buildings)
 		{
 			if(building.GetItemType()!=ItemType.NUM)
@@ -133,7 +129,7 @@ public class BuildingManager : MonoBehaviour
 			foreach(ItemType key in itemProduced.Keys)
 			{
 				gameManager.itemManager.GetItem(key,itemProduced[key]);
-				logstring+="<color=#6A5ACD>  "+key.ToString()+"</color>*"+itemProduced[key]+";";
+				logstring+=TextColor.SetTextColor(key.ToString(),TextColor.ItemColor)+"*"+itemProduced[key]+";";
 			}
 		}
 		gameManager.gameInteraction.uilog.UpdateLog(logstring);
@@ -151,6 +147,7 @@ public class BuildingManager : MonoBehaviour
 	{
 		if(Buildings.Contains(building))
 		{
+			Buildings.Remove(building);
 			building.currentCell.building=null;
 			building.DestroyBuilding();
 		}

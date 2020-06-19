@@ -15,7 +15,7 @@ public class BuildingDestroyPanel : MonoBehaviour
 		building=hexCell.building;
 		if(gameManager==null)
 			gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
-		txtname.text="Destroy\n "+building.GetBuildingType().ToString()+"?";
+		txtname.text="Destroy\n "+TextColor.SetTextColor(building.GetBuildingType().ToString(),TextColor.ItemColor)+"(lv."+building.GetCurrentLevel()+")"+"?";
 	}
 	
 	public void OnDestroyYes()

@@ -210,5 +210,6 @@ MonoBehaviour:
   size: 0
   type: 0
   image: {fileID: 5835936201586123864}
+  bg: {fileID: 8383279868975979305}
   button: {fileID: 4699094287914295573}
   facilityPallete: {fileID: 0}

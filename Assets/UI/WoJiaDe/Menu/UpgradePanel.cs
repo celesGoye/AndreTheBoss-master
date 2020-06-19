@@ -30,6 +30,8 @@ public class UpgradePanel : MonoBehaviour
 	{
 		//Debug.Log("UpgradePanel menu.currentMonster"+menu.currentMonster);
 		currentMonster=menu.currentMonster;
+		consumePanel.UpdateConsumePanel();
+		
 		if(IsUpgradeOK())
 			confirm.interactable=true;
 		else
@@ -70,10 +72,14 @@ public class UpgradePanel : MonoBehaviour
 		{
 			Monster monster = (Monster)currentMonster;
 			monster.Upgrade();
-			gameManager.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(currentMonster);
-			menu.UpdateMenu();
+			gameManager.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel();
+			gameManager.gameInteraction.playerPanel.UpdateBossUI();
+			if(monster.GetComponent<MonsterAppearance>()!=null)
+			{
+				monster.GetComponent<MonsterAppearance>().UpdateAppearance(monster.GetLevel());
+			}
+			menu.general.UpdateGeneral();
 			consumePanel.ConsumeItem();
-			consumePanel.UpdateConsumePanel();
 			UpdateInfo();
 		}catch(Exception ex)
 		{

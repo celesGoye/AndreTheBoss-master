@@ -14,8 +14,22 @@ public class MonsterManager : MonoBehaviour
 
     public Monster MonsterPrefab_zombie;
     public Monster MonsterPrefab_sprite;
+	public Monster MonsterPrefab_druid;
+	
     public Monster MonsterPrefab_dwarf;
     public Monster MonsterPrefab_giant;
+	public Monster MonsterPrefab_ghoul;
+	
+	public Monster MonsterPrefab_stoneman;
+	public Monster MonsterPrefab_goblin;
+	public Monster MonsterPrefab_bloodseeker;
+	
+	public Monster MonsterPrefab_chimera;
+	public Monster MonsterPrefab_bugbear;
+	public Monster MonsterPrefab_drow;
+	
+    public Monster MonsterPrefab_centaur;
+    public Monster MonsterPrefab_mindflayer;
     public Monster MonsterPrefab_boss;
 
     private Dictionary<MonsterType, Monster> prefabs;
@@ -38,11 +52,22 @@ public class MonsterManager : MonoBehaviour
             {MonsterType.boss, MonsterPrefab_boss },
             {MonsterType.dwarf, MonsterPrefab_dwarf},
             {MonsterType.giant, MonsterPrefab_giant },
+			{MonsterType.ghoul, MonsterPrefab_ghoul},
+			{MonsterType.druid, MonsterPrefab_druid },
             {MonsterType.sprite, MonsterPrefab_sprite },
-            {MonsterType.zombie, MonsterPrefab_zombie }
+            {MonsterType.zombie, MonsterPrefab_zombie },
+            {MonsterType.stoneman, MonsterPrefab_stoneman },
+            {MonsterType.goblin, MonsterPrefab_goblin },
+            {MonsterType.bloodseeker, MonsterPrefab_bloodseeker },
+            {MonsterType.chimera, MonsterPrefab_chimera },
+            {MonsterType.bugbear, MonsterPrefab_bugbear },
+            {MonsterType.drow, MonsterPrefab_drow },
+            {MonsterType.centaur, MonsterPrefab_centaur },
+            {MonsterType.mindflayer, MonsterPrefab_mindflayer }
+            //{MonsterType.dragon, MonsterPrefab_dragon }
         };
     }
-
+	
     public void ClearMonster()
     {
         for (int i = 0; i < MonsterPawns.Count; i++)
@@ -56,8 +81,8 @@ public class MonsterManager : MonoBehaviour
             }
         }
     }
-
-    public void ClearRevivedEnemy()
+	
+	public void ClearRevivedEnemy()
     {
         for (int i = 0; i < RevivedEnemyPawns.Count; i++)
         {
@@ -65,7 +90,7 @@ public class MonsterManager : MonoBehaviour
         }
         RevivedEnemyPawns.Clear();
     }
-
+	
     public Monster CreateMonster(MonsterType type, HexCell cellToSpawn, int level)
     {
         Monster monster = GameObject.Instantiate<Monster>(prefabs[type]);
@@ -76,6 +101,7 @@ public class MonsterManager : MonoBehaviour
         gameManager.hexMap.RevealCellsFrom(monster.currentCell);
 		monster.healthbar=gameManager.healthbarManager.InitializeHealthBar(monster);
 		MonsterPawns.Add(monster);
+		gameManager.monsterActionManager.UpdateActionableMonsters();
         monster.transform.SetParent(MonsterRoot.transform);
         return monster;
     }
@@ -93,7 +119,7 @@ public class MonsterManager : MonoBehaviour
         enemy.pawnType = PawnType.Monster;
         return enemy;
     }
-
+	
     public int GetMonsterUnlockLevel(MonsterType type)
     {
         return Mathf.CeilToInt((float)type / 3);

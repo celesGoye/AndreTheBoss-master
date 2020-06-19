@@ -14,13 +14,12 @@ public abstract class Pawn : MonoBehaviour
 	public int hp;
 	public int dexterity;
 	public int attackRange;
-
-	public int currentHP;
-
+	
 	public int currentAttack;
 	public int currentMagicAttack;
 	public int currentDefense;
 	public int currentMagicDefense;
+	public int currentHP;
 	public int currentDexterity;
 	public int currentAttackRange;
 
@@ -29,6 +28,8 @@ public abstract class Pawn : MonoBehaviour
 
 	
 	public bool isDirty;	// has current data been updated?
+	
+	public bool isUIupdated;
 	
 	public bool isIgnoreDefense;
 	public bool isIgnoreMagicDefense;
@@ -42,7 +43,7 @@ public abstract class Pawn : MonoBehaviour
 	public HealthBar healthbar;
     public HexCell currentCell;
     public PawnType pawnType { get; set; }
-
+	
 	
     public void InitializePawn(PawnType type, string name, int initlevel,
 	int initattack, int initmagicAttack, int initdefense, int initmagicDefense, int inithp, int initdexterity, int initattackRange)
@@ -106,7 +107,8 @@ public abstract class Pawn : MonoBehaviour
 	public void LifeChange(int change,Pawn pawn)
 	{
 		pawn.currentHP+=change;
-		pawn.healthbar.UpdateLife();
+		//pawn.healthbar.UpdateLife();
+		isUIupdated=false;
 	}
 	public int GetMaxHP() { return hp; }
 	public int GetLevel() { return level; }
@@ -308,6 +310,8 @@ public abstract class Pawn : MonoBehaviour
 	{
 		if (isDirty)
 			calculateCurrentValue();
+		
+		isUIupdated=false;
 	}
 
 	// utility

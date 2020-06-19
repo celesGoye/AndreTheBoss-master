@@ -15,7 +15,8 @@ public class SkillPanel : MonoBehaviour
 	private CharacterReader characterReader;
 	private GameManager gameManager;
 
-	public void OnEnable(){
+	public void InitSkillPanel()
+	{
 		if(gameManager == null)
 			gameManager = FindObjectOfType<GameManager>();
 		characterReader=gameManager.characterReader;

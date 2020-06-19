@@ -136,16 +136,14 @@ public class FacilityBuildPanel : MonoBehaviour
 				for(int i=0;i<facilityPallete.ValidProduct.Count;i++)
 				{
 					Product_Item product=null;
+					
 					if(i<productcontent.childCount)
-					{
 						product=productcontent.GetChild(i).GetComponent<Product_Item>();
-						product.type=facilityPallete.ValidProduct[i];
-					}
 					else
-					{	
 						product=GenerateProductItem(i);
-						product.type=facilityPallete.ValidProduct[i];
-					}
+					
+					product.type=facilityPallete.ValidProduct[i];
+					product.UpdateItemDisplay();
 				}
 				if(facilityPallete.currentItem!=ItemType.NUM)
 				{
@@ -191,6 +189,7 @@ public class FacilityBuildPanel : MonoBehaviour
 		item.index=0;
 		item.size=size;
 		item.width=width;
+		item.UpdateItemDisplay();
 	}
 	
 	public void UpdateLevelButton()
@@ -210,5 +209,13 @@ public class FacilityBuildPanel : MonoBehaviour
 		facilityPallete.currentLevel--;
 		facilityPallete.currentDestination=null;
 		UpdateBuildPanel();
+	}
+	
+	public void Update()
+	{
+		foreach(Transform child in productcontent)
+		{
+			child.GetComponent<Product_Item>().UpdatePosition();
+		}
 	}
 }

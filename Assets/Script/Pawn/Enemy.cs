@@ -228,6 +228,7 @@ public class Enemy : Pawn
             gm.enemyManager.setDeadEnemyType(this.enemyType);
             gm.enemyManager.RemoveEnemyPawn(this);
             gm.itemManager.GetItem(ItemType.Soul, dropsoul);
+			gm.enemyManager.GetLoot(this.enemyType);
         }
         else
         {

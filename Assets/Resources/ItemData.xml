@@ -1,224 +1,135 @@
 <items>
 	<SoulType>
 		<Soul>
-			<intro>
-				just intro.Test for long text.\nTest for long text.\nTest for long text.\nTest for long text.\nTest for long text.\n
-			</intro>
-			<use>
-				What it's for.\n Test for long text.\nTest for long text.\nTest for long text.\nTest for long text.\nTest for long text.\nTest for long text.\n
-			</use>
-			<access>
-				it's access.Test for long text.\nTest for long text.\nTest for long text.\nTest for long text.\nTest for long text.\n
-			</access>
+			<intro>勇者的灵魂，是这个世界上最珍贵的东西之一。</intro>
+			<use>可用于主角升级、怪物升级、召唤怪物、建筑升级等。</use>
+			<access>通用资源。击倒敌方单位可获得一定数量的灵魂。</access>
 		</Soul>
 		<HeroSoul>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro>被世界眷顾着的人的灵魂。不知为何，你有种怅然若失的感觉。</intro>
+			<use>用于主角升级。	</use>
+			<access>稀有资源。击倒英雄敌人获得。</access>
 		</HeroSoul>
 		<MoonlightStone>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro>月光一样的石头，让你似乎回忆起了什么。</intro>
+			<use>用于主角升级。</use>
+			<access>稀有资源。击败敌人概率获得。</access>
 		</MoonlightStone>
         
         <RobinhoodSoul>
-            <intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+            <intro>just intro</intro>
+			<use>用于主角升级。</use>
+			<access>击败Robinhood获得。</access>
         </RobinhoodSoul>
         
         <TatenoyousyaSoul>
-            <intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+            <intro>just intro</intro>
+			<use>用于主角升级。</use>
+			<access>击败Tatenoyousyz获得。</access>
         </TatenoyousyaSoul>
         
         <JinjyamikoSoul>
-            <intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+            <intro>just intro</intro>
+			<use>用于主角升级。</use>
+			<access>击败Jinjyamiko获得。</access>
         </JinjyamikoSoul>
         
         <OrchestraleaderSoul>
-            <intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+            <intro>just intro</intro>
+			<use>用于主角升级。</use>
+			<access>击败Orchestraleader获得。</access>
         </OrchestraleaderSoul>
         
         <CinderlordSoul>
-            <intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+            <intro>just intro</intro>
+			<use></use>
+			<access>击败Cinderlord获得。</access>
         </CinderlordSoul>
 	</SoulType>
 	<Farm>
 		<Spiderlily>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro>据说是来自世界尽头的花。</intro>
+			<use>用于召唤和升级怪物。</use>
+			<access>基础资源。农场生产。</access>
 		</Spiderlily>
 		<DemonFruit>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro>怪物们最爱吃的果子。</intro>
+			<use>用于召唤和升级怪物。</use>
+			<access>基础资源。农场生产。</access>
 		</DemonFruit>
 		<GoldenApple>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro>传说是神的果实，没人知道吃掉它会发生什么。</intro>
+			<use>用于召唤和升级怪物。</use>
+			<access>基础资源。农场生产。</access>
 		</GoldenApple>
 	</Farm>
 	<Mine>
 		<Sulphur>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro>散发着地狱的气味。</intro>
+			<use>用于召唤和升级怪物。</use>
+			<access>基础资源。矿井生产。</access>
 		</Sulphur>
 		<Mercury>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro>令人为之疯狂的神秘液体。</intro>
+			<use>用于召唤和升级怪物。</use>
+			<access>基础资源。矿井生产。</access>
 		</Mercury>
 		<Gold>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro>来自太阳的完美的金属。</intro>
+			<use>用于召唤和升级怪物。</use>
+			<access>基础资源。矿井生产。</access>
 		</Gold>
 	</Mine>
 	<Buff>
 		<RedCandy>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro></intro>
+			<use>攻击永久+1</use>
+			<access>击败敌人概率获得。</access>
+			<buff>
+                <counter>-1</counter>
+                <attribute>attack</attribute>
+                <value>1</value>
+            </buff>
 		</RedCandy>
 		<BlueCandy>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro></intro>
+			<use>物理防御永久+1</use>
+			<access>击败敌人概率获得。</access>
+			<buff>
+                <counter>-1</counter>
+                <attribute>defense</attribute>
+                <value>1</value>
+            </buff>
 		</BlueCandy>
 		<PurpleCandy>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro></intro>
+			<use>魔法防御永久+1</use>
+			<access>击败敌人概率获得。</access>
+			<buff>
+                <counter>-1</counter>
+                <attribute>magicdefense</attribute>
+                <value>1</value>
+            </buff>
 		</PurpleCandy>
 		<BlackCandy>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro></intro>
+			<use>敏捷永久+1</use>
+			<access>击败敌人概率获得。</access>
+			<buff>
+                <counter>-1</counter>
+                <attribute>dexterity</attribute>
+                <value>1</value>
+            </buff>
 		</BlackCandy>
 		<SpringWater>
-			<intro>
-				just intro
-			</intro>
-			<use>
-				What it's for.
-			</use>
-			<access>
-				it's access.
-			</access>
+			<intro></intro>
+			<use>回复10 生命。	</use>
+			<access>-</access>
+            <buff>
+                <counter>0</counter>
+                <attribute>hp</attribute>
+                <value>20</value>
+            </buff>
 		</SpringWater>
 	</Buff>
 </items>
