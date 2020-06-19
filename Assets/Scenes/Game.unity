@@ -4658,6 +4658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pref_gameEventDisplayer: {fileID: 3311472821806507963, guid: e5cf1359a60c73e4ea5d2721c9e78844,
     type: 3}
+  gameEventDisplayers: []
   MaxEventOnMap: 5
 --- !u!4 &1781767687
 Transform:
@@ -5397,7 +5398,7 @@ MonoBehaviour:
   monsterPalletePanel: {fileID: 850536340}
   facilityPalletePanel: {fileID: 2182837822232677734}
   gameEventPanel: {fileID: 506341389}
-  saveGamePanel: {fileID: 0}
+  saveGamePanel: {fileID: 1832316544}
   menu: {fileID: 288385091697642590}
   itemtips: {fileID: 1261977514}
   noticeBoard: {fileID: 54802594}
@@ -5949,6 +5950,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1179215870716580540, guid: 0805726d612faa340ad0586cb6b48cbd,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 710a0c270d8b0ae41a5aa655bb9deea7,
+        type: 3}
     - target: {fileID: 1179215870963046054, guid: 0805726d612faa340ad0586cb6b48cbd,
         type: 3}
       propertyPath: m_FontData.m_MaxSize
@@ -5964,12 +5971,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7403e7f3522d9ba46ba381c7415d708d,
-        type: 3}
-    - target: {fileID: 1179215870716580540, guid: 0805726d612faa340ad0586cb6b48cbd,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 710a0c270d8b0ae41a5aa655bb9deea7,
         type: 3}
     - target: {fileID: 1179215871268256219, guid: 0805726d612faa340ad0586cb6b48cbd,
         type: 3}
@@ -6026,36 +6027,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 479117824}
     m_Modifications:
-    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.2164396
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 1179215871164656457, guid: 0805726d612faa340ad0586cb6b48cbd,
         type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -6131,11 +6102,6 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0.28636295
       objectReference: {fileID: 0}
-    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 38
-      objectReference: {fileID: 0}
     - target: {fileID: 1179215871181491117, guid: 0805726d612faa340ad0586cb6b48cbd,
         type: 3}
       propertyPath: m_Colors.m_PressedColor.r
@@ -6175,6 +6141,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2164396
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 1471886127784838851, guid: 40463174791bcb645b09c53f57186003,
         type: 3}
@@ -6502,6 +6503,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Panel_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695241562513804295, guid: 6e1218b2a334e814fb2ced3dba9005d1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 423.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e1218b2a334e814fb2ced3dba9005d1, type: 3}
