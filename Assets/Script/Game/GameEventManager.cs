@@ -5,7 +5,7 @@ using System;
 
 public class GameEventManager : MonoBehaviour
 {
-	GameEventReader eventReader;
+	public GameEventReader eventReader;
 
 	//List<GameEvent> gameEvents;
 
@@ -13,7 +13,7 @@ public class GameEventManager : MonoBehaviour
 
 	public GameEventDisplayer pref_gameEventDisplayer;
 
-	List<GameEventDisplayer> gameEventDisplayers;
+	public List<GameEventDisplayer> gameEventDisplayers;
 
 	private GameManager gm;
 
@@ -37,6 +37,16 @@ public class GameEventManager : MonoBehaviour
 
 		//eventReader.TestGameEvent();
 	}
+
+	public void ClearGameEventDisplayers()
+    {
+		for (int i = 0; i < gameEventDisplayers.Count; i++)
+        {
+			GameObject.Destroy(gameEventDisplayers[i]);
+        }
+		gameEventDisplayers.Clear();
+    }
+
 	public void GenerateEvent()
 	{
 		int totalEventType = (int)GameEventType.GameEventNum;
@@ -48,7 +58,10 @@ public class GameEventManager : MonoBehaviour
 
 		GameEventDisplayer displayer = CreateNewEventDisplayer(gameEvent);
 		if (displayer != null)
+        {
 			gameEventDisplayers.Add(displayer);
+        }
+			
 	}
 
 	public GameEventDisplayer CreateNewEventDisplayer(GameEvent gameEvent)
@@ -61,8 +74,6 @@ public class GameEventManager : MonoBehaviour
 			gm.hexMap.SetGameEventDisplayerCell(newDisplayer, cell);
 			newDisplayer.gameEvent = gameEvent;
 			newDisplayer.InitDisplayer();
-			//gm.hexMap.RevealCell(cell);
-			gm.gameCamera.FocusOnPoint(cell.transform.localPosition);
 
 			return newDisplayer;
 		}
@@ -77,8 +88,6 @@ public class GameEventManager : MonoBehaviour
 			GameEvent gameEvent = displayer.gameEvent;
 			gameEvent.counter--;
 		}
-
-
 
 		int shouldgen = MaxEventOnMap - gameEventDisplayers.Count;
 		// generate events

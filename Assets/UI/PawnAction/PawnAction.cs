@@ -89,7 +89,10 @@ public class PawnAction : MonoBehaviour
     }
 	
 	public void ActiveTransferButton()
-	{		
+	{
+        if (selectedPawn == null || selectedPawn.currentCell == null)
+            return;
+
 			if(selectedPawn.currentCell.building!=null
 				&&selectedPawn.currentCell.building.GetBuildingType()==BuildingType.Teleporter
 				&&selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid()
@@ -122,6 +125,8 @@ public class PawnAction : MonoBehaviour
 		try
 		{
 			Monster monster=(Monster)selectedPawn;
+            if (monster == null)
+                return;
 			if(monster.actionType==ActionType.Nonactionable||monster.actionType==ActionType.AttackEnds)
 			{
 				moveButton.interactable=false;

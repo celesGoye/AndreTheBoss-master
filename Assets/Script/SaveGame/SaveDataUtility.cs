@@ -12,6 +12,7 @@ public class SaveData
     public List<SerializableEnemyData> revivedEnemyData;
     public SerializablePlayerData playerData;	
     public List<SerializableBuildingData> buildingData;
+	//public List<SerializableGameEventData> gameeventData;
 }
 
 [Serializable]
@@ -73,3 +74,14 @@ public struct SerializableBuildingData
 	public int itemType;
 	public int level;
 }
+
+/*
+public struct SerializableGameEventData
+{
+	public int eventType;
+	public int whichEvent;
+
+	public int hexcellIndex;
+
+}
+*/

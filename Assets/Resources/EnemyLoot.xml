@@ -143,6 +143,9 @@
                 <posibility>100</posibility>
 			</item>
         </cinderlord>
-
+        
+        <andrethehero>
+            <coulnum>0</coulnum>
+        </andrethehero>
     </hero>
 </enemy>
