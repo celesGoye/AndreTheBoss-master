@@ -37,6 +37,7 @@ public class EnemyManager : MonoBehaviour
     public Enemy EnemyPrefab_shadowfran;
     public Enemy EnemyPrefab_cardinaleriri;
     public Enemy EnemyPrefab_cinderlord;
+    public Enemy EnemyPrefab_andrethehero;
 
     public List<Enemy> EnemyPawns;
 	private Enemy DeadEnemyPawn = null;
@@ -49,7 +50,7 @@ public class EnemyManager : MonoBehaviour
     public int MaxEnemyOnMap = 10;
 
     private static int[] heroAppearingTurn ={
-        10, 20, 30, 40, 50
+        10, 20, 30, 40, 50, 60
     };
 	
 	private Dictionary<EnemyType, Enemy> prefabs;
@@ -95,6 +96,8 @@ public class EnemyManager : MonoBehaviour
             {EnemyType.royalinquisitor, EnemyPrefab_royalinquisitor },
             {EnemyType.cardinaleriri, EnemyPrefab_cardinaleriri },
             {EnemyType.cinderlord, EnemyPrefab_cinderlord },
+
+            //{EnemyType.andrethehero, EnemyPrefab_andrethehero },
         };
     }
 
@@ -330,8 +333,14 @@ public class EnemyManager : MonoBehaviour
 
     public EnemyType getHeroType(int level)
     {
+        if (level == 6)
+            return EnemyType.andrethehero;
+
         int offset = (level-1) * 5 + 4;
-        return (EnemyType)offset;
+        if (offset >= (int)EnemyType.NUM)
+            return EnemyType.NUM;
+        else
+            return (EnemyType)offset;
     }
 
     public int getEnemyLevel(EnemyType type)
