@@ -7,8 +7,6 @@ public class PlayerPanel : MonoBehaviour
 {
 	public MenuControl menu;
 	public Text txtLevel;
-	public Text txtbuildmode;
-	public Text txtActionPoint;
 	public Image imgBoss;
 	public Button buttonSkip;
 	public Button buttonBuild;
@@ -21,7 +19,6 @@ public class PlayerPanel : MonoBehaviour
 	{
 		if(gameManager == null)
 			gameManager = FindObjectOfType<GameManager>();
-		txtbuildmode.text="buildmode ON";
 		UpdateBossUI();
 	}
 	
@@ -39,7 +36,6 @@ public class PlayerPanel : MonoBehaviour
 	public void Update()
 	{
 		actionableMonsters.UpdateActionableMonsters();
-		txtbuildmode.text=gameManager.buildingManager.buildmode?"buildmode On":"buildmode Off";
 	}
 	
 	public void UpdateBossUI()
@@ -75,5 +71,11 @@ public class PlayerPanel : MonoBehaviour
 	public void OnTurnEnd()
 	{
 		EnableButtons(false);
+	}
+	
+	//test
+	public void On99Resources()
+	{
+		gameManager.itemManager.Get99Resources();
 	}
 }

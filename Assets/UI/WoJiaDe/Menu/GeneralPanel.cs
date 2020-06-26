@@ -12,6 +12,7 @@ public class GeneralPanel : MonoBehaviour
 	public Slider healthSlider;
 	
 	private MonsterManager monsterManager;
+	private Gallery_Ch_TheMonsterPage shortcutPage;
 	
 	private Monster currentMonster;
 	private Sprite sprite;
@@ -20,6 +21,7 @@ public class GeneralPanel : MonoBehaviour
     {
         UpdateGeneral();
 		monsterManager=menu.gameManager.monsterManager;
+		shortcutPage=menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().monsterPage.GetComponent<Gallery_Ch_MonsterPage>().theMonsterPage;
     }
 	
 	public void Update()
@@ -73,5 +75,18 @@ public class GeneralPanel : MonoBehaviour
 	public void OnPointerExit(Button btn)
 	{
 		btn.transform.GetChild(0).gameObject.SetActive(false);
+	}
+	
+	public void OnShortcut()
+	{
+		menu.OnBtnGallery();
+		menu.galleryPanel.homePage.gameObject.SetActive(false);
+		menu.galleryPanel.characterPage.gameObject.SetActive(true);
+		menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().frontPage.gameObject.SetActive(false);
+		menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().monsterPage.gameObject.SetActive(true);
+		menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().monsterPage.GetComponent<Gallery_Ch_MonsterPage>().frontPage.gameObject.SetActive(false);
+		shortcutPage.gameObject.SetActive(true);
+		shortcutPage.UpdateMonsterFromShortcut(((Monster)menu.currentMonster).monsterType);
+		menu.galleryPanel.previousLayer=-1;
 	}
 }

@@ -22,10 +22,10 @@ public class GameInteraction : MonoBehaviour
     public MonsterPallete monsterPalletePanel;
     public FacilityPallete facilityPalletePanel;
 	public GameEventPanel gameEventPanel;
+	public MemoryPanel memoryPanel;
 	public Transform saveGamePanel;
 	public MenuControl menu;
 	public Item_tips itemtips;
-	public NoticeBoard noticeBoard;
 	public UILog uilog;
 	public PlayerPanel playerPanel;
 
@@ -190,7 +190,6 @@ public class GameInteraction : MonoBehaviour
         monsterPalletePanel.gameObject.SetActive(false);
         facilityPalletePanel.gameObject.SetActive(false);
 		saveGamePanel.gameObject.SetActive(false);
-		noticeBoard.gameObject.SetActive(false);
     }
 
     private void DisableAllPalletePanels()
@@ -257,6 +256,7 @@ public class GameInteraction : MonoBehaviour
 	{
 		playerPanel.OnTurnBegin();
 		pawnStatusPanel.UpdatePawnStatusPanel();
+		memoryPanel.OnMonsterTurnBegin();
 	}
 	
 	public void OpenSavaGamePanel()

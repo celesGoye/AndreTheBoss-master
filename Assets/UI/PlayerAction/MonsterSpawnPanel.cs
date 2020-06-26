@@ -78,6 +78,7 @@ public class MonsterSpawnPanel : MonoBehaviour
 				item.num=0;
 			item.numneed=(int)items[i].y;
 			UpdateItem(item,i);
+			item.UpdateItemDisplay();
 		}
 		
 		if(IsSpawnOK())
@@ -101,5 +102,13 @@ public class MonsterSpawnPanel : MonoBehaviour
 		item.index=index;
 		item.size=size;
 		item.width=width;
+	}
+	
+	public void Update()
+	{
+		foreach(Transform child in content)
+		{
+			child.GetComponent<Upgrade_Item>().UpdatePosition();
+		}
 	}
 }

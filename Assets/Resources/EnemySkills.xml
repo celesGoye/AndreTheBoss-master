@@ -227,5 +227,20 @@
                 <description>所有贯伤害无效</description>
             </skill>
         </cinderlord>
+        
+        <andrethehero>
+            <skill value="1">
+                <name>血爆</name>
+                <description>对攻击范围内所有monster造成自己currentHP50%的物理伤害</description>
+            </skill>
+            <skill value="2">
+                <name>大回复</name>
+                <description>回复攻击范围内所有友方单位40%血量 </description>
+            </skill>
+            <skill value="3">
+                <name>被动 True Hero</name>
+                <description>普通攻击为贯伤且所有受到的贯伤害无效</description>
+            </skill>
+        </andrethehero>
     </hero>
 </enemy>

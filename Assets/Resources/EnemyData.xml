@@ -297,6 +297,19 @@
                 <skillcounts>2</skillcounts>
             </cinderlord>
         </level>
+        <level value="6">
+            <andrethehero>
+                <attack>30</attack>
+                <magicattack>30</magicattack>
+                <defense>15</defense>
+                <magicdefense>10</magicdefense>
+                <hp>40</hp>
+                <dexterity>4</dexterity>
+                <attackRange>3</attackRange>
+                <dropsoul>0</dropsoul>
+                <skillcounts>2</skillcounts>
+            </andrethehero>
+        </level>
     </hero>
 
 </enemy>

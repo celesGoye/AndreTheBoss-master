@@ -38,13 +38,12 @@ public class SkillUnlockPanel : MonoBehaviour
 		else
 		{
 			SetIsLocked(false);
-			/*if(index==1||index==monster.equippedSkill)
+			if(index==1||index==monster.equippedSkill)
 				equipped.gameObject.SetActive(true);
 			else
-				equipped.gameObject.SetActive(false);*/
-			List<string> names=new List<string>();
-			names=characterReader.GetMonsterSkillName(monster.monsterType.ToString());
-			skillname.text=names[index-1];
+				equipped.gameObject.SetActive(monster.equippedSkill==index?true:false);
+			
+			skillname.text=characterReader.GetMonsterSkillUI(monster.monsterType.ToString(),index).name;
 		}
 	}
 }

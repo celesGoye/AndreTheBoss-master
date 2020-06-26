@@ -9,6 +9,7 @@ public class Gallery_Ch_TheMonsterPage : MonoBehaviour
 	public Gallery_Ch_MonsterPage monsterPage;
 	
 	public Text txtname;
+	public Text desc;
 	public Text story;
 	public Text skill;
 	public Text race;
@@ -25,10 +26,22 @@ public class Gallery_Ch_TheMonsterPage : MonoBehaviour
 			characterReader=GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>().characterReader;
 		
 	}
+	public void UpdateMonsterFromShortcut(MonsterType monstertype)
+	{
+		type=monstertype;
+		UpdateCurrentMonster();
+	}
 	
 	public void UpdateMonster()
 	{
 		type=monsterPage.monsterList[monsterPage.currentid];
+		UpdateCurrentMonster();
+	}
+	
+	public void UpdateCurrentMonster()
+	{
+		if(characterReader==null)
+			characterReader=GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>().characterReader;
 		string name=type.ToString();
 		skilldata=characterReader.GetMonsterSkillUI(name);
 		description=characterReader.GetCharacterDescription(PawnType.Monster,name);
@@ -43,9 +56,10 @@ public class Gallery_Ch_TheMonsterPage : MonoBehaviour
 			skilldata[i].description = strb.ToString();
 			skilltext+=skilldata[i].name.PadRight(6,'\u3000')+skilldata[i].description+"\n";
 		}
-		skill.text="<size=22>"+skilltext+"</size>";
-		story.text="<size=22>"+description.story+"</size>";
+		skill.text=skilltext;
 		race.text=description.race;
+		story.text=description.story;
+		desc.text=description.description;
 		
 		if((sprite=Resources.Load("Image/character/"+name, typeof(Sprite)) as Sprite)!=null)
 			image.sprite =sprite;

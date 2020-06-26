@@ -19,6 +19,10 @@ public class Indicator : MonoBehaviour
     public static Color AttackColor =	new Color(0.65f, 0.16f, 0.16f, 1.00f);
 	public static Color BuildColor = 	new Color(0.93f, 0.91f, 0.67f, 1.00f);
     public static Color FriendColor = 	new Color(0.69f, 0.93f, 0.93f, 1.00f);
+    public static Color AttackColorTRN =	new Color(0.65f, 0.16f, 0.16f, 0.20f);
+    public static Color FriendColorTRN = 	new Color(0.69f, 0.93f, 0.93f, 0.20f);
+	public static Color StartColorTRN =		new Color(0.22f, 0.39f, 0.89f, 0.20f);
+	public static Color BuildColorTRN = 	new Color(0.93f, 0.91f, 0.67f, 0.20f);
 
     public void OnEnable()
     {

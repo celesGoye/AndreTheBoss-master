@@ -9,13 +9,16 @@ public class GameEvent
     public string eventDescription;
     public int counter;
 	
-	public int eventType;
+	public GameEventType eventType;
+    public int whichEvent;
 
-    public GameEvent(string eventName, string eventDescription, int counter)
+    public GameEvent(string eventName, string eventDescription, int counter, GameEventType eventType, int whichEvent)
     {
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.counter = counter;
+        this.eventType = eventType;
+        this.whichEvent = whichEvent;
     }
 }
 
@@ -24,9 +27,9 @@ public class NormalNonoptionGainbuffEvent : GameEvent
 {
     BuffEntry buff;
     private string effectDescription;
-    public NormalNonoptionGainbuffEvent(string eventName, string eventDescription, int counter,
+    public NormalNonoptionGainbuffEvent(string eventName, string eventDescription, int counter, GameEventType eventType, int whichEvent,
         string effectDescription, BuffEntry buff)
-        : base(eventName, eventDescription, counter)
+        : base(eventName, eventDescription, counter, eventType, whichEvent)
     {
         this.buff = buff;
         this.effectDescription = effectDescription;
@@ -54,9 +57,9 @@ public class NormalNonoptionGainitemsEvent : GameEvent
 {
     private List<ItemEntry> items;  // total posibility of all items EQUALS 100
     private string effectDescription;
-    public NormalNonoptionGainitemsEvent(string eventName, string eventDescription, int counter,
+    public NormalNonoptionGainitemsEvent(string eventName, string eventDescription, int counter, GameEventType eventType, int whichEvent,
         string effectDescription, List<ItemEntry> items)
-        : base(eventName, eventDescription, counter)
+        : base(eventName, eventDescription, counter, eventType, whichEvent)
     {
         this.effectDescription = effectDescription;
         this.items = items;
@@ -88,8 +91,8 @@ public class NormalNonoptionGainitemsEvent : GameEvent
 public class NormalOptionEvent : GameEvent
 {
     List<GameEventOption> options;
-    public NormalOptionEvent(string eventName, string eventDescription, int counter, List<GameEventOption> options)
-        : base(eventName, eventDescription, counter)
+    public NormalOptionEvent(string eventName, string eventDescription, int counter, GameEventType eventType, int whichEvent, List<GameEventOption> options)
+        : base(eventName, eventDescription, counter, eventType, whichEvent)
     {
         this.options = options;
     }
@@ -113,9 +116,9 @@ public class NormalOptionEvent : GameEvent
 public class MysterypersonGainitemsEvent : GameEvent
 {
     List<GameEventOption> options;
-    public MysterypersonGainitemsEvent(string eventName, string eventDescription, int counter, 
+    public MysterypersonGainitemsEvent(string eventName, string eventDescription, int counter, GameEventType eventType, int whichEvent,
         List<GameEventOption> options)
-        : base(eventName, eventDescription, counter)
+        : base(eventName, eventDescription, counter, eventType, whichEvent)
     {
         this.options = options;
     }
@@ -141,9 +144,9 @@ public class MysterypersonGaincharacterEvent : GameEvent
     MonsterType monsterType;
     int level;
     List<GameEventOption> options;
-    public MysterypersonGaincharacterEvent(string eventName, string eventDescription, int counter,
+    public MysterypersonGaincharacterEvent(string eventName, string eventDescription, int counter, GameEventType eventType, int whichEvent, 
         MonsterType monsterType, int level, List<GameEventOption> options)
-        : base(eventName, eventDescription, counter)
+        : base(eventName, eventDescription, counter, eventType, whichEvent)
     {
         this.monsterType = monsterType;
         this.level = level;

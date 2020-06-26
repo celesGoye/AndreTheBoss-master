@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Gallery_Ch_AndrePage : MonoBehaviour
 {
     public Text txtname;
+	public Text desc;
 	public Text story;
 	public Text skill;
 	public Text race;
@@ -38,7 +39,8 @@ public class Gallery_Ch_AndrePage : MonoBehaviour
 		skill.text="<size=22>"+skilltext+"</size>";
 		story.text="<size=22>"+description.story+"</size>";
 		race.text=description.race;
-		
+		story.text=description.story;
+		desc.text=description.description;
 		index=0;
 		UpdateImage();
 	}

@@ -158,5 +158,10 @@ public class Building: MonoBehaviour
 			return ItemType.NUM;
 	}
 	
+	
+	public bool CanbeSkillTargetOf()
+	{
+		return GetCurrentProduceNumber()==0?false:true;
+	}
 }
 

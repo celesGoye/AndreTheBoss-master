@@ -18,15 +18,21 @@ public class Drow : Monster
             UpdateCurrentValue();
 
         pawnAction.requireCellSelection = true;
-        gm.hexMap.FindReachableCells(currentCell, currentDexterity);
+        //gm.hexMap.FindReachableCells(currentCell, currentDexterity);
+        gm.hexMap.FindReachableCells(currentCell, currentAttackRange);
         gm.hexMap.ShowReachableCells();
+		
+		gm.hexMap.SetAttackableTargetsAsReachableTargets();
     }
     public override void DoSkillOneCell(HexCell cell)
     {
         GameManager gm = FindObjectOfType<GameManager>();
         gm.hexMap.ProbeAttackTarget(this.currentCell);
         if (gm.hexMap.GetEmptyCells().Contains(cell))
-            gm.hexMap.SetCharacterCell(this, cell);
+		{
+			gm.hexMap.SetCharacterCell(this, cell);
+			gm.hexMap.RevealCellsFrom(cell);
+		}
     }
 
     public override void DoSkillThree(Pawn other = null)

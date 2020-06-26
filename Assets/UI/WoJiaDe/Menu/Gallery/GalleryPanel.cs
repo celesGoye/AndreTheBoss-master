@@ -94,6 +94,9 @@ public class GalleryPanel : MonoBehaviour
 	{
 		switch(previousLayer)
 		{
+			case -1:
+				menu.OnBtnSkill();
+				break;
 			case 0:
 				DisableAll();
 				backBtn.gameObject.SetActive(false);

@@ -18,16 +18,26 @@ public class ItemManager : MonoBehaviour
 		InitItems();
 
 		//test
+		//for(int i=0;i<(int)ItemType.NUM;i++)
+		//{
+		//	GetItem((ItemType)i,99);
+		//}
+		GetItem(ItemType.Soul,50);
+    }
+	
+	//test
+	public void Get99Resources()
+	{
 		for(int i=0;i<(int)ItemType.NUM;i++)
 		{
 			GetItem((ItemType)i,99);
 		}
-		GetItem(ItemType.Soul,50);
-    }
+	}
+	
 	public void InitItems()
 	{
-		for(int i=0;i<(int)ItemType.NUM;i++)
-			GetItem((ItemType)i,0);
+		/*for(int i=0;i<(int)ItemType.NUM;i++)
+			GetItem((ItemType)i,0);*/
 	}
 	
 	public void GetItem(ItemType itemType, int num)

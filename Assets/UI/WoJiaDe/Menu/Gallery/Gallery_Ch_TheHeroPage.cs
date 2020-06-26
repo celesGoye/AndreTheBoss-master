@@ -9,6 +9,7 @@ public class Gallery_Ch_TheHeroPage : MonoBehaviour
 	public Gallery_Ch_HeroPage heroPage;
 	
 	public Text txtname;
+	public Text desc;
 	public Text story;
 	public Text skill;
 	public Text race;
@@ -46,6 +47,7 @@ public class Gallery_Ch_TheHeroPage : MonoBehaviour
 		skill.text=skilltext;
 		story.text=description.story;
 		race.text=description.race;
+		desc.text=description.description;
 				
 		if((sprite=Resources.Load("Image/character/"+name, typeof(Sprite)) as Sprite)!=null)
 			image.sprite =sprite;

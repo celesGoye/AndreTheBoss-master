@@ -49,7 +49,7 @@ public class GameEventPanel : MonoBehaviour
 		Clear();
 		mainPanel.gameObject.SetActive(true);
 		this.gameEvent=gameEvent;
-		switch(gameEvent.eventType)
+		switch((int)gameEvent.eventType)
 		{
 			case 0:
 				try

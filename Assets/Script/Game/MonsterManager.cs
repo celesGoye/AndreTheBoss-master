@@ -103,6 +103,7 @@ public class MonsterManager : MonoBehaviour
 		MonsterPawns.Add(monster);
 		gameManager.monsterActionManager.UpdateActionableMonsters();
         monster.transform.SetParent(MonsterRoot.transform);
+		gameManager.animationManager.PlayCreateMonEff(monster.transform.position);
         return monster;
     }
 

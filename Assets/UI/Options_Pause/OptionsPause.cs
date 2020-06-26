@@ -7,6 +7,10 @@ public class OptionsPause : MonoBehaviour
 {
     public GameObject pauseMenu;
 
+    public void OnEnable()
+    {
+        pauseMenu = this.gameObject;
+    }
     
     public void ShowPauseMenu()
     {

@@ -21,12 +21,16 @@ public class MonsterActionManager : MonoBehaviour
 	
 	public void MonsterAttack(Monster monster)
 	{
-		monster.actionType=ActionType.AttackEnds;
-		monster.remainedStep=0;
-		if(actionableMonsters.Contains(monster))
+		if(monster.actionType==ActionType.MoveEnds)
 		{
-			actionableMonsters.Remove(monster);
+			monster.actionType=ActionType.Nonactionable;
+			
+			if(actionableMonsters.Contains(monster))
+				actionableMonsters.Remove(monster);
 		}
+		else
+			monster.actionType=ActionType.AttackEnds;
+		//monster.remainedStep=0;
 		
 		gameInteraction.playerPanel.actionableMonsters.UpdateActionableMonsters();
 		gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(monster);
@@ -54,7 +58,16 @@ public class MonsterActionManager : MonoBehaviour
 		monster.remainedStep-=step;
 		if(monster.remainedStep<=0)
 		{
-			monster.actionType=ActionType.MoveEnds;
+			if(monster.actionType==ActionType.AttackEnds)
+			{
+				
+				monster.actionType=ActionType.Nonactionable;
+			
+				if(actionableMonsters.Contains(monster))
+					actionableMonsters.Remove(monster);
+			}
+			else
+				monster.actionType=ActionType.MoveEnds;
 		}
 		
 		gameInteraction.playerPanel.actionableMonsters.UpdateActionableMonsters();

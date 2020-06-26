@@ -21,6 +21,8 @@ public class PawnAction : MonoBehaviour
 	public Button attackButton;
 	public Button skillButton;
     public Button transferButton;
+	public Button infoButton;
+	public Button cancelButton;
     public AttackPanel attackPanel;
 
     public UILog uilog;
@@ -45,6 +47,7 @@ public class PawnAction : MonoBehaviour
     private Pawn skillTarget;
     private HexCell skillTargetCell;
     private bool validSkillTarget;
+	private CharacterReader characterReader;
 
     public void OnEnable()
     {
@@ -52,9 +55,14 @@ public class PawnAction : MonoBehaviour
         attackPanel.monster = (Monster)selectedPawn;
 		overallVisible.gameObject.SetActive(true);
         attackPanel.gameObject.SetActive(false);
-        actionPanel.transform.gameObject.SetActive(true);
+        cancelButton.gameObject.SetActive(false);
+        actionPanel.gameObject.SetActive(true);
         ActiveTransferButton();
 		UpdatePawnActionPanel();
+		
+		
+		if(characterReader == null)
+			characterReader = FindObjectOfType<GameManager>().GetComponent<GameManager>().characterReader;
     }
 
 
@@ -68,8 +76,20 @@ public class PawnAction : MonoBehaviour
     public void ShowAttackPanel()
     {			
         attackPanel.gameObject.SetActive(true);
-        actionPanel.transform.gameObject.SetActive(false);
+        actionPanel.gameObject.SetActive(false);
+		attackPanel.UpdateAttackPanel();
     }
+	
+	public void OnCancel()
+	{
+		if(currentStatus==Status.PrepareAttack||currentStatus==Status.PrepareMove||currentStatus==Status.PrepareDoSkill)
+		{
+			UpdatePawnActionPanel();
+			currentStatus=Status.Rest;
+			gameInteraction.SetIsPawnAction(false);
+		}
+		cancelButton.gameObject.SetActive(false);
+	}
 
     public void OnSkill1()  // currentSkill
     {
@@ -85,11 +105,14 @@ public class PawnAction : MonoBehaviour
     {
         ((Monster)selectedPawn).SwitchSkill();
 		monsterActionManager.MonsterAttack((Monster)selectedPawn);
-        this.transform.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 	
 	public void ActiveTransferButton()
-	{		
+	{
+        if (selectedPawn == null || selectedPawn.currentCell == null)
+            return;
+
 			if(selectedPawn.currentCell.building!=null
 				&&selectedPawn.currentCell.building.GetBuildingType()==BuildingType.Teleporter
 				&&selectedPawn.currentCell.building.GetComponent<Teleporter>().GetIsValid()
@@ -97,6 +120,7 @@ public class PawnAction : MonoBehaviour
 				{
 					transferButton.gameObject.SetActive(true);
 					transferButton.transform.GetChild(0).gameObject.SetActive(false);
+					transferButton.interactable=true;
 				}
 			else
 				transferButton.gameObject.SetActive(false);
@@ -122,18 +146,31 @@ public class PawnAction : MonoBehaviour
 		try
 		{
 			Monster monster=(Monster)selectedPawn;
-			if(monster.actionType==ActionType.Nonactionable||monster.actionType==ActionType.AttackEnds)
+            if (monster == null)
+                return;
+			if(monster.actionType==ActionType.Nonactionable)
 			{
 				moveButton.interactable=false;
 				attackButton.interactable=false;
-				skillButton.interactable=false;
+			}
+			else if(monster.actionType==ActionType.AttackEnds)
+			{
+				moveButton.interactable=true;
+				attackButton.interactable=false;
+			}
+			else if(monster.actionType==ActionType.MoveEnds)
+			{
+				moveButton.interactable=false;
+				attackButton.interactable=true;
 			}
 			else
 			{
 				moveButton.interactable=true;
 				attackButton.interactable=true;
-				skillButton.interactable=true;
 			}
+			skillButton.interactable=true;
+			infoButton.interactable=true;
+			transferButton.interactable=true;
 		}
 		catch (InvalidCastException ex)
         {
@@ -152,8 +189,75 @@ public class PawnAction : MonoBehaviour
             validAttackTarget = true;
             hexMap.ProbeAttackTarget(selectedPawn.currentCell);
             hexMap.ShowAttackCandidates();
+			
+			skillButton.interactable=false;
+			moveButton.interactable=false;
+			infoButton.interactable=false;
+			transferButton.interactable=false;
+			
+			cancelButton.gameObject.SetActive(true);
         }
     }
+	
+	public void OnPointerEnterAttack(int which)
+	{
+		if(currentStatus!=Status.Rest)
+			return;
+		
+		if(which==0)
+		{
+			hexMap.ProbeAttackTarget(selectedPawn.currentCell);
+			hexMap.ShowReachableEnemyCells();
+		}
+		else
+		{
+			Monster monster=(Monster)selectedPawn;
+			SkillTargetType type=SkillTargetType.None;
+			int range=-1;
+			
+			if(which==1)
+			{
+				type=characterReader.GetMonsterSkillTargetType(monster.Name,monster.defaultSkill);
+				range=characterReader.GetMonsterSkillRange(monsterManager.GetMonsterUnlockLevel(monster.monsterType),monster.Name,monster.defaultSkill,monster.level);		
+			}
+			else if(which==2)
+			{
+				type=characterReader.GetMonsterSkillTargetType(monster.Name,monster.equippedSkill);
+				range=characterReader.GetMonsterSkillRange(monsterManager.GetMonsterUnlockLevel(monster.monsterType),monster.Name,monster.equippedSkill,monster.level);		
+			}
+			
+			if(range<0)
+				return;
+			
+			hexMap.ProbeAttackTarget(selectedPawn.currentCell,range);
+			switch((int)type)
+			{
+				case (int)SkillTargetType.Enemy:
+					hexMap.ShowReachableEnemyCells();
+					break;
+				case (int)SkillTargetType.Friend:
+					hexMap.ShowReachableFriendCells();
+					break;
+				case (int)SkillTargetType.Building:
+					hexMap.ShowReachableBuildingCells();
+					break;
+				case (int)SkillTargetType.Empty:
+					hexMap.ShowReachableEmptyCells();
+					break;
+				case (int)SkillTargetType.Self:
+					hexMap.ShowReachableFriendCells();
+					break;
+				default:
+					break;
+			}
+		}
+	}
+	
+	public void OnPointerExitAttack()
+	{
+		if(currentStatus==Status.Rest)
+			hexMap.HideIndicator();
+	}
 
     public void PrepareDoSkill(int which)   // 1 - defaultSkill, 2 - equippedSkill
     {
@@ -162,6 +266,7 @@ public class PawnAction : MonoBehaviour
         currentStatus = Status.PrepareDoSkill;
         validSkillTarget = false;
         gameInteraction.SetIsPawnAction(true);
+		attackPanel.OnSkill(which);
         try {
             Monster monster = (Monster)selectedPawn;
             if (monster != null)
@@ -223,6 +328,13 @@ public class PawnAction : MonoBehaviour
             validRoute = true;
             hexMap.FindReachableCells(selectedPawn.currentCell, ((Monster)selectedPawn).remainedStep);
             hexMap.ShowReachableCells();
+			
+			skillButton.interactable=false;
+			attackButton.interactable=false;
+			infoButton.interactable=false;
+			transferButton.interactable=false;
+			
+			cancelButton.gameObject.SetActive(true);
         }
     }
 
@@ -514,7 +626,7 @@ public class PawnAction : MonoBehaviour
         else
         {
             Pawn pawn = getCurrentPointerPawn();
-            if (pawn.currentCell.CanbeAttackTargetOf(selectedPawn.currentCell))
+            if (pawn != null &&pawn.currentCell.CanbeAttackTargetOf(selectedPawn.currentCell))
             {
                 validAttackTarget = true;
                 attackTarget = pawn;
@@ -529,7 +641,8 @@ public class PawnAction : MonoBehaviour
     public void UpdateSkillTarget()
     {
         HexCell cell = getCurrentPointerCell();
-        if (requireCellSelection && cell != null &&hexMap.GetAttackableTargets().Contains(cell))
+		
+        if (requireCellSelection && cell != null && hexMap.GetAttackableTargets().Contains(cell))
         {
             skillTargetCell = cell;
             validSkillTarget = true;

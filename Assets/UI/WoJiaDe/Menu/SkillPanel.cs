@@ -11,6 +11,8 @@ public class SkillPanel : MonoBehaviour
 	public SkillUnlockPanel unlockPanel4;
 	public SkillUnlockPanel unlockPanel5;
 	
+	public SkillPreview preview;
+	
 	public Pawn currentMonster;
 	private CharacterReader characterReader;
 	private GameManager gameManager;
@@ -36,5 +38,18 @@ public class SkillPanel : MonoBehaviour
 	public void OnNext()
 	{
 		UpdateSkill();
+	}
+	
+	public void OnPointerEnter(int index)
+	{
+		if(currentMonster.level<index)
+			return;
+		preview.gameObject.SetActive(true);
+		preview.UpdatePreview(currentMonster.Name,index);
+	}
+	
+	public void OnPointerExit()
+	{
+		preview.gameObject.SetActive(false);
 	}
 }

@@ -234,6 +234,45 @@ public class CharacterReader
 		return data;
 	}
 	
+	public SkillTargetType GetMonsterSkillTargetType(string monsterName,int skill)
+	{
+		SkillTargetType data=SkillTargetType.None;
+		string xpath="";
+		
+			xpath="/monster//"+monsterName+"/level["+(skill)+"]";
+			XmlElement node =(XmlElement)xmlDocMonsterSkill.SelectSingleNode(xpath);
+			if(node == null)
+			{
+				Debug.Log("On CharacterReader GetMonsterSkillTargetType: " + monsterName + " skill"+(skill)+" not found");
+				return data;
+			}
+			if(node["target"] != null)
+				data=(SkillTargetType)System.Enum.Parse(typeof(SkillTargetType), (node["target"].InnerXml));
+		return data;
+	}
+	
+	public int GetMonsterSkillRange(int unlocklevel,string monsterName,int skill,int level)
+	{
+		if(GetMonsterSkillTargetType(monsterName,skill)==SkillTargetType.Self)
+			return 0;
+		int data= -1;
+		string xpath="";
+		
+			xpath="/monster//"+monsterName+"/level["+(skill)+"]";
+			XmlElement node =(XmlElement)xmlDocMonsterSkill.SelectSingleNode(xpath);
+			if(node == null)
+			{
+				Debug.Log("On CharacterReader GetMonsterSkillRange: " + monsterName + " skill"+(skill)+" not found");
+				return -1;
+			}
+			if(node["range"] != null)
+				data=int.Parse(node["range"].InnerXml);
+			else if(GetMonsterData(unlocklevel,monsterName,level)!=null)
+				data=GetMonsterData(unlocklevel,monsterName,level).attackRange;
+		return data;
+		
+	}
+	
 	public List<CharacterSkillUI> GetEnemySkillUI(string enemyName)
 	{
 		List<CharacterSkillUI> data = new List<CharacterSkillUI>();

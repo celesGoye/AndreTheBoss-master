@@ -39,6 +39,7 @@ public class Enemy : Pawn
     public Pawn currentTarget = null;  // attack target
     public enum ActionType{ Attack, Skill, Move, Patrol, None};
     public ActionType nextAction = ActionType.None;
+	
 
     public GameManager gm;
 
@@ -46,16 +47,21 @@ public class Enemy : Pawn
     public int dropsoul;
 
     public bool IsMoving = false;
+    public bool IsWaiting = true;
     public List<HexCell> routes = new List<HexCell>();
     private int routePtr = 0;
     private int movespeed = 10;
     private bool isAction = false;
 
+	private AnimatorStateInfo info;
+	
     public Pawn GetCurrentTarget() { return currentTarget; }
 
     public void OnEnable()
     {
         gm = FindObjectOfType<GameManager>();
+		if(this.transform.GetChild(0).GetComponent<Animator>()!=null)
+			info=this.transform.GetChild(0).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
     }
 
     public override void OnActionBegin()
@@ -64,7 +70,8 @@ public class Enemy : Pawn
         gm.gameCamera.FocusOnPoint(currentCell.transform.position);
         isAction = true;
         ProbeAction();
-        DoAction();
+		if(!IsWaiting)
+			DoAction();
     }
 
     public bool IsAction() { return isAction; }
@@ -192,6 +199,12 @@ public class Enemy : Pawn
 
     public void Update()
     {
+		if(gm.gameTurnManager.IsEnemyTurn() && IsWaiting )
+		{
+			//isWaiting=info.IsName("CreateEnemy")?true:false;
+			return;
+		}
+		
         // Moving animation
         if(gm.gameTurnManager.IsEnemyTurn() && IsMoving)
         {

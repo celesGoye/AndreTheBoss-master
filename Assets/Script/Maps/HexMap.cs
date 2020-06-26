@@ -43,6 +43,7 @@ public class HexMap : MonoBehaviour
     private List<HexCell> attackableCells;
     private List<HexCell> hiddenCells;
     private List<HexCell> friendCells;
+	private List<HexCell> buildingCells;
     private List<HexCell> emptyCells;
 
     public int revealRadius = 2;
@@ -65,6 +66,7 @@ public class HexMap : MonoBehaviour
         friendCells = new List<HexCell>();
         hiddenCells = new List<HexCell>();
         emptyCells = new List<HexCell>();
+		buildingCells = new List<HexCell>();
 		pathLength=0;
 		CreateMat();
         for (int z = 0; z < mapHeight; z++)
@@ -603,9 +605,9 @@ public class HexMap : MonoBehaviour
         }
 
         reachableCells.Remove(startCell);
-
         attackableCells.Clear();
         friendCells.Clear();
+		buildingCells.Clear();
         emptyCells.Clear();
         foreach (HexCell cell in reachableCells)
         {
@@ -613,8 +615,72 @@ public class HexMap : MonoBehaviour
                 attackableCells.Add(cell);
             else if (cell.pawn != null)
                 friendCells.Add(cell);
-            //else if (false) // is buildings
-                //;
+            else if (cell.building!=null&&cell.building.CanbeSkillTargetOf()) // is buildings
+                buildingCells.Add(cell);
+            else
+                emptyCells.Add(cell);
+			
+        }
+        if(startCell.pawn != null)
+            friendCells.Add(startCell);
+    }
+	
+	public void ProbeAttackTarget(HexCell startCell,int range)
+    {
+        if (startCell.pawn == null)
+            return;
+
+        List<HexCell> cellToFind = new List<HexCell>();
+
+        for (int i = 0; i < cells.Length; i++)
+        {
+            cells[i].Distance = int.MaxValue;
+        }
+
+        //Debug.Log("Attack range: " + startCell.pawn.currentAttackRange);
+
+        startCell.Distance = 0;
+        cellToFind.Add(startCell);
+        reachableCells.Clear();
+
+        while (cellToFind.Count > 0)
+        {
+            HexCell cell = cellToFind[0];
+            cellToFind.RemoveAt(0);
+
+            for (HexDirection dir = (HexDirection)0; dir <= (HexDirection)5; dir++)
+            {
+                HexCell nextCell = cell.GetNeighbour(dir);
+                if (nextCell != null)
+                {
+                    int distance = cell.Distance + 1;
+                    if(nextCell.Distance == int.MaxValue)
+                    {
+                        nextCell.Distance = distance;
+                        cellToFind.Add(nextCell);
+                    }
+                }
+            }
+            if (cell.Distance <= range)
+                reachableCells.Add(cell);
+
+            cellToFind.Sort((x, y) => x.Distance.CompareTo(y.Distance));
+        }
+
+        reachableCells.Remove(startCell);
+
+        attackableCells.Clear();
+        friendCells.Clear();
+		buildingCells.Clear();
+        emptyCells.Clear();
+        foreach (HexCell cell in reachableCells)
+        {
+            if (cell.CanbeAttackTargetOf(startCell))
+                attackableCells.Add(cell);
+            else if (cell.pawn != null)
+                friendCells.Add(cell);
+            else if (cell.building!=null&&cell.building.CanbeSkillTargetOf()) // is buildings
+                buildingCells.Add(cell);
             else
                 emptyCells.Add(cell);
         }
@@ -730,7 +796,15 @@ public class HexMap : MonoBehaviour
 
         return null;
     }
-
+	
+	public void SetAttackableTargetsAsReachableTargets()
+	{
+		attackableCells.Clear();
+		foreach(HexCell cell in reachableCells)
+		{
+			attackableCells.Add(cell);
+		}
+	}
     public List<HexCell> GetAttackableTargets()
     {
         return attackableCells;
@@ -767,6 +841,77 @@ public class HexMap : MonoBehaviour
             friendCells[i].indicator.SetColor(Indicator.FriendColor);
         }
     }
+	
+	public void ShowBuildingCandidates()
+	{
+		HideIndicator();
+
+        for (int i = 0; i < friendCells.Count; i++)
+        {
+            buildingCells[i].indicator.gameObject.SetActive(true);
+            buildingCells[i].indicator.SetColor(Indicator.StartColor);
+        }
+	}
+	
+	public void ShowReachableFriendCells()
+	{
+		HideIndicator();
+        for (int i = 0; i < reachableCells.Count; i++)
+        {
+            reachableCells[i].indicator.gameObject.SetActive(true);
+            reachableCells[i].indicator.SetColor(Indicator.FriendColorTRN);
+        }
+		for (int i = 0; i < friendCells.Count; i++)
+        {
+            friendCells[i].indicator.gameObject.SetActive(true);
+            friendCells[i].indicator.SetColor(Indicator.FriendColor);
+        }
+	}
+	
+	public void ShowReachableEnemyCells()
+	{
+		HideIndicator();
+        for (int i = 0; i < reachableCells.Count; i++)
+        {
+            reachableCells[i].indicator.gameObject.SetActive(true);
+            reachableCells[i].indicator.SetColor(Indicator.AttackColorTRN);
+        }
+		for (int i = 0; i < attackableCells.Count; i++)
+        {
+            attackableCells[i].indicator.gameObject.SetActive(true);
+            attackableCells[i].indicator.SetColor(Indicator.AttackColor);
+        }
+	}
+	
+	public void ShowReachableBuildingCells()
+	{
+		HideIndicator();
+        for (int i = 0; i < reachableCells.Count; i++)
+        {
+            reachableCells[i].indicator.gameObject.SetActive(true);
+            reachableCells[i].indicator.SetColor(Indicator.BuildColorTRN);
+        }
+		for (int i = 0; i < buildingCells.Count; i++)
+        {
+            buildingCells[i].indicator.gameObject.SetActive(true);
+            buildingCells[i].indicator.SetColor(Indicator.BuildColor);
+        }
+	}
+	
+	public void ShowReachableEmptyCells()
+	{
+		HideIndicator();
+        for (int i = 0; i < reachableCells.Count; i++)
+        {
+            reachableCells[i].indicator.gameObject.SetActive(true);
+            reachableCells[i].indicator.SetColor(Indicator.StartColorTRN);
+        }
+		for (int i = 0; i < emptyCells.Count; i++)
+        {
+            emptyCells[i].indicator.gameObject.SetActive(true);
+            emptyCells[i].indicator.SetColor(Indicator.StartColor);
+        }
+	}
 
     public bool IsReachable(HexCell cell)
     {

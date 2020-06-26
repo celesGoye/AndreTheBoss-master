@@ -71,10 +71,11 @@ public class BuildingManager : MonoBehaviour
         building.transform.SetParent(transform);
         gameManager.hexMap.SetBuildingCell(building, cellToBuild);
 
-       building.InitBuilding(buildingType,itemType,level);
-	   building.SetAppearance(level);
-	   Buildings.Add(building);
+		building.InitBuilding(buildingType,itemType,level);
+		building.SetAppearance(level);
+		Buildings.Add(building);
 	   
+		gameManager.animationManager.PlayCreateEff(building.transform.position);
        return building;
     }
 	

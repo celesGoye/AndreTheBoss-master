@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class MonsterAppearance : MonoBehaviour
 {
-    public Transform[] appearances=new Transform[5];
+    public Sprite[] appearances=new Sprite[5];
+	
+	private SpriteRenderer renderer;
+	
+	public void OnEnable()
+	{
+		renderer=this.transform.GetChild(0).GetComponent<SpriteRenderer>();
+	}
 	
 	public void UpdateAppearance(int level)
 	{
-		for(int i=0;i<5;i++)
-			appearances[i].gameObject.SetActive(false);
-		appearances[level-1].gameObject.SetActive(true);
+		renderer.sprite=appearances[level-1];
 	}
 }

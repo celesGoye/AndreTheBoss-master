@@ -9,6 +9,7 @@ public class Gallery_Ch_TheAdventurerPage : MonoBehaviour
 	public Gallery_Ch_AdventurerPage adventurerPage;
 	
 	public Text txtname;
+	public Text desc;
 	public Text story;
 	public Text skill;
 	public Text race;
@@ -43,9 +44,10 @@ public class Gallery_Ch_TheAdventurerPage : MonoBehaviour
 			skilldata[i].description = strb.ToString();
 			skilltext+=skilldata[i].name.PadRight(6,'\u3000')+skilldata[i].description+"\n";
 		}
-		skill.text="<size=22>"+skilltext+"</size>";
-		story.text="<size=22>"+description.story+"</size>";
+		skill.text=skilltext;
+		story.text=description.story;
 		race.text=description.race;
+		desc.text=description.description;
 				
 		if((sprite=Resources.Load("Image/character/"+name, typeof(Sprite)) as Sprite)!=null)
 			image.sprite =sprite;

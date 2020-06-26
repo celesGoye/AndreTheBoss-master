@@ -30,6 +30,7 @@
     cardinaleriri,
     cinderlord,  // level 5
 
+    andrethehero,
 
     NUM
 }

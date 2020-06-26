@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public GameEventManager gameEventManager;
 	public SaveManager saveManager;
 	
+	public AudioManager audioManager;
+	public AnimationManager animationManager;
 	public MonsterActionManager monsterActionManager;
 
     // Main Character

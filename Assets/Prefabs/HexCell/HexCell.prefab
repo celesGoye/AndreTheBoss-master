@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7304392989291175112}
   - component: {fileID: 3560622785814236205}
   - component: {fileID: 5495220846885770932}
+  - component: {fileID: 3194966237319559828}
   m_Layer: 0
   m_Name: HexCell
   m_TagString: Untagged
@@ -95,10 +96,15 @@ MonoBehaviour:
     z: 0
   color: {r: 1, g: 1, b: 1, a: 0}
   uiRect: {fileID: 0}
+  buildable: 0
   hexType: 0
-  obstacleType: 0
-  buildingType: 0
-  pawnType: 0
+  building: {fileID: 0}
+  pawn: {fileID: 0}
+  indicator: {fileID: 0}
+  gameEventDisplayer: {fileID: 0}
+  heuristicDistance: 0
+  prevCell: {fileID: 0}
+  index: 0
   hexNeighbours:
   - {fileID: 0}
   - {fileID: 0}
@@ -128,3 +134,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7515131789862320639}
   m_CullTransparentMesh: 0
+--- !u!95 &3194966237319559828
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7515131789862320639}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f63de0f47ba97842b23f123c59d30df, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
