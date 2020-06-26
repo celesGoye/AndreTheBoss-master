@@ -148,6 +148,7 @@ public class PawnAction : MonoBehaviour
 			Monster monster=(Monster)selectedPawn;
             if (monster == null)
                 return;
+			
 			if(monster.actionType==ActionType.Nonactionable)
 			{
 				moveButton.interactable=false;
