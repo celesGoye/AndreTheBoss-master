@@ -24,7 +24,7 @@ public class ItemManager : MonoBehaviour
 		//}
 		GetItem(ItemType.Soul,50);
     }
-	
+
 	//test
 	public void Get99Resources()
 	{

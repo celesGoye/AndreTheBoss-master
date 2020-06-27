@@ -50,7 +50,7 @@ public class EnemyManager : MonoBehaviour
     public int MaxEnemyOnMap = 10;
 
     private static int[] heroAppearingTurn ={
-        10, 20, 30, 40, 50, 60
+        5, 10, 15, 20, 25, 30
     };
 	
 	private Dictionary<EnemyType, Enemy> prefabs;
@@ -208,7 +208,14 @@ public class EnemyManager : MonoBehaviour
     private Enemy SpawnHero()
     {
         EnemyType heroType = EnemyType.NUM;
-        heroType = getHeroType(gm.gameTurnManager.GetCurrentGameTurn() / 10);
+        for (int i = 0; i < heroAppearingTurn.Length; i++)
+        {
+            if(heroAppearingTurn[i] == gm.gameTurnManager.GetCurrentGameTurn())
+            {
+                heroType = getHeroType(i + 1);
+                break;
+            }
+        }
         if(heroType != EnemyType.NUM)
         {
             return SpawnEnemyAtCell(heroType, gm.hexMap.GetRandomCellToSpawn());
@@ -405,7 +412,7 @@ public class EnemyManager : MonoBehaviour
 			{
 				finalItems.Add(item);
 				break;
-			}	
+			}
 		}
 		if(finalItems.Count>0)
 			{

@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public GameInteraction gameInteraction;
     public GameEventManager gameEventManager;
 	public SaveManager saveManager;
+
+    public Option_Die PlayerDiePanel;
 	
 	public AudioManager audioManager;
 	public AnimationManager animationManager;
@@ -88,6 +90,13 @@ public class GameManager : MonoBehaviour
         // stub
         saveManager.Save();
     }
+
+    public void OnBossDie()
+    {
+        PlayerDiePanel.gameObject.SetActive(true);
+    }
+
+    
 
     public CharacterReader getCharacterReader()
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Boss : Monster
 {
@@ -91,5 +92,10 @@ public class Boss : Monster
             recoverHP(this, 2);
         if (isDoPassive4)
             recoverHP(this, 5);
+    }
+
+    public override void OnDie()
+    {
+        gm.OnBossDie();
     }
 }
