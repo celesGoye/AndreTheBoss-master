@@ -30,6 +30,7 @@ public class MonsterManager : MonoBehaviour
 	
     public Monster MonsterPrefab_centaur;
     public Monster MonsterPrefab_mindflayer;
+    public Monster MonsterPrefab_dragon;
     public Monster MonsterPrefab_boss;
 
     private Dictionary<MonsterType, Monster> prefabs;
@@ -63,8 +64,8 @@ public class MonsterManager : MonoBehaviour
             {MonsterType.bugbear, MonsterPrefab_bugbear },
             {MonsterType.drow, MonsterPrefab_drow },
             {MonsterType.centaur, MonsterPrefab_centaur },
-            {MonsterType.mindflayer, MonsterPrefab_mindflayer }
-            //{MonsterType.dragon, MonsterPrefab_dragon }
+            {MonsterType.mindflayer, MonsterPrefab_mindflayer },
+            {MonsterType.dragon, MonsterPrefab_dragon }
         };
     }
 	

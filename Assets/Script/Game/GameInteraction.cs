@@ -71,7 +71,7 @@ public class GameInteraction : MonoBehaviour
 			}
             DisableAllPanels();
             DisableIndicators();
-            if (hit.collider.GetComponent<HexCell>() != null)
+            if ((hit.collider.GetComponent<HexCell>()) != null)
             {
                 hexMap.SelectHex(hit.point);
                 HexCell hitCell = hexMap.GetCellFromPosition(hit.point);
@@ -255,7 +255,7 @@ public class GameInteraction : MonoBehaviour
 	public void OnMonsterTurnBegin()
 	{
 		playerPanel.OnTurnBegin();
-		pawnStatusPanel.UpdatePawnStatusPanel();
+		pawnStatusPanel.gameObject.SetActive(false);
 		memoryPanel.OnMonsterTurnBegin();
 	}
 	

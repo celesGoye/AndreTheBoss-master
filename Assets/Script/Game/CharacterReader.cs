@@ -53,7 +53,7 @@ public class CharacterReader
 	{
 		public string name;
 		public string description;
-		public Sprite icon;
+		public Sprite sprite;
 	}
 	
 	
@@ -210,6 +210,7 @@ public class CharacterReader
 			}
 			data.name=(node["name"].InnerXml);
 			data.description=(node["description"].InnerXml);
+			data.sprite=Resources.Load("UI/skill/"+(node["sprite"].InnerXml), typeof(Sprite)) as Sprite;
 		return data;
 	}
 	
@@ -229,6 +230,7 @@ public class CharacterReader
 			CharacterSkillUI skill=new CharacterSkillUI();
 			skill.name=(node["name"].InnerXml);
 			skill.description=(node["description"].InnerXml);
+			skill.sprite=Resources.Load("UI/skill/"+(node["sprite"].InnerXml), typeof(Sprite)) as Sprite;
 			data.Add(skill);
 		}
 		return data;

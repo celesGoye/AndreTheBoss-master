@@ -85,9 +85,10 @@ public class PawnAction : MonoBehaviour
 		if(currentStatus==Status.PrepareAttack||currentStatus==Status.PrepareMove||currentStatus==Status.PrepareDoSkill)
 		{
 			UpdatePawnActionPanel();
-			currentStatus=Status.Rest;
-			gameInteraction.SetIsPawnAction(false);
+			ClearStatus();
 		}
+		Debug.Log("cancel");
+		hexMap.HideCells();
 		cancelButton.gameObject.SetActive(false);
 	}
 
@@ -497,7 +498,7 @@ public class PawnAction : MonoBehaviour
                 }
                 else
                 {
-                    ClearStatus();
+                    OnCancel();
                 }
             }
         }
@@ -507,7 +508,7 @@ public class PawnAction : MonoBehaviour
             {
                 UpdateRoute();
                 if (!validRoute || !hexMap.IsReachable(getCurrentPointerCell()))
-                    ClearStatus();
+                    OnCancel();
                 else
                 {
                     routes = hexMap.GetCurrentRoutes();
@@ -560,7 +561,7 @@ public class PawnAction : MonoBehaviour
                     }
                     else
                     {
-                        ClearStatus();
+                        attackPanel.OnCancel();
                     }
                 }
             }
@@ -575,7 +576,7 @@ public class PawnAction : MonoBehaviour
                     }
                     else
                     {
-                        ClearStatus();
+                        attackPanel.OnCancel();
                     }
                 }
             }
@@ -642,7 +643,7 @@ public class PawnAction : MonoBehaviour
     {
         HexCell cell = getCurrentPointerCell();
 		
-        if (requireCellSelection && cell != null && hexMap.GetAttackableTargets().Contains(cell))
+        if (requireCellSelection && cell != null && hexMap.GetBuildingCells().Contains(cell))
         {
             skillTargetCell = cell;
             validSkillTarget = true;

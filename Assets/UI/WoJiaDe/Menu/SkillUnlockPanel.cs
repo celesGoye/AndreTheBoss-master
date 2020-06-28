@@ -14,6 +14,7 @@ public class SkillUnlockPanel : MonoBehaviour
 	
 	private bool isPassive;
 	private CharacterReader characterReader;
+	private CharacterReader.CharacterSkillUI skill;
 	
 	public void OnEnable()
 	{
@@ -43,7 +44,9 @@ public class SkillUnlockPanel : MonoBehaviour
 			else
 				equipped.gameObject.SetActive(monster.equippedSkill==index?true:false);
 			
-			skillname.text=characterReader.GetMonsterSkillUI(monster.monsterType.ToString(),index).name;
+			skill=characterReader.GetMonsterSkillUI(monster.monsterType.ToString(),index);
+			skillname.text=skill.name;
+			skillicon.sprite=skill.sprite;
 		}
 	}
 }

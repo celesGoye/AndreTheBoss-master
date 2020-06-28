@@ -14,6 +14,8 @@ public class Gallery_Ch_TheMonsterPage : MonoBehaviour
 	public Text skill;
 	public Text race;
 	public Image image;
+	public Transform previousButton;
+	public Transform nextButton;
 	
 	private CharacterReader characterReader;
 	private List<CharacterReader.CharacterSkillUI> skilldata;
@@ -29,12 +31,16 @@ public class Gallery_Ch_TheMonsterPage : MonoBehaviour
 	public void UpdateMonsterFromShortcut(MonsterType monstertype)
 	{
 		type=monstertype;
+		previousButton.gameObject.SetActive(false);
+		nextButton.gameObject.SetActive(false);
 		UpdateCurrentMonster();
 	}
 	
 	public void UpdateMonster()
 	{
 		type=monsterPage.monsterList[monsterPage.currentid];
+		previousButton.gameObject.SetActive(true);
+		nextButton.gameObject.SetActive(true);
 		UpdateCurrentMonster();
 	}
 	

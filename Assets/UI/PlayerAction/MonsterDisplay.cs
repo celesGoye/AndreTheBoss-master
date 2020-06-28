@@ -27,7 +27,7 @@ public class MonsterDisplay : MonoBehaviour
 	{
 		if((sprite=Resources.Load("UI/avatar/"+type.ToString(), typeof(Sprite)) as Sprite)!=null)
 			image.sprite =sprite;
-		else if((sprite=Resources.Load("UI/avatar/"+type.ToString()+"1", typeof(Sprite)) as Sprite)!=null)
+		else if((sprite=Resources.Load("UI/avatar/"+type.ToString()+"5", typeof(Sprite)) as Sprite)!=null)
 			image.sprite=sprite;
 	}
 	

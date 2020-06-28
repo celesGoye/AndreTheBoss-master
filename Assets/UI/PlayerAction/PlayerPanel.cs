@@ -40,9 +40,12 @@ public class PlayerPanel : MonoBehaviour
 	
 	public void UpdateBossUI()
 	{
-		txtLevel.text="Lv."+gameManager.boss.GetLevel();
-		if((Resources.Load("UI/avatar/boss"+gameManager.boss.GetLevel(), typeof(Sprite)) as Sprite)!=null)
-			imgBoss.sprite=Resources.Load("UI/avatar/boss"+gameManager.boss.GetLevel(), typeof(Sprite)) as Sprite;
+		int lv=gameManager.boss.GetLevel();
+		txtLevel.text="Lv."+lv;
+		while((Resources.Load("UI/avatar/boss"+gameManager.boss.GetLevel(), typeof(Sprite)) as Sprite)==null&&lv>1)
+			lv--;
+		if((Resources.Load("UI/avatar/boss"+lv, typeof(Sprite)) as Sprite)!=null)
+			imgBoss.sprite=Resources.Load("UI/avatar/boss"+lv, typeof(Sprite)) as Sprite;
 		else 
 			Debug.Log("??");
 	}

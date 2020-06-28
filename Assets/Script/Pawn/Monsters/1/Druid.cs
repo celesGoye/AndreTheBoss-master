@@ -9,17 +9,11 @@ public class Druid : Monster
     int turnToSkip;
     bool isDoPassive2, isDoPassive4;
 
-    GameManager gameManager;
 
     public Druid()
     {
         turnToSkip = 1;
         isDoPassive2 = isDoPassive4 = false;
-    }
-
-    public void OnEnable()
-    {
-        gameManager = FindObjectOfType<GameManager>();
     }
 
     public override void DoSkillOne(Pawn other = null)
@@ -31,11 +25,14 @@ public class Druid : Monster
 
     public override void PrepareSkillThree()
     {
-        pawnAction.DoSkill();
+        pawnAction.requireCellSelection = true;
+        gm.hexMap.ProbeAttackTarget(this.currentCell);
+        gm.hexMap.ShowBuildingCandidates();
     }
-    public override void DoSkillThree(Pawn other = null)
+	
+    public override void DoSkillThreeCell(HexCell cell = null)
     {
-
+		gm.buildingManager.BuildingAccelerate(cell.building);
     }
 
     public override void PrepareSkillFive()
@@ -47,8 +44,8 @@ public class Druid : Monster
 
     public override void DoSkillFive(Pawn other = null)
     {
-        gameManager.hexMap.ProbeAttackTarget(this.currentCell);
-        foreach (HexCell cell in gameManager.hexMap.GetFriendTargets())
+        gm.hexMap.ProbeAttackTarget(this.currentCell);
+        foreach (HexCell cell in gm.hexMap.GetFriendTargets())
         {
             Pawn pawn = cell.pawn;
             if (pawn != null)

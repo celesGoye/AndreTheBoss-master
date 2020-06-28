@@ -40,6 +40,7 @@ public abstract class Pawn : MonoBehaviour
 
 	public static int MaxLevel=5;
 	
+	public Animator animator;
 	public HealthBar healthbar;
     public HexCell currentCell;
     public PawnType pawnType { get; set; }
@@ -64,6 +65,12 @@ public abstract class Pawn : MonoBehaviour
 		isSkip = false;
 
 		isIgnoreDefense = isIgnoreMagicDefense = false;
+		animator=this.transform.GetChild(0).GetComponent<Animator>();
+		if(animator==null)
+		{
+			UnityEngine.Debug.Log("animator==null!");
+		}
+		
 		InitPawn();
     }
 
@@ -100,7 +107,14 @@ public abstract class Pawn : MonoBehaviour
 
 		if(currentHP <= 0)
 			OnDie();
-
+		else
+		{
+			if(animator!=null)
+			{
+				animator.SetBool("TakeDamage",true);
+			}
+		}
+		
 		return damage + magicDamage;
 	}
 	
@@ -181,7 +195,16 @@ public abstract class Pawn : MonoBehaviour
 			GameManager gm = FindObjectOfType<GameManager>();
 			gm.healthbarManager.RemoveHealthBar(healthbar);
 		}
-		GameObject.Destroy(gameObject);
+		
+		if(animator!=null)
+		{
+			animator.SetBool("Die",true);
+		}
+		else
+		{
+			GameObject.Destroy(gameObject);
+		}
+
 	}
 
 	public virtual void OnActionBegin()

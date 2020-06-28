@@ -30,7 +30,6 @@ public class Drawf : Monster
             }    
         }
 		        // maybe a button for confirmation from player?
-				//额 为啥啊
         pawnAction.DoSkill();
     }
 

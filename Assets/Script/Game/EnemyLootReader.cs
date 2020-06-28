@@ -29,7 +29,6 @@ public class EnemyLootReader
             Debug.Log("On EnemyLootReader: " + type.ToString() + " not found");
             return null;
         }
-		
 		XmlNodeList itemnodes = node.SelectNodes("item");
         List<ItemEntry> items = new List<ItemEntry>();
         for (int i = 0; i < itemnodes.Count; i++)

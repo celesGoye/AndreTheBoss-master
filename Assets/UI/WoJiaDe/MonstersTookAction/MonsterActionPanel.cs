@@ -56,9 +56,14 @@ public class MonsterActionPanel : MonoBehaviour
 			return;
 		if((sprite=Resources.Load("UI/avatar/"+currentMonster.Name, typeof(Sprite)) as Sprite)!=null)
 			image.sprite =sprite;
-		else if((sprite=Resources.Load("UI/avatar/"+currentMonster.Name+currentMonster.GetLevel(), typeof(Sprite)) as Sprite)!=null)
-			image.sprite=sprite;
-		
+		else
+		{
+			int lv=currentMonster.GetLevel();
+			while((sprite=Resources.Load("UI/avatar/"+currentMonster.Name+lv, typeof(Sprite)) as Sprite)==null&&lv>1)
+				lv--;
+			if((sprite=Resources.Load("UI/avatar/"+currentMonster.Name+lv, typeof(Sprite)) as Sprite)!=null)
+				image.sprite=sprite;
+		}
 		
 		image.color=currentMonster.actionType==ActionType.MoveEnds?moveEnds:new Color(1,1,1,1);
 	}

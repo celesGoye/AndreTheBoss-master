@@ -9,10 +9,15 @@ public class GeneralPanel : MonoBehaviour
 	public Text nameText;
 	public Text lifeText;
 	public Image characterImg;
+	public Image skillIcon1;
+	public Image skillIcon2;
 	public Slider healthSlider;
 	
 	private MonsterManager monsterManager;
 	private Gallery_Ch_TheMonsterPage shortcutPage;
+	private Gallery_Ch_AndrePage shortcutAndrePage;
+	private CharacterReader characterReader;
+	private CharacterReader.CharacterSkillUI skill;
 	
 	private Monster currentMonster;
 	private Sprite sprite;
@@ -22,6 +27,8 @@ public class GeneralPanel : MonoBehaviour
         UpdateGeneral();
 		monsterManager=menu.gameManager.monsterManager;
 		shortcutPage=menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().monsterPage.GetComponent<Gallery_Ch_MonsterPage>().theMonsterPage;
+		shortcutAndrePage=menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().andrePage.GetComponent<Gallery_Ch_AndrePage>();
+		
     }
 	
 	public void Update()
@@ -29,14 +36,42 @@ public class GeneralPanel : MonoBehaviour
 		healthSlider.value=(float)currentMonster.currentHP/currentMonster.GetMaxHP();
 	}
 	
-	public void UpdateGeneral(){
+	public void UpdateGeneral()
+	{
+		if(characterReader == null)
+			characterReader = FindObjectOfType<GameManager>().GetComponent<GameManager>().characterReader;
+		
 		currentMonster=menu.currentMonster;
 		nameText.text=currentMonster.Name;
 		lifeText.text=currentMonster.currentHP+"/"+currentMonster.GetMaxHP();
+		
 		if((sprite=Resources.Load("Image/character/"+currentMonster.Name, typeof(Sprite)) as Sprite)!=null)
 			characterImg.sprite =sprite;
-		else if((sprite=Resources.Load("Image/character/"+currentMonster.Name+currentMonster.GetLevel(), typeof(Sprite)) as Sprite)!=null)
-			characterImg.sprite=sprite;
+		else
+		{
+			int lv=currentMonster.GetLevel();
+			while((sprite=Resources.Load("Image/character/"+currentMonster.Name+lv, typeof(Sprite)) as Sprite)==null&&lv>1)
+				lv--;
+			if((sprite=Resources.Load("Image/character/"+currentMonster.Name+lv, typeof(Sprite)) as Sprite)!=null)
+				characterImg.sprite=sprite;
+		}
+		
+		skill=characterReader.GetMonsterSkillUI(currentMonster.monsterType.ToString(),1);
+		if(skill!=null)
+			skillIcon1.sprite=skill.sprite;
+		
+		skill=characterReader.GetMonsterSkillUI(currentMonster.monsterType.ToString(),currentMonster.GetEquippedSkill());
+		if(skill!=null)
+		{
+			if(currentMonster.GetLevel()>=3)
+			{
+				skillIcon2.sprite=skill.sprite;
+			}
+			else
+			{
+				skillIcon2.sprite=Resources.Load("UI/skill/NoSkill", typeof(Sprite)) as Sprite;
+			}
+		}
 	}
 	
 	public void OnPrevoius()
@@ -83,10 +118,18 @@ public class GeneralPanel : MonoBehaviour
 		menu.galleryPanel.homePage.gameObject.SetActive(false);
 		menu.galleryPanel.characterPage.gameObject.SetActive(true);
 		menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().frontPage.gameObject.SetActive(false);
-		menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().monsterPage.gameObject.SetActive(true);
-		menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().monsterPage.GetComponent<Gallery_Ch_MonsterPage>().frontPage.gameObject.SetActive(false);
-		shortcutPage.gameObject.SetActive(true);
-		shortcutPage.UpdateMonsterFromShortcut(((Monster)menu.currentMonster).monsterType);
+		if(menu.currentMonster.monsterType!=MonsterType.boss)
+		{
+			menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().monsterPage.gameObject.SetActive(true);
+			menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().monsterPage.GetComponent<Gallery_Ch_MonsterPage>().frontPage.gameObject.SetActive(false);
+			shortcutPage.gameObject.SetActive(true);
+			shortcutPage.UpdateMonsterFromShortcut(menu.currentMonster.monsterType);
+		}
+		else
+		{
+			shortcutAndrePage.gameObject.SetActive(true);
+		}
+		
 		menu.galleryPanel.previousLayer=-1;
 	}
 }

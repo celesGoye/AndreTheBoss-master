@@ -23,13 +23,13 @@ public class EnemyManager : MonoBehaviour
     public Enemy EnemyPrefab_magicmgraneaster;
     public Enemy EnemyPrefab_witch;
     public Enemy EnemyPrefab_assassin;
-    //public Enemy EnemyPrefab_catapult;
+    public Enemy EnemyPrefab_catapult;
     public Enemy EnemyPrefab_jinjyamiko;
 	
     public Enemy EnemyPrefab_cultist;
     public Enemy EnemyPrefab_priest;
     public Enemy EnemyPrefab_bloodwitch;
-    //public Enemy EnemyPrefab_darkknight;
+    public Enemy EnemyPrefab_darkknight;
     public Enemy EnemyPrefab_orchestraleader;
 	
     public Enemy EnemyPrefab_magebelial;
@@ -82,13 +82,13 @@ public class EnemyManager : MonoBehaviour
             {EnemyType.magicgrandmaster, EnemyPrefab_magicmgraneaster },
             {EnemyType.witch, EnemyPrefab_witch },
             {EnemyType.assassin, EnemyPrefab_assassin },
-            //{EnemyType.catapult, EnemyPrefab_catapult },
+            {EnemyType.catapult, EnemyPrefab_catapult },
             {EnemyType.jinjyamiko, EnemyPrefab_jinjyamiko },
 			
             {EnemyType.cultist, EnemyPrefab_cultist },
             {EnemyType.priest, EnemyPrefab_priest },
             {EnemyType.bloodwitch, EnemyPrefab_bloodwitch },
-            //{EnemyType.darkknight, EnemyPrefab_darkknight },
+            {EnemyType.darkknight, EnemyPrefab_darkknight },
             {EnemyType.orchestraleader, EnemyPrefab_orchestraleader },
 			
             {EnemyType.magebelial, EnemyPrefab_magebelial },
@@ -97,7 +97,7 @@ public class EnemyManager : MonoBehaviour
             {EnemyType.cardinaleriri, EnemyPrefab_cardinaleriri },
             {EnemyType.cinderlord, EnemyPrefab_cinderlord },
 
-            //{EnemyType.andrethehero, EnemyPrefab_andrethehero },
+            {EnemyType.andrethehero, EnemyPrefab_andrethehero },
         };
     }
 
@@ -143,6 +143,10 @@ public class EnemyManager : MonoBehaviour
     {
         if(gm.gameTurnManager.IsEnemyTurn() && EnemyPawns.Count > 0)
         {
+			if(currentEnemyIndex>=EnemyPawns.Count)
+			{
+				Debug.Log("currentEnemyIndex>=EnemyPawns.Count---------"+currentEnemyIndex+"      "+EnemyPawns.Count);
+			}
             if(currentEnemyIndex >= EnemyPawns.Count || !EnemyPawns[currentEnemyIndex].IsAction())
             {
                 currentEnemyIndex++;
@@ -389,7 +393,6 @@ public class EnemyManager : MonoBehaviour
 		list=reader.GetItems(type,IsHero(type),((int)type)/5+1);
 		if(list==null)
 			return;
-		Debug.Log("first,hello");
 		List<ItemEntry> finalItems=new List<ItemEntry>();
 		float posibility = (float)UnityEngine.Random.Range(1, 100);
 		int sum=0;

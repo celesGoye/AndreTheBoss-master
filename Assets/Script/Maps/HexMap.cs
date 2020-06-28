@@ -819,6 +819,11 @@ public class HexMap : MonoBehaviour
     {
         return emptyCells;
     }
+	
+	public List<HexCell> GetBuildingCells()
+	{
+		return buildingCells;
+	}
 
     public void ShowAttackCandidates()
     {

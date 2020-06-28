@@ -65,8 +65,14 @@ public class PawnStatus : MonoBehaviour
 		txtLevel.text="."+level;
 		if((sprite=Resources.Load("UI/avatar/"+name, typeof(Sprite)) as Sprite)!=null)
 			imgAvatar.sprite =sprite;
-		else if((sprite=Resources.Load("UI/avatar/"+name+level, typeof(Sprite)) as Sprite)!=null)
-			imgAvatar.sprite=sprite;
+		else
+		{
+			int lv=level;
+			while((sprite=Resources.Load("UI/avatar/"+name+lv, typeof(Sprite)) as Sprite)==null&&lv>1)
+				lv--;
+			if((sprite=Resources.Load("UI/avatar/"+name+lv, typeof(Sprite)) as Sprite)!=null)
+				imgAvatar.sprite=sprite;
+		}
 		
 		if(type==PawnType.Monster)
 		{

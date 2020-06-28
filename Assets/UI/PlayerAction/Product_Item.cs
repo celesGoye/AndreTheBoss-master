@@ -41,7 +41,6 @@ public class Product_Item : MonoBehaviour
 	
 	public void UpdateItemDisplay()
 	{
-		Debug.Log("hello");
 		item=itemReader.GetItemData(type);
 		if(item.sprite!=null)
 		image.sprite=item.sprite;
@@ -52,7 +51,6 @@ public class Product_Item : MonoBehaviour
 				bg.color=Item.SoulColor;
 				break;
 			case ItemPrimaryType.Farm:
-			Debug.Log("farmmmm");
 				bg.color=Item.FarmColor;
 				break;
 			case ItemPrimaryType.Mine:

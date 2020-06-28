@@ -21,9 +21,11 @@ public class AttackPanel : MonoBehaviour
 	
 	private CharacterReader characterReader;
 	private CharacterReader.CharacterSkillUI skill;
+	private HexMap hexMap;
 	
 	public void OnEnable()
 	{
+		hexMap=pawnAction.hexMap;
 		cancelButton.gameObject.SetActive(false);
 		if(characterReader == null)
 			characterReader = FindObjectOfType<GameManager>().GetComponent<GameManager>().characterReader;
@@ -56,6 +58,7 @@ public class AttackPanel : MonoBehaviour
 			pawnAction.currentStatus=PawnAction.Status.Rest;
 			pawnAction.gameInteraction.SetIsPawnAction(false);
 		}
+        hexMap.HideIndicator();
 		cancelButton.gameObject.SetActive(false);
 	}
 	
@@ -76,8 +79,7 @@ public class AttackPanel : MonoBehaviour
 		{
 			skill1.text=skill.name;
 			buttonskill1.interactable=true;
-			//icon1.sprite=skill.icon;
-			icon1.sprite=Resources.Load("UI/skill/TestSkill", typeof(Sprite)) as Sprite;
+			icon1.sprite=skill.sprite;
 		}
 		
 		skill=characterReader.GetMonsterSkillUI(monster.monsterType.ToString(),monster.GetEquippedSkill());
@@ -87,14 +89,13 @@ public class AttackPanel : MonoBehaviour
 			{
 				skill2.text=skill.name;
 				buttonskill2.interactable=true;
-				//icon2.sprite=skill.icon;
-				icon2.sprite=Resources.Load("UI/skill/TestSkill", typeof(Sprite)) as Sprite;
+				icon2.sprite=skill.sprite;
 			}
 			else
 			{
 				skill2.text="Locked";
 				buttonskill2.interactable=false;
-				//icon2.sprite=Resources.Load("UI/skill/NoSkill", typeof(Sprite)) as Sprite;
+				icon2.sprite=Resources.Load("UI/skill/NoSkill", typeof(Sprite)) as Sprite;
 			}
 		}
 		

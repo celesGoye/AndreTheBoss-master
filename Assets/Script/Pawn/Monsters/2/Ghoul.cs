@@ -81,10 +81,12 @@ public class Ghoul : Monster
             DoPassiveFour();
             DoPassiveTwo();
             // Boss gain soul: 16
+			gm.itemManager.GetItem(ItemType.Soul, 16);
         }
         else if (this.GetLevel() >= 2)
         {
             // Boss gain soul: 6
+			gm.itemManager.GetItem(ItemType.Soul, 6);
         }
 
         base.OnDie();

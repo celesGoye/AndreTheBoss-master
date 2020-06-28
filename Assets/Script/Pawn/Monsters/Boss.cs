@@ -22,9 +22,7 @@ public class Boss : Monster
         if (gm.monsterManager.IsFriendlyUnit(other))
         {
             recoverHPPercentage(other, 0.6f);
-            //Debug.Log("Yes it's a friend");
         }
-            
     }
 
     public override void PrepareSkillThree() 
