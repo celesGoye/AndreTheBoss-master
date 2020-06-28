@@ -21,22 +21,22 @@ public class ButtonEffect : MonoBehaviour
     }
     public void OnMouseEnter()
     {
-        //text.fontSize = fontFocusSize;
+        text.fontSize = fontFocusSize;
     }
 
     public void OnMouseExit()
     {
-        //text.fontSize = fontNormalSize;
+        text.fontSize = fontNormalSize;
     }
 
     public void OnMouseDown()
     {
-        //text.fontSize = fontClickSize;
+        text.fontSize = fontClickSize;
     }
 
     public void OnMouseUp()
     {
-        //text.fontSize = fontFocusSize;
+        text.fontSize = fontFocusSize;
     }
 
     public void PlayOnEnter()

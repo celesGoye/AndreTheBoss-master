@@ -50,7 +50,7 @@ public class EnemyManager : MonoBehaviour
     public int MaxEnemyOnMap = 10;
 
     private static int[] heroAppearingTurn ={
-        10, 20, 30, 40, 50, 60
+        5, 10, 15, 20, 25, 30
     };
 	
 	private Dictionary<EnemyType, Enemy> prefabs;
@@ -116,13 +116,19 @@ public class EnemyManager : MonoBehaviour
         // Spawn new Enemy
         Enemy enemy = null;
         if (!heroAppearingTurn.Contains<int>(gm.gameTurnManager.GetCurrentGameTurn()))
-            enemy = SpawnEnemy();
+        {
+            do
+            {
+                enemy = SpawnEnemy();
+            } 
+            while (EnemyPawns.Count < GameConfig.EnemySpawnLowerLimits[gm.boss.GetLevel()]);
+        }
         else
             enemy = SpawnHero();
 
         // Camera focus
-        if (enemy != null)
-            gm.gameCamera.FocusOnPoint(enemy.transform.position);
+        //if (enemy != null)
+            //gm.gameCamera.FocusOnPoint(enemy.transform.position);
 
         // Enemy movement
         OnEnemyTurn();
@@ -173,7 +179,7 @@ public class EnemyManager : MonoBehaviour
     {
         int turnNum = gm.gameTurnManager.GetCurrentGameTurn();
 
-        if (EnemyPawns.Count >= MaxEnemyOnMap)
+        if (EnemyPawns.Count >= GameConfig.EnemySpawnUpperLimits[gm.boss.GetLevel()])
             return null;
 
         EnemyType enemyType = EnemyType.NUM;
@@ -208,7 +214,14 @@ public class EnemyManager : MonoBehaviour
     private Enemy SpawnHero()
     {
         EnemyType heroType = EnemyType.NUM;
-        heroType = getHeroType(gm.gameTurnManager.GetCurrentGameTurn() / 10);
+        for (int i = 0; i < heroAppearingTurn.Length; i++)
+        {
+            if(heroAppearingTurn[i] == gm.gameTurnManager.GetCurrentGameTurn())
+            {
+                heroType = getHeroType(i + 1);
+                break;
+            }
+        }
         if(heroType != EnemyType.NUM)
         {
             return SpawnEnemyAtCell(heroType, gm.hexMap.GetRandomCellToSpawn());
@@ -405,7 +418,7 @@ public class EnemyManager : MonoBehaviour
 			{
 				finalItems.Add(item);
 				break;
-			}	
+			}
 		}
 		if(finalItems.Count>0)
 			{

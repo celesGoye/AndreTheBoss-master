@@ -136,8 +136,6 @@ public class BuildingManager : MonoBehaviour
 		gameManager.gameInteraction.uilog.UpdateLog(logstring);
 	}
 	
-	
-	
 	public void BuildingAccelerate(Building building)
 	{
 		if(building.GetItemType()!=ItemType.NUM)
