@@ -423,7 +423,7 @@ public class EnemyManager : MonoBehaviour
 			{
 				finalItems.Add(item);
 				break;
-			}	
+			}
 		}
 		if(finalItems.Count>0)
 			{

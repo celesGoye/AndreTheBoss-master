@@ -92,7 +92,7 @@ public class Boss : Monster
             recoverHP(this, 5);
     }
 	
-	 public override void OnDie()
+    public override void OnDie()
     {
         gm.OnBossDie();
     }

@@ -17,7 +17,7 @@ public class TateNoYousya : Enemy
     {
         addBuff(AttributeType.Defense, 5, 1);
         addBuff(AttributeType.MagicDefense, 5, 1);
-		SetIsAction(false);
+        SetIsAction(false);
     }
 
     public override void InitPawn()
