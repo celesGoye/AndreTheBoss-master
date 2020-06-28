@@ -11,7 +11,7 @@ public class Bandit : Enemy
 
     public override void InitPawn()
     {
-        skillCounts = 0;
+        skillCounts = 1;
     }
 
 }

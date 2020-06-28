@@ -16,6 +16,7 @@ public class JinjaMiko : Enemy
         {
             target.TakeDamage(0, 14, this, false, true);
         }
+        SetIsAction(false);
     }
 
     public override void InitPawn()

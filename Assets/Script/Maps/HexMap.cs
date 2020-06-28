@@ -44,6 +44,7 @@ public class HexMap : MonoBehaviour
     private List<HexCell> hiddenCells;
     private List<HexCell> friendCells;
 	private List<HexCell> buildingCells;
+    //private List<HexCell> allBuildingCells;
     private List<HexCell> emptyCells;
 
     public int revealRadius = 2;
@@ -67,7 +68,8 @@ public class HexMap : MonoBehaviour
         hiddenCells = new List<HexCell>();
         emptyCells = new List<HexCell>();
 		buildingCells = new List<HexCell>();
-		pathLength=0;
+        //allBuildingCells = new List<HexCell>();
+        pathLength =0;
 		CreateMat();
         for (int z = 0; z < mapHeight; z++)
         {
@@ -609,6 +611,7 @@ public class HexMap : MonoBehaviour
         friendCells.Clear();
 		buildingCells.Clear();
         emptyCells.Clear();
+        //allBuildingCells.Clear();
         foreach (HexCell cell in reachableCells)
         {
             if (cell.CanbeAttackTargetOf(startCell))
@@ -818,6 +821,11 @@ public class HexMap : MonoBehaviour
     public List<HexCell> GetEmptyCells()
     {
         return emptyCells;
+    }
+
+    public List<HexCell> GetBuildingCells()
+    {
+        return buildingCells;
     }
 
     public void ShowAttackCandidates()

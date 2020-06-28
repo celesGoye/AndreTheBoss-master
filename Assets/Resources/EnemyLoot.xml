@@ -1,4 +1,4 @@
-<Enemy>
+<enemy>
     <normal>
         <level value="1">
             <soulnum>2</soulnum>
@@ -376,4 +376,4 @@
             <coulnum>0</coulnum>
         </andrethehero>
     </hero>
-</Enemy>
+</enemy>
