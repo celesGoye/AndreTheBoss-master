@@ -34,6 +34,7 @@ public class RoyalInquisitor : Enemy
                 }
             }
         }
+		SetIsAction(false);
     }
 
     public override void InitPawn()

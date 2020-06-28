@@ -37,7 +37,8 @@ public class Enemy : Pawn
     }
 
     public Pawn currentTarget = null;  // attack target
-    public enum ActionType{ Attack, Skill, Move, Patrol, None};
+	public Building currentBuildingTarget = null; // building target 
+    public enum ActionType{ Attack, AttackBuilding,  Skill, Move, Patrol, None};
     public ActionType nextAction = ActionType.None;
 	
 
@@ -46,8 +47,10 @@ public class Enemy : Pawn
     public int skillCounts;
     public int dropsoul;
 
+	// animation control value
     public bool IsMoving = false;
     public bool IsWaiting = true;
+	
     public List<HexCell> routes = new List<HexCell>();
     private int routePtr = 0;
     private int movespeed = 10;
@@ -75,18 +78,29 @@ public class Enemy : Pawn
     }
 
     public bool IsAction() { return isAction; }
+	public void SetIsAction(bool isAction) { this.isAction = isAction; }
 
     public virtual void ProbeAction()
     {
         gm.hexMap.ProbeAttackTarget(currentCell);
         List<HexCell> targets = gm.hexMap.GetAttackableTargets();
+		List<HexCell> buildingTargets = gm.hexMap.GetBuildingCells();
+
+        if(currentBuildingTarget != null && buildingTargets.Count != 0)
+        {
+            if(buildingTargets.Contains(currentBuildingTarget.currentCell))
+            {
+                nextAction = ActionType.AttackBuilding;
+                return;
+            }
+        }
 
         if (currentTarget != null && targets.Count != 0)
         {
             if(targets.Contains(currentTarget.currentCell))
             {
                 float posibility = (float)UnityEngine.Random.Range(0, 1+skillCounts);
-                nextAction = posibility < 1 ? ActionType.Attack : ActionType.Skill;
+                nextAction = posibility <= 1 ? ActionType.Attack : ActionType.Skill;
             }
             else
             {
@@ -124,21 +138,39 @@ public class Enemy : Pawn
         ProbeAction();
         switch(nextAction)
         {
+			 case ActionType.AttackBuilding:
+                DoAttackBuilding();
+                SetIsAction(false);
+                break;
             case ActionType.Attack:
                 DoAttack();
+                SetIsAction(false);
                 break;
             case ActionType.Move:
                 DoMove();
                 break;
             case ActionType.Skill:
                 DoSkill();
+                SetIsAction(false);
                 break;
             case ActionType.Patrol:
                 DoPatrol();
                 break;
             case ActionType.None:
+                SetIsAction(false);
+				break;
             default:
                 break;
+        }
+    }
+	
+    public virtual void DoAttackBuilding()
+    {
+        if (currentBuildingTarget != null)
+        {
+            if (isDirty)
+                UpdateCurrentValue();
+            currentBuildingTarget.TakeDamage(this.currentAttack + this.currentMagicAttack);
         }
     }
 
@@ -146,11 +178,13 @@ public class Enemy : Pawn
     {
         if(currentTarget != null)
         {
+			/*
             gm.hexMap.HideIndicator();
             currentTarget.currentCell.indicator.gameObject.SetActive(true);
             currentTarget.currentCell.indicator.SetColor(Indicator.AttackColor);
             currentCell.indicator.gameObject.SetActive(true);
             currentCell.indicator.SetColor(Indicator.StartColor);
+			*/
 
             ((Pawn)this).DoAttack(currentTarget);
             gm.gameInteraction.pawnActionPanel.uilog.UpdateLog(this.Name + " attacks " + currentTarget.Name);
@@ -199,38 +233,45 @@ public class Enemy : Pawn
 
     public void Update()
     {
+		/*
 		if(gm.gameTurnManager.IsEnemyTurn() && IsWaiting )
 		{
 			//isWaiting=info.IsName("CreateEnemy")?true:false;
 			return;
 		}
+		*/
 		
         // Moving animation
-        if(gm.gameTurnManager.IsEnemyTurn() && IsMoving)
+         if(gm.gameTurnManager.IsEnemyTurn() && isAction && IsMoving)
         {
             if(routePtr >= 0 && routePtr < routes.Count)
             {
                 this.transform.position = Vector3.Lerp(this.transform.position, routes[routePtr].transform.position, Time.deltaTime * movespeed);
                 if(Vector3.Distance(this.transform.position, routes[routePtr].transform.position) < 0.01f)
                 {
-                    //gm.hexMap.RevealCell(routes[routePtr++]); 
+                    //gm.hexMap.RevealCell(routes[routePtr++]);
+                    //gm.hexMap.SetCharacterCell(this, routes[routePtr]);
                     routePtr++;
                 }
             }
-            else if(routePtr == routes.Count)
+            else if(routePtr == routes.Count && routes.Count > 0)
             {
                 gm.hexMap.SetCharacterCell(this, routes[routes.Count - 1]);
                 //gm.hexMap.RevealCell(routes[routes.Count - 1]);
                 IsMoving = false;
+				 SetIsAction(false);
+                IsWaiting = false;
             }
             else
             {
                 IsMoving = false;
+				 SetIsAction(false);
+                IsWaiting = false;
             }
         }
         else
         {
-            isAction = false;
+            IsWaiting = false;
         }
     }
 

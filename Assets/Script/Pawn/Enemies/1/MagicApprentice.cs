@@ -11,6 +11,6 @@ public class MagicApprentice : Enemy
 
     public override void InitPawn()
     {
-        skillCounts = 0;
+        skillCounts = 1;
     }
 }

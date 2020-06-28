@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class Building: MonoBehaviour
@@ -16,6 +18,9 @@ public class Building: MonoBehaviour
     protected int currentLevel; // 1,2,3
     protected ItemType itemTypeProduced;
 
+	protected int currentHP;
+	protected int maxHP;
+	
 	// a little hack
 	Pawn buildingPawn;
 	
@@ -23,7 +28,8 @@ public class Building: MonoBehaviour
     {
 		buildingType=type;
         currentLevel = Mathf.Clamp(initLevel, 1,GetMaxLevel(type));
-		if(GetValidProduct(type).Contains(itemTypeProduced))
+		currentHP = maxHP = GameConfig.BuildingHP[currentLevel];
+		if (GetValidProduct(type).Contains(itemTypeProduced))
 			this.itemTypeProduced = itemTypeProduced;
 
 		// for catapult
@@ -44,6 +50,7 @@ public class Building: MonoBehaviour
         int required = after-before;
 
         currentLevel++;
+		currentHP = maxHP = GameConfig.BuildingHP[currentLevel];
 		SetAppearance(currentLevel);
 		OnLevelUp();
         return required;
@@ -131,7 +138,7 @@ public class Building: MonoBehaviour
 	
 	public virtual void DestroyBuilding()
 	{
-		GameObject.DestroyImmediate(gameObject);
+		GameObject.Destroy(gameObject);
 	}
 	
 	public void SetAppearance(int level)
@@ -163,5 +170,12 @@ public class Building: MonoBehaviour
 	{
 		return GetCurrentProduceNumber()==0?false:true;
 	}
+	
+	public void TakeDamage(int damage)
+    {
+		currentHP -= damage;
+		if (currentHP <= 0)
+			GameObject.FindObjectOfType<GameManager>().buildingManager.DestroyBuilding(this);
+    }
 }
 
