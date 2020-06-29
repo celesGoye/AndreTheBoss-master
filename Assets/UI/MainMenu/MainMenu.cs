@@ -10,6 +10,8 @@ namespace AndreTheBoss.Menu
     public class MainMenu : MonoBehaviour
     {
         public Button LoadGameButton;
+        public GameObject PanelCredits;
+        public GameObject PanelSettings;
         public void OnEnable()
         {
             if (LoadGameButton == null)
@@ -47,12 +49,14 @@ namespace AndreTheBoss.Menu
 
         public void Settings()
         {
-            Debug.Log("Settings was called");
+            if (PanelSettings != null)
+                PanelSettings.gameObject.SetActive(true);
         }
 
         public void Credits()
         {
-            Debug.Log("Credits was called");
+            if (PanelCredits != null)
+                PanelCredits.gameObject.SetActive(true);
         }
 
         public void Quit()
