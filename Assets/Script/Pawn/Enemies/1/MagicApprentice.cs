@@ -9,8 +9,4 @@ public class MagicApprentice : Enemy
         addBuff(AttributeType.Defense, 1, 1);
     }
 
-    public override void InitPawn()
-    {
-        skillCounts = 1;
-    }
 }

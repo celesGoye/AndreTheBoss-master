@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -72,7 +71,6 @@ public class Enemy : Pawn
         base.OnActionBegin();
         gm.gameCamera.FocusOnPoint(currentCell.transform.position);
         isAction = true;
-        ProbeAction();
 		if(!IsWaiting)
 		    DoAction();
     }
@@ -94,7 +92,6 @@ public class Enemy : Pawn
                 return;
             }
         }
-		
 
         if (currentTarget != null && targets.Count != 0)
         {
@@ -195,29 +192,51 @@ public class Enemy : Pawn
 
     public virtual void DoMove()
     {
+        routes.Clear();
         routes = gm.hexMap.GetRoutes(this, currentTarget.currentCell);
         if(routes.Count > 0)
         {
             IsMoving = true;
             routePtr = 0;
         }
+        else
+        {
+            SetIsAction(false);
+        }
+        //UnityEngine.Debug.Log(Name + " - Current Cell: " + currentCell.ToString());
+       // for (int i = 0; i < routes.Count; i++)
+            //UnityEngine.Debug.Log("route + " + i + " : " + routes[i].ToString() + "\n");
     }
 
     public virtual void DoPatrol()
     {
+        routes.Clear();
         for (int i = 0; i < 10; i++)
         {
             int dir = UnityEngine.Random.Range(0, 6);
             HexCell cell = currentCell.GetNeighbour((HexDirection)dir);
             if(cell.CanbeDestination())
             {
-                routes.Clear();
                 routes.Add(cell);
                 routePtr = 0;
                 IsMoving = true;
-                break;
+                return;
             }
         }
+
+        for (int i = 0; i < 6; i++)
+        {
+            HexCell cell = currentCell.GetNeighbour((HexDirection)i);
+            if (cell.CanbeDestination())
+            {
+                routes.Add(cell);
+                routePtr = 0;
+                IsMoving = true;
+                return;
+            }
+        }
+
+        SetIsAction(false);
     }
 
     public virtual void DoSkill(Pawn target = null)

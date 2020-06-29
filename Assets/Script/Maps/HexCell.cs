@@ -110,7 +110,7 @@ public class HexCell : MonoBehaviour
     public bool CanbeDestination()
     {
 		//return (hexType != HexType.Mountain && pawn == null && building == null && gameEventDisplayer == null);
-		return (hexType != HexType.Mountain&&hexType!=HexType.Stones&&hexType!=HexType.Thorns && pawn == null );
+		return (hexType != HexType.Mountain && pawn == null);
     }
 	
 	public bool CanbeEventDestination()
@@ -130,4 +130,8 @@ public class HexCell : MonoBehaviour
         return (pawn != null && fromCell.pawn != null && fromCell.pawn.pawnType != pawn.pawnType);
     }
 
+    public override string ToString()
+    {
+        return "HexCell(" + coordinate.X + ", " + coordinate.Y + ", " + coordinate.Z + ")";
+    }
 }
