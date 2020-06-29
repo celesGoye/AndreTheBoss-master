@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     private void InitBoss()
     {
         boss = (Boss)monsterManager.CreateMonster(MonsterType.boss, hexMap.GetRandomCellToSpawn(), 1);
+        //Debug.Log("Boss - currentCell: " + boss.currentCell.ToString());
     }
 
     // Update is called once per frame

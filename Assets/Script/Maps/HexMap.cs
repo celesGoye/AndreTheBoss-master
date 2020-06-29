@@ -439,6 +439,7 @@ public class HexMap : MonoBehaviour
                 break;
         }
 
+        currentRoutes.Clear();
         currentRoutes = routes;
 
         return currentRoutes;
