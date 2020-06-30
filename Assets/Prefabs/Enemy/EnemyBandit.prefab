@@ -81,18 +81,15 @@ MonoBehaviour:
   isIgnoreDefense: 0
   isIgnoreMagicDefense: 0
   buffs: []
-  animator: {fileID: 0}
   healthbar: {fileID: 0}
   currentCell: {fileID: 0}
   enemyType: 3
   currentTarget: {fileID: 0}
-  currentBuildingTarget: {fileID: 0}
   nextAction: 4
   gm: {fileID: 0}
   skillCounts: 0
   dropsoul: 0
   IsMoving: 0
-  IsWaiting: 1
   routes: []
 --- !u!1 &2727649268311382059
 GameObject:
