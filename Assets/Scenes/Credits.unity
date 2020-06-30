@@ -319,6 +319,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterGiant
       objectReference: {fileID: 0}
+    - target: {fileID: 8099421484645544966, guid: 8830429ed5542684dae955dcbb71194a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8563255361140409523, guid: 8830429ed5542684dae955dcbb71194a,
         type: 3}
       propertyPath: m_LocalPosition.x
