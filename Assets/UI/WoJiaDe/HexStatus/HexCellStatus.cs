@@ -21,9 +21,13 @@ public class HexCellStatus : MonoBehaviour
 	
 	private GameManager gameManager;
 	private Sprite sprite;
+	private OtherDescriptionReader otherDescriptionReader;
+	private OtherDescriptionReader.OtherData otherData;
+	
 	public void OnEnable()
 	{
 		gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
+		otherDescriptionReader=new OtherDescriptionReader();
 	}
 	
     public void UpdateHexStatusPanel(HexCell hexCell)
@@ -42,7 +46,8 @@ public class HexCellStatus : MonoBehaviour
 			{
 				imgTerrain.sprite=sprite;
 			}
-			txtTerrainDescription.text="describe";
+			otherData=otherDescriptionReader.GetTerrainData(currentHex.hexType);
+			txtTerrainDescription.text=otherData.effect;
 			txtName.text=currentHex.hexType.ToString();
 		}
 		else

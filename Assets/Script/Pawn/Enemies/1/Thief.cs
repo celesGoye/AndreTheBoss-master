@@ -4,8 +4,4 @@ using UnityEngine;
 
 public class Thief : Enemy
 {
-    public override void InitPawn()
-    {
-        skillCounts = 0;
-    }
 }

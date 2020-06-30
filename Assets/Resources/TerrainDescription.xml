@@ -1,0 +1,26 @@
+<terrain>
+	<Plain>
+		<description>Base terrain. Nothing special.</description>
+		<effect>Take 1 movement to cross.\nBuildings can be built here.</effect>
+	</Plain>
+	<Forest>
+		<description>Parts of the forest are still dense and inaccessible.</description>
+		<effect>Take 2 movement to cross.</effect>
+	</Forest>
+	<Swamp>
+		<description>I spent one whole night by a swamp behind the road listening to frogs.</description>
+		<effect>Take 2 movement to cross.</effect>
+	</Swamp>
+	<Mountain>
+		<description>Clouds involve the mountain top.</description>
+		<effect>Impassable.</effect>
+	</Mountain>
+	<Stones>
+		<description>You yanked on the brake when you saw a big stone ahead. </description>
+		<effect>Impassable.</effect>
+	</Stones>
+	<Thorns>
+		<description>The rose has its thorn, the peach its worm.  </description>
+		<effect>Impassable.</effect>
+	</Thorns>
+</terrain>

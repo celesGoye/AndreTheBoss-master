@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -37,7 +36,7 @@ public class Enemy : Pawn
     }
 
     public Pawn currentTarget = null;  // attack target
-    public Building currentBuildingTarget = null; // building target 
+	public Building currentBuildingTarget = null; // building target 
     public enum ActionType{ Attack, AttackBuilding,  Skill, Move, Patrol, None};
     public ActionType nextAction = ActionType.None;
 	
@@ -47,10 +46,10 @@ public class Enemy : Pawn
     public int skillCounts;
     public int dropsoul;
 
-    // animation control value
+	// animation control value
     public bool IsMoving = false;
     public bool IsWaiting = true;
-
+	
     public List<HexCell> routes = new List<HexCell>();
     private int routePtr = 0;
     private int movespeed = 10;
@@ -72,19 +71,18 @@ public class Enemy : Pawn
         base.OnActionBegin();
         gm.gameCamera.FocusOnPoint(currentCell.transform.position);
         isAction = true;
-        ProbeAction();
 		if(!IsWaiting)
-		    DoAction();
+			DoAction();
     }
 
     public bool IsAction() { return isAction; }
-    public void SetIsAction(bool isAction) { this.isAction = isAction; }
+	public void SetIsAction(bool isAction) { this.isAction = isAction; }
 
     public virtual void ProbeAction()
     {
         gm.hexMap.ProbeAttackTarget(currentCell);
         List<HexCell> targets = gm.hexMap.GetAttackableTargets();
-        List<HexCell> buildingTargets = gm.hexMap.GetBuildingCells();
+		List<HexCell> buildingTargets = gm.hexMap.GetBuildingCells();
 
         if(currentBuildingTarget != null && buildingTargets.Count != 0)
         {
@@ -94,7 +92,6 @@ public class Enemy : Pawn
                 return;
             }
         }
-		
 
         if (currentTarget != null && targets.Count != 0)
         {
@@ -139,7 +136,7 @@ public class Enemy : Pawn
         ProbeAction();
         switch(nextAction)
         {
-            case ActionType.AttackBuilding:
+			 case ActionType.AttackBuilding:
                 DoAttackBuilding();
                 SetIsAction(false);
                 break;
@@ -159,7 +156,7 @@ public class Enemy : Pawn
                 break;
             case ActionType.None:
                 SetIsAction(false);
-                break;
+				break;
             default:
                 break;
         }
@@ -179,13 +176,13 @@ public class Enemy : Pawn
     {
         if(currentTarget != null)
         {
-            /*
+			/*
             gm.hexMap.HideIndicator();
             currentTarget.currentCell.indicator.gameObject.SetActive(true);
             currentTarget.currentCell.indicator.SetColor(Indicator.AttackColor);
             currentCell.indicator.gameObject.SetActive(true);
             currentCell.indicator.SetColor(Indicator.StartColor);
-            */
+			*/
 
             ((Pawn)this).DoAttack(currentTarget);
             gm.gameInteraction.pawnActionPanel.uilog.UpdateLog(this.Name + " attacks " + currentTarget.Name);
@@ -195,29 +192,51 @@ public class Enemy : Pawn
 
     public virtual void DoMove()
     {
+		routes.Clear();
         routes = gm.hexMap.GetRoutes(this, currentTarget.currentCell);
         if(routes.Count > 0)
         {
             IsMoving = true;
             routePtr = 0;
         }
+		
+        else
+        {
+            SetIsAction(false);
+        }
+        //UnityEngine.Debug.Log(Name + " - Current Cell: " + currentCell.ToString());
+       // for (int i = 0; i < routes.Count; i++)
+            //UnityEngine.Debug.Log("route + " + i + " : " + routes[i].ToString() + "\n");
     }
 
     public virtual void DoPatrol()
     {
+		routes.Clear();
         for (int i = 0; i < 10; i++)
         {
             int dir = UnityEngine.Random.Range(0, 6);
             HexCell cell = currentCell.GetNeighbour((HexDirection)dir);
             if(cell.CanbeDestination())
             {
-                routes.Clear();
                 routes.Add(cell);
                 routePtr = 0;
                 IsMoving = true;
-                break;
+                return;
+            }
+        } 
+		for (int i = 0; i < 6; i++)
+        {
+            HexCell cell = currentCell.GetNeighbour((HexDirection)i);
+            if (cell.CanbeDestination())
+            {
+                routes.Add(cell);
+                routePtr = 0;
+                IsMoving = true;
+                return;
             }
         }
+
+        SetIsAction(false);
     }
 
     public virtual void DoSkill(Pawn target = null)
@@ -234,16 +253,15 @@ public class Enemy : Pawn
 
     public void Update()
     {
-        /*
+		
 		if(gm.gameTurnManager.IsEnemyTurn() && IsWaiting )
 		{
 			//isWaiting=info.IsName("CreateEnemy")?true:false;
 			return;
 		}
-        */
 		
         // Moving animation
-        if(gm.gameTurnManager.IsEnemyTurn() && isAction && IsMoving)
+         if(gm.gameTurnManager.IsEnemyTurn() && isAction && IsMoving)
         {
             if(routePtr >= 0 && routePtr < routes.Count)
             {
@@ -260,13 +278,13 @@ public class Enemy : Pawn
                 gm.hexMap.SetCharacterCell(this, routes[routes.Count - 1]);
                 //gm.hexMap.RevealCell(routes[routes.Count - 1]);
                 IsMoving = false;
-                SetIsAction(false);
+				 SetIsAction(false);
                 IsWaiting = false;
             }
             else
             {
                 IsMoving = false;
-                SetIsAction(false);
+				 SetIsAction(false);
                 IsWaiting = false;
             }
         }

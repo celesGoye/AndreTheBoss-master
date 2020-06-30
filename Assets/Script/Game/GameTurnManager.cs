@@ -7,34 +7,51 @@ public class GameTurnManager : MonoBehaviour
 {
 	
     private int turnNumber;     // one turn is after player's playing and enemies' movement
+	private int heroTurn;		//current turn to next hero turn
     private bool isPlayerTurn;
 
     private GameManager gm;
 
     public GameObject turnIndicator;
     private Text txtTurnNum;
+    private Text txtHeroTurn;
+	private int[] heroAppearingTurn;
 
     public void InitGameTurnManager()
     {
         turnNumber = 1;
         isPlayerTurn = true;
         if (turnIndicator != null)
-            txtTurnNum = turnIndicator.GetComponentInChildren<Text>();
-
-        
+		{
+            //txtTurnNum = turnIndicator.GetComponentInChildren<Text>();
+            txtTurnNum = turnIndicator.transform.GetChild(0).GetComponent<Text>();
+			txtHeroTurn =turnIndicator.transform.GetChild(1).GetComponent<Text>();
+		}
+		ResetCurrentTurn(turnNumber);
     }
 	
 	public void ResetCurrentTurn(int turnNum)
     {
         this.turnNumber = turnNum;
         isPlayerTurn = true;
-        txtTurnNum.text = this.turnNumber.ToString();
+        if(txtTurnNum != null) txtTurnNum.text = "Turn "+this.turnNumber;
+		for(int i=0;i<heroAppearingTurn.Length;i++)
+		{
+			if(this.turnNumber<=heroAppearingTurn[i]&&(i==0||this.turnNumber>heroAppearingTurn[i-1]))
+			{
+				heroTurn=heroAppearingTurn[i]-this.turnNumber;
+				break;
+			}
+		}
+        if(txtHeroTurn != null) txtHeroTurn.text = "next hero:\n"+heroTurn+" turn";
     }
 
     public void OnEnable()
     {
         if (gm == null)
             gm = GameObject.FindObjectOfType<GameManager>();
+		
+		heroAppearingTurn=EnemyManager.heroAppearingTurn;
     }
 
     public int GetCurrentGameTurn()
@@ -62,7 +79,16 @@ public class GameTurnManager : MonoBehaviour
         gm.gameEventManager.OnTurnBegin();
         turnNumber++;
         isPlayerTurn = true;
-        if(txtTurnNum != null) txtTurnNum.text = turnNumber.ToString();
+        if(txtTurnNum != null) txtTurnNum.text = "Turn "+turnNumber;
+		for(int i=0;i<heroAppearingTurn.Length;i++)
+		{
+			if(this.turnNumber<=heroAppearingTurn[i]&&(i==0||this.turnNumber>heroAppearingTurn[i-1]))
+			{
+				heroTurn=heroAppearingTurn[i]-this.turnNumber;
+				break;
+			}
+		}
+        if(txtHeroTurn != null) txtHeroTurn.text = "next hero:\n"+heroTurn+" turn";
 
         gm.hexMap.HideIndicator();
         gm.gameCamera.FocusOnPoint(gm.boss.transform.position);

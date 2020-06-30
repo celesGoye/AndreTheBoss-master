@@ -49,6 +49,11 @@ public class GameInteraction : MonoBehaviour
         {
             UpdateFocus();
         }
+		
+		if(Input.GetKeyDown(KeyCode.K))
+		{
+			playerPanel.On99Resources();
+		}
     }
 
     private void UpdateSelect()

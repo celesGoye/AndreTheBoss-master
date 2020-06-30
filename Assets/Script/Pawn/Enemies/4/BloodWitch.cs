@@ -6,7 +6,7 @@ public class BloodWitch : Enemy
 {
     public override int DoAttack(Pawn other)
     {
-        gm.hexMap.HideIndicator();
+         gm.hexMap.HideIndicator();
         currentTarget.currentCell.indicator.gameObject.SetActive(true);
         currentTarget.currentCell.indicator.SetColor(Indicator.AttackColor);
         currentCell.indicator.gameObject.SetActive(true);

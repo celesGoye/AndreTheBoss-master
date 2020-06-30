@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Gallery_TandOend : MonoBehaviour
 {
-	public Text name;
+	public Text txtname;
 	public Text kind;
 	public Text story;
 	public Text effect;
@@ -14,14 +14,25 @@ public class Gallery_TandOend : MonoBehaviour
 	public HexType hexType;
 	
 	private Sprite sprite;
-    
+	private OtherDescriptionReader otherDescriptionReader;
+	private OtherDescriptionReader.OtherData otherData;
+	
+    public void OnEnable()
+	{
+		otherDescriptionReader=new OtherDescriptionReader();
+	}
+	
 	public void UpdateTandO()
 	{
-		name.text=hexType.ToString();
+		txtname.text=hexType.ToString();
 		kind.text="Terrain";
 		if((sprite=Resources.Load("Image/galleryThings/terrain/"+hexType.ToString(), typeof(Sprite)) as Sprite)!=null)
 		{
 			image.sprite=sprite;
 		}
+		
+		otherData=otherDescriptionReader.GetTerrainData(hexType);
+		story.text=otherData.description;
+		effect.text=otherData.effect;
 	}
 }

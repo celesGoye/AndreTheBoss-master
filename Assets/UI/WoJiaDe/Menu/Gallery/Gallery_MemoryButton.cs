@@ -7,6 +7,7 @@ public class Gallery_MemoryButton : MonoBehaviour
 {
    public Gallery_MemoryPage memorypage;
    public int id;
+   public int memoryId;
    
    private Text name;
    
@@ -24,11 +25,12 @@ public class Gallery_MemoryButton : MonoBehaviour
    public void UpdateMemoryButton(int index)
    {
 	   id=index;
-	   name.text="Memory "+id;
+	   name.text="Memory "+memoryId;
    }
    
    public void OnMemoryBtn()
 	{
-		memorypage.OnMemoryBtn(id);
+		memorypage.currentid=id;
+		memorypage.OnMemoryBtn();
 	}
 }

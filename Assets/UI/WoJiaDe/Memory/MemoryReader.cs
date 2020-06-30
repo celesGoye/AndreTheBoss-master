@@ -56,4 +56,18 @@ public class MemoryReader
 		data=node["content"].InnerXml;
 		return data;
 	}
+	
+	public string GetEventMemoryData(int index)
+	{
+		string data;
+		string xpath="/memory/memoryevent/["+index+"]";
+        XmlElement node = (XmlElement)xmlDoc.SelectSingleNode(xpath);
+        if(node == null)
+        {
+            Debug.Log("On MemoryReader: index" + index + " not found");
+            return null;
+        }
+		data=node["content"].InnerXml;
+		return data;
+	}
 }

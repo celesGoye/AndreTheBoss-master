@@ -49,7 +49,7 @@ public class EnemyManager : MonoBehaviour
 
     public int MaxEnemyOnMap = 10;
 
-    private static int[] heroAppearingTurn ={
+    public static int[] heroAppearingTurn ={
         5, 10, 15, 20, 25, 30
     };
 	
@@ -334,6 +334,7 @@ public class EnemyManager : MonoBehaviour
                 newEnemy.transform.SetParent(EnemyRoot.transform);
                 gm.hexMap.SetCharacterCell(newEnemy, cell);
 
+				UnityEngine.Debug.Log(newEnemy.Name + " - Current Cell: " + newEnemy.currentCell.ToString());
                 //gm.hexMap.RevealCell(cell);
                 gm.gameCamera.FocusOnPoint(cell.transform.localPosition);
 				
@@ -423,7 +424,7 @@ public class EnemyManager : MonoBehaviour
 			{
 				finalItems.Add(item);
 				break;
-			}
+			}	
 		}
 		if(finalItems.Count>0)
 			{

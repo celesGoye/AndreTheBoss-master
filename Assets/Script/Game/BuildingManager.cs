@@ -84,8 +84,8 @@ public class BuildingManager : MonoBehaviour
 		buildmode=isbuildmode;
 		gameManager.gameInteraction.Clear();
 		ShowBuildableHex();
-		if(buildmode)
-			gameManager.gameCamera.FocusOnPoint(gameManager.monsterManager.MonsterPawns[0].transform.position);
+		//if(buildmode)
+		//	gameManager.gameCamera.FocusOnPoint(gameManager.monsterManager.MonsterPawns[0].transform.position);
 	}
 	
 	public void ShowBuildableHex()
@@ -135,6 +135,8 @@ public class BuildingManager : MonoBehaviour
 		}
 		gameManager.gameInteraction.uilog.UpdateLog(logstring);
 	}
+	
+	
 	
 	public void BuildingAccelerate(Building building)
 	{

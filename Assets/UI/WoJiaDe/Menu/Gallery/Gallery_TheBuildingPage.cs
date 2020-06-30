@@ -14,15 +14,18 @@ public class Gallery_TheBuildingPage : MonoBehaviour
 	
 	private List<ItemType> list;
 	private Sprite sprite;
+	private OtherDescriptionReader otherDescriptionReader;
+	private OtherDescriptionReader.OtherData otherData;
 
-	public void OnEnable()
+	 public void OnEnable()
 	{
-		
+		otherDescriptionReader=new OtherDescriptionReader();
 	}
+	
 	public void UpdateBuilding()
 	{
 		name.text=buildingType.ToString();
-		effect.text="";
+		/*effect.text="";
 		list=Building.GetValidProduct(buildingType);
 		if(list.Count==0)
 		{
@@ -36,9 +39,14 @@ public class Gallery_TheBuildingPage : MonoBehaviour
 				for(int j=1;j<=Building.GetMaxLevel(buildingType);j++)
 					effect.text+="Lv."+j+"    "+Building.GetDescription(buildingType,list[i],j)+"\n";
 			}
-		}
+		}*/
 		
 		if((sprite=Resources.Load("Image/galleryThings/buildings/"+buildingType.ToString(), typeof(Sprite)) as Sprite)!=null)
 			image.sprite=sprite;
+		
+		
+		otherData=otherDescriptionReader.GetBuildingData(buildingType);
+		story.text=otherData.description;
+		effect.text=otherData.effect;
 	}
 }

@@ -15,7 +15,7 @@ public class EnemyLootReader
         xmlDoc.Load(Application.dataPath + docPath);
     }
 
-	public List<ItemEntry> GetItems(EnemyType type, bool isHero, int level)
+	public List<ItemEntry> GetItems(EnemyType type,bool isHero,int level)
 	{
 		string xpath="";
 		if(!isHero)

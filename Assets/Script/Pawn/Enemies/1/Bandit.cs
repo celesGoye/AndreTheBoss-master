@@ -8,10 +8,5 @@ public class Bandit : Enemy
     {
         addBuff(AttributeType.Dexertiry, 4, 1);
     }
-
-    public override void InitPawn()
-    {
-        skillCounts = 1;
-    }
-
+	
 }

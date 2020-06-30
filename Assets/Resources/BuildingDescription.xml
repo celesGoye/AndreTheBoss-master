@@ -1,0 +1,48 @@
+<building>
+	<Farm>
+		<description>由非人怪物们经营着的农场，这很奇怪吗？</description>
+		<effect>(彼岸花,恶魔果实,金苹果)专门农场
+建造 需求:
+一级 灵魂1
+二级 灵魂3
+三级 灵魂7
+
+1级 1/一个游戏轮
+2级 3/一个游戏轮
+3级 5/一个游戏轮
+</effect>
+	</Farm>
+	<Mine>
+		<description>ROCK&amp;STONE!</description>
+		<effect>(硫磺,水银,黄金)专门矿井
+建造 需求:
+一级 灵魂1
+二级 灵魂3
+三级 灵魂7
+(升级的话支付查价)
+
+1级 1/一个游戏轮
+2级 3/一个游戏轮
+3级 5/一个游戏轮
+</effect>
+	</Mine>
+	<Teleporter>
+		<description>除了时空，还有什么东西被连接起来了呢？</description>
+		<effect>建造 需求: 
+一级 灵魂5
+二级 灵魂10
+(无法升级)
+
+1级    10格距离
+2级    15格距离
+</effect>
+	</Teleporter>
+	<Altar>
+		<description>死去的人永远不能回来，但是怪物可以。</description>
+		<effect>只能拥有一个此建筑
+建造费用:灵魂10
+保存之前战死人类的灵魂
+Revive the last human who died in battle, after reviving the altar records nothing.
+</effect>
+	</Altar>
+</building>
