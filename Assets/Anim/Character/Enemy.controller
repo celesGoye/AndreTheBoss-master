@@ -35,7 +35,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isOnDie
+    m_ConditionEvent: Die
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -168682808495857938}
@@ -110,7 +110,7 @@ AnimatorController:
   m_Name: Enemy
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: isOnDie
+  - m_Name: Die
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -186,7 +186,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 6773647358292625329}
-    m_Position: {x: 520, y: 190, z: 0}
+    m_Position: {x: 450, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8105076513933012075}
     m_Position: {x: 770, y: 190, z: 0}
