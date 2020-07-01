@@ -117,11 +117,18 @@ public class EnemyManager : MonoBehaviour
         Enemy enemy = null;
         if (!heroAppearingTurn.Contains<int>(gm.gameTurnManager.GetCurrentGameTurn()))
         {
-            do
+            bool isSpawn = false;
+            while(EnemyPawns.Count < GameConfig.EnemySpawnLowerLimits[gm.boss.GetLevel()])
             {
                 enemy = SpawnEnemy();
-            } 
-            while (EnemyPawns.Count < GameConfig.EnemySpawnLowerLimits[gm.boss.GetLevel()]);
+                isSpawn = true;
+            }
+
+            if(!isSpawn && EnemyPawns.Count < GameConfig.EnemySpawnUpperLimits[gm.boss.GetLevel()])
+            {
+                enemy = SpawnEnemy();
+            }
+
         }
         else
             enemy = SpawnHero();
@@ -337,8 +344,8 @@ public class EnemyManager : MonoBehaviour
 				UnityEngine.Debug.Log(newEnemy.Name + " - Current Cell: " + newEnemy.currentCell.ToString());
                 //gm.hexMap.RevealCell(cell);
                 gm.gameCamera.FocusOnPoint(cell.transform.localPosition);
-				
-				gm.animationManager.PlayCreateEff(newEnemy.transform.position);
+
+                gm.animationManager.PlayCreateEff(newEnemy.transform.position);
             }
         }
         return newEnemy;

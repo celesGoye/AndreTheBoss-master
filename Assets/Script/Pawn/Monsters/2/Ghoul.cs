@@ -33,7 +33,7 @@ public class Ghoul : Monster
     public override void PrepareSkillFive()
     {
         pawnAction.requirePawnSelection = true;
-        gm.hexMap.ProbeAttackTarget(currentCell);
+        gm.hexMap.ProbeAttackTarget(currentCell, 10);
         gm.hexMap.ShowFriendCandidates();
     }
 

@@ -55,6 +55,7 @@ public struct SerializableEnemyData
 public struct SerializableMonsterData
 {
 	public int monsterType;
+	public int equippedSkill; // 3 or 5
 	public SerializablePawnData pawnData;
 }
 
@@ -64,6 +65,7 @@ public struct SerializablePlayerData
 	public int turnNumber;
 	public List<ItemType> ItemsGot;
 	public Dictionary<ItemType, int> ItemsOwn;
+	public int level;
 }
 
 [Serializable]

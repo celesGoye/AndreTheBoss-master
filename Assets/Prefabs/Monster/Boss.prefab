@@ -82,6 +82,7 @@ MonoBehaviour:
   isIgnoreDefense: 0
   isIgnoreMagicDefense: 0
   buffs: []
+  animator: {fileID: 0}
   healthbar: {fileID: 0}
   currentCell: {fileID: 0}
   monsterType: 0
