@@ -350,8 +350,8 @@ public class EnemyManager : MonoBehaviour
 				UnityEngine.Debug.Log(newEnemy.Name + " - Current Cell: " + newEnemy.currentCell.ToString());
                 //gm.hexMap.RevealCell(cell);
                 gm.gameCamera.FocusOnPoint(cell.transform.localPosition);
-				
-				gm.animationManager.PlayCreateEff(newEnemy.transform.position);
+
+                gm.animationManager.PlayCreateEff(newEnemy.transform.position);
             }
         }
         return newEnemy;
