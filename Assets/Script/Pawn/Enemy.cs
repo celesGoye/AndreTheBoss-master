@@ -82,25 +82,37 @@ public class Enemy : Pawn
     {
         gm.hexMap.ProbeAttackTarget(currentCell);
         List<HexCell> targets = gm.hexMap.GetAttackableTargets();
-		List<HexCell> buildingTargets = gm.hexMap.GetBuildingCells();
+		List<HexCell> buildingTargets = gm.hexMap.GetAllBuildingCells();
 
-        if(currentBuildingTarget != null && buildingTargets.Count != 0)
+        if (currentBuildingTarget != null && buildingTargets.Count != 0)
         {
-            if(buildingTargets.Contains(currentBuildingTarget.currentCell))
+            if (buildingTargets.Contains(currentBuildingTarget.currentCell))
             {
                 nextAction = ActionType.AttackBuilding;
             }
             else
             {
-                if(buildingTargets.Count != 0)
+                if (buildingTargets.Count != 0)
                 {
                     HexCell hexCell = buildingTargets[0];
                     currentBuildingTarget = hexCell.building;
                     nextAction = ActionType.Move;
                 }
             }
+            return;
         }
-        else if (currentTarget != null && targets.Count != 0)
+        else
+        {
+            HexCell cell = gm.hexMap.GetNearestBuilding(this.currentCell);
+            if (cell != null)
+            {
+                currentBuildingTarget = cell.building;
+                nextAction = ActionType.Move;
+                return;
+            }
+        }
+        
+        if (currentTarget != null && targets.Count != 0)
         {
             if(targets.Contains(currentTarget.currentCell))
             {
@@ -145,6 +157,7 @@ public class Enemy : Pawn
         {
 			 case ActionType.AttackBuilding:
                 DoAttackBuilding();
+                UnityEngine.Debug.Log("Attacking building");
                 SetIsAction(false);
                 break;
             case ActionType.Attack:

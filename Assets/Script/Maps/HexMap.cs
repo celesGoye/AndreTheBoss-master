@@ -44,7 +44,7 @@ public class HexMap : MonoBehaviour
     private List<HexCell> hiddenCells;
     private List<HexCell> friendCells;
 	private List<HexCell> buildingCells;
-    //private List<HexCell> allBuildingCells;
+    private List<HexCell> allBuildingCells;
     private List<HexCell> emptyCells;
 
     public int revealRadius = 2;
@@ -68,7 +68,7 @@ public class HexMap : MonoBehaviour
         hiddenCells = new List<HexCell>();
         emptyCells = new List<HexCell>();
 		buildingCells = new List<HexCell>();
-		//allBuildingCells = new List<HexCell>();
+		allBuildingCells = new List<HexCell>();
         pathLength =0;
 		CreateMat();
         for (int z = 0; z < mapHeight; z++)
@@ -612,7 +612,7 @@ public class HexMap : MonoBehaviour
         friendCells.Clear();
 		buildingCells.Clear();
         emptyCells.Clear();
-        //allBuildingCells.Clear();
+        allBuildingCells.Clear();
 		
         foreach (HexCell cell in reachableCells)
         {
@@ -620,8 +620,12 @@ public class HexMap : MonoBehaviour
                 attackableCells.Add(cell);
             else if (cell.pawn != null)
                 friendCells.Add(cell);
-            else if (cell.building!=null&&cell.building.CanbeSkillTargetOf()) // is buildings
-                buildingCells.Add(cell);
+            else if(cell.building != null)
+            {
+                allBuildingCells.Add(cell);
+                if (cell.building.CanbeSkillTargetOf())
+                    buildingCells.Add(cell);
+            }
             else
                 emptyCells.Add(cell);
 			
@@ -742,14 +746,12 @@ public class HexMap : MonoBehaviour
         return null;
     }
 
-    public HexCell GetNearestBuilding(HexCell fromCell, int probeDistance = 30)
+    public HexCell GetNearestBuilding(HexCell fromCell)
     {
         if (fromCell == null)
             return null;
 
         List<HexCell> cellToFind = new List<HexCell>();
-
-        int maxDistance = probeDistance;
 
         for (int i = 0; i < cells.Length; i++)
         {
@@ -758,7 +760,6 @@ public class HexMap : MonoBehaviour
 
         fromCell.Distance = 0;
         cellToFind.Add(fromCell);
-        reachableCells.Clear();
 
         while (cellToFind.Count > 0)
         {
@@ -771,7 +772,7 @@ public class HexMap : MonoBehaviour
                 if (nextCell != null)
                 {
                     int distance = cell.Distance;
-                    if (!nextCell.CanbeDestination())
+                    if (nextCell.hexType == HexType.Mountain)
                         continue;
                     else if (nextCell.hexType == HexType.Plain)
                         distance = cell.Distance + 1;
@@ -780,19 +781,9 @@ public class HexMap : MonoBehaviour
 
                     if (nextCell.Distance == int.MaxValue)
                     {
-                        nextCell.Distance = distance;
-                        if (nextCell.Distance < maxDistance + 1)
-                            cellToFind.Add(nextCell);
+                        nextCell.Distance = 0;
+                        cellToFind.Add(nextCell);
                     }
-                    else if (nextCell.Distance > distance)
-                    {
-                        if (nextCell.Distance > distance)
-                        {
-                            nextCell.Distance = distance;
-                        }
-                    }
-                    if (cell.Distance <= maxDistance && cell != fromCell)
-                        reachableCells.Add(cell);
 
                     if (nextCell.building != null)
                         return nextCell;
@@ -934,6 +925,11 @@ public class HexMap : MonoBehaviour
     public List<HexCell> GetCurrentRoutes()
     {
         return currentRoutes;
+    }
+
+    public List<HexCell> GetAllBuildingCells()
+    {
+        return allBuildingCells;
     }
 
     public void HideIndicator()

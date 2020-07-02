@@ -100,9 +100,13 @@ public class GameTurnManager : MonoBehaviour
 
         gm.monsterManager.OnMonsterTurnEnd();
         gm.gameEventManager.OnTurnEnd();
-        gm.enemyManager.OnEnemyTurnBegin();
+        // TODO recover building health
+        gm.buildingManager.OnTurnEnd();
 		
 		gm.gameInteraction.OnMonsterTurnEnd();
+
+        gm.enemyManager.OnEnemyTurnBegin();
+
     }
 
 }

@@ -219,7 +219,6 @@ public class EnemyManager : MonoBehaviour
             enemyType = getRandomEnemyType(5);
         }
 
-		enemyType=EnemyType.catapult;
         // TODO: get portal code here
         if(enemyType != EnemyType.NUM)
             return SpawnEnemyAtCell(enemyType, gm.hexMap.GetRandomCellToSpawn());
