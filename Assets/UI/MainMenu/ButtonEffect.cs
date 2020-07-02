@@ -8,9 +8,9 @@ using System.Text.RegularExpressions;
 public class ButtonEffect : MonoBehaviour
 {
     public Text text;
-    public float fontFocusSize;
-    public float fontNormalSize;
-    public float fontClickSize;
+    private int fontFocusSize;
+    private int fontNormalSize;
+    private int fontClickSize;
     public AudioSource audiosource;
     public AudioClip clickSound;
 	
@@ -19,15 +19,22 @@ public class ButtonEffect : MonoBehaviour
 	private Text mytext;
 	private float currentSize;
 	
-    public void OnEnable()
+    public void Start()
     {
         text = GetComponentInChildren<Text>();
-        //text.fontSize = fontNormalSize;
+        fontNormalSize = text.fontSize;
+        fontFocusSize = fontNormalSize + 5;
+        fontClickSize = fontNormalSize + 2;
+    }
+    public void OnEnable()
+    {
+
         currentSize = fontNormalSize;
         audiosource = GetComponent<AudioSource>();
         //audiosource.clip = clickSound;
     }
 	
+    /*
 	public void Update()
 	{
 		if(text==null)
@@ -42,29 +49,30 @@ public class ButtonEffect : MonoBehaviour
 			newtext="<size="+newsize+">"+text.text+"</size>";
 		text.text=newtext;
 	}
+    */
 	
     public void OnMouseEnter()
     {
-        //text.fontSize = fontFocusSize;
-		currentSize=fontFocusSize;
+        text.fontSize = fontFocusSize;
+		//currentSize=fontFocusSize;
     }
 
     public void OnMouseExit()
     {
-        //text.fontSize = fontNormalSize;
-		currentSize=fontNormalSize;
+        text.fontSize = fontNormalSize;
+		//currentSize=fontNormalSize;
     }
 
     public void OnMouseDown()
     {
-        //text.fontSize = fontClickSize;
-		currentSize=fontClickSize;
+        text.fontSize = fontClickSize;
+		//currentSize=fontClickSize;
     }
 
     public void OnMouseUp()
     {
-        //text.fontSize = fontFocusSize;
-		currentSize=fontFocusSize;
+        text.fontSize = fontFocusSize;
+		//currentSize=fontFocusSize;
     }
 
     public void PlayOnEnter()

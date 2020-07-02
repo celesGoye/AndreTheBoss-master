@@ -6,14 +6,23 @@ public class Catapult : Enemy
 {
     public override void DoSkill(Pawn target = null)
     {
+        /*
         target = target != null ? target : GetCurrentTarget();
         if(target != null && target.pawnType == PawnType.Building)
         {
             // destroy buildings
             //GameObject.DestroyImmediate(target.gameObject);
         }
+        */
+
+        if(currentBuildingTarget != null)
+        {
+            gm.buildingManager.DestroyBuilding(currentBuildingTarget);
+        }
+
     }
 
+    /*
     public override void ProbeAction()
     {
         if (currentTarget != null)
@@ -48,6 +57,7 @@ public class Catapult : Enemy
             }
         }
     }
+    */
 
     public override void InitPawn()
     {
