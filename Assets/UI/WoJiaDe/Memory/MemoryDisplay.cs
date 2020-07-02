@@ -32,7 +32,7 @@ public class MemoryDisplay : MonoBehaviour
 		audiosource.Play(0);
 		bg.color=new Color(0,0,0,0);
 		isEnter=true;
-		button.interactable=false;
+		button.interactable=true;
 		audiosource.volume=1;
 		isOver=false;
 		textprintedlines="";
@@ -93,7 +93,7 @@ public class MemoryDisplay : MonoBehaviour
 			if(textprintedlines.Length>=memory.Length)
 			{
 				isOver=true;
-				button.interactable=true;
+				//button.interactable=true;
 				textcurrentline=temp;
 			}
 			else

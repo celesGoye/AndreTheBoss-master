@@ -5,12 +5,19 @@ using UnityEngine;
 public class MemoryUnlocked : MonoBehaviour
 {
 	public float timelast;
+	
+	private float currenttime;
+	
+	public void OnEnable()
+	{
+		currenttime=timelast;
+	}
 
     // Update is called once per frame
     void Update()
     {
-        timelast-=Time.deltaTime;
-		if(timelast<=0)
-			GameObject.Destroy(this.gameObject);
+        currenttime-=Time.deltaTime;
+		if(currenttime<=0)
+			this.gameObject.SetActive(false);
     }
 }

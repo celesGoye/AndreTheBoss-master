@@ -73,11 +73,7 @@ public class UpgradePanel : MonoBehaviour
 			Monster monster = (Monster)currentMonster;
 			monster.Upgrade();
 			gameManager.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel();
-			gameManager.gameInteraction.playerPanel.UpdateBossUI();
-			if(monster.GetComponent<MonsterAppearance>()!=null)
-			{
-				monster.GetComponent<MonsterAppearance>().UpdateAppearance(monster.GetLevel());
-			}
+			//gameManager.gameInteraction.playerPanel.UpdateBossUI();
 			menu.general.UpdateGeneral();
 			consumePanel.ConsumeItem();
 			UpdateInfo();

@@ -45,6 +45,8 @@ public abstract class Pawn : MonoBehaviour
     public HexCell currentCell;
     public PawnType pawnType { get; set; }
 	
+	public UILog uilog;
+	
 	
     public void InitializePawn(PawnType type, string name, int initlevel,
 	int initattack, int initmagicAttack, int initdefense, int initmagicDefense, int inithp, int initdexterity, int initattackRange)
@@ -70,6 +72,8 @@ public abstract class Pawn : MonoBehaviour
 		{
 			UnityEngine.Debug.Log("animator==null!");
 		}
+		
+		uilog= FindObjectOfType<GameManager>().GetComponent<GameManager>().gameInteraction.uilog;
 		
 		InitPawn();
     }
@@ -109,11 +113,13 @@ public abstract class Pawn : MonoBehaviour
 			OnDie();
 		else
 		{
-			if(animator!=null)
-			{
-				animator.SetBool("TakeDamage",true);
-			}
+			PlayTakeDamage(damage + magicDamage);
 		}
+		
+		if(this.pawnType==PawnType.Monster)
+			uilog.UpdateLog("<color="+TextColor.BlueColor+">"+this.Name+"</color> take damage by<color="+TextColor.RedColor+"> "+(damage+magicDamage)+"</color>");
+		else if(this.pawnType==PawnType.Enemy)
+			uilog.UpdateLog("<color="+TextColor.GreyColor+">"+this.Name+" take damage by <color="+TextColor.RedColor+"> "+(damage+magicDamage)+"</color></color>");
 		
 		return damage + magicDamage;
 	}
@@ -152,6 +158,14 @@ public abstract class Pawn : MonoBehaviour
 			GameManager gm = FindObjectOfType<GameManager>();
 			gm.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(other);
 		}
+		
+		if(other.pawnType==PawnType.Monster)
+			uilog.UpdateLog("<color="+TextColor.BlueColor+">"+other.Name+"</color> recovered <color="+TextColor.GreenColor+"> "+ret+"</color> hp");
+		else if(other.pawnType==PawnType.Enemy)
+			uilog.UpdateLog("<color="+TextColor.GreyColor+">"+other.Name+"  recovered <color="+TextColor.GreenColor+"> "+ret+"</color> hp</color>");
+		
+		PlayRecover(ret);
+		
 		return ret;
 	}
 	
@@ -173,6 +187,14 @@ public abstract class Pawn : MonoBehaviour
 			GameManager gm = FindObjectOfType<GameManager>();
 			gm.gameInteraction.pawnStatusPanel.UpdatePawnStatusPanel(other);
 		}
+		
+		if(other.pawnType==PawnType.Monster)
+			uilog.UpdateLog("<color="+TextColor.BlueColor+">"+other.Name+"</color> recovered <color="+TextColor.GreenColor+"> "+ret+"</color> hp");
+		else if(other.pawnType==PawnType.Enemy)
+			uilog.UpdateLog("<color="+TextColor.GreyColor+">"+other.Name+"  recovered <color="+TextColor.GreenColor+"> "+ret+"</color> hp</color>");
+		
+		PlayRecover(ret);
+		
 		return ret;
 	}
 	
@@ -180,6 +202,29 @@ public abstract class Pawn : MonoBehaviour
 	{
 		buffs.Add(new Vector3((int)type,modifiedvalue,counter));
 		isDirty = true;
+		
+		switch((int)type)
+		{
+			case(int)AttributeType.Attack:
+			case(int)AttributeType.MagicAttack:
+			case(int)AttributeType.Defense:
+			case(int)AttributeType.MagicDefense:
+			case(int)AttributeType.Dexertiry:
+			case(int)AttributeType.AttackRange:
+				if(this.pawnType==PawnType.Monster)
+					uilog.UpdateLog("<color=" +TextColor.BlueColor+">"+this.Name+"</color>'s "+type.ToString()+(modifiedvalue>0?" increased ":" decreadsed ")+modifiedvalue+" points in "+counter +"turn");
+				else if(this.pawnType==PawnType.Enemy)
+					uilog.UpdateLog("<color="+TextColor.GreyColor+">"+this.Name+"'s "+type.ToString()+(modifiedvalue>0?" increased ":" decreadsed ")+modifiedvalue+" points in "+counter +"turn</color>");
+				break;
+			case(int)AttributeType.Mobility:
+				if(this.pawnType==PawnType.Monster)
+					uilog.UpdateLog("<color="+TextColor.BlueColor+">"+this.Name+"</color> can't move for "+counter +" turn");
+				else if(this.pawnType==PawnType.Enemy)
+					uilog.UpdateLog("<color="+TextColor.GreyColor+">"+this.Name+" can't move for "+counter +" turn</color>");
+				break;
+			default:
+				break;
+		}
 	}
 
 	public void addSkipCounter(int turnToSkip)
@@ -195,16 +240,19 @@ public abstract class Pawn : MonoBehaviour
 			GameManager gm = FindObjectOfType<GameManager>();
 			gm.healthbarManager.RemoveHealthBar(healthbar);
 		}
-		
 		if(animator!=null)
 		{
-			animator.SetBool("Die",true);
+			PlayDie();
 		}
 		else
 		{
 			GameObject.Destroy(gameObject);
 		}
-
+		
+		if(this.pawnType==PawnType.Monster)
+			uilog.UpdateLog("<color="+TextColor.BlueColor+">"+this.Name+"</color><color="+TextColor.RedColor+"> die</color>");
+		else if(this.pawnType==PawnType.Enemy)
+			uilog.UpdateLog("<color="+TextColor.GreyColor+">"+this.Name+"</color><color="+TextColor.RedColor+"> die</color>");
 	}
 
 	public virtual void OnActionBegin()
@@ -346,5 +394,41 @@ public abstract class Pawn : MonoBehaviour
 	public bool CanbeTarget(Pawn pawn)
 	{
 		return pawn != null && pawn != this && pawn.currentCell.CanbeAttackTargetOf(currentCell);
+	}
+	
+	public void PlayTakeDamage(int value)
+	{
+		if(animator!=null)
+		{
+			animator.SetBool("TakeDamage",true);
+		}
+		healthbar.OnDamageAnim(value);
+		FindObjectOfType<GameManager>().gameCamera.GetComponent<Animator>().SetBool("Begin",true);
+	}
+	
+	public void PlayDie()
+	{
+		if(animator!=null)
+		{
+			//UnityEngine.Debug.Log("die");
+			animator.SetBool("Die",true);
+		}
+	}
+	
+	public void PlayRecover(int value)
+	{
+		if(animator!=null)
+		{
+			animator.SetBool("Recover",true);
+		}
+		healthbar.OnRecoverAnim(value);
+	}
+	
+	public void PlayAttack()
+	{
+		if(animator!=null)
+		{
+			animator.SetBool("Attack",true);
+		}
 	}
 }

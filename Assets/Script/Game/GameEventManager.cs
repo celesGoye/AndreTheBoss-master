@@ -18,6 +18,8 @@ public class GameEventManager : MonoBehaviour
 	private GameManager gm;
 
 	public int MaxEventOnMap = 5;
+	
+	public List<int> currentMemories;
 
 	public void OnEnable()
 	{
@@ -34,7 +36,8 @@ public class GameEventManager : MonoBehaviour
 		EventRoot = new GameObject("Event Root");
 		EventRoot.transform.SetParent(this.transform);
 		EventRoot.transform.localPosition = Vector3.zero;
-
+		
+		currentMemories=new List<int>();
 		//eventReader.TestGameEvent();
 	}
 
@@ -54,8 +57,17 @@ public class GameEventManager : MonoBehaviour
 		int eventNum = eventReader.getTotalEventNumOfType(which);
 		int whichEvent = UnityEngine.Random.Range(0, eventNum);
 		GameEventType type = (GameEventType)which;
-		GameEvent gameEvent = eventReader.getNewGameEvent(type, whichEvent);
-
+		GameEvent gameEvent = null;
+		int i=0;
+		do		{
+			gameEvent=eventReader.getNewGameEvent(type, whichEvent);
+			i++;
+			if(i>10)
+				return;
+		}while(gameEvent.eventType==GameEventType.NormalNonoptionMemoryEvent&&(gm.gameInteraction.memoryPanel.memories.Contains(((NormalNonoptionMemoryEvent)gameEvent).GetMemoryId())||currentMemories.Contains(((NormalNonoptionMemoryEvent)gameEvent).GetMemoryId())));
+		
+		if(gameEvent.eventType==GameEventType.NormalNonoptionMemoryEvent)
+			currentMemories.Add(((NormalNonoptionMemoryEvent)gameEvent).GetMemoryId());
 		GameEventDisplayer displayer = CreateNewEventDisplayer(gameEvent);
 		if (displayer != null)
         {
@@ -123,6 +135,8 @@ public class GameEventManager : MonoBehaviour
 	{
 		displayer.currentCell.gameEventDisplayer = null;
 		gameEventDisplayers.Remove(displayer);
+		if(displayer.gameEvent.eventType==GameEventType.NormalNonoptionMemoryEvent)
+			currentMemories.Remove(((NormalNonoptionMemoryEvent)displayer.gameEvent).GetMemoryId());
 
 		GameObject.DestroyImmediate(displayer.gameObject);
 	}

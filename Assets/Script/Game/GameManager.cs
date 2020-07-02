@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 	public SaveManager saveManager;
 	
 	public Option_Die PlayerDiePanel;
+	public Option_Win PlayerWinPanel;
 	public AudioManager audioManager;
 	public AnimationManager animationManager;
 	public MonsterActionManager monsterActionManager;

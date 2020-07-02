@@ -10,13 +10,15 @@ public class Gallery_Memoryend : MonoBehaviour
 	public Text name;
 	public Text content;
 	
-	private MemoryReader reader;
+	public MemoryReader reader;
+	
 	public void UpdateItem()
 	{
 		name.text="Memory"+memoryId;
 		
-		reader=new MemoryReader();
+		if(memoryId>5)
 		content.text=reader.GetEventMemoryData(memoryId);
-		
+		else
+			content.text=reader.GetNormalMemoryData(memoryId);
 	}
 }

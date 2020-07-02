@@ -22,7 +22,8 @@ public class ItemManager : MonoBehaviour
 		//{
 		//	GetItem((ItemType)i,99);
 		//}
-		GetItem(ItemType.Soul,50);
+		 if(PlayerPrefs.GetInt("IsNewGame") == 1)
+			GetItem(ItemType.Soul,50);
     }
 	
 	//test

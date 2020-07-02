@@ -21,6 +21,7 @@ public abstract class Monster: Pawn
 
     public GameManager gm;
     public PawnAction pawnAction;
+	public List<string> skillnames;
 
     public void InitializeMonster(MonsterType monsterType, string name, int level,
         int attack, int magicAttack, int defense, int magicDefense, int HP, int dexterity, int attackRange)
@@ -197,6 +198,11 @@ public abstract class Monster: Pawn
             isDirty = true; // need to update current value with buffs
         }
         healthbar.UpdateLife();
+		
+		if(GetComponent<MonsterAppearance>()!=null)
+		{
+			GetComponent<MonsterAppearance>().UpdateAppearance(GetLevel());
+		}
 
         if (GetLevel() == 2)
             this.DoPassiveTwo();

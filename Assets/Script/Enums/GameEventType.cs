@@ -2,6 +2,7 @@
 {
     NormalNonoptionGainbuffEvent,
     NormalNonoptionGainitemsEvent,
+	NormalNonoptionMemoryEvent,
     NormalOptionEvent,
     MysterypersonGainitemsEvent,
     MysterypersonGaincharacterEvent,

@@ -28,6 +28,7 @@ public class GameEventPanel : MonoBehaviour
 	private string imagePath="Image/event/";
 	
 	private BuffEntry currentBuff;
+	private int currentMemory;
 	private List<ItemEntry> currentItems;
 	private List<GameEventOption> currentOptions;
 	private MonsterType currentMonsterType;
@@ -49,9 +50,9 @@ public class GameEventPanel : MonoBehaviour
 		Clear();
 		mainPanel.gameObject.SetActive(true);
 		this.gameEvent=gameEvent;
-		switch((int)gameEvent.eventType)
+		switch(gameEvent.eventType)
 		{
-			case 0:
+			case GameEventType.NormalNonoptionGainbuffEvent:
 				try
 				{
 					NormalNonoptionGainbuffEvent convertedEvent=(NormalNonoptionGainbuffEvent)gameEvent;		
@@ -64,7 +65,7 @@ public class GameEventPanel : MonoBehaviour
                 Debug.Log(ex.StackTrace);
 				}
 				break;
-			case 1:
+			case GameEventType.NormalNonoptionGainitemsEvent:
 				try
 				{
 					NormalNonoptionGainitemsEvent convertedEvent=(NormalNonoptionGainitemsEvent)gameEvent;		
@@ -77,7 +78,20 @@ public class GameEventPanel : MonoBehaviour
                 Debug.Log(ex.StackTrace);
 				}
 				break;
-			case 2:				
+			case GameEventType.NormalNonoptionMemoryEvent:
+				try
+				{
+					NormalNonoptionMemoryEvent convertedEvent=(NormalNonoptionMemoryEvent)gameEvent;
+					EnableNonoptionPart();
+					currentMemory=convertedEvent.GetMemoryId();
+					effectString=convertedEvent.GetEffectDescription();
+					effect.text=effectString;
+				} catch(InvalidCastException ex)
+				{
+					Debug.Log(ex.StackTrace);
+				}
+			break;
+			case GameEventType.NormalOptionEvent:				
 				try
 				{
 					NormalOptionEvent convertedEvent=(NormalOptionEvent)gameEvent;		
@@ -99,7 +113,7 @@ public class GameEventPanel : MonoBehaviour
 				}
 
 				break;
-			case 3:
+			case GameEventType.MysterypersonGainitemsEvent:
 				try
 				{
 					MysterypersonGainitemsEvent convertedEvent=(MysterypersonGainitemsEvent)gameEvent;		
@@ -120,7 +134,7 @@ public class GameEventPanel : MonoBehaviour
                 Debug.Log(ex.StackTrace);
 				}
 				break;
-			case 4:
+			case GameEventType.MysterypersonGaincharacterEvent:
 				try
 				{
 					MysterypersonGaincharacterEvent convertedEvent=(MysterypersonGaincharacterEvent)gameEvent;		
@@ -161,6 +175,7 @@ public class GameEventPanel : MonoBehaviour
 		nonoptionPart.gameObject.SetActive(false);
 		optionPart.gameObject.SetActive(false);
 		resultPanel.gameObject.SetActive(false);
+		currentMemory=-1;
 		currentBuff=null;
 		currentItems=null;
 		currentOptions=null;
@@ -183,6 +198,11 @@ public class GameEventPanel : MonoBehaviour
 		resultPanel.gameObject.SetActive(true);
 		mainPanel.gameObject.SetActive(false);
 		result.text="";
+		if(currentMemory>0)
+		{
+			gm.gameInteraction.memoryPanel.UnlockMemory(currentMemory);
+			result.text+="Memory "+currentMemory+" unlocked.";
+		}
 		if(currentBuff!=null)
 		{
 			currentMonster.addBuff(currentBuff.attributeType,currentBuff.value,currentBuff.counter);
@@ -319,7 +339,7 @@ public class GameEventPanel : MonoBehaviour
 		}
 		if(result.text=="")
 		{
-			result.text+="一般通过Andre";
+			result.text+="无事发生";
 		}
 		
 	}

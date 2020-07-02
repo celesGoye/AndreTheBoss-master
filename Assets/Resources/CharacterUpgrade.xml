@@ -7,21 +7,18 @@
                 <RobinhoodSoul>1</RobinhoodSoul>
                 <Spiderlily>5</Spiderlily>
                 <Sulphur>5</Sulphur>
-                <MoonlightStone>1</MoonlightStone>
             </level>
             <level value="3">
                 <TatenoyousyaSoul>1</TatenoyousyaSoul>
                 <DemonFruit>10</DemonFruit>
                 <GoldenApple>10</GoldenApple>
                 <Mercury>10</Mercury>
-                <MoonlightStone>3</MoonlightStone>
             </level>
             <level value="4">
                 <JinjyamikoSoul>1</JinjyamikoSoul>
                 <Spiderlily>20</Spiderlily>
                 <Gold>20</Gold>
                 <Sulphur>20</Sulphur>
-                <MoonlightStone>6</MoonlightStone>
             </level>
             <level value="5">
                 <OrchestraleaderSoul>1</OrchestraleaderSoul>
@@ -31,7 +28,6 @@
                 <Sulphur>20</Sulphur>
                 <Mercury>20</Mercury>
                 <Gold>20</Gold>
-                <MoonlightStone>10</MoonlightStone>
             </level>
         </boss>
     </unlocklevel>

@@ -60,7 +60,7 @@ public class MemoryReader
 	public string GetEventMemoryData(int index)
 	{
 		string data;
-		string xpath="/memory/memoryevent/["+index+"]";
+		string xpath="memory/event/memoryevent["+(index-5)+"]";
         XmlElement node = (XmlElement)xmlDoc.SelectSingleNode(xpath);
         if(node == null)
         {

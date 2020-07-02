@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class OptionsPause : MonoBehaviour
 {
     public GameObject pauseMenu;
+	public GameObject settingMenu;
 
     public void OnEnable()
     {
@@ -30,6 +31,7 @@ public class OptionsPause : MonoBehaviour
     public void Settings()
     {
         // setting menu
+        settingMenu.SetActive(true);		
     }
 
     public void Exit()

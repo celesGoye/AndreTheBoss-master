@@ -12,13 +12,20 @@ public class HealthBar : MonoBehaviour
 	
 	public Color friendColor;
 	public Color enemyColor;
+	public Color damageColor;
+	public Color recoverColor;
+	
+	public Text number;
+	public Animator animator;
 	
 	private float maxlife;
 	private float currentlife;
 	
 	public void OnEnable()
 	{
+		
 	}
+	
 	public void Init()
 	{
 		this.GetComponent<followGameObject>().follow=pawn.GetComponent<Transform>();
@@ -40,5 +47,20 @@ public class HealthBar : MonoBehaviour
 		
 		GameObject.Destroy(gameObject);
 	}
+	
+	public void OnDamageAnim(int value)
+	{
+		number.text="-"+value;
+		number.color=damageColor;
+		if(animator!=null)
+			animator.SetBool("Begin",true);
+	}
 
+	public void OnRecoverAnim(int value)
+	{
+		number.text="+"+value;
+		number.color=recoverColor;
+		if(animator!=null)
+			animator.SetBool("Begin",true);
+	}
 }

@@ -19,7 +19,7 @@ public class PlayerPanel : MonoBehaviour
 	{
 		if(gameManager == null)
 			gameManager = FindObjectOfType<GameManager>();
-		UpdateBossUI();
+		//UpdateBossUI();
 	}
 	
     public void OpenMenu()
@@ -38,7 +38,7 @@ public class PlayerPanel : MonoBehaviour
 		actionableMonsters.UpdateActionableMonsters();
 	}
 	
-	public void UpdateBossUI()
+	/*public void UpdateBossUI()
 	{
 		int lv=gameManager.boss.GetLevel();
 		txtLevel.text="Lv."+lv;
@@ -48,7 +48,7 @@ public class PlayerPanel : MonoBehaviour
 			imgBoss.sprite=Resources.Load("UI/avatar/boss"+lv, typeof(Sprite)) as Sprite;
 		else 
 			Debug.Log("??");
-	}
+	}*/
 	
 	public void OnSkipTurn()
 	{

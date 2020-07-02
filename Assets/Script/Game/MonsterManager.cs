@@ -36,10 +36,13 @@ public class MonsterManager : MonoBehaviour
     private Dictionary<MonsterType, Monster> prefabs;
 
     private GameObject MonsterRoot;
+	private CharacterReader characterReader;
+	private CharacterReader.CharacterSkillUI skill;
 
 	 public void InitMonsterManager()
     {
         gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+		characterReader = gameManager.GetComponent<GameManager>().characterReader;
 
         MonsterPawns = new List<Monster>();
         RevivedEnemyPawns = new List<Enemy>();
@@ -104,7 +107,9 @@ public class MonsterManager : MonoBehaviour
 		MonsterPawns.Add(monster);
 		gameManager.monsterActionManager.UpdateActionableMonsters();
         monster.transform.SetParent(MonsterRoot.transform);
-		gameManager.animationManager.PlayCreateMonEff(monster.transform.position);
+		ReadSkillNames(monster);
+		if(type != MonsterType.boss || PlayerPrefs.GetInt("IsNewGame") == 1)
+		    gameManager.animationManager.PlayCreateMonEff(monster.transform.position);
         return monster;
     }
 
@@ -196,4 +201,17 @@ public class MonsterManager : MonoBehaviour
             RevivedEnemyPawns.Remove(enemy);
         }
     }
+	
+	public void ReadSkillNames(Monster monster)
+	{
+		List<CharacterReader.CharacterSkillUI> skills=characterReader.GetMonsterSkillUI(monster.Name);
+		List<string> names=new List<string>();
+		foreach(var skill in skills)
+		{
+			names.Add(skill.name);
+		}
+		monster.skillnames=names;
+		//if(monster.skillnames!=null)
+		//	Debug.Log("read skillnames");
+	}
 }

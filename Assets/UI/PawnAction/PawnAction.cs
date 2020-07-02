@@ -131,7 +131,7 @@ public class PawnAction : MonoBehaviour
     {
         if (selectedPawn != null)
         {
-            uilog.UpdateLog(selectedPawn.Name + " is trying to transfer");
+            uilog.UpdateLog("<color="+TextColor.BlueColor+">"+selectedPawn.Name +"</color> is trying to transfer");
             //Debug.Log(selectedPawn.Name + " is trying to transfer");
             gameInteraction.SetIsPawnAction(true);
             currentStatus = Status.IsTransfering;
@@ -153,23 +153,26 @@ public class PawnAction : MonoBehaviour
 			{
 				moveButton.interactable=false;
 				attackButton.interactable=false;
+				skillButton.interactable=false;
 			}
 			else if(monster.actionType==ActionType.AttackEnds)
 			{
 				moveButton.interactable=true;
 				attackButton.interactable=false;
+				skillButton.interactable=false;
 			}
 			else if(monster.actionType==ActionType.MoveEnds)
 			{
 				moveButton.interactable=false;
 				attackButton.interactable=true;
+				skillButton.interactable=true;
 			}
 			else
 			{
 				moveButton.interactable=true;
 				attackButton.interactable=true;
+				skillButton.interactable=true;
 			}
-			skillButton.interactable=true;
 			infoButton.interactable=true;
 			transferButton.interactable=true;
 		}
@@ -183,7 +186,7 @@ public class PawnAction : MonoBehaviour
     {
         if (selectedPawn != null)
         {
-            uilog.UpdateLog(selectedPawn.Name + " is trying to attack");
+            //uilog.UpdateLog("<color="+TextColor.BlueColor+">"+selectedPawn.Name +"</color> is trying to attack");
             //Debug.Log(selectedPawn.Name + " is trying to attack");
             gameInteraction.SetIsPawnAction(true);
             currentStatus = Status.PrepareAttack;
@@ -272,7 +275,7 @@ public class PawnAction : MonoBehaviour
             Monster monster = (Monster)selectedPawn;
             if (monster != null)
             {
-                uilog.UpdateLog(monster.Name + " is trying to do skill");
+                //uilog.UpdateLog("<color="+TextColor.BlueColor+">"+monster.Name +"</color> is trying to do skill");
                  gameInteraction.SetIsPawnAction(true);
                 switch (which)
                 {
@@ -322,7 +325,7 @@ public class PawnAction : MonoBehaviour
     {
         if (selectedPawn != null)
         {
-            uilog.UpdateLog(selectedPawn.Name + " is trying to move");
+            //uilog.UpdateLog("<color="+TextColor.BlueColor+">"+selectedPawn.Name +"</color> is trying to move");
             //Debug.Log(selectedPawn.Name + " is trying to move");
             gameInteraction.SetIsPawnAction(true);
             currentStatus = Status.PrepareMove;
@@ -346,7 +349,7 @@ public class PawnAction : MonoBehaviour
         {
             monsterActionManager.SetActionType(hexMap.GetPathLength(), (Monster)selectedPawn);
         }
-        uilog.UpdateLog(selectedPawn.Name + " Moves");
+        uilog.UpdateLog("<color="+TextColor.BlueColor+">"+selectedPawn.Name +"</color> Moves");
         //Debug.Log(selectedPawn.Name + " Moves");
         hexMap.HideIndicator();
         currentStatus = Status.IsMoving;
@@ -358,7 +361,8 @@ public class PawnAction : MonoBehaviour
 
     public void Attack()
     {
-        uilog.UpdateLog(selectedPawn.Name + " Attacks" + attackTarget);
+        uilog.UpdateLog("<color="+TextColor.BlueColor+">"+selectedPawn.Name +"</color>  Attacks" + attackTarget);
+		selectedPawn.PlayAttack();
         //Debug.Log(selectedPawn.Name + " Attacks" + attackTarget);
         hexMap.HideIndicator();
         currentStatus = Status.IsAttacking;
@@ -379,16 +383,19 @@ public class PawnAction : MonoBehaviour
                     switch (selectedSkill)
                     {
                         case 1:
-                            uilog.UpdateLog(monster.Name + " do skill one");
+                            uilog.UpdateLog("<color="+TextColor.BlueColor+">"+monster.Name +"</color> do skill one <color="+TextColor.OrangeColor+">"+monster.skillnames[0]+"</color>");
                             monster.DoSkillOneCell(skillTargetCell);
+							selectedPawn.PlayAttack();
                             break;
                         case 3:
-                            uilog.UpdateLog(monster.Name + " do skill three");
+                            uilog.UpdateLog("<color="+TextColor.BlueColor+">"+monster.Name +"</color> do skill three <color="+TextColor.OrangeColor+">"+monster.skillnames[2]+"</color>");
                             monster.DoSkillThreeCell(skillTargetCell);
+							selectedPawn.PlayAttack();
                             break;
                         case 5:
-                            uilog.UpdateLog(monster.Name + " do skill five");
+                            uilog.UpdateLog("<color="+TextColor.BlueColor+">"+monster.Name +"</color> do skill five <color="+TextColor.OrangeColor+">"+monster.skillnames[4]+"</color>");
                             monster.DoSkillFiveCell(skillTargetCell);
+							selectedPawn.PlayAttack();
                             break;
                         default:
                             ClearStatus();
@@ -402,7 +409,8 @@ public class PawnAction : MonoBehaviour
                 try
                 {
                     Enemy enemy = (Enemy)selectedPawn;
-                    uilog.UpdateLog(enemy.Name + " do skill");
+                    uilog.UpdateLog("<color="+TextColor.BlueColor+">"+enemy.Name +"</color> do skill");
+					selectedPawn.PlayAttack();
                     // TODO: Enemey control
                 }
                 catch (InvalidCastException ex2)
@@ -422,16 +430,19 @@ public class PawnAction : MonoBehaviour
                     switch (selectedSkill)
                     {
                         case 1:
-                            uilog.UpdateLog(monster.Name + " do skill one");
+                            uilog.UpdateLog("<color="+TextColor.BlueColor+">"+monster.Name +"</color> do skill one <color="+TextColor.OrangeColor+">"+monster.skillnames[0]+"</color>");
                             monster.DoSkillOne(skillTarget);
+							selectedPawn.PlayAttack();
                             break;
                         case 3:
-                            uilog.UpdateLog(monster.Name + " do skill three");
+                            uilog.UpdateLog("<color="+TextColor.BlueColor+">"+monster.Name +"</color> do skill three<color="+TextColor.OrangeColor+">"+monster.skillnames[2]+"</color>");
                             monster.DoSkillThree(skillTarget);
+							selectedPawn.PlayAttack();
                             break;
                         case 5:
-                            uilog.UpdateLog(monster.Name + " do skill five");
+                            uilog.UpdateLog("<color="+TextColor.BlueColor+">"+monster.Name +"</color> do skill five<color="+TextColor.OrangeColor+">"+monster.skillnames[4]+"</color>");
                             monster.DoSkillFive(skillTarget);
+							selectedPawn.PlayAttack();
                             break;
                         default:
                             ClearStatus();
@@ -445,7 +456,8 @@ public class PawnAction : MonoBehaviour
                 try
                 {
                     Enemy enemy = (Enemy)selectedPawn;
-                    uilog.UpdateLog(enemy.Name + " do skill");
+                    uilog.UpdateLog("<color="+TextColor.BlueColor+">"+enemy.Name +"</color> do skill");
+					selectedPawn.PlayAttack();
                 }
                 catch (InvalidCastException ex2)
                 {
@@ -470,8 +482,7 @@ public class PawnAction : MonoBehaviour
     {
         if (selectedPawn != null)
         {
-            //0,0
-            uilog.UpdateLog(selectedPawn.Name + " is skiping turn");
+            uilog.UpdateLog("<color="+TextColor.BlueColor+">"+selectedPawn.Name +"</color> is skiping turn");
             //Debug.Log(selectedPawn.Name + " is skiping turn");
         }
     }

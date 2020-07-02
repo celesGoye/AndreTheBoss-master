@@ -53,7 +53,7 @@ public class Gallery_MemoryPage : MonoBehaviour
 				Gallery_MemoryButton memoryButton=memories.GetChild(i).GetComponent<Gallery_MemoryButton>();
 				memoryButton.memorypage=this;
 				memoryButton.memoryId=memoryPanel.memories[i];
-				memoryButton.UpdateMemoryButton(currentPage*10+i+1);
+				memoryButton.UpdateMemoryButton(currentPage*10+i);
 			}
 			else
 				memories.GetChild(i).gameObject.SetActive(false);
@@ -69,6 +69,8 @@ public class Gallery_MemoryPage : MonoBehaviour
 		theMemoryPage.gameObject.SetActive(true);
 		frontPage.gameObject.SetActive(false);
 		gallery.previousLayer=4;
+		
+		theMemoryPage.UpdateMemory();
 	}
 		
 	public void OnNextMemory()

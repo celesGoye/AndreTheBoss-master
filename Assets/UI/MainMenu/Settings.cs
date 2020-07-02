@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class Settings : MonoBehaviour
 {
     public Toggle fullScreenToggle;
+    public Toggle musicToggle;
     public Slider volumnSlider;
+	
+	public AudioSource music;
 
     public void OnEnable()
     {
@@ -16,6 +19,7 @@ public class Settings : MonoBehaviour
         if (volumnSlider != null)
             volumnSlider.value = AudioListener.volume;
     }
+	
     public void ToggleFullScreen()
     {
         if(fullScreenToggle != null)
@@ -31,6 +35,21 @@ public class Settings : MonoBehaviour
             }
         }
     }
+	
+	public void ToogleMusic()
+	{
+		if(musicToggle != null && music!=null)
+		{
+			if(musicToggle.isOn)
+			{
+				music.volume=1;
+			}
+			else
+			{
+				music.volume=0;
+			}
+		}
+	}
 
     public void ChangeVolumn()
     {

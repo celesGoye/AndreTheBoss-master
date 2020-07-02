@@ -59,4 +59,10 @@ public class AndreTheHero : Enemy
         skillCounts = 2;
         this.isIgnoreDefense = this.isIgnoreMagicDefense = true;
     }
+	
+	public override void OnDie()
+    {
+        gm.PlayerWinPanel.gameObject.SetActive(true);
+        base.OnDie();
+    }
 }

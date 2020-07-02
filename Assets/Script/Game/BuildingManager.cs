@@ -150,7 +150,7 @@ public class BuildingManager : MonoBehaviour
 		{
 			Buildings.Remove(building);
 			building.currentCell.building=null;
-			building.DestroyBuilding();
+			((building.buildingType)building).DestroyBuilding();
 		}
 		else
 		{

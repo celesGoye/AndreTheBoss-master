@@ -12,6 +12,7 @@ public class GameEventReader
     {
         "/events/normalEvents/nonoptionsEvents/gainBuffEvents/event",
         "/events/normalEvents/nonoptionsEvents/gainItemsEvents/event",
+		"/events/normalEvents/nonoptionsEvents/gainMemoryEvents/event",
         "/events/normalEvents/optionsEvents/event",
         "/events/mysteryPersonEvents/gainItemsEvents/event",
         "/events/mysteryPersonEvents/gainCharacterEvents/event",
@@ -35,7 +36,7 @@ public class GameEventReader
         totalEventNum = 0;
         if (xmlDoc != null)
         {
-            eventNums = new int[5];
+            eventNums = new int[6];
             int i = 0;
             foreach (string xpath in eventxpath)
             {
@@ -172,6 +173,22 @@ public class GameEventReader
                     Debug.Log(ex.StackTrace);
                 }
                 break;
+			case GameEventType.NormalNonoptionMemoryEvent:	
+				try
+				{
+					 XmlElement node = (XmlElement)xmlDoc.SelectNodes(eventxpath[(int)type])[which];
+                    string effectDescription = node["effectDescription"].InnerXml;
+					
+                    int memoryid=int.Parse(node["memory"].InnerXml);
+					
+                    gameEvent = new NormalNonoptionMemoryEvent(eventName, eventDescription, eventCounter, type, which, effectDescription,
+                        memoryid);
+				}
+				catch(Exception ex)
+				{
+					Debug.Log(ex.StackTrace);
+				}
+				break;
             case GameEventType.NormalOptionEvent:
                 try
                 {

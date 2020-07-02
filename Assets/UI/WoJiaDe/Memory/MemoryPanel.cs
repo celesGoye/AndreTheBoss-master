@@ -17,23 +17,28 @@ public class MemoryPanel : MonoBehaviour
 	{
 		unlocklevel=0;
 		gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
+		memories=new List<int>();
 		
 		memoryReader=new MemoryReader();
 		memoryReader.ReadFile();
+		 if(PlayerPrefs.GetInt("IsNewGame") == 1)
+			DisplayMemory(0);
 	}
 	
 	public void OnMonsterTurnBegin()
 	{
 		if(gameManager.boss.level!=unlocklevel)
-			UnlockMemory(gameManager.boss.level);
+			for(int i=unlocklevel+1;i<=gameManager.boss.level;i++)
+				UnlockMemory(i);
 		unlocklevel=gameManager.GetBossLevel();
 	}
 	
 	public void UnlockMemory(int index)
 	{
-		memoryunlocked.gameObject.SetActive(true);
+		//memoryunlocked.gameObject.SetActive(true);
 		if(memories.Contains(index)==false)
 			memories.Add(index);
+		gameManager.gameInteraction.uilog.UpdateLog("<color="+TextColor.RedColor+">New memory unlocked. </color>\n<color="+TextColor.GreyColor+">View in the Menu -> Gallery -> Memories</color>");
 	}
 	
     public void OnConfirm()
@@ -44,7 +49,7 @@ public class MemoryPanel : MonoBehaviour
 	
 	public void DisplayMemory(int index)
 	{
-		memorydisplay.UpdateMemory(memoryReader.GetNormalMemoryData(index));
+		memorydisplay.UpdateMemory(memoryReader.GetSpecialMemoryData(index));
 		memorydisplay.gameObject.SetActive(true);
 	}
 }

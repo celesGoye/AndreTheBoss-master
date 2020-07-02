@@ -54,11 +54,11 @@
                     <name>fossil</name>
                     <description>形状奇怪的化石，可能是某种远古野兽的尸骨</description>
                     <counter>10</counter>
-                    <effectDescription>获得1月光石</effectDescription>
+                    <effectDescription>获得5灵魂</effectDescription>
                     <item>
                         <type>soultype</type>
-                        <typeEnum>moonlightstone</typeEnum>
-                        <number>1</number>
+                        <typeEnum>soul</typeEnum>
+                        <number>5</number>
                         <posibility>100</posibility>
                     </item>
                 </event>
@@ -105,6 +105,29 @@
                     </item>
                 </event>
             </gainItemsEvents>
+			<gainMemoryEvents>
+				<event id="0">
+                    <name>theLostManuscriptⅠ</name>
+                    <description>残缺的诗稿，不知是何人遗失在这里的……</description>
+                    <counter>10</counter>
+                    <effectDescription>解锁Memory6</effectDescription>
+					<memory>6</memory>
+				</event>
+				<event id="1">
+                    <name>theLostManuscriptⅡ</name>
+                    <description>残缺的诗稿，不知是何人遗失在这里的……</description>
+                    <counter>10</counter>
+                    <effectDescription>解锁Memory7</effectDescription>
+					<memory>7</memory>
+				</event>
+				<event id="2">
+                    <name>theLostManuscriptⅢ</name>
+                    <description>残缺的诗稿，不知是何人遗失在这里的……</description>
+                    <counter>10</counter>
+                    <effectDescription>解锁Memory8</effectDescription>
+					<memory>8</memory>
+				</event>
+			</gainMemoryEvents>
         </nonoptionsEvents>
         
         <optionsEvents>
@@ -169,12 +192,6 @@
                             <typeEnum>soul</typeEnum>
                             <number>20</number>
                             <posibility>50</posibility>
-                        </item>
-                        <item>
-                            <type>soultype</type>
-                            <typeEnum>moonlightstone</typeEnum>
-                            <number>2</number>
-                            <posibility>20</posibility>
                         </item>
                         <item>
                             <type>farm</type>

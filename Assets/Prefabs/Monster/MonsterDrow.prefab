@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 965a3600b1fb3824184c0c612936db48, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,8 +168,10 @@ MonoBehaviour:
   isIgnoreDefense: 0
   isIgnoreMagicDefense: 0
   buffs: []
+  animator: {fileID: 0}
   healthbar: {fileID: 0}
   currentCell: {fileID: 0}
+  uilog: {fileID: 0}
   monsterType: 0
   defaultSkill: 0
   equippedSkill: 0
@@ -178,6 +180,7 @@ MonoBehaviour:
   CanDoAction: 0
   gm: {fileID: 0}
   pawnAction: {fileID: 0}
+  skillnames: []
 --- !u!136 &2275877907173558627
 CapsuleCollider:
   m_ObjectHideFlags: 0

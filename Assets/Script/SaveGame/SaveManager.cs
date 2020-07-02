@@ -52,6 +52,7 @@ public class SaveManager : MonoBehaviour
                 Monster monster = gm.monsterManager.MonsterPawns[i];
                 SerializableMonsterData data = new SerializableMonsterData();
                 data.monsterType = (int)monster.monsterType;
+				data.equippedSkill = (int)monster.equippedSkill;
                 SerializablePawnData pawndata = new SerializablePawnData();
 
                 pawndata.hexcellIndex = monster.currentCell.index;
@@ -138,6 +139,7 @@ public class SaveManager : MonoBehaviour
             savedata.playerData.turnNumber = gm.gameTurnManager.GetCurrentGameTurn();
             savedata.playerData.ItemsGot = gm.itemManager.ItemsGot;
             savedata.playerData.ItemsOwn = gm.itemManager.ItemsOwn;
+            savedata.playerData.MemoriesGot = gm.gameInteraction.memoryPanel.memories;
 
             // Buildings
             savedata.buildingData = new List<SerializableBuildingData>();
@@ -214,13 +216,41 @@ public class SaveManager : MonoBehaviour
                 Monster monster = null;
                 if ((MonsterType)data.monsterType == MonsterType.boss)
                 {
+					// boss loading
                     monster = gm.boss;
+					 //monster = gm.monsterManager.CreateMonster((MonsterType)data.monsterType, gm.hexMap.cells[pawndata.hexcellIndex], pawndata.level);
+                    //Monster oldBoss = gm.boss;
+                    //HexCell oldCell = gm.boss.currentCell;
+                    //gm.boss = (Boss)monster;
+                    //oldBoss.currentCell.pawn = null;
+                    //oldBoss.currentCell = null;
+                    //oldBoss.GetComponentInChildren<Animator>().SetBool("Die", true);
+                    //gm.hexMap.SetCharacterCell(monster, oldCell);
+
+                    while(monster.GetLevel() < pawndata.level)
+                    {
+                        monster.Upgrade();
+                    }
+
+                    Sprite sprite = null;
+                    if (pawndata.level == 3 || pawndata.level == 4)
+                        sprite = (Sprite)Resources.Load("Image/Character/boss" + 3, typeof(Sprite));
+                    else if (pawndata.level == 5)
+                        sprite = (Sprite)Resources.Load("Image/Character/boss" + 5, typeof(Sprite));
+
+                    if (sprite != null)
+                        monster.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
+
+                    gm.hexMap.SetCharacterCell(monster, gm.hexMap.cells[pawndata.hexcellIndex]);
+                    gm.animationManager.PlayCreateMonEff(monster.transform.position);
                 }
                 else
                 {
+					// other monster loading
                     monster = gm.monsterManager.CreateMonster((MonsterType)data.monsterType, gm.hexMap.cells[pawndata.hexcellIndex], pawndata.level);
                 }
 
+				monster.equippedSkill = data.equippedSkill;
                 monster.skipCounter = pawndata.skipCounter;
                 monster.isSkip = pawndata.isSkip;
                 monster.isDirty = true;
@@ -293,7 +323,7 @@ public class SaveManager : MonoBehaviour
             gm.gameTurnManager.ResetCurrentTurn(savedata.playerData.turnNumber);
             gm.itemManager.ItemsGot = savedata.playerData.ItemsGot;
             gm.itemManager.ItemsOwn = savedata.playerData.ItemsOwn;
-
+			gm.gameInteraction.memoryPanel.memories=savedata.playerData.MemoriesGot;
             
             // Buildings
             gm.buildingManager.ClearBuildings();

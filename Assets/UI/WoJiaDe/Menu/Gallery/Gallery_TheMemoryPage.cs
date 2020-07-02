@@ -12,14 +12,19 @@ public class Gallery_TheMemoryPage : MonoBehaviour
 	public int memoryIdL;
 	public int memoryIdR;
 	
+	public MemoryReader reader;
+	
 	public void OnEnable()
 	{
-		
+		reader=new MemoryReader();
+		reader.ReadFile();
 	}
 	
 	public void UpdateMemory()
 	{
 		currentid=memoryPage.currentid;
+		leftPage.reader=reader;
+		rightPage.reader=reader;
 		leftPage.memoryId=memoryPage.memoryPanel.memories[currentid];
 		if(memoryPage.memoryPanel.memories.Count-currentid==1)
 			rightPage.transform.gameObject.SetActive(false);

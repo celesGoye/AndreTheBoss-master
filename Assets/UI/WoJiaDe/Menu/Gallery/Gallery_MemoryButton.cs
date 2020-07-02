@@ -26,11 +26,12 @@ public class Gallery_MemoryButton : MonoBehaviour
    {
 	   id=index;
 	   name.text="Memory "+memoryId;
+	   //Debug.Log("index:"+index+"; mem:"+memoryId);
    }
    
    public void OnMemoryBtn()
 	{
-		memorypage.currentid=id;
+		memorypage.currentid=id%2==0?id:(id-1);
 		memorypage.OnMemoryBtn();
 	}
 }

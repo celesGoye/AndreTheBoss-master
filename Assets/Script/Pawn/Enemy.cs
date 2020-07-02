@@ -166,6 +166,7 @@ public class Enemy : Pawn
     {
         if (currentBuildingTarget != null)
         {
+			uilog.UpdateLog("<color="+TextColor.GreyColor+">"+this.Name + " attacks </color><color="+TextColor.BlueColor+">" +currentBuildingTarget.GetBuildingType().ToString()+"</color>");
             if (isDirty)
                 UpdateCurrentValue();
             currentBuildingTarget.TakeDamage(this.currentAttack + this.currentMagicAttack);
@@ -176,6 +177,8 @@ public class Enemy : Pawn
     {
         if(currentTarget != null)
         {
+			uilog.UpdateLog("<color="+TextColor.GreyColor+">"+this.Name + " attacks </color><color="+TextColor.BlueColor+">" + currentTarget.Name+"</color>");
+			PlayAttack();
 			/*
             gm.hexMap.HideIndicator();
             currentTarget.currentCell.indicator.gameObject.SetActive(true);
@@ -185,7 +188,6 @@ public class Enemy : Pawn
 			*/
 
             ((Pawn)this).DoAttack(currentTarget);
-            gm.gameInteraction.pawnActionPanel.uilog.UpdateLog(this.Name + " attacks " + currentTarget.Name);
            // gm.hexMap.HideIndicator();
         }
     }

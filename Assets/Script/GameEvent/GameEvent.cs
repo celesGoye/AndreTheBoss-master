@@ -22,6 +22,25 @@ public class GameEvent
     }
 }
 
+public class NormalNonoptionMemoryEvent : GameEvent
+{
+	int memoryid;
+	private string effectDescription;
+    public NormalNonoptionMemoryEvent(string eventName, string eventDescription, int counter, GameEventType eventType, int whichEvent,
+        string effectDescription, int memory)
+        : base(eventName, eventDescription, counter, eventType, whichEvent)
+		{
+			this.memoryid=memory;
+		}
+	public int GetMemoryId()
+	{
+		return memoryid;
+	}
+	public string GetEffectDescription()
+	{
+		return effectDescription;
+	}
+}
 
 public class NormalNonoptionGainbuffEvent : GameEvent
 {

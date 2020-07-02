@@ -81,7 +81,15 @@ Andre？
 	</normal>
 	
 	<start>
-<content></content>
+<content>你在一片陌生的森林里醒来，
+脸上扣着一张摘不下来的骷髅面具。
+你不知道自己是谁，
+但不远处的勇者的喊杀声告诉你————
+你是一个“怪物”。
+
+召集你的怪物伙伴，建设你们的家园，
+为了生存，和勇者决斗吧！
+</content>
 	</start>
 	
 	<trueend>
@@ -109,7 +117,7 @@ Andre？
 	</badend>
 	
 	<event>
-	<memoryevent value="6">
+	<memoryevent value="1">
 	<content>Danse Macabre
 
 
@@ -145,7 +153,7 @@ Et vive la mort et l'égalité !
 </content>
 	</memoryevent>
 	
-	<memoryevent value="7">
+	<memoryevent value="2">
 	<content>Der Totentanz
 
 Der Türmer, der schaut zu mitten der Nacht
@@ -205,7 +213,7 @@ Die Glocke, sie donnert ein mächtiges Eins,
 Und unten zerschellt das Gerippe.
 </content>
 	</memoryevent>
-	<memoryevent value="8">
+	<memoryevent value="3">
 	<content>Nuit　
 Le ciel d'étain au ciel de cuivre 　　
 Succède. La nuit fait un pas. 　　

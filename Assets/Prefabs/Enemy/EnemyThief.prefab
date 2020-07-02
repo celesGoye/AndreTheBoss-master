@@ -81,15 +81,19 @@ MonoBehaviour:
   isIgnoreDefense: 0
   isIgnoreMagicDefense: 0
   buffs: []
+  animator: {fileID: 0}
   healthbar: {fileID: 0}
   currentCell: {fileID: 0}
+  uilog: {fileID: 0}
   enemyType: 2
   currentTarget: {fileID: 0}
+  currentBuildingTarget: {fileID: 0}
   nextAction: 4
   gm: {fileID: 0}
   skillCounts: 0
   dropsoul: 0
   IsMoving: 0
+  IsWaiting: 1
   routes: []
 --- !u!1 &5697856882213317006
 GameObject:
@@ -141,7 +145,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 965a3600b1fb3824184c0c612936db48, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

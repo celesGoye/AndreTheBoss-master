@@ -46,6 +46,8 @@ public class EnemyManager : MonoBehaviour
     private GameObject EnemyRoot;
 	
 	private EnemyLootReader reader;
+	
+	private UILog uilog;
 
     public int MaxEnemyOnMap = 10;
 
@@ -64,6 +66,7 @@ public class EnemyManager : MonoBehaviour
         EnemyRoot.transform.position = Vector3.zero;
 		
 		reader=new EnemyLootReader();
+		uilog=gm.gameInteraction.uilog;
 		
 		prefabs = new Dictionary<EnemyType, Enemy>
         {
@@ -117,12 +120,18 @@ public class EnemyManager : MonoBehaviour
         Enemy enemy = null;
         if (!heroAppearingTurn.Contains<int>(gm.gameTurnManager.GetCurrentGameTurn()))
         {
-            do
+            bool isSpawn = false;
+            while(EnemyPawns.Count < GameConfig.EnemySpawnLowerLimits[gm.boss.GetLevel()])
             {
                 enemy = SpawnEnemy();
-            } 
-            while (EnemyPawns.Count < GameConfig.EnemySpawnLowerLimits[gm.boss.GetLevel()]);
-        }
+				isSpawn = true;
+            }
+
+            if(!isSpawn && EnemyPawns.Count < GameConfig.EnemySpawnUpperLimits[gm.boss.GetLevel()])
+            {
+                enemy = SpawnEnemy();
+            }
+		}
         else
             enemy = SpawnHero();
 
@@ -147,12 +156,14 @@ public class EnemyManager : MonoBehaviour
 
     public void Update()
     {
+		if(gm==null||gm.gameTurnManager==null||EnemyPawns==null)
+		{
+			Debug.Log(gm==null);
+			Debug.Log(gm.gameTurnManager==null);
+			Debug.Log(EnemyPawns==null);
+		}
         if(gm.gameTurnManager.IsEnemyTurn() && EnemyPawns.Count > 0)
         {
-			if(currentEnemyIndex>=EnemyPawns.Count)
-			{
-				Debug.Log("currentEnemyIndex>=EnemyPawns.Count---------"+currentEnemyIndex+"      "+EnemyPawns.Count);
-			}
             if(currentEnemyIndex >= EnemyPawns.Count || !EnemyPawns[currentEnemyIndex].IsAction())
             {
                 currentEnemyIndex++;
@@ -208,6 +219,7 @@ public class EnemyManager : MonoBehaviour
             enemyType = getRandomEnemyType(5);
         }
 
+		enemyType=EnemyType.catapult;
         // TODO: get portal code here
         if(enemyType != EnemyType.NUM)
             return SpawnEnemyAtCell(enemyType, gm.hexMap.GetRandomCellToSpawn());
@@ -230,6 +242,7 @@ public class EnemyManager : MonoBehaviour
 		
         if(heroType != EnemyType.NUM)
         {
+			uilog.UpdateLog("<color="+TextColor.RedColor+">"+heroType.ToString() +" has appeared!</color>");
             return SpawnEnemyAtCell(heroType, gm.hexMap.GetRandomCellToSpawn());
         }
         return null;
@@ -283,9 +296,9 @@ public class EnemyManager : MonoBehaviour
                 case EnemyType.assassin:
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_assassin);
                     break;
-				/*case EnemyType.catapult:
+				case EnemyType.catapult:
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_catapult);
-                    break;*/
+                    break;
                 case EnemyType.jinjyamiko:
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_jinjyamiko);
                     break;
@@ -299,9 +312,9 @@ public class EnemyManager : MonoBehaviour
                 case EnemyType.bloodwitch:
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_bloodwitch);
                     break;
-				/*case EnemyType.darkknight:
+				case EnemyType.darkknight:
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_darkknight);
-                    break;*/
+                    break;
                 case EnemyType.orchestraleader:
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_orchestraleader);
                     break;
