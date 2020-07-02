@@ -186,7 +186,7 @@ public abstract class Monster: Pawn
 
         if (data != null)
         {
-            currentHP = hp = data.HP;
+            hp = data.HP;
             currentAttack = attack - olddata.attack + data.attack;
             currentMagicAttack = magicAttack = magicAttack - olddata.magicAttack + data.magicAttack;
             currentDefense = defense - olddata.defense + data.defense;

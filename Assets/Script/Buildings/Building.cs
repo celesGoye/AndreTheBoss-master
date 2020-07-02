@@ -50,7 +50,7 @@ public class Building: MonoBehaviour
         int required = after-before;
 
         currentLevel++;
-		currentHP = maxHP = GameConfig.BuildingHP[currentLevel];
+		maxHP = GameConfig.BuildingHP[currentLevel];
 		SetAppearance(currentLevel);
 		OnLevelUp();
         return required;
@@ -176,6 +176,16 @@ public class Building: MonoBehaviour
 		currentHP -= damage;
 		if (currentHP <= 0)
 			GameObject.FindObjectOfType<GameManager>().buildingManager.DestroyBuilding(this);
+    }
+
+	// TODO here
+	public void Recover()
+    {
+		int hp = currentHP + GameConfig.BuildingRecoverEachTurn[currentLevel];
+		if (currentHP > maxHP)
+			currentHP = maxHP;
+
+		// update hp ui
     }
 }
 

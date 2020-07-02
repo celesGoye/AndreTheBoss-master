@@ -157,4 +157,12 @@ public class BuildingManager : MonoBehaviour
 			Debug.Log("destroy building not found");
 		}
 	}
+
+	public void OnTurnEnd()
+    {
+		foreach(Building building in Buildings)
+        {
+			building.Recover();
+        }
+    }
 }

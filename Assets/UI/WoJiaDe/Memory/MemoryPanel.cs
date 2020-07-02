@@ -27,7 +27,7 @@ public class MemoryPanel : MonoBehaviour
 	
 	public void OnMonsterTurnBegin()
 	{
-		if(gameManager.boss.level!=unlocklevel)
+		if(gameManager.boss.GetLevel()!=unlocklevel)
 			for(int i=unlocklevel+1;i<=gameManager.boss.level;i++)
 				UnlockMemory(i);
 		unlocklevel=gameManager.GetBossLevel();
