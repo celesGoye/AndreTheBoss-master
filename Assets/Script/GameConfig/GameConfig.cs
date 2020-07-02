@@ -36,4 +36,11 @@ public class GameConfig
         {3, 50 },
     };
 
+    public static Dictionary<int, int> BuildingRecoverEachTurn = new Dictionary<int, int>
+    {
+        {1, 1},
+        {2, 2},
+        {3, 3},
+    };
+
 }

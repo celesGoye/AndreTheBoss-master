@@ -89,11 +89,18 @@ public class Enemy : Pawn
             if(buildingTargets.Contains(currentBuildingTarget.currentCell))
             {
                 nextAction = ActionType.AttackBuilding;
-                return;
+            }
+            else
+            {
+                if(buildingTargets.Count != 0)
+                {
+                    HexCell hexCell = buildingTargets[0];
+                    currentBuildingTarget = hexCell.building;
+                    nextAction = ActionType.Move;
+                }
             }
         }
-
-        if (currentTarget != null && targets.Count != 0)
+        else if (currentTarget != null && targets.Count != 0)
         {
             if(targets.Contains(currentTarget.currentCell))
             {
@@ -195,7 +202,10 @@ public class Enemy : Pawn
     public virtual void DoMove()
     {
 		routes.Clear();
-        routes = gm.hexMap.GetRoutes(this, currentTarget.currentCell);
+        if (currentBuildingTarget != null)
+            routes = gm.hexMap.GetRoutes(this, currentBuildingTarget.currentCell);
+        else if(currentTarget != null)
+            routes = gm.hexMap.GetRoutes(this, currentTarget.currentCell);
         if(routes.Count > 0)
         {
             IsMoving = true;
