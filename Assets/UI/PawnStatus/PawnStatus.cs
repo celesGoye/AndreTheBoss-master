@@ -31,11 +31,11 @@ public class PawnStatus : MonoBehaviour
 		currentPawn=pawn;
 		if(pawn as Monster!=null)
 			UpdatePanel(pawn.pawnType,pawn.currentAttack, pawn.currentDefense, pawn.currentHP, pawn.currentDexterity,
-					pawn.currentAttackRange,pawn.Name,pawn.GetMaxHP(),pawn.GetLevel(),pawn.currentMagicAttack,
+					pawn.currentAttackRange,pawn.ToString(), pawn.Name, pawn.GetMaxHP(),pawn.GetLevel(),pawn.currentMagicAttack,
 					pawn.currentMagicDefense,((Monster)pawn).remainedStep,((Monster)pawn).actionType);
 		else
 			UpdatePanel(pawn.pawnType,pawn.currentAttack, pawn.currentDefense, pawn.currentHP, pawn.currentDexterity,
-					pawn.currentAttackRange,pawn.Name,pawn.GetMaxHP(),pawn.GetLevel(),pawn.currentMagicAttack,
+					pawn.currentAttackRange,pawn.ToString(), pawn.Name, pawn.GetMaxHP(),pawn.GetLevel(),pawn.currentMagicAttack,
 					pawn.currentMagicDefense,0,ActionType.Nonactionable);
     }
 	
@@ -43,13 +43,13 @@ public class PawnStatus : MonoBehaviour
     {	
 		if(currentPawn!=null)
         UpdatePanel(currentPawn.pawnType,currentPawn.currentAttack, currentPawn.currentDefense, currentPawn.currentHP, currentPawn.currentDexterity,
-					currentPawn.currentAttackRange,currentPawn.Name,currentPawn.GetMaxHP(),currentPawn.GetLevel(),currentPawn.currentMagicAttack,
+					currentPawn.currentAttackRange,currentPawn.ToString(),currentPawn.Name, currentPawn.GetMaxHP(),currentPawn.GetLevel(),currentPawn.currentMagicAttack,
 					currentPawn.currentMagicDefense,((Monster)currentPawn).remainedStep,((Monster)currentPawn).actionType);
 		else
 			this.gameObject.SetActive(false);
     }
 	
-    private void UpdatePanel(PawnType type,int attack, int def, int hp, int dex, int atkRange,string name,int maxHp,int level,int magic,int resistance,int remainedStep,ActionType actionType)
+    private void UpdatePanel(PawnType type,int attack, int def, int hp, int dex, int atkRange,string displayname, string name,int maxHp,int level,int magic,int resistance,int remainedStep,ActionType actionType)
     {
         txtAttak.text ="ATK:"+ attack;
         txtDefense.text ="DEF:"+ def;
@@ -61,7 +61,7 @@ public class PawnStatus : MonoBehaviour
         txtAttackRange.text = "RNG:"+atkRange;
 		txtMagic.text="MAG:"+magic;
 		txtResistant.text="RES:"+resistance;
-        txtName.text = ""+name;
+        txtName.text = displayname;
 		txtLevel.text="."+level;
 		if((sprite=Resources.Load("UI/avatar/"+name, typeof(Sprite)) as Sprite)!=null)
 			imgAvatar.sprite =sprite;

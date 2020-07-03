@@ -44,7 +44,7 @@ public class HealthBarManager : MonoBehaviour
 		hb.building=building;
 		hb.slider=hb.GetComponent<Slider>();
 		hb.Init();
-		hb.UpdateLife();
+		hb.UpdateBuildingLife();
 		hb.mainCam=mainCam;
 		return hb;
 	}
