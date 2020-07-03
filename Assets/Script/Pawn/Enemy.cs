@@ -128,7 +128,7 @@ public class Enemy : Pawn
     private bool ProbeAttackBuilding()
     {
         gm.hexMap.ProbeAttackTarget(currentCell);
-		List<HexCell> buildingTargets = gm.hexMap.GetAllBuildingCells();
+        List<HexCell> buildingTargets = gm.hexMap.GetAllBuildingCells();
         if (currentBuildingTarget != null && buildingTargets.Count != 0)
         {
             if (buildingTargets.Contains(currentBuildingTarget.currentCell))
@@ -156,17 +156,18 @@ public class Enemy : Pawn
                 return true;
             }
         }
-		return false;
-	}
-	
-	public virtual void ProbeAction()
+
+        return false;
+    }
+    
+    public virtual void ProbeAction()
     {
         if (Random.Range(0f, 1f) < GameConfig.EnemyAttackBuildingPriority && ProbeAttackBuilding())
             return;
 
         gm.hexMap.ProbeAttackTarget(currentCell);
         List<HexCell> targets = gm.hexMap.GetAttackableTargets();
-        
+		
         if (currentTarget != null && targets.Count != 0)
         {
             if(targets.Contains(currentTarget.currentCell))

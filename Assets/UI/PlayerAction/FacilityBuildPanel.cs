@@ -67,16 +67,12 @@ public class FacilityBuildPanel : MonoBehaviour
 	{
 		if(facilityPallete.currentType==BuildingType.None||(facilityPallete.ValidProduct.Count>0&&facilityPallete.currentItem==ItemType.NUM))
 			return false;
-		Debug.Log("1hello");
 		if(gameManager.itemManager.ItemsOwn[ItemType.Soul]<requireSoul)
 			return false;
-		Debug.Log("2hello"+gameManager.itemManager.ItemsOwn[ItemType.Soul]);
 		if(facilityPallete.currentType==BuildingType.Teleporter&&(facilityPallete.isSelecting==true||facilityPallete.currentDestination==null))
 			return false;
-		Debug.Log("3hello");
 		if(gameManager.buildingManager.IsBuildingBuilt(facilityPallete.currentType,facilityPallete.currentItem))
 			return false;
-		Debug.Log("4hello");
 		return true;
 	}
 	
