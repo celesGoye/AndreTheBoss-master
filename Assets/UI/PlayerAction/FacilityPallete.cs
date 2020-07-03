@@ -62,8 +62,6 @@ public class FacilityPallete : MonoBehaviour
 		{
 			BuildableFacility.Add((BuildingType)i);
 		}
-		if(gameManager.buildingManager.IsAltarBuilt())
-			BuildableFacility.Remove(BuildingType.Altar);
 		FacilityDisplay facility;
 		ClearContent(BuildableFacility.Count);
 		for(int i=0;i<BuildableFacility.Count;i++)

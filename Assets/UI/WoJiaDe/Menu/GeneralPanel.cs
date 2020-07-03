@@ -12,6 +12,7 @@ public class GeneralPanel : MonoBehaviour
 	public Image skillIcon1;
 	public Image skillIcon2;
 	public Slider healthSlider;
+	public Button dismissBtn;
 	
 	private MonsterManager monsterManager;
 	private Gallery_Ch_TheMonsterPage shortcutPage;
@@ -72,6 +73,10 @@ public class GeneralPanel : MonoBehaviour
 				skillIcon2.sprite=Resources.Load("UI/skill/NoSkill", typeof(Sprite)) as Sprite;
 			}
 		}
+		if(currentMonster.monsterType==MonsterType.boss)
+			dismissBtn.gameObject.SetActive(false);
+		else
+			dismissBtn.gameObject.SetActive(true);
 	}
 	
 	public void OnPrevoius()
@@ -131,5 +136,13 @@ public class GeneralPanel : MonoBehaviour
 		}
 		
 		menu.galleryPanel.previousLayer=-1;
+	}
+	
+	public void OnDismiss()
+	{
+		Monster monster=currentMonster;
+		OnNext();
+		monster.OnDie();
+		menu.gameManager.monsterManager.Dismiss(monster);
 	}
 }

@@ -1,7 +1,8 @@
 <terrain>
 	<Plain>
 		<description>Base terrain. Nothing special.</description>
-		<effect>Take 1 movement to cross.\nBuildings can be built here.</effect>
+		<effect>Take 1 movement to cross.
+		Buildings can be built here.</effect>
 	</Plain>
 	<Forest>
 		<description>Parts of the forest are still dense and inaccessible.</description>

@@ -203,6 +203,5 @@ public class Building: MonoBehaviour
 		healthbar.UpdateBuildingLife();
 		
     }
-
 }
 
