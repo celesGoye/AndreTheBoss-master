@@ -47419,6 +47419,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel_BuildingAction
       objectReference: {fileID: 0}
+    - target: {fileID: 1604781496356178796, guid: 79399908422ec724eb45b25d26c274a4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1604781496450172036, guid: 79399908422ec724eb45b25d26c274a4,
         type: 3}
       propertyPath: m_Color.r
@@ -48242,6 +48247,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d6c7ad6fa4fee4d41ac5e61c175e91ff,
         type: 3}
+    - target: {fileID: 2448840587948293426, guid: d97c4dac309ebfd4e9a9ecaabc3dd1ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2448840588040091713, guid: d97c4dac309ebfd4e9a9ecaabc3dd1ba,
         type: 3}
       propertyPath: m_Sprite
@@ -48682,6 +48692,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Panel_SaveGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718934315136841225, guid: 22a0dd1e50a99464dbe89c4c8537ec08,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3718934315136841462, guid: 22a0dd1e50a99464dbe89c4c8537ec08,
         type: 3}
@@ -49613,11 +49628,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel_MonsterPallete
       objectReference: {fileID: 0}
+    - target: {fileID: 2198192650393449546, guid: f6a8a58b75f703e46be2df5e129e7232,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4732598565473966018, guid: f6a8a58b75f703e46be2df5e129e7232,
         type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1489101248}
+    - target: {fileID: 4732598566205294579, guid: f6a8a58b75f703e46be2df5e129e7232,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732598566205294579, guid: f6a8a58b75f703e46be2df5e129e7232,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732598566849958195, guid: f6a8a58b75f703e46be2df5e129e7232,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732598566849958195, guid: f6a8a58b75f703e46be2df5e129e7232,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732598566849958195, guid: f6a8a58b75f703e46be2df5e129e7232,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -36.61389
+      objectReference: {fileID: 0}
     - target: {fileID: 6531585198456979518, guid: f6a8a58b75f703e46be2df5e129e7232,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -53189,7 +53234,7 @@ MonoBehaviour:
   healthBars: []
   healthBar_Prefab: {fileID: 6056080445946821381, guid: e8025ad03a8ed5b4da426b1779190cfe,
     type: 3}
-  buildinghealthBar_Prefab: {fileID: 1304906308}
+  buildinghealthBar_Prefab: {fileID: 0}
   mainCam: {fileID: 1254747749}
 --- !u!224 &8399666868212139933
 RectTransform:
