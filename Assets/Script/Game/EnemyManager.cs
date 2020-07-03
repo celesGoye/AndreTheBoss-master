@@ -333,6 +333,9 @@ public class EnemyManager : MonoBehaviour
                 case EnemyType.cinderlord:
                     newEnemy = Instantiate<Enemy>(EnemyPrefab_cinderlord);
                     break;
+                case EnemyType.andrethehero:
+                    newEnemy = Instantiate<Enemy>(EnemyPrefab_andrethehero);
+                    break;
                 default:
                     break;
             }
