@@ -66,7 +66,7 @@ public class FacilityBuildPanel : MonoBehaviour
 			return false;
 		if(facilityPallete.currentType==BuildingType.Teleporter&&(facilityPallete.isSelecting==true||facilityPallete.currentDestination==null))
 			return false;
-		if(!gameManager.buildingManager.IsBuildingBuilt(facilityPallete.currentType,facilityPallete.currentItem))
+		if(gameManager.buildingManager.IsBuildingBuilt(facilityPallete.currentType,facilityPallete.currentItem))
 			return false;
 		return true;
 	}

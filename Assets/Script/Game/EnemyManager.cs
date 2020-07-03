@@ -346,7 +346,7 @@ public class EnemyManager : MonoBehaviour
                 newEnemy.transform.SetParent(EnemyRoot.transform);
                 gm.hexMap.SetCharacterCell(newEnemy, cell);
 
-				UnityEngine.Debug.Log(newEnemy.Name + " - Current Cell: " + newEnemy.currentCell.ToString());
+				//UnityEngine.Debug.Log(newEnemy.Name + " - Current Cell: " + newEnemy.currentCell.ToString());
                 //gm.hexMap.RevealCell(cell);
                 gm.gameCamera.FocusOnPoint(cell.transform.localPosition);
 
@@ -361,7 +361,7 @@ public class EnemyManager : MonoBehaviour
     {
         int offset = (level - 1) * 5;
         int ran = Random.Range(offset, offset + 4);
-		Debug.Log("enemytype "+ran);
+		//Debug.Log("enemytype "+ran);
         return (EnemyType)ran;
     }
 

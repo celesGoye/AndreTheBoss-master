@@ -30,6 +30,47 @@ public class Enemy : Pawn
                 return "Thief";
             case EnemyType.wanderingswordman:
                 return "Wandering\nSwordman";
+            case EnemyType.bandit:
+                return "Bandit";
+            case EnemyType.robinhood:
+                return "Robinhood";
+            case EnemyType.banditcaptain:
+                return "Bandit Captain";
+            case EnemyType.bard:
+                return "Bard";
+            case EnemyType.magicmaster:
+                return "Magic Master";
+            case EnemyType.tatenoyousya:
+                return "盾の勇者";
+            case EnemyType.magicgrandmaster:
+                return "Magic Grand Master";
+            case EnemyType.witch:
+                return "Witch";
+            case EnemyType.assassin:
+                return "Assassin";
+            case EnemyType.catapult:
+                return "Catapult";
+            case EnemyType.jinjyamiko:
+                return "博麗霊夢";
+            case EnemyType.cultist:
+                return "Cultist";
+            case EnemyType.bloodwitch:
+                return "Blood Witch";
+            case EnemyType.darkknight:
+                return "Dark Knight";
+            case EnemyType.orchestraleader:
+                return "楽団長";
+            case EnemyType.magebelial:
+                return "Mage Belial";
+            case EnemyType.shadowfran:
+                return "Shadow Fran";
+            case EnemyType.cardinaleriri:
+                return "Cardinal Eriri";
+            case EnemyType.cinderlord:
+                return "Cinder Lord";
+            case EnemyType.andrethehero:
+                return "Andre The Hero";
+
             default:
                 return "?Warrior?";
         }
@@ -157,7 +198,6 @@ public class Enemy : Pawn
         {
 			 case ActionType.AttackBuilding:
                 DoAttackBuilding();
-                UnityEngine.Debug.Log("Attacking building");
                 SetIsAction(false);
                 break;
             case ActionType.Attack:
