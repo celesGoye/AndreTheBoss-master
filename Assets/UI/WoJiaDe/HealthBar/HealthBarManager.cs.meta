@@ -3,7 +3,12 @@ guid: ac68e42420e6a3c40837fef4c594f3d1
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - healthBar_Prefab: {fileID: 6056080445946821381, guid: e8025ad03a8ed5b4da426b1779190cfe,
+      type: 3}
+  - buildinghealthBar_Prefab: {fileID: 8155827174347535261, guid: 0780a637eb0e74c449f775f2ea08adc2,
+      type: 3}
+  - mainCam: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

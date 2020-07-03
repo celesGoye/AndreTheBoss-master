@@ -7,10 +7,10 @@ using UnityEngine;
 public class Building: MonoBehaviour
 {
     public static List<Dictionary<int, int>> requireSouls =new List<Dictionary<int, int>>{
-		new Dictionary<int, int> { { 1, 1 }, { 2, 3 }, { 3, 7 } },new Dictionary<int, int> { { 1, 1 }, { 2, 3 }, { 3, 7 } },
-		new Dictionary<int, int> { { 1, 5 }, { 2, 10 } },new Dictionary<int, int> { { 1, 10 } }	} ;
+		new Dictionary<int, int> { { 1, 1 }, { 2, 10 }, { 3, 30 } },new Dictionary<int, int> { { 1, 1 }, { 2, 10 }, { 3, 30 } },
+		new Dictionary<int, int> { { 1, 5 }, { 2, 10 } },new Dictionary<int, int> { { 1, 20 } }	} ;
 	public static List<Dictionary<int, int>> produceItems =new List<Dictionary<int, int>>{
-		new Dictionary<int, int> { { 1, 1 }, { 2, 3 }, { 3, 5 } },new Dictionary<int, int> { { 1, 1 }, { 2, 3 }, { 3, 5 } },
+		new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 3 } },new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 3 } },
 		new Dictionary<int, int> (),new Dictionary<int, int> ()};
 		
 	public HexCell currentCell;
@@ -22,9 +22,6 @@ public class Building: MonoBehaviour
 
 	protected int currentHP;
 	protected int maxHP;
-	
-	// a little hack
-	Pawn buildingPawn;
 	
     public void InitBuilding(BuildingType type, ItemType itemTypeProduced, int initLevel)
     {
@@ -193,7 +190,6 @@ public class Building: MonoBehaviour
 		healthbar.OnDamageAnim(damage);
     }
 
-	// TODO here
 	public void Recover()
     {
 		if(currentHP<maxHP)
@@ -204,19 +200,9 @@ public class Building: MonoBehaviour
 		if (currentHP > maxHP)
 			currentHP = maxHP;
 
-		// update hp ui
 		healthbar.UpdateBuildingLife();
 		
     }
 
-	// TODO here
-	public void Recover()
-    {
-		int hp = currentHP + GameConfig.BuildingRecoverEachTurn[currentLevel];
-		if (currentHP > maxHP)
-			currentHP = maxHP;
-
-		// update hp ui
-    }
 }
 

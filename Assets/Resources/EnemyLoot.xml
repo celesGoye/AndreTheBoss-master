@@ -143,7 +143,7 @@
     
     <hero>
         <robinhood>
-            <soulnum>12</soulnum>
+            <soulnum>5</soulnum>
 			<item>
 				<type>soultype</type>
                 <typeEnum>robinhood</typeEnum>
@@ -177,7 +177,7 @@
         </robinhood>
         
         <tatenoyousya>
-            <soulnum>20</soulnum>
+            <soulnum>10</soulnum>
 			<item>
 				<type>soultype</type>
                 <typeEnum>tatenoyousya</typeEnum>
@@ -211,7 +211,7 @@
         </tatenoyousya>
         
         <jinjyamiko>
-            <soulnum>30</soulnum>
+            <soulnum>15</soulnum>
 			<item>
 				<type>soultype</type>
                 <typeEnum>jinjyamiko</typeEnum>
@@ -245,7 +245,7 @@
         </jinjyamiko>
         
         <orchestraleader>
-            <soulnum>40</soulnum>
+            <soulnum>20</soulnum>
 			<item>
 				<type>soultype</type>
                 <typeEnum>orchestraleader</typeEnum>
@@ -279,7 +279,7 @@
         </orchestraleader>
         
         <cinderlord>
-            <soulnum>0</soulnum>
+            <soulnum>20</soulnum>
 			<item>
 				<type>soultype</type>
                 <typeEnum>cinderlord</typeEnum>
