@@ -3,7 +3,7 @@
         <boss>
             <level value="1">
                 <name>回复</name>
-                <description>回复友方单位maxHP60%血量</description>
+                <description>回复友方单位maxHP50%血量</description>
 				<target>Friend</target>
 				<sprite>s120</sprite>
             </level>
@@ -25,7 +25,7 @@
             </level>
             <level value="5">
                 <name>大回复</name>
-                <description>回复攻击范围内所有友方单位40%血量</description>
+                <description>回复攻击范围内所有友方单位30%血量</description>
 				<sprite>s121</sprite>
 				<target>Friend</target>
             </level>

@@ -45,6 +45,4 @@ public class GameConfig
 	
 	public static float EnemyAttackBuildingPriority = 0.5f;
 
-    public static float EnemyAttackBuildingPriority = 0.5f;
-
 }

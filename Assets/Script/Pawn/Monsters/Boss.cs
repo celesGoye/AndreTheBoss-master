@@ -11,6 +11,7 @@ public class Boss : Monster
     {
         isDoPassive2 = isDoPassive4 = false;
     }
+
     public override void PrepareSkillOne() 
     {
         pawnAction.requirePawnSelection = true;
@@ -22,7 +23,7 @@ public class Boss : Monster
     {
         if (gm.monsterManager.IsFriendlyUnit(other))
         {
-            recoverHPPercentage(other, 0.6f);
+            recoverHPPercentage(other, 0.5f);
         }
     }
 
@@ -30,7 +31,6 @@ public class Boss : Monster
     {
         gm.hexMap.ProbeAttackTarget(this.currentCell);
         gm.hexMap.ShowAttackCandidates();
-        Thread.Sleep(500);
         DoSkillThree();
         pawnAction.DoSkill();
     }
@@ -44,7 +44,9 @@ public class Boss : Monster
 
             UpdateCurrentValue();
             //int damage = this.currentMagicAttack + this.currentAttack;
-            int damage = this.currentMagicAttack;
+            int damage = currentMagicAttack / 3;
+            if (damage == 0)
+                damage = 1;
 
             if(enemy != null)
             {
@@ -58,7 +60,6 @@ public class Boss : Monster
     {
         gm.hexMap.ProbeAttackTarget(this.currentCell);
         gm.hexMap.ShowFriendCandidates();
-        Thread.Sleep(500);
         DoSkillFive();
         pawnAction.DoSkill();
     }
@@ -70,7 +71,7 @@ public class Boss : Monster
         {
             Pawn pawn = cell.pawn;
             if(pawn != null)
-                recoverHPPercentage(pawn, 0.4f);
+                recoverHPPercentage(pawn, 0.3f);
         }
     }
 

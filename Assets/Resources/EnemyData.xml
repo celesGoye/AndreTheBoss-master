@@ -62,7 +62,7 @@
             <magicattack>0</magicattack>
             <defense>4</defense>
             <magicdefense>2</magicdefense>
-            <hp>15</hp>
+            <hp>20</hp>
             <dexterity>3</dexterity>
             <attackRange>1</attackRange>
             <dropsoul>4</dropsoul>
@@ -95,7 +95,7 @@
             <magicattack>7</magicattack>
             <defense>3</defense>
             <magicdefense>7</magicdefense>
-            <hp>15</hp>
+            <hp>22</hp>
             <dexterity>3</dexterity>
             <attackRange>2</attackRange>
             <dropsoul>4</dropsoul>
@@ -116,10 +116,10 @@
     <level value="3">
         <magicgrandmaster>
             <attack>2</attack>
-            <magicattack>10</magicattack>
+            <magicattack>14</magicattack>
             <defense>4</defense>
             <magicdefense>10</magicdefense>
-            <hp>20</hp>
+            <hp>25</hp>
             <dexterity>3</dexterity>
             <attackRange>2</attackRange>
             <dropsoul>8</dropsoul>
@@ -130,18 +130,18 @@
             <magicattack>6</magicattack>
             <defense>0</defense>
             <magicdefense>5</magicdefense>
-            <hp>15</hp>
+            <hp>25</hp>
             <dexterity>5</dexterity>
             <attackRange>2</attackRange>
             <dropsoul>8</dropsoul>
             <skillcounts>1</skillcounts>
         </witch>
         <assassin>
-            <attack>4</attack>
+            <attack>12</attack>
             <magicattack>4</magicattack>
             <defense>2</defense>
             <magicdefense>1</magicdefense>
-            <hp>20</hp>
+            <hp>30</hp>
             <dexterity>6</dexterity>
             <attackRange>1</attackRange>
             <dropsoul>8</dropsoul>
@@ -152,7 +152,7 @@
             <magicattack>0</magicattack>
             <defense>8</defense>
             <magicdefense>0</magicdefense>
-            <hp>20</hp>
+            <hp>30</hp>
             <dexterity>3</dexterity>
             <attackRange>3</attackRange>
             <dropsoul>8</dropsoul>
@@ -160,10 +160,10 @@
         </catapult>
         <jinjyamiko>
             <attack>7</attack>
-            <magicattack>7</magicattack>
+            <magicattack>17</magicattack>
             <defense>2</defense>
-            <magicdefense>5</magicdefense>
-            <hp>25</hp>
+            <magicdefense>7</magicdefense>
+            <hp>30</hp>
             <dexterity>5</dexterity>
             <attackRange>4</attackRange>
             <dropsoul>30</dropsoul>
@@ -176,7 +176,7 @@
             <magicattack>8</magicattack>
             <defense>2</defense>
             <magicdefense>2</magicdefense>
-            <hp>20</hp>
+            <hp>28</hp>
             <dexterity>3</dexterity>
             <attackRange>2</attackRange>
             <dropsoul>12</dropsoul>
@@ -186,19 +186,19 @@
             <attack>7</attack>
             <magicattack>7</magicattack>
             <defense>2</defense>
-            <magicdefense>10</magicdefense>
-            <hp>24</hp>
+            <magicdefense>14</magicdefense>
+            <hp>28</hp>
             <dexterity>3</dexterity>
             <attackRange>2</attackRange>
             <dropsoul>12</dropsoul>
             <skillcounts>1</skillcounts>
         </priest>
         <bloodwitch>
-            <attack>2</attack>
-            <magicattack>10</magicattack>
-            <defense>0</defense>
-            <magicdefense>12</magicdefense>
-            <hp>20</hp>
+            <attack>8</attack>
+            <magicattack>15</magicattack>
+            <defense>2</defense>
+            <magicdefense>15</magicdefense>
+            <hp>30</hp>
             <dexterity>6</dexterity>
             <attackRange>2</attackRange>
             <dropsoul>12</dropsoul>
@@ -207,8 +207,8 @@
         <darkknight>
             <attack>20</attack>
             <magicattack>10</magicattack>
-            <defense>5</defense>
-            <magicdefense>5</magicdefense>
+            <defense>15</defense>
+            <magicdefense>10</magicdefense>
             <hp>30</hp>
             <dexterity>3</dexterity>
             <attackRange>1</attackRange>
@@ -216,10 +216,10 @@
             <skillcounts>0</skillcounts>
         </darkknight>
         <orchestraleader>
-            <attack>3</attack>
-            <magicattack>10</magicattack>
-            <defense>5</defense>
-            <magicdefense>10</magicdefense>
+            <attack>15</attack>
+            <magicattack>20</magicattack>
+            <defense>12</defense>
+            <magicdefense>15</magicdefense>
             <hp>30</hp>
             <dexterity>5</dexterity>
             <attackRange>3</attackRange>
@@ -229,11 +229,11 @@
     </level>
     <level value="5">
         <magebelial>
-            <attack>5</attack>
-            <magicattack>20</magicattack>
-            <defense>5</defense>
+            <attack>20</attack>
+            <magicattack>10</magicattack>
+            <defense>8</defense>
             <magicdefense>15</magicdefense>
-            <hp>30</hp>
+            <hp>40</hp>
             <dexterity>5</dexterity>
             <attackRange>3</attackRange>
             <dropsoul>16</dropsoul>
@@ -244,7 +244,7 @@
             <magicattack>5</magicattack>
             <defense>10</defense>
             <magicdefense>5</magicdefense>
-            <hp>35</hp>
+            <hp>40</hp>
             <dexterity>4</dexterity>
             <attackRange>2</attackRange>
             <dropsoul>16</dropsoul>
@@ -255,7 +255,7 @@
             <magicattack>5</magicattack>
             <defense>5</defense>
             <magicdefense>5</magicdefense>
-            <hp>30</hp>
+            <hp>40</hp>
             <dexterity>10</dexterity>
             <attackRange>2</attackRange>
             <dropsoul>16</dropsoul>
@@ -266,7 +266,7 @@
             <magicattack>20</magicattack>
             <defense>10</defense>
             <magicdefense>15</magicdefense>
-            <hp>30</hp>
+            <hp>40</hp>
             <dexterity>4</dexterity>
             <attackRange>3</attackRange>
             <dropsoul>16</dropsoul>
@@ -277,10 +277,10 @@
             <magicattack>20</magicattack>
             <defense>15</defense>
             <magicdefense>10</magicdefense>
-            <hp>40</hp>
+            <hp>50</hp>
             <dexterity>3</dexterity>
             <attackRange>3</attackRange>
-            <dropsoul>0</dropsoul>
+            <dropsoul>50</dropsoul>
             <skillcounts>2</skillcounts>
         </cinderlord>
     </level>
@@ -288,9 +288,9 @@
         <andrethehero>
             <attack>30</attack>
             <magicattack>30</magicattack>
-            <defense>15</defense>
-            <magicdefense>10</magicdefense>
-            <hp>40</hp>
+            <defense>20</defense>
+            <magicdefense>20</magicdefense>
+            <hp>100</hp>
             <dexterity>4</dexterity>
             <attackRange>3</attackRange>
             <dropsoul>0</dropsoul>
