@@ -8,6 +8,7 @@ public class CinderLord : Enemy
     bool isReflect = false;
     public override void DoSkill(int skillid, Pawn target = null)
     {
+		Debug.Log("doskill");
         switch(skillid)
         {
             case 0:
@@ -22,6 +23,7 @@ public class CinderLord : Enemy
 
     public void DoSkillZero()
     {
+		Debug.Log("do0");
         gm.hexMap.ProbeAttackTarget(currentCell);
         foreach(HexCell cell in gm.hexMap.GetAttackableTargets())
         {
@@ -34,12 +36,14 @@ public class CinderLord : Enemy
 
     public void DoSkillOne()
     {
+		Debug.Log("do1");
         isReflect = true;
     }
 
     public override void OnActionBegin()
     {
         isReflect = false;
+		base.OnActionBegin();
     }
 
     public override int TakeDamage(int damage, int magicDamage, Pawn from = null, bool isIgnoreDefense = false, bool isIgnoreMagicDefense = false)

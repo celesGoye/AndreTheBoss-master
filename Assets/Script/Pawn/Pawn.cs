@@ -77,7 +77,7 @@ public abstract class Pawn : MonoBehaviour
 		
 		InitPawn();
     }
-
+	
 	public virtual void InitPawn() {; }		// for cub class initialization
 
     public virtual int DoAttack(Pawn other)	// default attack action
@@ -164,7 +164,7 @@ public abstract class Pawn : MonoBehaviour
 		else if(other.pawnType==PawnType.Enemy)
 			uilog.UpdateLog("<color="+TextColor.GreyColor+">"+other.Name+"  recovered <color="+TextColor.GreenColor+"> "+ret+"</color> hp</color>");
 		
-		PlayRecover(ret);
+		other.PlayRecover(ret);
 		
 		return ret;
 	}
@@ -193,7 +193,7 @@ public abstract class Pawn : MonoBehaviour
 		else if(other.pawnType==PawnType.Enemy)
 			uilog.UpdateLog("<color="+TextColor.GreyColor+">"+other.Name+"  recovered <color="+TextColor.GreenColor+"> "+ret+"</color> hp</color>");
 		
-		PlayRecover(ret);
+		other.PlayRecover(ret);
 		
 		return ret;
 	}

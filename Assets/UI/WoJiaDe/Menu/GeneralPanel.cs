@@ -23,8 +23,7 @@ public class GeneralPanel : MonoBehaviour
 	private Monster currentMonster;
 	private Sprite sprite;
 
-	public DismissPanel dismissPanel;
-
+	public Transform dismissPanel;
     void OnEnable()
     {
         UpdateGeneral();
@@ -147,7 +146,7 @@ public class GeneralPanel : MonoBehaviour
 		monster.OnDie();
 		menu.gameManager.monsterManager.Dismiss(monster);
 	}
-
+	
 	public void OnDismiss()
 	{
 		dismissPanel.gameObject.SetActive(true);

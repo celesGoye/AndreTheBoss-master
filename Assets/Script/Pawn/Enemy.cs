@@ -37,6 +37,8 @@ public class Enemy : Pawn
                 return "Bandit Captain";
             case EnemyType.bard:
                 return "Bard";
+			case EnemyType.berserker:
+				return "Berserker";
             case EnemyType.magicmaster:
                 return "Magic Master";
             case EnemyType.tatenoyousya:
@@ -53,6 +55,8 @@ public class Enemy : Pawn
                 return "博麗霊夢";
             case EnemyType.cultist:
                 return "Cultist";
+			case EnemyType.priest:
+				return "Priest";
             case EnemyType.bloodwitch:
                 return "Blood Witch";
             case EnemyType.darkknight:
@@ -65,6 +69,8 @@ public class Enemy : Pawn
                 return "Shadow Fran";
             case EnemyType.cardinaleriri:
                 return "Cardinal Eriri";
+			case EnemyType.royalinquisitor:
+				return "Royap Inquisitor";
             case EnemyType.cinderlord:
                 return "Cinder Lord";
             case EnemyType.andrethehero:
@@ -116,7 +122,7 @@ public class Enemy : Pawn
     }
 
     public bool IsAction() { return isAction; }
-	public void SetIsAction(bool isAction) { this.isAction = isAction; }
+	public void SetIsAction(bool isAction) { this.isAction = isAction;}
 
     private bool ProbeAttackBuilding()
     {
@@ -160,6 +166,7 @@ public class Enemy : Pawn
 
         gm.hexMap.ProbeAttackTarget(currentCell);
         List<HexCell> targets = gm.hexMap.GetAttackableTargets();
+		
         if (currentTarget != null && targets.Count != 0)
         {
             if(targets.Contains(currentTarget.currentCell))
@@ -307,7 +314,6 @@ public class Enemy : Pawn
                 return;
             }
         }
-
         SetIsAction(false);
     }
 
@@ -351,13 +357,13 @@ public class Enemy : Pawn
                 //gm.hexMap.RevealCell(routes[routes.Count - 1]);
                 IsMoving = false;
 				 SetIsAction(false);
-                IsWaiting = false;
+				
             }
             else
             {
                 IsMoving = false;
 				 SetIsAction(false);
-                IsWaiting = false;
+				
             }
         }
         else

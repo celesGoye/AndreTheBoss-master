@@ -88,7 +88,7 @@ public class PawnAction : MonoBehaviour
 			ClearStatus();
 		}
 		Debug.Log("cancel");
-		hexMap.HideCells();
+		hexMap.HideIndicator();
 		cancelButton.gameObject.SetActive(false);
 	}
 

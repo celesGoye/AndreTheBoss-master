@@ -23,7 +23,8 @@ public class endWaiting : StateMachineBehaviour
         if(enemy!=null&&enemy.currentCell!=null)
 		{
 			enemy.IsWaiting=false;
-			enemy.DoAction();
+			if(enemy.IsAction())
+				enemy.DoAction();
 		}
     }
 

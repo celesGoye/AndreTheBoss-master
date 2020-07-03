@@ -12,7 +12,7 @@ public class AltarPanel : MonoBehaviour
 	
 	private GameManager gameManager;
 	private HexCell hexCell;
-	private Enemy enemy;
+	private EnemyType enemyType;
 	private int currentcd;
 	
 	public void OnEnable()
@@ -23,7 +23,7 @@ public class AltarPanel : MonoBehaviour
 	
 	public bool IsReviveOK()
 	{
-		if(enemy==null)
+		if(enemyType==EnemyType.NUM)
 		{
 			txt_tips.text="<size=22>No one on the record.</size>";
 			return false;
@@ -40,12 +40,12 @@ public class AltarPanel : MonoBehaviour
     public void UpdateAltarPanel(HexCell cell)
 	{
 		hexCell=cell;
-		enemy=gameManager.enemyManager.getDeadEnemy();
+		enemyType=gameManager.enemyManager.getLastDeadEnemyType();
 		if(IsReviveOK())
 		{
 			button_revive.interactable=true;
 			deadPanel.gameObject.SetActive(true);
-			deadPanel.UpdateDeadPanel(enemy);
+			deadPanel.UpdateDeadPanel(enemyType);
 		}
 		else
 		{
@@ -58,7 +58,7 @@ public class AltarPanel : MonoBehaviour
 	public void OnRevive()
 	{
 		//revive
-		gameManager.enemyManager.setDeadEnemy();
+		gameManager.enemyManager.setDeadEnemyType(EnemyType.NUM);
         gameManager.gameInteraction.Clear();
 	}
 	

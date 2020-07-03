@@ -147,7 +147,10 @@ public class EnemyManager : MonoBehaviour
     {
         currentEnemyIndex = 0;
         if (EnemyPawns.Count > 0)
+		{
             EnemyPawns[currentEnemyIndex].OnActionBegin();
+		}
+            //EnemyPawns[currentEnemyIndex].OnActionBegin();
         else
             OnEnemyTurnEnd();
     }
@@ -156,12 +159,6 @@ public class EnemyManager : MonoBehaviour
 
     public void Update()
     {
-		if(gm==null||gm.gameTurnManager==null||EnemyPawns==null)
-		{
-			Debug.Log(gm==null);
-			Debug.Log(gm.gameTurnManager==null);
-			Debug.Log(EnemyPawns==null);
-		}
         if(gm.gameTurnManager.IsEnemyTurn() && EnemyPawns.Count > 0)
         {
             if(currentEnemyIndex >= EnemyPawns.Count || !EnemyPawns[currentEnemyIndex].IsAction())
@@ -219,6 +216,8 @@ public class EnemyManager : MonoBehaviour
             enemyType = getRandomEnemyType(5);
         }
 
+		//enemyType=EnemyType.andrethehero;
+		
         // TODO: get portal code here
         if(enemyType != EnemyType.NUM)
             return SpawnEnemyAtCell(enemyType, gm.hexMap.GetRandomCellToSpawn());
@@ -238,6 +237,7 @@ public class EnemyManager : MonoBehaviour
                 break;
             }
         }
+		//heroType=EnemyType.andrethehero;
 		
         if(heroType != EnemyType.NUM)
         {
@@ -390,16 +390,6 @@ public class EnemyManager : MonoBehaviour
         return EnemyPawns;
     }
 	
-	public Enemy getDeadEnemy()
-    {
-        return DeadEnemyPawn;
-    }
-
-    public void setDeadEnemy(Enemy enemy = null)
-    {
-        DeadEnemyPawn = enemy;
-    }
-	
 	public EnemyType getLastDeadEnemyType()
 	{
 		return LastDeadEnemyType;
@@ -414,6 +404,7 @@ public class EnemyManager : MonoBehaviour
     {
         if(EnemyPawns.Contains(enemy))
         {
+			setDeadEnemyType(enemy.enemyType);
             EnemyPawns.Remove(enemy);
         }
     }
