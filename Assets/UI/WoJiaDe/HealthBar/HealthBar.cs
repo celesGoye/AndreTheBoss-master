@@ -7,11 +7,13 @@ public class HealthBar : MonoBehaviour
 {
 	public Camera mainCam;
 	public Pawn pawn;
+	public Building building;
 	public Slider slider;
 	public Image fill;
 	
 	public Color friendColor;
 	public Color enemyColor;
+	public Color buildingColor;
 	public Color damageColor;
 	public Color recoverColor;
 	
@@ -28,12 +30,32 @@ public class HealthBar : MonoBehaviour
 	
 	public void Init()
 	{
-		this.GetComponent<followGameObject>().follow=pawn.GetComponent<Transform>();
-		fill.color=pawn.pawnType==PawnType.Monster?friendColor:enemyColor;
+		if(building!=null)
+		{
+			this.GetComponent<followGameObject>().follow=building.GetComponent<Transform>();
+			fill.color=buildingColor;
+		}
+		else
+		{	
+			this.GetComponent<followGameObject>().follow=pawn.GetComponent<Transform>();
+			fill.color=pawn.pawnType==PawnType.Monster?friendColor:enemyColor;
+		}
 	}
-	public void UpdateLife(){
+	public void UpdateLife()
+	{
+		if(pawn==null)
+			return;
 		maxlife=pawn.GetMaxHP();
 		currentlife=pawn.currentHP;
+		slider.value=currentlife/maxlife;
+	}
+	
+	public void UpdateBuildingLife()
+	{
+		if(building==null)
+			return;
+		maxlife=building.GetMaxHP();
+		currentlife=building.GetCurrentHP();
 		slider.value=currentlife/maxlife;
 	}
 

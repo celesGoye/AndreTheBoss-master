@@ -11,6 +11,7 @@ public class fontsizeControl : MonoBehaviour
 	public int newsize;
 	private string newtext;
 	private Text mytext;
+	private float lastheight=0f;
 	
 	public void OnEnable()
 	{
@@ -18,7 +19,7 @@ public class fontsizeControl : MonoBehaviour
 	}
     void Update()
     {
-		if(mytext==null)
+		if(mytext==null||lastheight==UnityEngine.Screen.height)
 			return;
 		Regex rgx=new Regex("(?:^|\n)<size=\\d*>");
 		newsize=(int)(UnityEngine.Screen.height*fontsize);

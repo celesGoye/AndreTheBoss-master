@@ -19,5 +19,6 @@ serve as interaction purpose
 (use raycast)
 
 
-TODO:[ ] UI, data transfer from data classes to UI panels
-     [ ] Interaction, player interaction with GameEventDisplayer
+TODO:[v] UI, data transfer from data classes to UI panels
+     [v] Interaction, player interaction with GameEventDisplayer
+     by goye

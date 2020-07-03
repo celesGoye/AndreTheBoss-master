@@ -7,6 +7,7 @@ public class HealthBarManager : MonoBehaviour
 {
     public List<HealthBar> healthBars;
 	public HealthBar healthBar_Prefab;
+	public HealthBar buildinghealthBar_Prefab;
 	public Camera mainCam;
 	
 	
@@ -16,6 +17,7 @@ public class HealthBarManager : MonoBehaviour
 		healthBars.Add(hb);
 		hb.transform.SetParent(this.transform);
 		hb.pawn=pawn;
+		hb.building=null;
 		hb.slider=hb.GetComponent<Slider>();
 		hb.Init();
 		hb.UpdateLife();
@@ -32,4 +34,19 @@ public class HealthBarManager : MonoBehaviour
 			hb.OnDestroy();
 		}
 	}
+	
+	public HealthBar InitializeBuildingHealthBar(Building building)
+	{
+		HealthBar hb=Instantiate<HealthBar>(buildinghealthBar_Prefab);
+		healthBars.Add(hb);
+		hb.transform.SetParent(this.transform);
+		hb.pawn=null;
+		hb.building=building;
+		hb.slider=hb.GetComponent<Slider>();
+		hb.Init();
+		hb.UpdateLife();
+		hb.mainCam=mainCam;
+		return hb;
+	}
+	
 }

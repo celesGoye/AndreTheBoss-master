@@ -14,6 +14,8 @@ public class Building: MonoBehaviour
 		new Dictionary<int, int> (),new Dictionary<int, int> ()};
 		
 	public HexCell currentCell;
+	public HealthBar healthbar;
+	
 	protected BuildingType buildingType;
     protected int currentLevel; // 1,2,3
     protected ItemType itemTypeProduced;
@@ -37,6 +39,7 @@ public class Building: MonoBehaviour
 		Debug.Log("initbuilding: "+ gameObject);
 		gameObject.AddComponent<Pawn>();
 		//buildingPawn.Type = PawnType.Building;
+		healthbar.UpdateBuildingLife();
     }
 
     public int LevelUp() // return souls used
@@ -50,9 +53,10 @@ public class Building: MonoBehaviour
         int required = after-before;
 
         currentLevel++;
-		currentHP = maxHP = GameConfig.BuildingHP[currentLevel];
+		maxHP = GameConfig.BuildingHP[currentLevel];
 		SetAppearance(currentLevel);
 		OnLevelUp();
+		healthbar.UpdateBuildingLife();
         return required;
     }
 	
@@ -165,6 +169,15 @@ public class Building: MonoBehaviour
 			return ItemType.NUM;
 	}
 	
+	public int GetMaxHP()
+	{
+		return maxHP;
+	}
+	
+	public  int GetCurrentHP()
+	{
+		return currentHP;
+	}
 	
 	public bool CanbeSkillTargetOf()
 	{
@@ -176,6 +189,24 @@ public class Building: MonoBehaviour
 		currentHP -= damage;
 		if (currentHP <= 0)
 			GameObject.FindObjectOfType<GameManager>().buildingManager.DestroyBuilding(this);
+		healthbar.UpdateBuildingLife();
+		healthbar.OnDamageAnim(damage);
+    }
+
+	// TODO here
+	public void Recover()
+    {
+		if(currentHP<maxHP)
+		{
+			healthbar.OnRecoverAnim(GameConfig.BuildingRecoverEachTurn[currentLevel]);
+		}
+		int hp = currentHP + GameConfig.BuildingRecoverEachTurn[currentLevel];
+		if (currentHP > maxHP)
+			currentHP = maxHP;
+
+		// update hp ui
+		healthbar.UpdateBuildingLife();
+		
     }
 }
 

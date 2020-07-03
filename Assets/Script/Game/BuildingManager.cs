@@ -20,6 +20,7 @@ public class BuildingManager : MonoBehaviour
 	public Building BuildingPrefab_Teleporter;
 	public Building BuildingPrefab_Altar;
 	
+	
 	//public HexCell currentHex;
 	
     private Dictionary<Vector3, Building> prefabs;
@@ -70,10 +71,12 @@ public class BuildingManager : MonoBehaviour
         Building building = GameObject.Instantiate<Building>(prefabs[new Vector2((int)buildingType,Building.GetValidProduct(buildingType).IndexOf(itemType))]);
         building.transform.SetParent(transform);
         gameManager.hexMap.SetBuildingCell(building, cellToBuild);
+		building.healthbar= gameManager.healthbarManager.InitializeBuildingHealthBar(building);
 
 		building.InitBuilding(buildingType,itemType,level);
 		building.SetAppearance(level);
 		Buildings.Add(building);
+		
 	   
 		gameManager.animationManager.PlayCreateEff(building.transform.position);
        return building;
@@ -148,13 +151,22 @@ public class BuildingManager : MonoBehaviour
 	{
 		if(Buildings.Contains(building))
 		{
+			gameManager.healthbarManager.RemoveHealthBar(building.healthbar);
 			Buildings.Remove(building);
 			building.currentCell.building=null;
-			((building.buildingType)building).DestroyBuilding();
+			building.DestroyBuilding();
 		}
 		else
 		{
 			Debug.Log("destroy building not found");
 		}
 	}
+
+	public void OnTurnEnd()
+    {
+		foreach(Building building in Buildings)
+        {
+			building.Recover();
+        }
+    }
 }
