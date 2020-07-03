@@ -30,6 +30,53 @@ public class Enemy : Pawn
                 return "Thief";
             case EnemyType.wanderingswordman:
                 return "Wandering\nSwordman";
+            case EnemyType.bandit:
+                return "Bandit";
+            case EnemyType.robinhood:
+                return "Robinhood";
+            case EnemyType.banditcaptain:
+                return "Bandit Captain";
+            case EnemyType.bard:
+                return "Bard";
+			case EnemyType.berserker:
+				return "Berserker";
+            case EnemyType.magicmaster:
+                return "Magic Master";
+            case EnemyType.tatenoyousya:
+                return "盾の勇者";
+            case EnemyType.magicgrandmaster:
+                return "Magic Grand Master";
+            case EnemyType.witch:
+                return "Witch";
+            case EnemyType.assassin:
+                return "Assassin";
+            case EnemyType.catapult:
+                return "Catapult";
+            case EnemyType.jinjyamiko:
+                return "博麗霊夢";
+            case EnemyType.cultist:
+                return "Cultist";
+			case EnemyType.priest:
+				return "Priest";
+            case EnemyType.bloodwitch:
+                return "Blood Witch";
+            case EnemyType.darkknight:
+                return "Dark Knight";
+            case EnemyType.orchestraleader:
+                return "楽団長";
+            case EnemyType.magebelial:
+                return "Mage Belial";
+            case EnemyType.shadowfran:
+                return "Shadow Fran";
+            case EnemyType.cardinaleriri:
+                return "Cardinal Eriri";
+			case EnemyType.royalinquisitor:
+				return "Royap Inquisitor";
+            case EnemyType.cinderlord:
+                return "Cinder Lord";
+            case EnemyType.andrethehero:
+                return "Andre The Hero";
+
             default:
                 return "?Warrior?";
         }
@@ -76,14 +123,12 @@ public class Enemy : Pawn
     }
 
     public bool IsAction() { return isAction; }
-	public void SetIsAction(bool isAction) { this.isAction = isAction; }
+	public void SetIsAction(bool isAction) { this.isAction = isAction;}
 
-    public virtual void ProbeAction()
+    private bool ProbeAttackBuilding()
     {
         gm.hexMap.ProbeAttackTarget(currentCell);
-        List<HexCell> targets = gm.hexMap.GetAttackableTargets();
 		List<HexCell> buildingTargets = gm.hexMap.GetAllBuildingCells();
-
         if (currentBuildingTarget != null && buildingTargets.Count != 0)
         {
             if (buildingTargets.Contains(currentBuildingTarget.currentCell))
@@ -99,7 +144,7 @@ public class Enemy : Pawn
                     nextAction = ActionType.Move;
                 }
             }
-            return;
+            return true;
         }
         else
         {
@@ -108,9 +153,19 @@ public class Enemy : Pawn
             {
                 currentBuildingTarget = cell.building;
                 nextAction = ActionType.Move;
-                return;
+                return true;
             }
         }
+		return false;
+	}
+	
+	public virtual void ProbeAction()
+    {
+        if (Random.Range(0f, 1f) < GameConfig.EnemyAttackBuildingPriority && ProbeAttackBuilding())
+            return;
+
+        gm.hexMap.ProbeAttackTarget(currentCell);
+        List<HexCell> targets = gm.hexMap.GetAttackableTargets();
         
         if (currentTarget != null && targets.Count != 0)
         {
@@ -157,7 +212,6 @@ public class Enemy : Pawn
         {
 			 case ActionType.AttackBuilding:
                 DoAttackBuilding();
-                UnityEngine.Debug.Log("Attacking building");
                 SetIsAction(false);
                 break;
             case ActionType.Attack:
@@ -260,7 +314,6 @@ public class Enemy : Pawn
                 return;
             }
         }
-
         SetIsAction(false);
     }
 
@@ -304,13 +357,13 @@ public class Enemy : Pawn
                 //gm.hexMap.RevealCell(routes[routes.Count - 1]);
                 IsMoving = false;
 				 SetIsAction(false);
-                IsWaiting = false;
+				
             }
             else
             {
                 IsMoving = false;
 				 SetIsAction(false);
-                IsWaiting = false;
+				
             }
         }
         else

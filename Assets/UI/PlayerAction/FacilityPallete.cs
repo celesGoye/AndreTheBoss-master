@@ -41,6 +41,7 @@ public class FacilityPallete : MonoBehaviour
 		currentType=BuildingType.None;
 		currentItem=ItemType.NUM;
 		currentLevel=1;
+		facilityBuildPanel.InitBuildPanel();
 		facilityBuildPanel.UpdateBuildPanel();
 		UpdateFacilityPallete();
 		gameManager.hexMap.selectedCell.indicator.gameObject.SetActive(true);

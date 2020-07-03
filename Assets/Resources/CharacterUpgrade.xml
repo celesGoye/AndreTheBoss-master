@@ -39,15 +39,19 @@
                 <Spiderlily>1</Spiderlily>
             </level>
             <level value="2">
+                <Soul>3</Soul>
                 <Spiderlily>3</Spiderlily>
             </level>
             <level value="3">
+                <Soul>3</Soul>
                 <Spiderlily>5</Spiderlily>
             </level>
             <level value="4">
+                <Soul>3</Soul>
                 <Spiderlily>7</Spiderlily>
             </level>
             <level value="5">
+                <Soul>3</Soul>
                 <Spiderlily>10</Spiderlily>
             </level>
         </zombie>
@@ -58,15 +62,19 @@
                 <GoldenApple>1</GoldenApple>
             </level>
             <level value="2">
+                <Soul>3</Soul>
                 <GoldenApple>3</GoldenApple>
             </level>
             <level value="3">
+                <Soul>3</Soul>
                 <GoldenApple>5</GoldenApple>
             </level>
             <level value="4">
+                <Soul>3</Soul>
                 <GoldenApple>7</GoldenApple>
             </level>
             <level value="5">
+                <Soul>3</Soul>
                 <GoldenApple>10</GoldenApple>
             </level>
         </sprite>
@@ -77,15 +85,19 @@
                 <DemonFruit>1</DemonFruit>
             </level>
             <level value="2">
+                <Soul>3</Soul>
                 <DemonFruit>3</DemonFruit>
             </level>
             <level value="3">
+                <Soul>3</Soul>
                 <DemonFruit>5</DemonFruit>
             </level>
             <level value="4">
+                <Soul>3</Soul>
                 <DemonFruit>7</DemonFruit>
             </level>
             <level value="5">
+                <Soul>3</Soul>
                 <DemonFruit>10</DemonFruit>
             </level>
         </druid>
@@ -99,18 +111,22 @@
                 <Gold>1</Gold>
             </level>
             <level value="2">
+                <Soul>6</Soul>
                 <Sulphur>2</Sulphur>
                 <Gold>2</Gold>
             </level>
             <level value="3">
+                <Soul>6</Soul>
                 <Sulphur>4</Sulphur>
                 <Gold>4</Gold>
             </level>
             <level value="4">
+                <Soul>6</Soul>
                 <Sulphur>6</Sulphur>
                 <Gold>6</Gold>
             </level>
             <level value="5">
+                <Soul>6</Soul>
                 <Sulphur>8</Sulphur>
                 <Gold>8</Gold>
             </level>
@@ -123,18 +139,22 @@
                 <Gold>1</Gold>
             </level>
             <level value="2">
+                <Soul>6</Soul>
                 <DemonFruit>2</DemonFruit>
                 <Gold>2</Gold>
             </level>
             <level value="3">
+                <Soul>6</Soul>
                 <DemonFruit>4</DemonFruit>
                 <Gold>4</Gold>
             </level>
             <level value="4">
+                <Soul>6</Soul>
                 <DemonFruit>6</DemonFruit>
                 <Gold>6</Gold>
             </level>
             <level value="5">
+                <Soul>6</Soul>
                 <DemonFruit>8</DemonFruit>
                 <Gold>8</Gold>
             </level>
@@ -147,18 +167,22 @@
                 <Sulphur>1</Sulphur>
             </level>
             <level value="2">
+                <Soul>6</Soul>
                 <Spiderlily>2</Spiderlily>
                 <Sulphur>2</Sulphur>
             </level>
             <level value="3">
+                <Soul>6</Soul>
                 <Spiderlily>4</Spiderlily>
                 <Sulphur>4</Sulphur>
             </level>
             <level value="4">
+                <Soul>6</Soul>
                 <Spiderlily>6</Spiderlily>
                 <Sulphur>6</Sulphur>
             </level>
             <level value="5">
+                <Soul>6</Soul>
                 <Spiderlily>8</Spiderlily>
                 <Sulphur>8</Sulphur>
             </level>
@@ -174,21 +198,25 @@
                 <Gold>3</Gold>
             </level>
             <level value="2">
+                <Soul>10</Soul>
                 <DemonFruit>5</DemonFruit>
                 <Mercury>5</Mercury>
                 <Gold>5</Gold>
             </level>
             <level value="3">
+                <Soul>10</Soul>
                 <DemonFruit>7</DemonFruit>
                 <Mercury>7</Mercury>
                 <Gold>7</Gold>
             </level>
             <level value="4">
+                <Soul>10</Soul>
                 <DemonFruit>7</DemonFruit>
                 <Mercury>7</Mercury>
                 <Gold>7</Gold>
             </level>
             <level value="5">
+                <Soul>10</Soul>
                 <DemonFruit>10</DemonFruit>
                 <Mercury>10</Mercury>
                 <Gold>10</Gold>
@@ -203,21 +231,25 @@
                 <Mercury>3</Mercury>
             </level>
             <level value="2">
+                <Soul>10</Soul>
                 <GoldenApple>5</GoldenApple>
                 <Sulphur>5</Sulphur>
                 <Mercury>5</Mercury>
             </level>
             <level value="3">
+                <Soul>10</Soul>
                 <GoldenApple>7</GoldenApple>
                 <Sulphur>7</Sulphur>
                 <Mercury>7</Mercury>
             </level>
             <level value="4">
+                <Soul>10</Soul>
                 <GoldenApple>7</GoldenApple>
                 <Sulphur>7</Sulphur>
                 <Mercury>7</Mercury>
             </level>
             <level value="5">
+                <Soul>10</Soul>
                 <GoldenApple>10</GoldenApple>
                 <Sulphur>10</Sulphur>
                 <Mercury>10</Mercury>
@@ -232,21 +264,25 @@
                 <Gold>2</Gold>
             </level>
             <level value="2">
+                <Soul>10</Soul>
                 <Spiderlily>5</Spiderlily>
                 <Sulphur>5</Sulphur>
                 <Gold>5</Gold>
             </level>
             <level value="3">
+                <Soul>10</Soul>
                 <Spiderlily>7</Spiderlily>
                 <Sulphur>7</Sulphur>
                 <Gold>7</Gold>
             </level>
             <level value="4">
+                <Soul>10</Soul>
                 <Spiderlily>7</Spiderlily>
                 <Sulphur>7</Sulphur>
                 <Gold>7</Gold>
             </level>
             <level value="5">
+                <Soul>10</Soul>
                 <Spiderlily>10</Spiderlily>
                 <Sulphur>10</Sulphur>
                 <Gold>10</Gold>
@@ -262,18 +298,22 @@
                 <Gold>5</Gold>
             </level>
             <level value="2">
+                <Soul>15</Soul>
                 <GoldenApple>7</GoldenApple>
                 <Gold>7</Gold>
             </level>
             <level value="3">
+                <Soul>15</Soul>
                 <GoldenApple>10</GoldenApple>
                 <Gold>10</Gold>
             </level>
             <level value="4">
+                <Soul>15</Soul>
                 <GoldenApple>10</GoldenApple>
                 <Gold>10</Gold>
             </level>
             <level value="5">
+                <Soul>15</Soul>
                 <GoldenApple>15</GoldenApple>
                 <Gold>15</Gold>
             </level>
@@ -286,18 +326,22 @@
                 <Sulphur>5</Sulphur>
             </level>
             <level value="2">
+                <Soul>15</Soul>
                 <DemonFruit>7</DemonFruit>
                 <Sulphur>7</Sulphur>
             </level>
             <level value="3">
+                <Soul>15</Soul>
                 <DemonFruit>10</DemonFruit>
                 <Sulphur>10</Sulphur>
             </level>
             <level value="4">
+                <Soul>15</Soul>
                 <DemonFruit>10</DemonFruit>
                 <Sulphur>10</Sulphur>
             </level>
             <level value="5">
+                <Soul>15</Soul>
                 <DemonFruit>15</DemonFruit>
                 <Sulphur>15</Sulphur>
             </level>
@@ -310,18 +354,22 @@
                 <Mercury>5</Mercury>
             </level>
             <level value="2">
+                <Soul>15</Soul>
                 <Spiderlily>7</Spiderlily>
                 <Mercury>7</Mercury>
             </level>
             <level value="3">
+                <Soul>15</Soul>
                 <Spiderlily>10</Spiderlily>
                 <Mercury>10</Mercury>
             </level>
             <level value="4">
+                <Soul>15</Soul>
                 <Spiderlily>10</Spiderlily>
                 <Mercury>10</Mercury>
             </level>
             <level value="5">
+                <Soul>15</Soul>
                 <Spiderlily>15</Spiderlily>
                 <Mercury>15</Mercury>
             </level>
@@ -338,24 +386,28 @@
                 <Mercury>3</Mercury>
             </level>
             <level value="2">
+                <Soul>20</Soul>
                 <Spiderlily>5</Spiderlily>
                 <GoldenApple>5</GoldenApple>
                 <Sulphur>5</Sulphur>
                 <Mercury>5</Mercury>
             </level>
             <level value="3">
+                <Soul>20</Soul>
                 <Spiderlily>7</Spiderlily>
                 <GoldenApple>7</GoldenApple>
                 <Sulphur>7</Sulphur>
                 <Mercury>7</Mercury>
             </level>
             <level value="4">
+                <Soul>20</Soul>
                 <Spiderlily>10</Spiderlily>
                 <GoldenApple>10</GoldenApple>
                 <Sulphur>10</Sulphur>
                 <Mercury>10</Mercury>
             </level>
             <level value="5">
+                <Soul>20</Soul>
                 <Spiderlily>15</Spiderlily>
                 <GoldenApple>15</GoldenApple>
                 <Sulphur>15</Sulphur>
@@ -372,24 +424,28 @@
                 <Gold>3</Gold>
             </level>
             <level value="2">
+                <Soul>20</Soul>
                 <DemonFruit>5</DemonFruit>
                 <GoldenApple>5</GoldenApple>
                 <Mercury>5</Mercury>
                 <Gold>5</Gold>
             </level>
             <level value="3">
+                <Soul>20</Soul>
                 <DemonFruit>7</DemonFruit>
                 <GoldenApple>7</GoldenApple>
                 <Mercury>7</Mercury>
                 <Gold>7</Gold>
             </level>
             <level value="4">
+                <Soul>20</Soul>
                 <DemonFruit>10</DemonFruit>
                 <GoldenApple>10</GoldenApple>
                 <Mercury>10</Mercury>
                 <Gold>10</Gold>
             </level>
             <level value="5">
+                <Soul>20</Soul>
                 <DemonFruit>15</DemonFruit>
                 <GoldenApple>15</GoldenApple>
                 <Mercury>15</Mercury>
@@ -406,24 +462,28 @@
                 <Gold>3</Gold>
             </level>
             <level value="2">
+                <Soul>20</Soul>
                 <Spiderlily>5</Spiderlily>
                 <DemonFruit>5</DemonFruit>
                 <Sulphur>5</Sulphur>
                 <Gold>5</Gold>
             </level>
             <level value="3">
+                <Soul>20</Soul>
                 <Spiderlily>7</Spiderlily>
                 <DemonFruit>7</DemonFruit>
                 <Sulphur>7</Sulphur>
                 <Gold>7</Gold>
             </level>
             <level value="4">
+                <Soul>20</Soul>
                 <Spiderlily>3</Spiderlily>
                 <DemonFruit>10</DemonFruit>
                 <Sulphur>10</Sulphur>
                 <Gold>10</Gold>
             </level>
             <level value="5">
+                <Soul>20</Soul>
                 <Spiderlily>15</Spiderlily>
                 <DemonFruit>15</DemonFruit>
                 <Sulphur>15</Sulphur>

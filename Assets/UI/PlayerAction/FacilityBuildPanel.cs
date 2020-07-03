@@ -27,8 +27,13 @@ public class FacilityBuildPanel : MonoBehaviour
 	private int requireSoul;
 	private CharacterReader characterReader;
 	private GameManager gameManager;
-	
+
 	public void OnEnable()
+	{
+		
+	}
+	
+	public void InitBuildPanel()
 	{
 		if(gameManager==null)
 			gameManager=FindObjectOfType<GameManager>();
@@ -62,12 +67,16 @@ public class FacilityBuildPanel : MonoBehaviour
 	{
 		if(facilityPallete.currentType==BuildingType.None||(facilityPallete.ValidProduct.Count>0&&facilityPallete.currentItem==ItemType.NUM))
 			return false;
+		Debug.Log("1hello");
 		if(gameManager.itemManager.ItemsOwn[ItemType.Soul]<requireSoul)
 			return false;
+		Debug.Log("2hello"+gameManager.itemManager.ItemsOwn[ItemType.Soul]);
 		if(facilityPallete.currentType==BuildingType.Teleporter&&(facilityPallete.isSelecting==true||facilityPallete.currentDestination==null))
 			return false;
-		if(!gameManager.buildingManager.IsBuildingBuilt(facilityPallete.currentType,facilityPallete.currentItem))
+		Debug.Log("3hello");
+		if(gameManager.buildingManager.IsBuildingBuilt(facilityPallete.currentType,facilityPallete.currentItem))
 			return false;
+		Debug.Log("4hello");
 		return true;
 	}
 	
@@ -91,6 +100,8 @@ public class FacilityBuildPanel : MonoBehaviour
 		txtname.text=facilityPallete.currentType.ToString();
 		txtlevel.text=facilityPallete.currentLevel+"";
 		SetIsSelecting(false);
+		if (gameManager == null)
+			Debug.Log("GameManager is null");
 		gameManager.hexMap.HideIndicator();
 		gameManager.hexMap.selectedCell.indicator.gameObject.SetActive(true);
 		gameManager.hexMap.selectedCell.indicator.SetColor(Indicator.StartColor);

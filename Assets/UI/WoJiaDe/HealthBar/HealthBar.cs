@@ -56,7 +56,7 @@ public class HealthBar : MonoBehaviour
 			return;
 		maxlife=building.GetMaxHP();
 		currentlife=building.GetCurrentHP();
-		slider.value=currentlife/maxlife;
+		slider.value=(float)currentlife/maxlife;
 	}
 
 	public void OnDestroy()

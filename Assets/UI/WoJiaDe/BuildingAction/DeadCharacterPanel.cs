@@ -16,17 +16,19 @@ public class DeadCharacterPanel : MonoBehaviour
 	private GameManager gameManager;
 	private CharacterReader characterReader;
 	private List<CharacterReader.CharacterSkillUI> skilldata;
+	private CharacterReader.CharacterData data;
 	
-	public void UpdateDeadPanel(Enemy enemy)
+	public void UpdateDeadPanel(EnemyType enemyType)
 	{
 		if(gameManager == null)
 			gameManager = FindObjectOfType<GameManager>();
 		characterReader=gameManager.characterReader;
-		skilldata=characterReader.GetEnemySkillUI(enemy.enemyType.ToString());
+		skilldata=characterReader.GetEnemySkillUI(enemyType.ToString());
+		data=characterReader.GetEnemyData(gameManager.enemyManager.getEnemyLevel(enemyType),enemyType.ToString());
 		
-		txtname.text=enemy.ToString();
-		txtdata1.text=enemy.GetLevel()+"\n"+enemy.GetMaxHP()+"\n"+enemy.GetAttack()+"\n"+enemy.GetDefense();
-		txtdata2.text=enemy.GetDexterity()+"\n"+enemy.GetMagicAttack()+"\n"+enemy.GetMagicDefense()+"\n"+enemy.GetAttackRange();
+		txtname.text=enemyType.ToString();
+		txtdata1.text=gameManager.enemyManager.getEnemyLevel(enemyType)+"\n"+data.HP+"\n"+data.attack+"\n"+data.defense;
+		txtdata2.text=data.dexterity+"\n"+data.magicAttack+"\n"+data.magicDefense+"\n"+data.attackRange;
 		
 		string skilltext="";
 		for(int i=0;i<skilldata.Count;i++)

@@ -23,13 +23,14 @@ public class GeneralPanel : MonoBehaviour
 	private Monster currentMonster;
 	private Sprite sprite;
 
+	public Transform dismissPanel;
     void OnEnable()
     {
         UpdateGeneral();
 		monsterManager=menu.gameManager.monsterManager;
 		shortcutPage=menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().monsterPage.GetComponent<Gallery_Ch_MonsterPage>().theMonsterPage;
 		shortcutAndrePage=menu.galleryPanel.GetComponent<GalleryPanel>().characterPage.GetComponent<Gallery_CharacterPage>().andrePage.GetComponent<Gallery_Ch_AndrePage>();
-		
+		dismissPanel.gameObject.SetActive(false);
     }
 	
 	public void Update()
@@ -138,11 +139,16 @@ public class GeneralPanel : MonoBehaviour
 		menu.galleryPanel.previousLayer=-1;
 	}
 	
-	public void OnDismiss()
-	{
-		Monster monster=currentMonster;
+	public void OnDismissSure()
+    {
+		Monster monster = currentMonster;
 		OnNext();
 		monster.OnDie();
 		menu.gameManager.monsterManager.Dismiss(monster);
+	}
+	
+	public void OnDismiss()
+	{
+		dismissPanel.gameObject.SetActive(true);
 	}
 }

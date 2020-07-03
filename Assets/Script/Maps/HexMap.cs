@@ -22,9 +22,9 @@ public class HexMap : MonoBehaviour
     [Range(0, 100)]
     public int forestFactor = 20;
     [Range(0, 100)]
-    public int thornsFactor = 1;
+    public int thornsFactor = 0;
     [Range(0, 100)]
-    public int stoneSFactor = 1;
+    public int stoneSFactor = 2;
 
     public HexTypeInfo hexPrefab_forest;
     public HexTypeInfo hexPrefab_swamp;
@@ -220,8 +220,8 @@ public class HexMap : MonoBehaviour
                 gm = Instantiate(hexPrefab_mountain);
 			else if (type==HexType.Stones)
 				gm = Instantiate(hexPrefab_stones);
-			else if (type==HexType.Thorns)
-				gm = Instantiate(hexPrefab_thorns);
+			/*else if (type==HexType.Thorns)
+				gm = Instantiate(hexPrefab_thorns);*/
 
             if (gm != null)
             {
@@ -849,10 +849,10 @@ public class HexMap : MonoBehaviour
 	{
 		HideIndicator();
 
-        for (int i = 0; i < friendCells.Count; i++)
+        for (int i = 0; i < buildingCells.Count; i++)
         {
             buildingCells[i].indicator.gameObject.SetActive(true);
-            buildingCells[i].indicator.SetColor(Indicator.StartColor);
+            buildingCells[i].indicator.SetColor(Indicator.BuildColor);
         }
 	}
 	
