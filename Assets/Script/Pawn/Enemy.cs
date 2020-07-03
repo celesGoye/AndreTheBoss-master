@@ -119,12 +119,10 @@ public class Enemy : Pawn
     public bool IsAction() { return isAction; }
 	public void SetIsAction(bool isAction) { this.isAction = isAction; }
 
-    public virtual void ProbeAction()
+    private bool ProbeAttackBuilding()
     {
         gm.hexMap.ProbeAttackTarget(currentCell);
-        List<HexCell> targets = gm.hexMap.GetAttackableTargets();
-		List<HexCell> buildingTargets = gm.hexMap.GetAllBuildingCells();
-
+        List<HexCell> buildingTargets = gm.hexMap.GetAllBuildingCells();
         if (currentBuildingTarget != null && buildingTargets.Count != 0)
         {
             if (buildingTargets.Contains(currentBuildingTarget.currentCell))
@@ -140,7 +138,7 @@ public class Enemy : Pawn
                     nextAction = ActionType.Move;
                 }
             }
-            return;
+            return true;
         }
         else
         {
@@ -149,10 +147,20 @@ public class Enemy : Pawn
             {
                 currentBuildingTarget = cell.building;
                 nextAction = ActionType.Move;
-                return;
+                return true;
             }
         }
-        
+
+        return false;
+    }
+    
+    public virtual void ProbeAction()
+    {
+        if (Random.Range(0f, 1f) < GameConfig.EnemyAttackBuildingPriority && ProbeAttackBuilding())
+            return;
+
+        gm.hexMap.ProbeAttackTarget(currentCell);
+        List<HexCell> targets = gm.hexMap.GetAttackableTargets();
         if (currentTarget != null && targets.Count != 0)
         {
             if(targets.Contains(currentTarget.currentCell))
