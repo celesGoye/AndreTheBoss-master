@@ -8,9 +8,9 @@ using System.Text.RegularExpressions;
 public class ButtonEffect : MonoBehaviour
 {
     public Text text;
-    private int fontFocusSize;
-    private int fontNormalSize;
-    private int fontClickSize;
+    public float fontFocusSize;
+    public float fontNormalSize;
+    public float fontClickSize;
     public AudioSource audiosource;
     public AudioClip clickSound;
 	
@@ -21,22 +21,15 @@ public class ButtonEffect : MonoBehaviour
 	private float lastheight=0f;
 	private bool changed;
 	
-    public void Start()
-    {
-        text = GetComponentInChildren<Text>();
-        fontNormalSize = text.fontSize;
-        fontFocusSize = fontNormalSize + 5;
-        fontClickSize = fontNormalSize + 2;
-    }
     public void OnEnable()
     {
-
+        text = GetComponentInChildren<Text>();
+        //text.fontSize = fontNormalSize;
         currentSize = fontNormalSize;
         audiosource = GetComponent<AudioSource>();
         //audiosource.clip = clickSound;
     }
 	
-    /*
 	public void Update()
 	{
 		
@@ -47,7 +40,6 @@ public class ButtonEffect : MonoBehaviour
 		}
 		
 	}
-    */
 	
     public void OnMouseEnter()
     {

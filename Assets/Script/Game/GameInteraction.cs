@@ -28,6 +28,7 @@ public class GameInteraction : MonoBehaviour
 	public Item_tips itemtips;
 	public UILog uilog;
 	public PlayerPanel playerPanel;
+	public PlayerStatus playerStatusPanel;
 
     public bool IsPawnAction = false;
 
@@ -125,6 +126,7 @@ public class GameInteraction : MonoBehaviour
         {
 			gameManager.buildingManager.UpdateBuildMode(false);
             Clear();
+			playerStatusPanel.gameObject.SetActive(true);
         }
     }
 	
@@ -195,6 +197,7 @@ public class GameInteraction : MonoBehaviour
         monsterPalletePanel.gameObject.SetActive(false);
         facilityPalletePanel.gameObject.SetActive(false);
 		saveGamePanel.gameObject.SetActive(false);
+		playerStatusPanel.gameObject.SetActive(false);
     }
 
     private void DisableAllPalletePanels()

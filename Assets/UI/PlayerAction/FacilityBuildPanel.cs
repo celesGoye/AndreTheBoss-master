@@ -26,11 +26,14 @@ public class FacilityBuildPanel : MonoBehaviour
 	
 	private int requireSoul;
 	private CharacterReader characterReader;
+	private GameManager gameManager;
 	
 	public void OnEnable()
 	{
+		if(gameManager==null)
+			gameManager=FindObjectOfType<GameManager>();
 		if(characterReader==null)
-			characterReader = FindObjectOfType<GameManager>().characterReader;
+			characterReader = gameManager.characterReader;
 		soulcontent.transform.gameObject.SetActive(false);
 		productcontent.gameObject.SetActive(false);
 		txtsometitle.text="";
@@ -45,23 +48,25 @@ public class FacilityBuildPanel : MonoBehaviour
 	public void OnSelectDestination()
 	{
 		SetIsSelecting(true);
-		List<HexCell> cells=facilityPallete.gameManager.hexMap.GetTeleporterBuildableCells(facilityPallete.gameManager.hexMap.selectedCell, 
+		List<HexCell> cells=gameManager.hexMap.GetTeleporterBuildableCells(gameManager.hexMap.selectedCell, 
 						Teleporter.GetMaxDistance(facilityPallete.currentLevel));
 		foreach(HexCell cell in cells)
 		{
 			cell.indicator.gameObject.SetActive(true);
 			cell.indicator.SetColor(Indicator.BuildColor);
 		}
-		facilityPallete.gameManager.hexMap.selectedCell.indicator.SetColor(Indicator.StartColor);
+		gameManager.hexMap.selectedCell.indicator.SetColor(Indicator.StartColor);
 	}
 	
 	public bool IsBuildOK()
 	{
 		if(facilityPallete.currentType==BuildingType.None||(facilityPallete.ValidProduct.Count>0&&facilityPallete.currentItem==ItemType.NUM))
 			return false;
-		if(facilityPallete.gameManager.itemManager.ItemsOwn[ItemType.Soul]<requireSoul)
+		if(gameManager.itemManager.ItemsOwn[ItemType.Soul]<requireSoul)
 			return false;
 		if(facilityPallete.currentType==BuildingType.Teleporter&&(facilityPallete.isSelecting==true||facilityPallete.currentDestination==null))
+			return false;
+		if(!gameManager.buildingManager.IsBuildingBuilt(facilityPallete.currentType,facilityPallete.currentItem))
 			return false;
 		return true;
 	}
@@ -69,7 +74,7 @@ public class FacilityBuildPanel : MonoBehaviour
 	public void ConsumeItem()
 	{
 		Debug.Log("Consume.");
-		facilityPallete.gameManager.itemManager.ConsumeItem(ItemType.Soul, requireSoul);
+		gameManager.itemManager.ConsumeItem(ItemType.Soul, requireSoul);
 	}
 	
 	public void ClearProduct(int itemcount)
@@ -86,9 +91,9 @@ public class FacilityBuildPanel : MonoBehaviour
 		txtname.text=facilityPallete.currentType.ToString();
 		txtlevel.text=facilityPallete.currentLevel+"";
 		SetIsSelecting(false);
-		facilityPallete.gameManager.hexMap.HideIndicator();
-		facilityPallete.gameManager.hexMap.selectedCell.indicator.gameObject.SetActive(true);
-		facilityPallete.gameManager.hexMap.selectedCell.indicator.SetColor(Indicator.StartColor);
+		gameManager.hexMap.HideIndicator();
+		gameManager.hexMap.selectedCell.indicator.gameObject.SetActive(true);
+		gameManager.hexMap.selectedCell.indicator.SetColor(Indicator.StartColor);
 		selectDestination.transform.gameObject.SetActive(false);
 		soulcontent.transform.gameObject.SetActive(false);
 		productcontent.gameObject.SetActive(false);
@@ -150,7 +155,7 @@ public class FacilityBuildPanel : MonoBehaviour
 					soulcontent.transform.gameObject.SetActive(true);
 				
 					requireSoul= Building.GetRequireSouls(facilityPallete.currentType,facilityPallete.currentLevel);
-					soulcontent.num=facilityPallete.gameManager.itemManager.ItemsOwn[ItemType.Soul];
+					soulcontent.num=gameManager.itemManager.ItemsOwn[ItemType.Soul];
 					soulcontent.numneed=requireSoul;
 				}
 			}
@@ -159,7 +164,7 @@ public class FacilityBuildPanel : MonoBehaviour
 				soulcontent.transform.gameObject.SetActive(true);
 				
 				requireSoul= Building.GetRequireSouls(facilityPallete.currentType,facilityPallete.currentLevel);
-				soulcontent.num=facilityPallete.gameManager.itemManager.ItemsOwn[ItemType.Soul];
+				soulcontent.num=gameManager.itemManager.ItemsOwn[ItemType.Soul];
 				soulcontent.numneed=requireSoul;
 			}
 			

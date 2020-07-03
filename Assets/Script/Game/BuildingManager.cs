@@ -97,11 +97,11 @@ public class BuildingManager : MonoBehaviour
 		gameManager.hexMap.UpdateBuildableCells(gameManager.monsterManager.MonsterPawns[0].currentCell, buildRange ,buildmode);
 	}
 	
-	public bool IsAltarBuilt()
+	public bool IsBuildingBuilt(BuildingType buildingType,ItemType itemType)
 	{
 		foreach(Building building in Buildings)
 		{
-			if(building.GetBuildingType()==BuildingType.Altar)
+			if(building.GetBuildingType()==buildingType&&building.GetItemType()==itemType)
 				return true;
 		}
 		return false;

@@ -16,6 +16,7 @@ public class HexCellStatus : MonoBehaviour
     public Text txtBuildingDescription;
     public Text txtTerrainDescription;
     public Text txtName;
+	public Text txtHP;
 	
 	public HexCell currentHex;
 	
@@ -64,6 +65,7 @@ public class HexCellStatus : MonoBehaviour
 			txtBuildingLevel.text="."+currentHex.building.GetCurrentLevel();
 			txtBuildingDescription.text="<size=22>"+currentHex.building.GetDescription()+"</size>";
 			txtName.text=currentHex.building.GetBuildingType().ToString();
+			txtHP.text=currentHex.building.GetCurrentHP()+"/"+currentHex.building.GetMaxHP();
 		}
     }
 }

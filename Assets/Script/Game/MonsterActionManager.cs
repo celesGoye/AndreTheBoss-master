@@ -90,4 +90,10 @@ public class MonsterActionManager : MonoBehaviour
 	{
 		return actionableMonsters.Count;
 	}
+	
+	public void RemoveMonster(Monster monster)
+	{
+		if(actionableMonsters.Contains(monster))
+			actionableMonsters.Remove(monster);
+	}
 }

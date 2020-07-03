@@ -214,4 +214,17 @@ public class MonsterManager : MonoBehaviour
 		//if(monster.skillnames!=null)
 		//	Debug.Log("read skillnames");
 	}
+	
+	public int GetCurrentMonsterCount()
+	{
+		return MonsterPawns.Count;
+	}
+	
+	public void Dismiss(Monster monster)
+	{
+		monster.OnDie();
+		gameManager.gameInteraction.pawnStatusPanel.gameObject.SetActive(false);
+		gameManager.monsterActionManager.RemoveMonster(monster);
+		gameManager.gameInteraction.playerPanel.actionableMonsters.UpdateActionableMonsters();
+	}
 }
