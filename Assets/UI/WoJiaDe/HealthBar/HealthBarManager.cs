@@ -22,6 +22,7 @@ public class HealthBarManager : MonoBehaviour
 		hb.Init();
 		hb.UpdateLife();
 		hb.mainCam=mainCam;
+		hb.gameObject.SetActive(true);
 		return hb;
 	}
 
@@ -44,7 +45,7 @@ public class HealthBarManager : MonoBehaviour
 		hb.building=building;
 		hb.slider=hb.GetComponent<Slider>();
 		hb.Init();
-		hb.UpdateBuildingLife();
+		//hb.UpdateBuildingLife();
 		hb.mainCam=mainCam;
 		return hb;
 	}
