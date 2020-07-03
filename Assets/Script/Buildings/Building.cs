@@ -208,5 +208,15 @@ public class Building: MonoBehaviour
 		healthbar.UpdateBuildingLife();
 		
     }
+
+	// TODO here
+	public void Recover()
+    {
+		int hp = currentHP + GameConfig.BuildingRecoverEachTurn[currentLevel];
+		if (currentHP > maxHP)
+			currentHP = maxHP;
+
+		// update hp ui
+    }
 }
 
