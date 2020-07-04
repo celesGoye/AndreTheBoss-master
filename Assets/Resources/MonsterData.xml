@@ -13,36 +13,36 @@
             <level value="2">
                     <attack>4</attack>
                     <magicattack>6</magicattack>
-                    <defense>2</defense>
+                    <defense>3</defense>
                     <magicdefense>7</magicdefense>
-                    <hp>15</hp>
+                    <hp>18</hp>
                     <dexterity>5</dexterity>
                     <attackRange>3</attackRange>
             </level>
             <level value="3">
-                    <attack>6</attack>
+                    <attack>8</attack>
                     <magicattack>9</magicattack>
-                    <defense>2</defense>
+                    <defense>4</defense>
                     <magicdefense>8</magicdefense>
                     <hp>20</hp>
                     <dexterity>5</dexterity>
                     <attackRange>3</attackRange>
             </level>
             <level value="4">
-                    <attack>8</attack>
+                    <attack>12</attack>
                     <magicattack>12</magicattack>
-                    <defense>3</defense>
+                    <defense>5</defense>
                     <magicdefense>9</magicdefense>
-                    <hp>20</hp>
+                    <hp>24</hp>
                     <dexterity>5</dexterity>
                     <attackRange>3</attackRange>
             </level>
             <level value="5">
-                    <attack>10</attack>
+                    <attack>15</attack>
                     <magicattack>15</magicattack>
                     <defense>4</defense>
                     <magicdefense>10</magicdefense>
-                    <hp>25</hp>
+                    <hp>28</hp>
                     <dexterity>5</dexterity>
                     <attackRange>3</attackRange>
             </level>
@@ -64,7 +64,7 @@
                 <attack>5</attack>
                 <magicattack>2</magicattack>
                 <defense>3</defense>
-                <magicdefense>1</magicdefense>
+                <magicdefense>2</magicdefense>
                 <hp>15</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
@@ -72,27 +72,27 @@
             <level value="3">
                 <attack>7</attack>
                 <magicattack>2</magicattack>
-                <defense>3</defense>
-                <magicdefense>1</magicdefense>
-                <hp>15</hp>
+                <defense>4</defense>
+                <magicdefense>3</magicdefense>
+                <hp>18</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="4">
                 <attack>8</attack>
                 <magicattack>3</magicattack>
-                <defense>4</defense>
-                <magicdefense>2</magicdefense>
+                <defense>5</defense>
+                <magicdefense>4</magicdefense>
                 <hp>20</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="5">
                 <attack>10</attack>
-                <magicattack>3</magicattack>
-                <defense>5</defense>
-                <magicdefense>2</magicdefense>
-                <hp>20</hp>
+                <magicattack>4</magicattack>
+                <defense>6</defense>
+                <magicdefense>5</magicdefense>
+                <hp>22</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
@@ -102,7 +102,7 @@
             <level value="1">
                 <attack>4</attack>
                 <magicattack>1</magicattack>
-                <defense>2</defense>
+                <defense>1</defense>
                 <magicdefense>1</magicdefense>
                 <hp>10</hp>
                 <dexterity>4</dexterity>
@@ -110,39 +110,39 @@
             </level>
             <level value="2">
                 <attack>5</attack>
-                <magicattack>1</magicattack>
+                <magicattack>2</magicattack>
                 <defense>2</defense>
                 <magicdefense>2</magicdefense>
-                <hp>10</hp>
+                <hp>12</hp>
                 <dexterity>4</dexterity>
                 <attackRange>2</attackRange>
             </level>
             <level value="3">
                 <attack>7</attack>
-                <magicattack>2</magicattack>
+                <magicattack>3</magicattack>
                 <defense>3</defense>
                 <magicdefense>3</magicdefense>
                 <hp>15</hp>
                 <dexterity>4</dexterity>
-                <attackRange>2</attackRange>
+                <attackRange>3</attackRange>
             </level>
             <level value="4">
                 <attack>8</attack>
-                <magicattack>2</magicattack>
-                <defense>3</defense>
-                <magicdefense>3</magicdefense>
-                <hp>15</hp>
+                <magicattack>4</magicattack>
+                <defense>4</defense>
+                <magicdefense>4</magicdefense>
+                <hp>16</hp>
                 <dexterity>4</dexterity>
-                <attackRange>2</attackRange>
+                <attackRange>3</attackRange>
             </level>
             <level value="5">
                 <attack>10</attack>
-                <magicattack>3</magicattack>
-                <defense>3</defense>
-                <magicdefense>4</magicdefense>
-                <hp>15</hp>
+                <magicattack>5</magicattack>
+                <defense>5</defense>
+                <magicdefense>5</magicdefense>
+                <hp>18</hp>
                 <dexterity>4</dexterity>
-                <attackRange>2</attackRange>
+                <attackRange>3</attackRange>
             </level>
         </sprite>
         
@@ -160,16 +160,16 @@
                 <attack>8</attack>
                 <magicattack>3</magicattack>
                 <defense>3</defense>
-                <magicdefense>1</magicdefense>
-                <hp>10</hp>
+                <magicdefense>2</magicdefense>
+                <hp>12</hp>
                 <dexterity>3</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="3">
-                <attack>8</attack>
-                <magicattack>3</magicattack>
+                <attack>9</attack>
+                <magicattack>4</magicattack>
                 <defense>4</defense>
-                <magicdefense>2</magicdefense>
+                <magicdefense>3</magicdefense>
                 <hp>15</hp>
                 <dexterity>3</dexterity>
                 <attackRange>1</attackRange>
@@ -177,17 +177,17 @@
             <level value="4">
                 <attack>10</attack>
                 <magicattack>5</magicattack>
-                <defense>4</defense>
-                <magicdefense>3</magicdefense>
-                <hp>15</hp>
+                <defense>5</defense>
+                <magicdefense>4</magicdefense>
+                <hp>18</hp>
                 <dexterity>3</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="5">
                 <attack>15</attack>
-                <magicattack>5</magicattack>
-                <defense>5</defense>
-                <magicdefense>3</magicdefense>
+                <magicattack>6</magicattack>
+                <defense>6</defense>
+                <magicdefense>5</magicdefense>
                 <hp>20</hp>
                 <dexterity>3</dexterity>
                 <attackRange>1</attackRange>
@@ -197,7 +197,7 @@
     <unlocklevel value="2">
         <dwarf>
             <level value="1">
-                <attack>4</attack>
+                <attack>8</attack>
                 <magicattack>1</magicattack>
                 <defense>2</defense>
                 <magicdefense>1</magicdefense>
@@ -206,38 +206,38 @@
                 <attackRange>1</attackRange>
             </level>   
             <level value="2">
-                <attack>8</attack>
-                <magicattack>1</magicattack>
+                <attack>10</attack>
+                <magicattack>2</magicattack>
                 <defense>3</defense>
-                <magicdefense>1</magicdefense>
+                <magicdefense>2</magicdefense>
                 <hp>18</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="3">
-                <attack>10</attack>
-                <magicattack>1</magicattack>
+                <attack>15</attack>
+                <magicattack>3</magicattack>
                 <defense>4</defense>
-                <magicdefense>1</magicdefense>
-                <hp>18</hp>
+                <magicdefense>3</magicdefense>
+                <hp>20</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="4">
-                <attack>12</attack>
-                <magicattack>2</magicattack>
+                <attack>15</attack>
+                <magicattack>4</magicattack>
                 <defense>5</defense>
-                <magicdefense>2</magicdefense>
-                <hp>20</hp>
+                <magicdefense>4</magicdefense>
+                <hp>22</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="5">
-                <attack>12</attack>
-                <magicattack>2</magicattack>
-                <defense>5</defense>
-                <magicdefense>2</magicdefense>
-                <hp>20</hp>
+                <attack>18</attack>
+                <magicattack>5</magicattack>
+                <defense>6</defense>
+                <magicdefense>5</magicdefense>
+                <hp>25</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
@@ -245,47 +245,47 @@
         
         <giant>
             <level value="1">
-                <attack>5</attack>
-                <magicattack>1</magicattack>
-                <defense>4</defense>
-                <magicdefense>1</magicdefense>
-                <hp>20</hp>
-                <dexterity>2</dexterity>
-                <attackRange>1</attackRange>
-            </level>
-            <level value="2">
-                <attack>7</attack>
-                <magicattack>1</magicattack>
-                <defense>4</defense>
-                <magicdefense>1</magicdefense>
-                <hp>20</hp>
-                <dexterity>2</dexterity>
-                <attackRange>1</attackRange>
-            </level>
-            <level value="3">
                 <attack>10</attack>
                 <magicattack>1</magicattack>
                 <defense>4</defense>
                 <magicdefense>1</magicdefense>
-                <hp>22</hp>
+                <hp>24</hp>
+                <dexterity>2</dexterity>
+                <attackRange>1</attackRange>
+            </level>
+            <level value="2">
+                <attack>12</attack>
+                <magicattack>1</magicattack>
+                <defense>5</defense>
+                <magicdefense>1</magicdefense>
+                <hp>24</hp>
+                <dexterity>2</dexterity>
+                <attackRange>1</attackRange>
+            </level>
+            <level value="3">
+                <attack>15</attack>
+                <magicattack>1</magicattack>
+                <defense>6</defense>
+                <magicdefense>3</magicdefense>
+                <hp>26</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="4">
-                <attack>13</attack>
+                <attack>16</attack>
                 <magicattack>1</magicattack>
-                <defense>5</defense>
-                <magicdefense>2</magicdefense>
-                <hp>22</hp>
+                <defense>7</defense>
+                <magicdefense>5</magicdefense>
+                <hp>28</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="5">
-                <attack>15</attack>
+                <attack>18</attack>
                 <magicattack>1</magicattack>
-                <defense>6</defense>
-                <magicdefense>2</magicdefense>
-                <hp>24</hp>
+                <defense>8</defense>
+                <magicdefense>5</magicdefense>
+                <hp>30</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
@@ -293,8 +293,8 @@
         
         <ghoul>
             <level value="1">
-                <attack>2</attack>
-                <magicattack>3</magicattack>
+                <attack>3</attack>
+                <magicattack>10</magicattack>
                 <defense>2</defense>
                 <magicdefense>2</magicdefense>
                 <hp>20</hp>
@@ -302,37 +302,37 @@
                 <attackRange>1</attackRange>
             </level>
             <level value="2">
-                <attack>5</attack>
-                <magicattack>3</magicattack>
-                <defense>2</defense>
-                <magicdefense>2</magicdefense>
+                <attack>3</attack>
+                <magicattack>14</magicattack>
+                <defense>3</defense>
+                <magicdefense>3</magicdefense>
                 <hp>20</hp>
                 <dexterity>3</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="3">
                 <attack>5</attack>
-                <magicattack>5</magicattack>
-                <defense>2</defense>
+                <magicattack>14</magicattack>
+                <defense>4</defense>
                 <magicdefense>3</magicdefense>
                 <hp>20</hp>
                 <dexterity>3</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="4">
-                <attack>6</attack>
-                <magicattack>7</magicattack>
-                <defense>3</defense>
-                <magicdefense>3</magicdefense>
+                <attack>7</attack>
+                <magicattack>18</magicattack>
+                <defense>5</defense>
+                <magicdefense>4</magicdefense>
                 <hp>20</hp>
                 <dexterity>3</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="5">
                 <attack>8</attack>
-                <magicattack>8</magicattack>
-                <defense>3</defense>
-                <magicdefense>3</magicdefense>
+                <magicattack>20</magicattack>
+                <defense>8</defense>
+                <magicdefense>5</magicdefense>
                 <hp>20</hp>
                 <dexterity>3</dexterity>
                 <attackRange>1</attackRange>
@@ -343,7 +343,7 @@
     <unlocklevel value="3">
         <stoneman>
             <level value="1">
-                <attack>2</attack>
+                <attack>15</attack>
                 <magicattack>2</magicattack>
                 <defense>5</defense>
                 <magicdefense>5</magicdefense>
@@ -352,38 +352,38 @@
                 <attackRange>1</attackRange>
             </level>
             <level value="2">
-                <attack>3</attack>
+                <attack>18</attack>
                 <magicattack>2</magicattack>
                 <defense>6</defense>
                 <magicdefense>5</magicdefense>
-                <hp>23</hp>
+                <hp>24</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="3">
-                <attack>3</attack>
+                <attack>22</attack>
                 <magicattack>2</magicattack>
                 <defense>7</defense>
                 <magicdefense>6</magicdefense>
-                <hp>25</hp>
+                <hp>26</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="4">
-                <attack>4</attack>
+                <attack>24</attack>
                 <magicattack>3</magicattack>
                 <defense>8</defense>
                 <magicdefense>7</magicdefense>
-                <hp>26</hp>
+                <hp>28</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
             <level value="5">
-                <attack>4</attack>
+                <attack>30</attack>
                 <magicattack>3</magicattack>
                 <defense>8</defense>
                 <magicdefense>8</magicdefense>
-                <hp>26</hp>
+                <hp>30</hp>
                 <dexterity>2</dexterity>
                 <attackRange>1</attackRange>
             </level>
@@ -391,8 +391,8 @@
         
         <goblin>
             <level value="1">
-                <attack>5</attack>
-                <magicattack>1</magicattack>
+                <attack>2</attack>
+                <magicattack>8</magicattack>
                 <defense>1</defense>
                 <magicdefense>1</magicdefense>
                 <hp>15</hp>
@@ -401,7 +401,7 @@
             </level>
             <level value="2">
                 <attack>5</attack>
-                <magicattack>1</magicattack>
+                <magicattack>12</magicattack>
                 <defense>1</defense>
                 <magicdefense>1</magicdefense>
                 <hp>15</hp>
@@ -410,7 +410,7 @@
             </level>
             <level value="3">
                 <attack>7</attack>
-                <magicattack>1</magicattack>
+                <magicattack>14</magicattack>
                 <defense>3</defense>
                 <magicdefense>2</magicdefense>
                 <hp>18</hp>
@@ -418,20 +418,20 @@
                 <attackRange>3</attackRange>
             </level>
             <level value="4">
-                <attack>9</attack>
-                <magicattack>3</magicattack>
-                <defense>3</defense>
-                <magicdefense>2</magicdefense>
+                <attack>14</attack>
+                <magicattack>14</magicattack>
+                <defense>4</defense>
+                <magicdefense>6</magicdefense>
                 <hp>18</hp>
                 <dexterity>3</dexterity>
                 <attackRange>3</attackRange>
             </level>
             <level value="5">
-                <attack>10</attack>
-                <magicattack>3</magicattack>
-                <defense>3</defense>
-                <magicdefense>2</magicdefense>
-                <hp>20</hp>
+                <attack>14</attack>
+                <magicattack>14</magicattack>
+                <defense>6</defense>
+                <magicdefense>6</magicdefense>
+                <hp>24</hp>
                 <dexterity>3</dexterity>
                 <attackRange>3</attackRange>
             </level>
@@ -440,48 +440,48 @@
         <bloodseeker>
             <level value="1">
                 <attack>2</attack>
-                <magicattack>3</magicattack>
+                <magicattack>15</magicattack>
                 <defense>1</defense>
                 <magicdefense>1</magicdefense>
-                <hp>12</hp>
+                <hp>15</hp>
                 <dexterity>5</dexterity>
-                <attackRange>2</attackRange>
+                <attackRange>1</attackRange>
             </level>
             <level value="2">
                 <attack>2</attack>
-                <magicattack>4</magicattack>
+                <magicattack>18</magicattack>
                 <defense>1</defense>
-                <magicdefense>2</magicdefense>
+                <magicdefense>1</magicdefense>
                 <hp>15</hp>
                 <dexterity>5</dexterity>
-                <attackRange>2</attackRange>
+                <attackRange>1</attackRange>
             </level>
             <level value="3">
                 <attack>2</attack>
-                <magicattack>4</magicattack>
-                <defense>2</defense>
-                <magicdefense>3</magicdefense>
+                <magicattack>24</magicattack>
+                <defense>1</defense>
+                <magicdefense>1</magicdefense>
                 <hp>15</hp>
                 <dexterity>5</dexterity>
-                <attackRange>2</attackRange>
+                <attackRange>1</attackRange>
             </level>
             <level value="4">
                 <attack>3</attack>
-                <magicattack>6</magicattack>
-                <defense>2</defense>
-                <magicdefense>4</magicdefense>
+                <magicattack>28</magicattack>
+                <defense>1</defense>
+                <magicdefense>1</magicdefense>
                 <hp>18</hp>
                 <dexterity>5</dexterity>
                 <attackRange>2</attackRange>
             </level>
             <level value="5">
                 <attack>3</attack>
-                <magicattack>8</magicattack>
-                <defense>3</defense>
-                <magicdefense>4</magicdefense>
+                <magicattack>30</magicattack>
+                <defense>1</defense>
+                <magicdefense>1</magicdefense>
                 <hp>18</hp>
                 <dexterity>5</dexterity>
-                <attackRange>2</attackRange>
+                <attackRange>1</attackRange>
             </level>
         </bloodseeker>
     </unlocklevel>
@@ -489,56 +489,56 @@
     <unlocklevel value="4">
         <chimera>
             <level value="1">
-                <attack>1</attack>
-                <magicattack>5</magicattack>
+                <attack>10</attack>
+                <magicattack>15</magicattack>
                 <defense>5</defense>
                 <magicdefense>3</magicdefense>
                 <hp>15</hp>
-                <dexterity>6</dexterity>
+                <dexterity>4</dexterity>
                 <attackRange>2</attackRange>
             </level>
             <level value="2">
-                <attack>1</attack>
-                <magicattack>5</magicattack>
+                <attack>12</attack>
+                <magicattack>18</magicattack>
                 <defense>8</defense>
                 <magicdefense>5</magicdefense>
                 <hp>15</hp>
-                <dexterity>6</dexterity>
+                <dexterity>4</dexterity>
                 <attackRange>2</attackRange>
             </level>
             <level value="3">
-                <attack>3</attack>
-                <magicattack>8</magicattack>
+                <attack>15</attack>
+                <magicattack>24</magicattack>
                 <defense>8</defense>
                 <magicdefense>5</magicdefense>
                 <hp>18</hp>
-                <dexterity>6</dexterity>
+                <dexterity>4</dexterity>
                 <attackRange>2</attackRange>
             </level>
             <level value="4">
-                <attack>5</attack>
-                <magicattack>10</magicattack>
+                <attack>18</attack>
+                <magicattack>28</magicattack>
                 <defense>10</defense>
                 <magicdefense>6</magicdefense>
                 <hp>20</hp>
-                <dexterity>6</dexterity>
+                <dexterity>4</dexterity>
                 <attackRange>2</attackRange>
             </level>
             <level value="5">
-                <attack>5</attack>
-                <magicattack>10</magicattack>
-                <defense>10</defense>
-                <magicdefense>8</magicdefense>
-                <hp>25</hp>
-                <dexterity>6</dexterity>
+                <attack>18</attack>
+                <magicattack>28</magicattack>
+                <defense>14</defense>
+                <magicdefense>10</magicdefense>
+                <hp>30</hp>
+                <dexterity>4</dexterity>
                 <attackRange>2</attackRange>
             </level>
         </chimera>
         
         <bugbear>
             <level value="1">
-                <attack>4</attack>
-                <magicattack>1</magicattack>
+                <attack>12</attack>
+                <magicattack>2</magicattack>
                 <defense>5</defense>
                 <magicdefense>5</magicdefense>
                 <hp>15</hp>
@@ -546,7 +546,7 @@
                 <attackRange>1</attackRange>
             </level>
             <level value="2">
-                <attack>4</attack>
+                <attack>16</attack>
                 <magicattack>1</magicattack>
                 <defense>8</defense>
                 <magicdefense>6</magicdefense>
@@ -555,7 +555,7 @@
                 <attackRange>1</attackRange>
             </level>
             <level value="3">
-                <attack>7</attack>
+                <attack>20</attack>
                 <magicattack>3</magicattack>
                 <defense>10</defense>
                 <magicdefense>6</magicdefense>
@@ -564,7 +564,7 @@
                 <attackRange>1</attackRange>
             </level>
             <level value="4">
-                <attack>7</attack>
+                <attack>24</attack>
                 <magicattack>3</magicattack>
                 <defense>10</defense>
                 <magicdefense>8</magicdefense>
@@ -573,11 +573,11 @@
                 <attackRange>1</attackRange>
             </level>
             <level value="5">
-                <attack>10</attack>
+                <attack>24</attack>
                 <magicattack>3</magicattack>
                 <defense>10</defense>
                 <magicdefense>8</magicdefense>
-                <hp>25</hp>
+                <hp>28</hp>
                 <dexterity>4</dexterity>
                 <attackRange>1</attackRange>
             </level>
@@ -586,7 +586,7 @@
         <drow>
             <level value="1">
                 <attack>3</attack>
-                <magicattack>4</magicattack>
+                <magicattack>14</magicattack>
                 <defense>1</defense>
                 <magicdefense>3</magicdefense>
                 <hp>15</hp>
@@ -594,38 +594,38 @@
                 <attackRange>3</attackRange>
             </level>
             <level value="2">
-                <attack>3</attack>
-                <magicattack>4</magicattack>
-                <defense>1</defense>
+                <attack>4</attack>
+                <magicattack>16</magicattack>
+                <defense>2</defense>
                 <magicdefense>3</magicdefense>
                 <hp>18</hp>
                 <dexterity>5</dexterity>
                 <attackRange>3</attackRange>
             </level>
             <level value="3">
-                <attack>3</attack>
-                <magicattack>8</magicattack>
-                <defense>1</defense>
+                <attack>5</attack>
+                <magicattack>18</magicattack>
+                <defense>3</defense>
                 <magicdefense>8</magicdefense>
                 <hp>18</hp>
                 <dexterity>5</dexterity>
                 <attackRange>3</attackRange>
             </level>
             <level value="4">
-                <attack>3</attack>
-                <magicattack>8</magicattack>
-                <defense>1</defense>
+                <attack>7</attack>
+                <magicattack>22</magicattack>
+                <defense>4</defense>
                 <magicdefense>8</magicdefense>
-                <hp>20</hp>
+                <hp>25</hp>
                 <dexterity>5</dexterity>
                 <attackRange>3</attackRange>
             </level>
             <level value="5">
-                <attack>3</attack>
-                <magicattack>12</magicattack>
-                <defense>1</defense>
+                <attack>7</attack>
+                <magicattack>24</magicattack>
+                <defense>5</defense>
                 <magicdefense>10</magicdefense>
-                <hp>20</hp>
+                <hp>30</hp>
                 <dexterity>5</dexterity>
                 <attackRange>3</attackRange>
             </level>
@@ -635,7 +635,7 @@
     <unlocklevel value="5">
         <centaur>
             <level value="1">
-                <attack>5</attack>
+                <attack>15</attack>
                 <magicattack>6</magicattack>
                 <defense>3</defense>
                 <magicdefense>8</magicdefense>
@@ -644,38 +644,38 @@
                 <attackRange>5</attackRange>
             </level>
             <level value="2">
-                <attack>5</attack>
-                <magicattack>6</magicattack>
-                <defense>3</defense>
-                <magicdefense>8</magicdefense>
+                <attack>20</attack>
+                <magicattack>7</magicattack>
+                <defense>4</defense>
+                <magicdefense>9</magicdefense>
                 <hp>18</hp>
                 <dexterity>5</dexterity>
                 <attackRange>5</attackRange>
             </level>
             <level value="3">
-                <attack>8</attack>
+                <attack>24</attack>
                 <magicattack>10</magicattack>
                 <defense>8</defense>
-                <magicdefense>8</magicdefense>
-                <hp>18</hp>
+                <magicdefense>10</magicdefense>
+                <hp>20</hp>
                 <dexterity>5</dexterity>
                 <attackRange>5</attackRange>
             </level>
             <level value="4">
-                <attack>8</attack>
+                <attack>28</attack>
                 <magicattack>15</magicattack>
-                <defense>8</defense>
-                <magicdefense>10</magicdefense>
-                <hp>20</hp>
+                <defense>9</defense>
+                <magicdefense>11</magicdefense>
+                <hp>22</hp>
                 <dexterity>5</dexterity>
                 <attackRange>5</attackRange>
             </level>
             <level value="5">
-                <attack>8</attack>
+                <attack>28</attack>
                 <magicattack>18</magicattack>
                 <defense>10</defense>
-                <magicdefense>10</magicdefense>
-                <hp>20</hp>
+                <magicdefense>12</magicdefense>
+                <hp>25</hp>
                 <dexterity>5</dexterity>
                 <attackRange>5</attackRange>
             </level>
@@ -684,7 +684,7 @@
         <mindflayer>
             <level value="1">
                 <attack>10</attack>
-                <magicattack>10</magicattack>
+                <magicattack>18</magicattack>
                 <defense>2</defense>
                 <magicdefense>3</magicdefense>
                 <hp>15</hp>
@@ -692,38 +692,38 @@
                 <attackRange>4</attackRange>
             </level>
             <level value="2">
-                <attack>10</attack>
-                <magicattack>10</magicattack>
-                <defense>2</defense>
-                <magicdefense>3</magicdefense>
-                <hp>18</hp>
+                <attack>12</attack>
+                <magicattack>15</magicattack>
+                <defense>4</defense>
+                <magicdefense>5</magicdefense>
+                <hp>20</hp>
                 <dexterity>5</dexterity>
                 <attackRange>4</attackRange>
             </level>
             <level value="3">
                 <attack>10</attack>
-                <magicattack>15</magicattack>
+                <magicattack>20</magicattack>
                 <defense>5</defense>
                 <magicdefense>3</magicdefense>
-                <hp>18</hp>
+                <hp>24</hp>
                 <dexterity>5</dexterity>
                 <attackRange>4</attackRange>
             </level>
             <level value="4">
                 <attack>15</attack>
-                <magicattack>18</magicattack>
+                <magicattack>22</magicattack>
                 <defense>8</defense>
                 <magicdefense>5</magicdefense>
-                <hp>20</hp>
+                <hp>26</hp>
                 <dexterity>5</dexterity>
                 <attackRange>4</attackRange>
             </level>
             <level value="5">
                 <attack>15</attack>
-                <magicattack>20</magicattack>
-                <defense>8</defense>
+                <magicattack>26</magicattack>
+                <defense>9</defense>
                 <magicdefense>5</magicdefense>
-                <hp>20</hp>
+                <hp>28</hp>
                 <dexterity>5</dexterity>
                 <attackRange>4</attackRange>
             </level>
@@ -731,47 +731,47 @@
         
         <dragon>
             <level value="1">
-                <attack>10</attack>
-                <magicattack>10</magicattack>
+                <attack>15</attack>
+                <magicattack>15</magicattack>
                 <defense>10</defense>
                 <magicdefense>10</magicdefense>
-                <hp>15</hp>
+                <hp>20</hp>
                 <dexterity>6</dexterity>
                 <attackRange>4</attackRange>
             </level>
             <level value="2">
-                <attack>15</attack>
-                <magicattack>15</magicattack>
+                <attack>18</attack>
+                <magicattack>18</magicattack>
                 <defense>10</defense>
                 <magicdefense>10</magicdefense>
-                <hp>18</hp>
+                <hp>22</hp>
                 <dexterity>6</dexterity>
                 <attackRange>4</attackRange>
             </level>
             <level value="3">
-                <attack>15</attack>
-                <magicattack>15</magicattack>
-                <defense>10</defense>
+                <attack>24</attack>
+                <magicattack>24</magicattack>
+                <defense>12</defense>
                 <magicdefense>10</magicdefense>
-                <hp>18</hp>
+                <hp>24</hp>
                 <dexterity>6</dexterity>
                 <attackRange>4</attackRange>
             </level>
             <level value="4">
-                <attack>20</attack>
-                <magicattack>20</magicattack>
-                <defense>10</defense>
+                <attack>24</attack>
+                <magicattack>24</magicattack>
+                <defense>14</defense>
                 <magicdefense>10</magicdefense>
-                <hp>20</hp>
+                <hp>26</hp>
                 <dexterity>6</dexterity>
                 <attackRange>4</attackRange>
             </level>
             <level value="5">
-                <attack>20</attack>
-                <magicattack>20</magicattack>
-                <defense>10</defense>
+                <attack>28</attack>
+                <magicattack>28</magicattack>
+                <defense>16</defense>
                 <magicdefense>10</magicdefense>
-                <hp>20</hp>
+                <hp>28</hp>
                 <dexterity>6</dexterity>
                 <attackRange>4</attackRange>
             </level>

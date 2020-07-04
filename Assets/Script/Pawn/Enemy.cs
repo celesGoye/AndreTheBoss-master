@@ -13,7 +13,6 @@ public class Enemy : Pawn
     int attack,int magicAttack, int defense, int magicDefense, int HP, int dexterity, int attackRange, int dropsoul)
     {
         this.enemyType = enemyType;
-        Name = enemyType.ToString();
         InitializePawn(PawnType.Enemy, name,level, attack,magicAttack, defense,magicDefense, HP, dexterity, attackRange);
         
         this.skillCounts = skillCounts;

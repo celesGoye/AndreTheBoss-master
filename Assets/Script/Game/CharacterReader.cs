@@ -112,14 +112,19 @@ public class CharacterReader
     {
         CharacterData data = new CharacterData();
 
-        string xpath = "/enemy//level[" + level + "]/" + enemyName;
+        string xpath = "/enemy/level[" + level + "]/" + enemyName;
 
         XmlElement node = (XmlElement)xmlDocEnemy.SelectSingleNode(xpath);
 
+		
         if (node == null)
         {
             Debug.Log("On CharacterReader: " + enemyName + " not found");
             return null;
+        }
+		else
+        {
+			Debug.Log(enemyName + " : attack - " + int.Parse(node["attack"].InnerXml));
         }
 
         data.attack = int.Parse(node["attack"].InnerXml);
